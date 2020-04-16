@@ -1,10 +1,10 @@
 # Samartha Ingle.
 
-_Here lies the personal documentation of Samartha Ingle._
+_Here lies the personal Tears of Smartha Ingle._
 
 ---
 
-*[Initial Motivation](./Motivation-SamarthaIngle.md)
-*[Research And Inspiration](./ResearchAndInspiration-SamarthaIngle.md)
-*[Journal](./Journal-SamarthaIngle.md)
-*[Final Statement](./FinalStatement-SamarthaIngle.md)
+## [Initial Motivation](./Motivation.md)
+## [Research And Inspiration](./ResearchAndInspiration.md)
+## [Journal](./Journal.md)
+## [Final Statement](./FinalStatement.md)
