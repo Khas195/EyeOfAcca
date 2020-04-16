@@ -11,9 +11,11 @@ Go to [Note Board](https://miro.com/app/board/o9J_ktqXOCM=/) for the notes of th
 The todo list of practical tasks for the project.
 Task Management Tool - TBD.
 
-### [Process Journal](./Journals)
-A journal that includes high-level reflections of each member that worked on the project on the design and development process, intended to be complementary to the [commit history of the repository](https://bitbucket.org/btkgamedesign/prototype2-tungcao-samarthaingle-christopherbukalchilicuisa/commits/).
-
+### Personal Documentation
+To read the developers personal documentation such as: Journal, Motivation, Research and Inspiration and Final Statement.
+ * [Tung Cao](./PersonalDocumentation/TungCao).
+ * [Samartha Ingle](./PersonalDocumentation/SamarthaIngle).
+ * [ChristopherBukalChilicuisa](./PersonalDocumentation/ChristioherBukalChilicuisa).
 
 ### [Research Questions](./research-questions.md)
 Attempts to frame what's meaningful about this project.
