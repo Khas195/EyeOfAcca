@@ -12,13 +12,9 @@ public class MainMenuState : GameState
 
     public override void OnStateEnter()
     {
-        this.master.LoadSceneAdditively("MainMenu");
-        return;
     }
 
     public override void OnStateExit()
     {
-        this.master.UnloadScene("MainMenu");
-        return;
     }
 }

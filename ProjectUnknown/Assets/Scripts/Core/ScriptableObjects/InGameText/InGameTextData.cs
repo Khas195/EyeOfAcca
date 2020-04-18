@@ -18,7 +18,6 @@ public class InGameTextData : ScriptableObject
 {
     public string lang = "En";
     [ReorderableList]
-    [OnValueChanged("OnValueTextChange")]
     [ValidateInput("NoSimilarName", "All names must be different")]
     public List<TextData> texts = new List<TextData>();
 
@@ -34,12 +33,10 @@ public class InGameTextData : ScriptableObject
             mList[i].id = i;
         }
     }
-    public void OnValueTextChange(List<TextData> oldList, List<TextData> newList)
-    {
-        SortID(newList);
-    }
     public bool NoSimilarName(List<TextData> mList)
     {
+
+        SortID(mList);
         for (int i = 0; i < mList.Count; i++)
         {
             for (int j = i + 1; j < mList.Count; j++)

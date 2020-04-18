@@ -1,8 +1,10 @@
-using UnityEngine;
-using UnityEditor;
 using System;
-using System.Reflection;
 using System.Linq;
+using System.Reflection;
+using UnityEditor;
+using UnityEditor.Experimental.SceneManagement;
+using UnityEditor.SceneManagement;
+using UnityEngine;
 
 namespace NaughtyAttributes.Editor
 {
@@ -121,6 +123,24 @@ namespace NaughtyAttributes.Editor
 				if (GUILayout.Button(buttonText))
 				{
 					methodInfo.Invoke(target, null);
+
+					if (!Application.isPlaying)
+					{
+						// Set target object and scene dirty to serialize changes to disk
+						EditorUtility.SetDirty(target);
+
+						PrefabStage stage = PrefabStageUtility.GetCurrentPrefabStage();
+						if (stage != null)
+						{
+							// Prefab mode
+							EditorSceneManager.MarkSceneDirty(stage.scene);
+						}
+						else
+						{
+							// Normal scene
+							EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
+						}
+					}
 				}
 			}
 			else
@@ -246,6 +266,10 @@ namespace NaughtyAttributes.Editor
 			else if (typeof(UnityEngine.Object).IsAssignableFrom(valueType))
 			{
 				EditorGUILayout.ObjectField(label, (UnityEngine.Object)value, valueType, true);
+			}
+			else if (valueType.BaseType == typeof(Enum))
+			{
+				EditorGUILayout.EnumPopup(label, (Enum)value);
 			}
 			else
 			{

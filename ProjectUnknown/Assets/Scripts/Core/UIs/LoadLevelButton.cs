@@ -32,9 +32,7 @@ public class LoadLevelButton : MonoBehaviour
         {
             LogHelper.GetInstance().Log(this + " loading level with level index " + levelIndex);
             master.SetCurrentInGameLevel(levelIndex);
-
         }
-
         master.LoadLevel(master.GetInGameLevelIndex());
         master.GetStateManager().RequestState(GameState.GameStateEnum.InGame);
     }
