@@ -108,9 +108,7 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     }
     public void LoadLevel(int levelIndex)
     {
-        LoadPrequisiteScenesForLevel();
-        LoadSceneAdditively("Level" + levelIndex);
-        gameStateManager.RequestState(GameState.GameStateEnum.InGame);
+        LoadLevel("Level" + levelIndex);
     }
 
     private void LoadPrequisiteScenesForLevel()
@@ -124,6 +122,7 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     {
         LoadPrequisiteScenesForLevel();
         LoadSceneAdditively(levelName);
+        currentInGameLevelIndex = (int)Char.GetNumericValue(levelName.ToCharArray()[levelName.Length - 1]);
         gameStateManager.RequestState(GameState.GameStateEnum.InGame);
     }
 
