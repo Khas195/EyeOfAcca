@@ -1,6 +1,6 @@
 # Tung Cao.
 
-_Here lies the personal documentation of Tung Cao._
+_Here lies the personal Documentation of Tung Cao._
 
 ---
 
