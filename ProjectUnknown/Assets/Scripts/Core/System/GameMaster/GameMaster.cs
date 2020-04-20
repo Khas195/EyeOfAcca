@@ -21,7 +21,7 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
 
     [SerializeField]
     [Scene]
-    int startLevelIndex = 1;
+    string startLevel = "";
 
     [SerializeField]
     int currentInGameLevelIndex = 1;
@@ -36,11 +36,9 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     {
         UnloadAllScenesExcept("MasterScene");
 
-
-        currentInGameLevelIndex = startLevelIndex;
         if (skipMainMenu)
         {
-            this.LoadLevel(startLevelIndex);
+            this.LoadLevel(startLevel);
         }
         else
         {
@@ -194,10 +192,6 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
         return gameStateManager;
     }
 
-    public int GetStartLevelIndex()
-    {
-        return startLevelIndex;
-    }
     public int GetInGameLevelIndex()
     {
         return currentInGameLevelIndex;
