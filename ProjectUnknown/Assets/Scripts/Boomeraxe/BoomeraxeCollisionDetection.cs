@@ -15,6 +15,11 @@ public class BoomeraxeCollisionDetection : MonoBehaviour
     /// <param name="other">The Collision2D data associated with this collision.</param>
     void OnCollisionEnter2D(Collision2D other)
     {
+        if (other.gameObject.tag.Equals("Player"))
+        {
+            Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), other.collider);
+            return;
+        }
         axe.HandleCollisionWith(other);
     }
 }

@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class Movement2DPlatform : IMovement
 {
-
-
     [SerializeField]
     [Required]
     [ShowIf("noCharacter")]
