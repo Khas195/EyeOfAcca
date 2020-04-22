@@ -30,8 +30,22 @@ public class BoomeraxeGrip : MonoBehaviour
     float timeTilAxeReturnAfterExitCameraView = 0.5f;
     [SerializeField]
     int bounceLimit = 2;
+    [SerializeField]
+    int throwLimit = 1;
+    [SerializeField]
+    IMovement bodyMovement = null;
+
+    [SerializeField]
+    [ReadOnly]
+    int currentThrowCount = 0;
+    [SerializeField]
+    [ReadOnly]
     bool axeCatchable = false;
+    [SerializeField]
+    [ReadOnly]
+
     bool axeIsReturning = false;
+
 
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
@@ -40,6 +54,7 @@ public class BoomeraxeGrip : MonoBehaviour
     void Start()
     {
         HoldAxe();
+        ResetThrowCount();
     }
 
     /// <summary>
@@ -47,6 +62,10 @@ public class BoomeraxeGrip : MonoBehaviour
     /// </summary>
     void Update()
     {
+        if (currentThrowCount <= 0 && bodyMovement.IsTouchingGround())
+        {
+            ResetThrowCount();
+        }
         if (isBeingHeld == true)
         {
             StickToHolder();
@@ -54,9 +73,11 @@ public class BoomeraxeGrip : MonoBehaviour
             var mousPos = Input.mousePosition;
             mousPos = playerCamera.ScreenToWorldPoint(mousPos);
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && currentThrowCount > 0)
             {
                 ThrowAxe(mousPos);
+                currentThrowCount -= 1;
+                LogHelper.GetInstance().Log("Throw count decreased by 1 - Current Throw Count: ".Bolden() + currentThrowCount.ToString().Bolden(), true);
             }
         }
         else
@@ -78,7 +99,11 @@ public class BoomeraxeGrip : MonoBehaviour
             }
         }
     }
-
+    public void ResetThrowCount()
+    {
+        currentThrowCount = throwLimit;
+        LogHelper.GetInstance().Log("Reseting throw count to throw Limit : ".Bolden() + currentThrowCount.ToString().Bolden(), true);
+    }
     public void SetAxeCatchable(bool catchable)
     {
         axeCatchable = catchable;

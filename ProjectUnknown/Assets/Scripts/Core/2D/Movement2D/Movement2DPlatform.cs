@@ -12,16 +12,25 @@ public class Movement2DPlatform : IMovement
     [SerializeField]
     float fallMultiplier = 2.5f;
     float cachedSide = 0;
-    private bool jumpSignal;
+    bool jumpSignal = false;
+    [SerializeField]
+    Vector2 checkGroundBoxSize = Vector2.one;
+    [SerializeField]
+    Vector3 checkGroundBoxOffset = Vector3.one;
+    [SerializeField]
+    LayerMask jumpableLayer;
 
-
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(body2D.transform.position + checkGroundBoxOffset, checkGroundBoxSize);
+    }
     public override void Move(float forward, float side)
     {
         cachedSide = side;
     }
     void Update()
     {
-
         ProcessMovement();
         if (jumpSignal)
         {
@@ -42,11 +51,6 @@ public class Movement2DPlatform : IMovement
             body2D.velocity = Vector3.ClampMagnitude(body2D.velocity, maxSpeed);
         }
     }
-
-    void FixedUpdate()
-    {
-
-    }
     private void ProcessMovement()
     {
         var curVel = body2D.velocity;
@@ -61,6 +65,19 @@ public class Movement2DPlatform : IMovement
     public override void SetRigidBody(Rigidbody2D body)
     {
         this.body2D = body;
+    }
+    public override bool IsTouchingGround()
+    {
+        var cols = Physics2D.OverlapBoxAll(this.body2D.transform.position + checkGroundBoxOffset, checkGroundBoxSize, 0, jumpableLayer);
+        if (cols.Length > 0)
+        {
+            for (int i = 0; i < cols.Length; i++)
+            {
+                LogHelper.GetInstance().Log(body2D.ToString().Bolden() + " is standing on " + cols[i].ToString().Bolden(), true);
+            }
+            return true;
+        }
+        return false;
     }
 
 }
