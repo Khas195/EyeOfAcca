@@ -16,20 +16,7 @@ public class InGameText : SingletonMonobehavior<InGameText>
     [Button("Load Language")]
     public void LoadTextData()
     {
-        foreach (var obj in Resources.FindObjectsOfTypeAll(typeof(ScriptableObject)) as ScriptableObject[])
-        {
-            if (EditorUtility.IsPersistent(obj))
-            {
-                string pathToAsset = UnityEditor.AssetDatabase.GetAssetPath(obj);
-                if (pathToAsset.StartsWith("Assets/Resources/Datas/Localization"))
-                {
-                    if (obj.name.Equals(language))
-                    {
-                        data = obj as InGameTextData;
-                    }
-                }
-            }
-        }
+        data = Resources.Load<InGameTextData>("Datas/Localization/" + language);
     }
     [Button("Load Text for all Localization Text")]
     public void LoadAllLocalizationText()
@@ -41,6 +28,7 @@ public class InGameText : SingletonMonobehavior<InGameText>
             obj.LoadText();
         }
     }
+#if UNITY_EDITOR
     public DropdownList<string> GetLanguage()
     {
         var result = new DropdownList<string>();
@@ -48,7 +36,7 @@ public class InGameText : SingletonMonobehavior<InGameText>
         {
             if (EditorUtility.IsPersistent(obj))
             {
-                string pathToAsset = UnityEditor.AssetDatabase.GetAssetPath(obj);
+                string pathToAsset = AssetDatabase.GetAssetPath(obj);
                 if (pathToAsset.StartsWith("Assets/Resources/Datas/Localization"))
                 {
                     result.Add(obj.name, obj.name);
@@ -57,6 +45,7 @@ public class InGameText : SingletonMonobehavior<InGameText>
         }
         return result;
     }
+#endif
 
     public InGameTextData GetTextList()
     {

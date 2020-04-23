@@ -118,6 +118,7 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
 
     public void LoadLevel(string levelName)
     {
+        SaveLoadManager.LoadAllData();
         LoadPrequisiteScenesForLevel();
         LoadSceneAdditively(levelName);
         currentInGameLevelIndex = (int)Char.GetNumericValue(levelName.ToCharArray()[levelName.Length - 1]);

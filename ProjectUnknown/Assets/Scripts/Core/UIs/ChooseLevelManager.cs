@@ -22,11 +22,11 @@ public class ChooseLevelManager : MonoBehaviour
         ClearButtons();
         LogHelper.GetInstance().Log("Finding Existing Level");
         bool foundAnyLevel = false;
-        int numOfScene = EditorBuildSettings.scenes.Length;
+        int numOfScene = SceneManager.sceneCountInBuildSettings;
         for (int i = 0; i < numOfScene; i++)
         {
-            var scene = EditorBuildSettings.scenes[i];
-            var sceneName = scene.path.Substring(scene.path.LastIndexOf('/') + 1);
+            var scene = SceneUtility.GetScenePathByBuildIndex(i);
+            var sceneName = scene.Substring(scene.LastIndexOf('/') + 1);
             if (sceneName.Contains("Level"))
             {
                 foundAnyLevel = true;

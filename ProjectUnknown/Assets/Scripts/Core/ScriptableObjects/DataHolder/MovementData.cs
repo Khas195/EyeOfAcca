@@ -12,10 +12,10 @@ using UnityEngine;
  * Right Click in Folder View -> Data -> movement
  */
 
-[XmlInclude(typeof(MovementData))]
 [Serializable]
 public class MovementData : ScriptableObject
 {
+    [InfoBox("Remember to SAVE datas after adjusting this data object", EInfoBoxType.Warning)]
     public float walkSpeed = 5;
     public float runSpeed = 10;
     public float jumpForce = 5;
@@ -23,11 +23,11 @@ public class MovementData : ScriptableObject
     [Button("Save")]
     public void SaveData()
     {
-        SaveLoadManager.Save<MovementData>(this, this.name);
+        this.SaveData();
     }
     [Button("Load")]
     public void LoadData()
     {
-        SaveLoadManager.Load<MovementData>(this, this.name);
+        this.LoadData();
     }
 }

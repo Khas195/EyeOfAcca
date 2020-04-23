@@ -67,7 +67,9 @@ public class LocalizeText : MonoBehaviour
             if (textData != null)
             {
                 textName = textData.name;
+#if UNITY_EDITOR
                 EditorUtility.SetDirty(this.gameObject);
+#endif
             }
         }
     }
@@ -80,7 +82,10 @@ public class LocalizeText : MonoBehaviour
             if (textData != null)
             {
                 id = textData.id;
+
+#if UNITY_EDITOR
                 EditorUtility.SetDirty(this.gameObject);
+#endif
             }
         }
     }
@@ -104,6 +109,8 @@ public class LocalizeText : MonoBehaviour
     {
         LogHelper.GetInstance().Log("Loading new Text for " + this);
         this.text.text = InGameText.GetInstance().GetTextData(id).content;
+#if UNITY_EDITOR
         EditorUtility.SetDirty(this.gameObject);
+#endif
     }
 }

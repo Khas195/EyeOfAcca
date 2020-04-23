@@ -16,6 +16,8 @@ public class TextData
 [CreateAssetMenu(fileName = "InGameText", menuName = "Data/Localization", order = 1)]
 public class InGameTextData : ScriptableObject
 {
+
+    [InfoBox("Remember to SAVE datas after adjusting this data object", EInfoBoxType.Warning)]
     public string lang = "En";
     [ReorderableList]
     [ValidateInput("NoSimilarName", "All names must be different")]
@@ -48,5 +50,15 @@ public class InGameTextData : ScriptableObject
             }
         }
         return true;
+    }
+    [Button("Save")]
+    public void SaveData()
+    {
+        this.SaveData();
+    }
+    [Button("Load")]
+    public void LoadData()
+    {
+        this.LoadData();
     }
 }

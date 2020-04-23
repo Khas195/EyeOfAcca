@@ -6,44 +6,48 @@ using UnityEngine;
 
 public class BoomeraxeGrip : MonoBehaviour
 {
+    [BoxGroup("Settings")]
+    [SerializeField]
+    [Required]
+    [InfoBox("Boomeraxe Datas - The values below are applied for ALL scripts that use this Data Object", EInfoBoxType.Warning)]
+    [DisplayScriptableObjectProperties]
+    BoomeraxeParams datas = null;
 
+
+    [BoxGroup("Requirement")]
     [SerializeField]
     [Required]
     Camera playerCamera = null;
+
+
+    [BoxGroup("Requirement")]
     [SerializeField]
     [Required]
     GameObject boomeraxeObject = null;
+
+    [BoxGroup("Requirement")]
     [SerializeField]
     [Required]
     GameObject holderPivot = null;
+
+    [BoxGroup("Requirement")]
     [SerializeField]
     [Required]
     Boomeraxe boomeraxeFlying = null;
 
+    [BoxGroup("Current Status")]
     [SerializeField]
     [ReadOnly]
     bool isBeingHeld = true;
-    [SerializeField]
-    float timeTilAxeCatchable = 0.5f;
 
-    [SerializeField]
-    float timeTilAxeReturnAfterExitCameraView = 0.5f;
-    [SerializeField]
-    int bounceLimit = 2;
-    [SerializeField]
-    int throwLimit = 1;
-    [SerializeField]
-    IMovement bodyMovement = null;
-
-    [SerializeField]
-    [ReadOnly]
-    int currentThrowCount = 0;
+    [BoxGroup("Current Status")]
     [SerializeField]
     [ReadOnly]
     bool axeCatchable = false;
+
+    [BoxGroup("Current Status")]
     [SerializeField]
     [ReadOnly]
-
     bool axeIsReturning = false;
 
 
@@ -54,7 +58,6 @@ public class BoomeraxeGrip : MonoBehaviour
     void Start()
     {
         HoldAxe();
-        ResetThrowCount();
     }
 
     /// <summary>
@@ -62,10 +65,6 @@ public class BoomeraxeGrip : MonoBehaviour
     /// </summary>
     void Update()
     {
-        if (currentThrowCount <= 0 && bodyMovement.IsTouchingGround())
-        {
-            ResetThrowCount();
-        }
         if (isBeingHeld == true)
         {
             StickToHolder();
@@ -73,36 +72,24 @@ public class BoomeraxeGrip : MonoBehaviour
             var mousPos = Input.mousePosition;
             mousPos = playerCamera.ScreenToWorldPoint(mousPos);
 
-            if (Input.GetMouseButtonDown(0) && currentThrowCount > 0)
+            if (Input.GetMouseButtonDown(0))
             {
                 ThrowAxe(mousPos);
-                currentThrowCount -= 1;
-                LogHelper.GetInstance().Log("Throw count decreased by 1 - Current Throw Count: ".Bolden() + currentThrowCount.ToString().Bolden(), true);
             }
         }
         else
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                axeCatchable = true;
-                HoldAxe();
-            }
             if (OutOfCameraView() && axeIsReturning == false)
             {
-                LogHelper.GetInstance().Log("Boomeraxe".Bolden().Colorize("#83ecd7") + " has exit the Camera Bounds, Return in " + timeTilAxeReturnAfterExitCameraView.ToString().Bolden(), true);
-                StartCoroutine(HoldAxeAfter(timeTilAxeReturnAfterExitCameraView));
+                LogHelper.GetInstance().Log("Boomeraxe".Bolden().Colorize("#83ecd7") + " has exit the Camera Bounds, Return in " + datas.timeTilAxeReturnAfterExitCameraView.ToString().Bolden(), true);
+                StartCoroutine(HoldAxeAfter(datas.timeTilAxeReturnAfterExitCameraView));
             }
-            if (boomeraxeFlying.GetBounceCount() > bounceLimit)
+            if (boomeraxeFlying.GetBounceCount() > datas.maxBounce)
             {
                 axeCatchable = true;
                 HoldAxe();
             }
         }
-    }
-    public void ResetThrowCount()
-    {
-        currentThrowCount = throwLimit;
-        LogHelper.GetInstance().Log("Reseting throw count to throw Limit : ".Bolden() + currentThrowCount.ToString().Bolden(), true);
     }
     public void SetAxeCatchable(bool catchable)
     {
@@ -126,7 +113,7 @@ public class BoomeraxeGrip : MonoBehaviour
         boomeraxeFlying.gameObject.SetActive(true);
         boomeraxeFlying.Fly(mousPos);
         axeCatchable = false;
-        StartCoroutine(TurnOnAxeCatchable(timeTilAxeCatchable));
+        StartCoroutine(TurnOnAxeCatchable(datas.timeTilAxeCatchable));
     }
     public bool IsHoldingAxe()
     {

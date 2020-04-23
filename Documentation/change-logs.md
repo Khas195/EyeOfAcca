@@ -1,7 +1,7 @@
 # Project Change Logs.
 ---
 
-_**Version 0.0.1 (April 16th, 2020 - April 19th, 2020) - Initalize project**_
+####_**Version 0.0.1 (April 16th, 2020 - April 19th, 2020) - Initalize project**_
 Documentations and Project Planning:
 
     - Add Readmes for each developer.
@@ -21,9 +21,10 @@ Game's Change-logs:
     - Add editable json files for in game datas( Character movement, character data, localization).
 
 
-_**Version 0.0.2 (April 20th, 2020 - April 26th, 2020) - Prototype Making**_
+####_**Version 0.0.2 + Version 0.0.3 (April 20th, 2020 - April 26th, 2020) - Prototype Making**_
 
-* Game's Change-logs:
+### Version 0.0.2:
+
 
 Boomeraxe:
 
@@ -45,3 +46,24 @@ Others:
 
     - Add level 3 for bounce testing.
     - New Level can be add by Duplicate the existing level -> alter it as u want, then add it to the build settings.
+
+### Version 0.0.3:
+
+
+Boomeraxe:
+
+    - The fly distance of boomeraxe will reset on bounce with a new anchor which is the contact point of the surface it touched.
+    - On exceeding the fly distance after any bounce it will teleport back to the holder.
+    - Remove throw limit on the axe.
+    - Add Teleport limit to the axe - current value: 2 teleports.
+
+
+Control:
+
+    - REMOVE: Left click to throw the axe if the axe is being held.
+
+Others:
+
+    - Test building the project -> revamp some code for saving and loading the project so it is buildable.
+    - Boomeraxe's data now available at:Prototype2-ProjectUnknown_Data/StreamingAssets/SavedData  in build version.
+    - All saved datas now are loaded before loading any level.

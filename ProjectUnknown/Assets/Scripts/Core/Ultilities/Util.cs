@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 
 public static class Util
@@ -106,5 +107,15 @@ public static class Util
     public static String Italician(this String text)
     {
         return "<i>" + text + "</i>";
+    }
+    [Button("Save")]
+    public static void SaveData(this ScriptableObject data)
+    {
+        SaveLoadManager.Save<object>(data, data.name);
+    }
+    [Button("Load")]
+    public static void LoadData(this ScriptableObject data)
+    {
+        SaveLoadManager.Load<object>(data, data.name);
     }
 }

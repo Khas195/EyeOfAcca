@@ -73,7 +73,7 @@ public class Movement2DPlatform : IMovement
         {
             for (int i = 0; i < cols.Length; i++)
             {
-                LogHelper.GetInstance().Log(body2D.ToString().Bolden() + " is standing on " + cols[i].ToString().Bolden(), true);
+                LogHelper.GetInstance().Log(body2D.name.Bolden() + " is standing on " + cols[i].name.Bolden(), true);
             }
             return true;
         }

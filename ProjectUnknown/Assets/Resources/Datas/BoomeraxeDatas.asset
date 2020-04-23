@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99b53a8a7e804a140a6cf85042782c2e, type: 3}
+  m_Name: BoomeraxeDatas
+  m_EditorClassIdentifier: 
+  flyDistance: 5
+  flyVelocity: 9
+  maxBounce: 2
+  maxTeleport: 2
+  airBornTimeAfterTeleport: 0.2
+  timeTilAxeCatchable: 0.2
+  timeTilAxeReturnAfterExitCameraView: 0.5

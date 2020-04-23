@@ -7,45 +7,41 @@ using UnityEngine;
 
 public static class SaveLoadManager
 {
-    [MenuItem("SaveLoad/SaveAll")]
     public static void SaveAllData()
     {
+        LogHelper.GetInstance().Log("Saving datas from json".Bolden(), true);
         foreach (var obj in Resources.FindObjectsOfTypeAll(typeof(ScriptableObject)) as ScriptableObject[])
         {
-            if (EditorUtility.IsPersistent(obj))
+            var savedObj = Resources.Load("Datas/" + obj.name);
+            if (savedObj != null)
             {
-                string pathToAsset = UnityEditor.AssetDatabase.GetAssetPath(obj);
-                if (pathToAsset.StartsWith("Assets/Resources/Datas"))
-                {
-                    SaveLoadManager.Save<object>(obj, obj.name);
-                }
+                SaveLoadManager.Save<object>(obj, obj.name);
             }
         }
     }
-    [MenuItem("SaveLoad/LoadAll")]
     public static void LoadAllData()
     {
+        LogHelper.GetInstance().Log("Loading datas from json".Bolden(), true);
         foreach (var obj in Resources.FindObjectsOfTypeAll(typeof(ScriptableObject)) as ScriptableObject[])
         {
-            if (EditorUtility.IsPersistent(obj))
+            var loadedObj = Resources.Load("Datas/" + obj.name);
+            if (loadedObj != null)
             {
-                string pathToAsset = UnityEditor.AssetDatabase.GetAssetPath(obj);
-                if (pathToAsset.StartsWith("Assets/Resources/Datas"))
-                {
-                    SaveLoadManager.Load<object>(obj, obj.name);
-                }
+                SaveLoadManager.Load<object>(obj, obj.name);
             }
         }
     }
 
     public static void Save<T>(T savedObject, string fileName)
     {
+        LogHelper.GetInstance().Log("Saved Obj: ".Bolden() + fileName.Bolden(), true);
         string jsonSaved = JsonUtility.ToJson(savedObject);
-        File.WriteAllText(Application.dataPath + "/SavedData/" + fileName + ".json", jsonSaved);
+        File.WriteAllText(Application.dataPath + "/StreamingAssets/SavedData/" + fileName + ".json", jsonSaved);
     }
     public static void Load<T>(T objectToLoad, string fileName)
     {
-        string jsonLoad = File.ReadAllText(Application.dataPath + "/SavedData/" + fileName + ".json");
+        LogHelper.GetInstance().Log("Loaded Obj: ".Bolden() + fileName.Bolden(), true);
+        string jsonLoad = File.ReadAllText(Application.dataPath + "/StreamingAssets/SavedData/" + fileName + ".json");
         JsonUtility.FromJsonOverwrite(jsonLoad, objectToLoad);
     }
 }

@@ -7,6 +7,7 @@ using UnityEngine;
 [Serializable]
 public class CharacterData : ScriptableObject
 {
+    [InfoBox("Remember to SAVE datas after adjusting this data object", EInfoBoxType.Warning)]
     public string characterName;
     public int health;
 

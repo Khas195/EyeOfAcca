@@ -8,7 +8,7 @@ public class LogHelper : SingletonMonobehavior<LogHelper>
     public void LogError(string message, bool showLogOnInGame = false)
     {
         UnityEngine.Debug.LogError(message);
-        if (showLogOnInGame)
+        if (showLogOnInGame && Application.isPlaying)
         {
             ShowLogOnUI("ERROR:".TextMod("red", true, true) + message);
         }
@@ -18,7 +18,7 @@ public class LogHelper : SingletonMonobehavior<LogHelper>
     public void Log(string message, bool showLogOnInGame = false)
     {
         UnityEngine.Debug.Log(message);
-        if (showLogOnInGame)
+        if (showLogOnInGame && Application.isPlaying)
         {
             ShowLogOnUI(message);
         }
@@ -28,7 +28,7 @@ public class LogHelper : SingletonMonobehavior<LogHelper>
     public void LogWarning(string message, bool showLogOnInGame = false)
     {
         UnityEngine.Debug.LogWarning(message);
-        if (showLogOnInGame)
+        if (showLogOnInGame && Application.isPlaying)
         {
             ShowLogOnUI("WARNING:".TextMod("yellow", true, true) + message);
         }

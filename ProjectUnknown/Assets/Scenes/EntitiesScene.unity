@@ -176,17 +176,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c589fa5d3f5ba9840b75b8c7c3ede3df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  datas: {fileID: 11400000, guid: c48c63eac7f6b00429aa58ba2914fba3, type: 2}
   playerCamera: {fileID: 424431176}
   boomeraxeObject: {fileID: 497176110}
   holderPivot: {fileID: 1287017935}
   boomeraxeFlying: {fileID: 1562974584}
   isBeingHeld: 1
-  timeTilAxeCatchable: 0.5
-  timeTilAxeReturnAfterExitCameraView: 0.5
-  bounceLimit: 2
-  throwLimit: 1
-  bodyMovement: {fileID: 270376798}
-  currentThrowCount: 0
   axeCatchable: 0
   axeIsReturning: 0
 --- !u!20 &424431176 stripped
@@ -238,10 +233,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c48f06d9fcf77434c8d20eca826b1568, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  datas: {fileID: 11400000, guid: c48c63eac7f6b00429aa58ba2914fba3, type: 2}
   grip: {fileID: 285891218}
   boomeraxeHolder: {fileID: 638179319}
   holderMovement: {fileID: 270376798}
-  airBornTime: 0.2
+  currentTeleport: 0
+  isCountingAirbornTime: 0
 --- !u!1 &497176110
 GameObject:
   m_ObjectHideFlags: 0
@@ -437,10 +434,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d14bfc90940eb2148a96628499ac5c89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  datas: {fileID: 11400000, guid: c48c63eac7f6b00429aa58ba2914fba3, type: 2}
   body2d: {fileID: 497176115}
-  flyDistance: 5
-  flyVelocity: 10
+  grip: {fileID: 285891218}
   bounceCount: 0
+  flyTriggered: 0
+  flyingToTarget: 0
+  originPoint: {x: 0, y: 0}
+  currentFlyDirection: {x: 0, y: 0}
 --- !u!1 &1619830174
 GameObject:
   m_ObjectHideFlags: 0
