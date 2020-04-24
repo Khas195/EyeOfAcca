@@ -68,7 +68,7 @@ Others:
     - Boomeraxe's data now available at:Prototype2-ProjectUnknown_Data/StreamingAssets/SavedData  in build version.
     - All saved datas now are loaded before loading any level.
 
-### Version 0.0.3:
+### Version 0.0.4:
 
 Boomeraxe:
 
