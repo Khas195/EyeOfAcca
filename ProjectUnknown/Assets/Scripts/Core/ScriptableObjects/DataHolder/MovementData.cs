@@ -15,7 +15,6 @@ using UnityEngine;
 [Serializable]
 public class MovementData : ScriptableObject
 {
-    [InfoBox("Remember to SAVE datas after adjusting this data object", EInfoBoxType.Warning)]
     public float walkSpeed = 5;
     public float runSpeed = 10;
     public float jumpForce = 5;
@@ -23,11 +22,11 @@ public class MovementData : ScriptableObject
     [Button("Save")]
     public void SaveData()
     {
-        this.SaveData();
+        SaveLoadManager.Save(this, this.name);
     }
     [Button("Load")]
     public void LoadData()
     {
-        this.LoadData();
+        SaveLoadManager.Load(this, this.name);
     }
 }

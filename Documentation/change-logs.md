@@ -21,7 +21,7 @@ Game's Change-logs:
     - Add editable json files for in game datas( Character movement, character data, localization).
 
 
-####_**Version 0.0.2 + Version 0.0.3 (April 20th, 2020 - April 26th, 2020) - Prototype Making**_
+####_**Version 0.0.2, Version 0.0.3, Version 0.0.4 (April 20th, 2020 - April 26th, 2020) - Prototype Making**_
 
 ### Version 0.0.2:
 
@@ -67,3 +67,22 @@ Others:
     - Test building the project -> revamp some code for saving and loading the project so it is buildable.
     - Boomeraxe's data now available at:Prototype2-ProjectUnknown_Data/StreamingAssets/SavedData  in build version.
     - All saved datas now are loaded before loading any level.
+
+### Version 0.0.4:
+
+Boomeraxe:
+
+    Add lul period at the moment of throw.
+    No longer using courotine for timing time scale.
+
+Character: 
+
+    The lul period no long change the gravity scale but the time scale of the character.
+    Which mean he will move slower all together rather than just falls slower.
+
+Balance:
+
+    Lul time after Teleport: 0.5s.
+    Lul time after throw: 0.4s.
+    Time scale after teleport: 0.5.
+    Time Scale after throw: 0.5.

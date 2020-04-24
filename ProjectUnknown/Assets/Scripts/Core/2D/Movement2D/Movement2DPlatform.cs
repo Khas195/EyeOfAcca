@@ -1,3 +1,4 @@
+using System;
 using NaughtyAttributes;
 using UnityEngine;
 
@@ -19,6 +20,9 @@ public class Movement2DPlatform : IMovement
     Vector3 checkGroundBoxOffset = Vector3.one;
     [SerializeField]
     LayerMask jumpableLayer;
+    [SerializeField]
+    [ReadOnly]
+    float timeScale = 1.0f;
 
     void OnDrawGizmos()
     {
@@ -46,11 +50,19 @@ public class Movement2DPlatform : IMovement
         {
             body2D.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
+        body2D.velocity *= timeScale;
+
         if (body2D.velocity.magnitude > maxSpeed)
         {
             body2D.velocity = Vector3.ClampMagnitude(body2D.velocity, maxSpeed);
         }
     }
+
+    public void SetTimeScale(float scale)
+    {
+        timeScale = scale;
+    }
+
     private void ProcessMovement()
     {
         var curVel = body2D.velocity;
@@ -73,7 +85,7 @@ public class Movement2DPlatform : IMovement
         {
             for (int i = 0; i < cols.Length; i++)
             {
-                LogHelper.GetInstance().Log(body2D.name.Bolden() + " is standing on " + cols[i].name.Bolden(), true);
+                LogHelper.GetInstance().Log(body2D.name.Bolden() + " is standing on " + cols[i].name.Bolden());
             }
             return true;
         }

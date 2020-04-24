@@ -9,6 +9,7 @@ public class BoomeraxeTeleportator : MonoBehaviour
     [SerializeField]
     [Required]
     [InfoBox("Boomeraxe Datas - The values below are applied for ALL scripts that use this Data Object", EInfoBoxType.Warning)]
+    [InfoBox("Boomeraxe Datas - The values below can ONLY be changed by clicking Save in the data object itself", EInfoBoxType.Warning)]
     [DisplayScriptableObjectProperties]
     BoomeraxeParams datas = null;
 
@@ -26,6 +27,12 @@ public class BoomeraxeTeleportator : MonoBehaviour
     [BoxGroup("Requirement")]
     [SerializeField]
     [Required]
+    BoomeraxeGravityScaleAdjustor adjustor = null;
+
+
+    [BoxGroup("Requirement")]
+    [SerializeField]
+    [Required]
     Movement2DPlatform holderMovement = null;
 
 
@@ -33,11 +40,6 @@ public class BoomeraxeTeleportator : MonoBehaviour
     [SerializeField]
     [ReadOnly]
     int currentTeleport = 0;
-
-    [BoxGroup("Current Status")]
-    [SerializeField]
-    [ReadOnly]
-    bool isCountingAirbornTime = false;
 
     void Start()
     {
@@ -64,29 +66,21 @@ public class BoomeraxeTeleportator : MonoBehaviour
                 var pos = grip.GetAxePosition();
                 boomeraxeHolder.transform.position = pos;
 
+                if (datas.lulTimeAfterTeleport > 0)
+                {
+                    adjustor.SetGravityScaleFor(datas.timeScaleAfterTeleport, datas.lulTimeAfterTeleport);
+                }
                 // Freeze for seconds
-                var holderBody = boomeraxeHolder.GetComponent<Rigidbody2D>();
-                holderBody.gravityScale = 0.0f;
-                holderBody.velocity = Vector2.zero;
-                holderMovement.gameObject.SetActive(false);
+
 
                 // Grab the axe
                 grip.SetAxeCatchable(true);
                 grip.HoldAxe();
 
-                if (isCountingAirbornTime == false)
-                {
-                    StartCoroutine(TurnBackHolderGravity(datas.airBornTimeAfterTeleport, holderBody, holderMovement));
-                }
+
             }
         }
     }
-    IEnumerator TurnBackHolderGravity(float time, Rigidbody2D holderBody, Movement2DPlatform holderMovement)
-    {
-        isCountingAirbornTime = true;
-        yield return new WaitForSeconds(time);
-        holderBody.gravityScale = 1.0f;
-        holderMovement.gameObject.SetActive(true);
-        isCountingAirbornTime = false;
-    }
+
+
 }
