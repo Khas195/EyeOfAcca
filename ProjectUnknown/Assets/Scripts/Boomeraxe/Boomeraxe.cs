@@ -10,6 +10,7 @@ public class Boomeraxe : MonoBehaviour
     [SerializeField]
     [Required]
     [InfoBox("Boomeraxe Datas - The values below are applied for ALL scripts that use this Data Object", EInfoBoxType.Warning)]
+    [InfoBox("Boomeraxe Datas - The values below can ONLY be changed by clicking Save in the data object itself", EInfoBoxType.Warning)]
     [DisplayScriptableObjectProperties]
     BoomeraxeParams datas = null;
 
