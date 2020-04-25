@@ -15,7 +15,10 @@ MonoBehaviour:
   flyDistance: 5
   flyVelocity: 9
   maxBounce: 2
-  maxTeleport: 2
-  airBornTimeAfterTeleport: 0.2
+  maxTeleport: 99999
+  lulTimeAfterTeleport: 0.5
+  timeScaleAfterTeleport: 0.5
+  lulPeriodAfterAirborneThrow: 0.4
+  timeScaleAfterThrow: 0.5
   timeTilAxeCatchable: 0.2
   timeTilAxeReturnAfterExitCameraView: 0.5

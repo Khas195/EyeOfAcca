@@ -10,6 +10,7 @@ public class BoomeraxeGrip : MonoBehaviour
     [SerializeField]
     [Required]
     [InfoBox("Boomeraxe Datas - The values below are applied for ALL scripts that use this Data Object", EInfoBoxType.Warning)]
+    [InfoBox("Boomeraxe Datas - The values below can ONLY be changed by clicking Save in the data object itself", EInfoBoxType.Warning)]
     [DisplayScriptableObjectProperties]
     BoomeraxeParams datas = null;
 
@@ -23,12 +24,29 @@ public class BoomeraxeGrip : MonoBehaviour
     [BoxGroup("Requirement")]
     [SerializeField]
     [Required]
+    GameObject holderBody = null;
+
+    [BoxGroup("Requirement")]
+    [SerializeField]
+    [Required]
+    Movement2DPlatform holderMovementBehavior = null;
+
+
+    [BoxGroup("Requirement")]
+    [SerializeField]
+    [Required]
     GameObject boomeraxeObject = null;
 
     [BoxGroup("Requirement")]
     [SerializeField]
     [Required]
     GameObject holderPivot = null;
+
+    [BoxGroup("Requirement")]
+    [SerializeField]
+    [Required]
+    BoomeraxeGravityScaleAdjustor adjustor = null;
+
 
     [BoxGroup("Requirement")]
     [SerializeField]
@@ -82,6 +100,7 @@ public class BoomeraxeGrip : MonoBehaviour
             if (OutOfCameraView() && axeIsReturning == false)
             {
                 LogHelper.GetInstance().Log("Boomeraxe".Bolden().Colorize("#83ecd7") + " has exit the Camera Bounds, Return in " + datas.timeTilAxeReturnAfterExitCameraView.ToString().Bolden(), true);
+                StopCoroutine(HoldAxeAfter(datas.timeTilAxeReturnAfterExitCameraView));
                 StartCoroutine(HoldAxeAfter(datas.timeTilAxeReturnAfterExitCameraView));
             }
             if (boomeraxeFlying.GetBounceCount() > datas.maxBounce)
@@ -113,13 +132,14 @@ public class BoomeraxeGrip : MonoBehaviour
         boomeraxeFlying.gameObject.SetActive(true);
         boomeraxeFlying.Fly(mousPos);
         axeCatchable = false;
+        adjustor.SetGravityScaleFor(datas.timeScaleAfterThrow, datas.lulPeriodAfterAirborneThrow);
+        StopCoroutine(TurnOnAxeCatchable(datas.timeTilAxeCatchable));
         StartCoroutine(TurnOnAxeCatchable(datas.timeTilAxeCatchable));
     }
     public bool IsHoldingAxe()
     {
         return isBeingHeld;
     }
-
     IEnumerator TurnOnAxeCatchable(float time)
     {
         yield return new WaitForSeconds(time);
