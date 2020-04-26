@@ -24,6 +24,15 @@ public class Boomeraxe : MonoBehaviour
     [Required]
     BoomeraxeGrip grip = null;
 
+    [BoxGroup("Requirement")]
+    [SerializeField]
+    Animator animator = null;
+
+    [BoxGroup("Optional")]
+    [SerializeField]
+    GameObjectPool boomeraxeHitVFXPool = null;
+
+
     [BoxGroup("Current Status")]
     [SerializeField]
     [ReadOnly]
@@ -55,6 +64,7 @@ public class Boomeraxe : MonoBehaviour
     [ReadOnly]
     Vector2 currentFlyDirection = Vector2.zero;
 
+
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -69,7 +79,6 @@ public class Boomeraxe : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (flyTriggered)
         {
             body2d.velocity = currentFlyDirection * datas.flyVelocity;
@@ -103,6 +112,7 @@ public class Boomeraxe : MonoBehaviour
         currentFlyDirection = (target - originPoint).normalized;
         flyTriggered = true;
         flyingToTarget = true;
+        animator.SetBool("Flying", flyTriggered);
     }
 
     public void Reset()
@@ -111,6 +121,7 @@ public class Boomeraxe : MonoBehaviour
         flyTriggered = false;
         bounceCount = 0;
         body2d.velocity = Vector2.zero;
+        animator.SetBool("Flying", flyTriggered);
     }
 
     public int GetBounceCount()
@@ -120,11 +131,17 @@ public class Boomeraxe : MonoBehaviour
 
     public void HandleCollisionWith(Collision2D other)
     {
+        if (flyTriggered == false) return;
         LogHelper.GetInstance().Log("Boomeraxe".Bolden().Colorize("#83ecd7") + " hit an object");
         bounceCount += 1;
         originPoint = other.contacts[0].point;
         flyingToTarget = false;
         returning = false;
+        if (boomeraxeHitVFXPool)
+        {
+            var vfx = boomeraxeHitVFXPool.RequestInstance();
+            vfx.transform.position = originPoint;
+        }
         Reflect(other);
     }
 

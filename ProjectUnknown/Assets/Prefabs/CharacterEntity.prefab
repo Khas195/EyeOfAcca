@@ -230,6 +230,7 @@ MonoBehaviour:
   jumpableLayer:
     serializedVersion: 2
     m_Bits: 1024
+  timeScale: 1
 --- !u!1 &8558128283662357632
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,7 +324,7 @@ GameObject:
   - component: {fileID: 8558128283915914034}
   - component: {fileID: 8558128283915914036}
   m_Layer: 8
-  m_Name: Unit471-Base5-Idle1
+  m_Name: Character
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
