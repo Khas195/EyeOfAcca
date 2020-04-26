@@ -67,12 +67,16 @@ public class BoomeraxeTeleportator : MonoBehaviour
 
                 /// teleport 
                 var pos = grip.GetAxePosition();
-                boomeraxeHolder.transform.position = pos;
                 if (teleportParticlePool)
                 {
                     var vfx = teleportParticlePool.RequestInstance();
                     vfx.transform.position = pos;
+
+                    vfx = teleportParticlePool.RequestInstance();
+                    vfx.transform.position = boomeraxeHolder.transform.position;
                 }
+                boomeraxeHolder.transform.position = pos;
+
 
                 if (datas.lulTimeAfterTeleport > 0)
                 {

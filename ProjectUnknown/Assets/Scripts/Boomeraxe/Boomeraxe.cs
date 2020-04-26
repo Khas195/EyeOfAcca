@@ -122,6 +122,11 @@ public class Boomeraxe : MonoBehaviour
         bounceCount = 0;
         body2d.velocity = Vector2.zero;
         animator.SetBool("Flying", flyTriggered);
+        if (boomeraxeHitVFXPool)
+        {
+            var vfx = boomeraxeHitVFXPool.RequestInstance();
+            vfx.transform.position = body2d.transform.position;
+        }
     }
 
     public int GetBounceCount()
