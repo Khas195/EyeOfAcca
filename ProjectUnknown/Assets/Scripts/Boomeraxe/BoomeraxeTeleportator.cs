@@ -35,6 +35,9 @@ public class BoomeraxeTeleportator : MonoBehaviour
     [Required]
     Movement2DPlatform holderMovement = null;
 
+    [BoxGroup("Optional")]
+    [SerializeField]
+    GameObjectPool teleportParticlePool = null;
 
     [BoxGroup("Current Status")]
     [SerializeField]
@@ -65,6 +68,11 @@ public class BoomeraxeTeleportator : MonoBehaviour
                 /// teleport 
                 var pos = grip.GetAxePosition();
                 boomeraxeHolder.transform.position = pos;
+                if (teleportParticlePool)
+                {
+                    var vfx = teleportParticlePool.RequestInstance();
+                    vfx.transform.position = pos;
+                }
 
                 if (datas.lulTimeAfterTeleport > 0)
                 {

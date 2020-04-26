@@ -23,7 +23,49 @@ Unsuprisingly, we have good dynamic between the three of us since we have been h
 
 ### __**Prototype Making(April 20th, 2020 - April 26th, 2020)**__
 
-#### Meeting(April 20th, 2020)
-During this meeting we go more in-depth into our core game mechanic. We visulize and conceptualize scenarios where and how a player might utilize our game mechanic of throwing the boomeraxe. We also do the same on how would the axe interacts with different examples of levels and environments. Based on that we found some loop holes and exploitation that might happen. 
+#### Planning and fleshing out the core mechanic. 
 
-Also by doing this in-depth analysis, it sped up the implementation process of the boomerax since everything about it, like how would it interacts with the environt, how would it interact with the player, ..., is clearly fleshed out. More on [my note](https://miro.com/app/board/o9J_ktqXOCM=/?moveToWidget=3074457347677901939&cot=6) on the implemntation of the Boomeraxe can be found on the Miro Board.
+During the first meeting we went more in-depth into our core game mechanic. We visulized and conceptualized scenarios where and how a player might utilize our game mechanic of throwing the boomeraxe. We also did the same on how would the axe interacts with different examples of levels and environments. Based on that we found some loop holes and exploitation that might happen. 
+
+Also by doing this in-depth analysis, it sped up the implementation process of the boomerax since everything about it, like how would it interacts with the environment, how would it interact with the player, ..., is clearly fleshed out. More on [my note](https://miro.com/app/board/o9J_ktqXOCM=/?moveToWidget=3074457347677901939&cot=6) on the implemntation of the Boomeraxe can be found on the Miro Board.
+
+
+#### Mechanic development and balancing.
+After the first meeting, I went to work on creating the mechanic. As said before it was fast and easy becaus the mechanic is clear from the previous session. Despite that, I found some troubling problems about the mechanics and even more situations that are needed to be discussed in the group. I also did some light game balancing while developing the mechanic and notes it to my teamates.
+
+![002-Notes](./Images/002.png)
+
+Though I did found out that the teleportation aspect of the mechanic is quite disruptive in its nature due to the fact that the camera needs to reposition itself to the player.
+
+
+![Teleportation Problem](./Images/TeleportationProblem.png)
+
+At the end, however, I concluded that it is a more visual problem than the mechanic itself. 
+
+With that said, however, we did another meeting and concluded that we need a slow down moment after the teleportation due to the fact that if the player starts falling immediately after that. It wouldn't give him/her enough time to aim for the next throw.
+
+I also argued that at the moment of throw the player should be able to move while Sam and Chris argue that the player should be frozen during said time. Their reasons and also mine are valid, as such, we compromised and came up with a different and better solution which it having the player fell that slowly at the throw. Which lead to the next patch.
+
+![004-Notes](./Images/004.png)
+
+Later, during the play test of the levels, we aggreed that the changes are for the better of the game.
+
+#### Level Design.
+
+Sam raised an interesting question where he said he had struggle finding more puzzles with the current mechanic. Where I argued that it is not very far-fetch to say we can make about 9 levels with it. As such we planned to do some level designs and compare with each other.
+
+In the next meeting, we concluded that both the bouncing and teleporting mechanic serve the same pupose which is to tranverse the level. However, by having one more than the other, the ways of which the levels can be solved are different. For example, comparing having the boomeraxe bouncing 4 times before disappearing and 1 teleportation and bouncing 2 times and 2 teleportations in solving a level. Which is a really good thing since we can have some sort of a progression system. 
+
+Sam argued that we do have different ways to solve it but it is not unique to that mechanic. For example a player can solve a puzzle by having more teleports or more bounces but there were no design that give a level where it can only be solved by bouncing.
+
+We then concluded that it is possible to have unique puzzle to a certain mechanic by adding elements in the game that only said mechanic can interact with. Like throwing a boomeraxe such that it bounces and hit a button or teleport to a surface where the boomeraxe hit and stuck there.
+
+#### Aesthetic
+
+We also planned and talked about what kind of aesthetic that we can have in the game. Chris, our chief artist, drew some axes with different art style for us to choose and pick from.  
+
+![Axes](./Images/axes.png)
+
+We choosed the aztec version due to it being the most intersting. Then Sam raised a brilliant idea of kind of merging different aesthetics together. Like the Dwarven in skyrim and endless legends where they combined the steam punk machine with a diffrent kind of art.
+
+At the time that I wrote this, Chris is still combining and finding arts for said purpose. I am sure, Chris will write in a more accurate about said process in his journal. 

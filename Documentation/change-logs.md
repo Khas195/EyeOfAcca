@@ -86,3 +86,16 @@ Balance:
     Lul time after throw: 0.4s.
     Time scale after teleport: 0.5.
     Time Scale after throw: 0.5.
+
+### Version 0.0.5:
+
+Boomeraxe: 
+
+    Added temporary boomeraxe's animation.
+    Added temporary boomeraxe's on hit Particle effect.
+
+Character:
+
+    Added temporary character's walking animation.
+    Added temporary character's on teleport Particle effect.
+
