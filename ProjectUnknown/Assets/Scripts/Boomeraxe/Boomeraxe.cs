@@ -32,6 +32,8 @@ public class Boomeraxe : MonoBehaviour
     [Required]
     BoomeraxeGrip grip = null;
 
+
+
     [BoxGroup("Requirement")]
     [SerializeField]
     Animator animator = null;
@@ -55,6 +57,8 @@ public class Boomeraxe : MonoBehaviour
     [SerializeField]
     [ReadOnly]
     bool flyingToTarget = false;
+
+
 
     [BoxGroup("Current Status")]
     [SerializeField]
@@ -83,9 +87,8 @@ public class Boomeraxe : MonoBehaviour
     {
         body2d.gravityScale = 0;
     }
-
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (flyTriggered)
         {
@@ -96,18 +99,15 @@ public class Boomeraxe : MonoBehaviour
                 if (flyingToTarget)
                 {
                     LogHelper.GetInstance().Log("Boomeraxe".Bolden().Colorize("#83ecd7") + " has reached max flying distance, now returning", true);
+                    body2d.transform.position = originPoint + currentFlyDirection * (datas.flyDistance - 0.2f);
                     currentFlyDirection *= -1;
                     flyingToTarget = false;
-                    returning = true;
                 }
                 else
                 {
-                    if (returning == false)
-                    {
-                        LogHelper.GetInstance().Log("Boomeraxe".Bolden().Colorize("#83ecd7") + " has reached max flying distance, had bounced before -> teleport back to holder", true);
-                        grip.SetAxeCatchable(true);
-                        grip.HoldAxe();
-                    }
+                    LogHelper.GetInstance().Log("Boomeraxe".Bolden().Colorize("#83ecd7") + " has reached max flying distance, had bounced before -> teleport back to holder", true);
+                    grip.SetAxeCatchable(true);
+                    grip.HoldAxe();
                 }
             }
         }
@@ -141,20 +141,28 @@ public class Boomeraxe : MonoBehaviour
     public void HandleCollisionWith(Collision2D other)
     {
         if (flyTriggered == false) return;
-        LogHelper.GetInstance().Log("Boomeraxe".Bolden().Colorize("#83ecd7") + " hit an object");
+        OnHitObject(other.contacts[0].point);
+        Reflect(other.contacts[0].normal);
+    }
+
+    private void OnHitObject(Vector2 impactPoint)
+    {
+        LogHelper.GetInstance().Log("Boomeraxe".Bolden().Colorize("#83ecd7") + " hit an object", true);
         bounceCount += 1;
-        originPoint = other.contacts[0].point;
+        originPoint = impactPoint;
         flyingToTarget = false;
         returning = false;
         onBounce.Invoke(body2d.transform.position, body2d.transform.rotation);
-        Reflect(other);
     }
-
-    private void Reflect(Collision2D other)
+    private void Reflect(Vector2 normal)
     {
         Vector2 inDir = currentFlyDirection;
-        Vector2 outDir = Vector2.Reflect(currentFlyDirection, other.contacts[0].normal);
+        Vector2 outDir = Vector2.Reflect(currentFlyDirection, normal);
         currentFlyDirection = outDir;
         LogHelper.GetInstance().Log("Boomeraxe".Bolden().Colorize("#83ecd7") + " Reflect off object with inDir: " + inDir + " | outDir: " + outDir);
+    }
+    public Vector2 GetFlyDirection()
+    {
+        return currentFlyDirection;
     }
 }
