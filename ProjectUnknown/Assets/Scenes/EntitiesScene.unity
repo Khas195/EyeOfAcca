@@ -187,7 +187,13 @@ MonoBehaviour:
   isBeingHeld: 1
   axeCatchable: 0
   axeIsReturning: 0
---- !u!1 &377452250
+--- !u!20 &424431176 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 7188433440675534634, guid: 19c4c104f02ffa34ead48f24ad97343b,
+    type: 3}
+  m_PrefabInstance: {fileID: 7188433440261101922}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &430563598
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -195,49 +201,41 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 377452252}
-  - component: {fileID: 377452251}
+  - component: {fileID: 430563599}
+  - component: {fileID: 430563600}
   m_Layer: 0
-  m_Name: TeleportVFXPool
+  m_Name: BoomeraxeVFXHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &377452251
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 377452250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d10420fd85694c44b764da9778d6b7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prototype: {fileID: 2451939251177005006, guid: eb989887509f0104aac5097254d8e9f2,
-    type: 3}
---- !u!4 &377452252
+--- !u!4 &430563599
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 377452250}
+  m_GameObject: {fileID: 430563598}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.4209665, y: 1.0531174, z: -0.6249196}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1859158370}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!20 &424431176 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 7188433440675534634, guid: 19c4c104f02ffa34ead48f24ad97343b,
-    type: 3}
-  m_PrefabInstance: {fileID: 7188433440261101922}
+--- !u!114 &430563600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430563598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e6c2d906e059dc4da26d48b94651150, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &458749811
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,7 +329,20 @@ MonoBehaviour:
   boomeraxeHolder: {fileID: 638179319}
   adjustor: {fileID: 1221413042}
   holderMovement: {fileID: 270376798}
-  teleportParticlePool: {fileID: 377452251}
+  onTeleport:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 430563600}
+        m_MethodName: OnTeleport
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   currentTeleport: 0
 --- !u!1 &497176110
 GameObject:
@@ -520,51 +531,6 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 8558128282752617304}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &961098253
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 961098255}
-  - component: {fileID: 961098254}
-  m_Layer: 0
-  m_Name: BoomerangHitVFXPool
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &961098254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 961098253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d10420fd85694c44b764da9778d6b7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prototype: {fileID: 1308346968847954323, guid: 639fcd0964b56f34d8dfec0c68610419,
-    type: 3}
---- !u!4 &961098255
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 961098253}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.4209665, y: 1.0531174, z: -0.6249196}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1084060412 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8558128283726493366, guid: 2b03fc41f04525f469eccd660ed2db23,
@@ -675,7 +641,20 @@ MonoBehaviour:
   body2d: {fileID: 497176115}
   grip: {fileID: 285891218}
   animator: {fileID: 497176116}
-  boomeraxeHitVFXPool: {fileID: 961098254}
+  onBounce:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 430563600}
+        m_MethodName: OnBounce
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   bounceCount: 0
   flyTriggered: 0
   flyingToTarget: 0
@@ -745,6 +724,7 @@ Transform:
   - {fileID: 285891217}
   - {fileID: 476846508}
   - {fileID: 1221413041}
+  - {fileID: 430563599}
   m_Father: {fileID: 1619830175}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -786,6 +766,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1558899350, guid: 19c4c104f02ffa34ead48f24ad97343b, type: 3}
+      propertyPath: recoverySpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1558899350, guid: 19c4c104f02ffa34ead48f24ad97343b, type: 3}
+      propertyPath: maximumAngularShake.z
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7188433439587899957, guid: 19c4c104f02ffa34ead48f24ad97343b,
         type: 3}
       propertyPath: character
@@ -850,11 +838,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7188433440675534634, guid: 19c4c104f02ffa34ead48f24ad97343b,
-        type: 3}
-      propertyPath: orthographic size
-      value: 7.1340733
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19c4c104f02ffa34ead48f24ad97343b, type: 3}

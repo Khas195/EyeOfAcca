@@ -3,7 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Events;
+/// <summary>
+/// Experimental scripts for spawning fire vfxxxx
+/// </summary>
+[Serializable]
+public class BallBounceEvent : UnityEvent<Vector3, Quaternion>
+{
 
+}
 public class Boomeraxe : MonoBehaviour
 {
     [BoxGroup("Settings")]
@@ -30,7 +38,7 @@ public class Boomeraxe : MonoBehaviour
 
     [BoxGroup("Optional")]
     [SerializeField]
-    GameObjectPool boomeraxeHitVFXPool = null;
+    BallBounceEvent onBounce = new BallBounceEvent();
 
 
     [BoxGroup("Current Status")]
@@ -122,11 +130,7 @@ public class Boomeraxe : MonoBehaviour
         bounceCount = 0;
         body2d.velocity = Vector2.zero;
         animator.SetBool("Flying", flyTriggered);
-        if (boomeraxeHitVFXPool)
-        {
-            var vfx = boomeraxeHitVFXPool.RequestInstance();
-            vfx.transform.position = body2d.transform.position;
-        }
+        onBounce.Invoke(body2d.transform.position, body2d.transform.rotation);
     }
 
     public int GetBounceCount()
@@ -142,11 +146,7 @@ public class Boomeraxe : MonoBehaviour
         originPoint = other.contacts[0].point;
         flyingToTarget = false;
         returning = false;
-        if (boomeraxeHitVFXPool)
-        {
-            var vfx = boomeraxeHitVFXPool.RequestInstance();
-            vfx.transform.position = originPoint;
-        }
+        onBounce.Invoke(body2d.transform.position, body2d.transform.rotation);
         Reflect(other);
     }
 

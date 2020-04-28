@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flyDistance: 5
   flyVelocity: 9
-  maxBounce: 2
-  maxTeleport: 99999
+  maxBounce: 4
+  maxTeleport: 50
   lulTimeAfterTeleport: 0.5
   timeScaleAfterTeleport: 0.5
   lulPeriodAfterAirborneThrow: 0.4

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7b871f1f5ceaa0409f8a3bcc8c2f31d, type: 3}
+  m_Name: VFXs
+  m_EditorClassIdentifier: 
+  resourcesList:
+  - tag: 4
+    prefab: {fileID: 2451939251177005006, guid: eb989887509f0104aac5097254d8e9f2,
+      type: 3}
+    pool: {fileID: 0}
+  - tag: 3
+    prefab: {fileID: 1308346968847954323, guid: 639fcd0964b56f34d8dfec0c68610419,
+      type: 3}
+    pool: {fileID: 0}
