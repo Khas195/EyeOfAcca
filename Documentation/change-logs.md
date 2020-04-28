@@ -21,9 +21,9 @@ Game's Change-logs:
     - Add editable json files for in game datas( Character movement, character data, localization).
 
 
-####_**Version 0.0.2, Version 0.0.3, Version 0.0.4 (April 20th, 2020 - April 26th, 2020) - Prototype Making**_
+####_**Version 0.0.2 - 0.0.5 (April 20th, 2020 - April 26th, 2020) - Prototype Making**_
 
-### Version 0.0.2:
+##### Version 0.0.2:
 
 
 Boomeraxe:
@@ -47,7 +47,7 @@ Others:
     - Add level 3 for bounce testing.
     - New Level can be add by Duplicate the existing level -> alter it as u want, then add it to the build settings.
 
-### Version 0.0.3:
+##### Version 0.0.3:
 
 
 Boomeraxe:
@@ -68,7 +68,7 @@ Others:
     - Boomeraxe's data now available at:Prototype2-ProjectUnknown_Data/StreamingAssets/SavedData  in build version.
     - All saved datas now are loaded before loading any level.
 
-### Version 0.0.4:
+##### Version 0.0.4:
 
 Boomeraxe:
 
@@ -87,7 +87,7 @@ Balance:
     Time scale after teleport: 0.5.
     Time Scale after throw: 0.5.
 
-### Version 0.0.5:
+##### Version 0.0.5:
 
 Boomeraxe: 
 
@@ -99,3 +99,10 @@ Character:
     Added temporary character's walking animation.
     Added temporary character's on teleport Particle effect.
 
+####_**Version 0.0.6 (April 27th, 2020 - May 2nd, 2020)**_
+
+##### Version 0.0.6
+
+Bugs:
+
+    The vfxs are properbly removed after they had finished playing.
