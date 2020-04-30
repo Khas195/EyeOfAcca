@@ -20,7 +20,7 @@ To read the developers personal documentation such as: Journal, Motivation, Rese
 
 ### Change-Logs
 
-####_**Version 0.0.1 (April 16th, 2020 - April 19th, 2020) - Initalize project**_
+#### _**Version 0.0.1 (April 16th, 2020 - April 19th, 2020) - Initalize project**_
 Documentations and Project Planning:
 
     - Add Readmes for each developer.
@@ -40,7 +40,7 @@ Game's Change-logs:
     - Add editable json files for in game datas( Character movement, character data, localization).
 
 
-####_**Version 0.0.2 - 0.0.5 (April 20th, 2020 - April 26th, 2020) - Prototype Making**_
+#### _**Version 0.0.2 - 0.0.5 (April 20th, 2020 - April 26th, 2020) - Prototype Making**_
 
 ##### Version 0.0.2:
 
@@ -118,7 +118,7 @@ Character:
     Added temporary character's walking animation.
     Added temporary character's on teleport Particle effect.
 
-####_**Version 0.0.6 (April 27th, 2020 - May 2nd, 2020)**_
+#### _**Version 0.0.6 (April 27th, 2020 - May 2nd, 2020)**_
 
 ##### Version 0.0.6
 
