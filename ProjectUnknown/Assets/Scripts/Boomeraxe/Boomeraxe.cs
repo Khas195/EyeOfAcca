@@ -86,22 +86,22 @@ public class Boomeraxe : MonoBehaviour
             Vector2 pos = body2d.transform.position;
             body2d.MovePosition(pos + currentFlyDirection * datas.flyVelocity * Time.fixedDeltaTime);
             body2d.velocity = Vector2.ClampMagnitude(body2d.velocity, datas.flyVelocity);
-            if (Vector2.Distance(holderBody2d.transform.position, body2d.transform.position) > datas.flyDistance)
+            if (doOnce && Vector2.Distance(holderBody2d.transform.position, body2d.transform.position) > datas.flyDistance)
             {
+                SeekCharacter();
                 returning = true;
-            }
-            if (returning)
-            {
-                currentFlyDirection = holderBody2d.transform.position - body2d.transform.position;
-                currentFlyDirection.Normalize();
-                if (doOnce)
-                {
-                    LogHelper.GetInstance().Log(("It's comming back!!!").Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
-                    doOnce = false;
-                }
+                doOnce = false;
             }
         }
     }
+
+    private void SeekCharacter()
+    {
+        LogHelper.GetInstance().Log(("It's comming back!!!").Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
+        currentFlyDirection = holderBody2d.transform.position - body2d.transform.position;
+        currentFlyDirection.Normalize();
+    }
+
     public void Fly(Vector2 target)
     {
         LogHelper.GetInstance().Log("Player ".Bolden().Colorize(Color.green) + "has thrown the " + "Boomeraxe".Bolden().Colorize("#83ecd7"), true);
@@ -134,7 +134,7 @@ public class Boomeraxe : MonoBehaviour
     {
         if (flyTriggered == false) return;
         LogHelper.GetInstance().Log("Returning after touch" + other, true);
-        returning = true;
+        SeekCharacter();
         onBounce.Invoke(body2d.transform.position, body2d.transform.rotation);
     }
     public void OnCollideWithHolder()

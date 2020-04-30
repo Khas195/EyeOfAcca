@@ -129,8 +129,9 @@ Bugs:
 Boomeraxe: 
 
     Remove Bounce.
-    Track the player down if it reached it max range.
-    Track the player down if it hits anything.
+    Track the player down if it reached it max range.(DEPRECATED)
+    Track the player down if it hits anything.(DEPRECATED)
+    The boomeraxe will redirect to the Character if it hit anything or at max range (once).
     The boomeraxe will avoid flying through wall by redirecting if touch any surface.
     The boomeraxe WILL fly through wall if the player run behind it.
 
