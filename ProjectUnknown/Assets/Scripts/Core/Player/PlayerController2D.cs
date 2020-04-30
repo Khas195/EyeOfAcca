@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class PlayerController2D : MonoBehaviour
 {
     [SerializeField]
+    [Required]
     Character2D character = null;
     // Update is called once per frame
     void Update()
@@ -17,6 +19,7 @@ public class PlayerController2D : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             character.Jump();
+
         }
     }
 

@@ -27,6 +27,13 @@ public class Boomeraxe : MonoBehaviour
     [Required]
     Rigidbody2D body2d = null;
 
+
+
+    [BoxGroup("Requirement")]
+    [SerializeField]
+    [Required]
+    Rigidbody2D holderBody2d = null;
+
     [BoxGroup("Requirement")]
     [SerializeField]
     [Required]
@@ -56,20 +63,7 @@ public class Boomeraxe : MonoBehaviour
     [BoxGroup("Current Status")]
     [SerializeField]
     [ReadOnly]
-    bool flyingToTarget = false;
-
-
-
-    [BoxGroup("Current Status")]
-    [SerializeField]
-    [ReadOnly]
     bool returning = false;
-
-
-    [BoxGroup("Current Status")]
-    [SerializeField]
-    [ReadOnly]
-    Vector2 originPoint = Vector2.zero;
 
     [BoxGroup("Current Status")]
     [SerializeField]
@@ -77,49 +71,45 @@ public class Boomeraxe : MonoBehaviour
     Vector2 currentFlyDirection = Vector2.zero;
 
 
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(originPoint, datas.flyDistance);
-    }
-    // Start is called before the first frame update
+    bool doOnce = true;
+
+
     void Start()
     {
         body2d.gravityScale = 0;
     }
-    // Update is called once per frame
+
     void FixedUpdate()
     {
         if (flyTriggered)
         {
-            body2d.velocity = currentFlyDirection * datas.flyVelocity;
+            Vector2 pos = body2d.transform.position;
+            body2d.MovePosition(pos + currentFlyDirection * datas.flyVelocity * Time.fixedDeltaTime);
             body2d.velocity = Vector2.ClampMagnitude(body2d.velocity, datas.flyVelocity);
-            if (Vector2.Distance(originPoint, body2d.transform.position) > datas.flyDistance)
+            if (Vector2.Distance(holderBody2d.transform.position, body2d.transform.position) > datas.flyDistance)
             {
-                if (flyingToTarget)
+                returning = true;
+            }
+            if (returning)
+            {
+                currentFlyDirection = holderBody2d.transform.position - body2d.transform.position;
+                currentFlyDirection.Normalize();
+                if (doOnce)
                 {
-                    LogHelper.GetInstance().Log("Boomeraxe".Bolden().Colorize("#83ecd7") + " has reached max flying distance, now returning", true);
-                    body2d.transform.position = originPoint + currentFlyDirection * (datas.flyDistance - 0.2f);
-                    currentFlyDirection *= -1;
-                    flyingToTarget = false;
-                }
-                else
-                {
-                    LogHelper.GetInstance().Log("Boomeraxe".Bolden().Colorize("#83ecd7") + " has reached max flying distance, had bounced before -> teleport back to holder", true);
-                    grip.SetAxeCatchable(true);
-                    grip.HoldAxe();
+                    LogHelper.GetInstance().Log(("It's comming back!!!").Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
+                    doOnce = false;
                 }
             }
         }
     }
-
     public void Fly(Vector2 target)
     {
         LogHelper.GetInstance().Log("Player ".Bolden().Colorize(Color.green) + "has thrown the " + "Boomeraxe".Bolden().Colorize("#83ecd7"), true);
-        originPoint = body2d.transform.position;
-        currentFlyDirection = (target - originPoint).normalized;
+        Vector2 pos = body2d.transform.position;
+        currentFlyDirection = (target - pos).normalized;
         flyTriggered = true;
-        flyingToTarget = true;
+        doOnce = true;
+        returning = false;
         animator.SetBool("Flying", flyTriggered);
     }
 
@@ -127,6 +117,8 @@ public class Boomeraxe : MonoBehaviour
     {
         currentFlyDirection = Vector3.zero;
         flyTriggered = false;
+        returning = false;
+        doOnce = true;
         bounceCount = 0;
         body2d.velocity = Vector2.zero;
         animator.SetBool("Flying", flyTriggered);
@@ -138,28 +130,19 @@ public class Boomeraxe : MonoBehaviour
         return bounceCount;
     }
 
-    public void HandleCollisionWith(Collision2D other)
+    public void HandleOnTriggerEnter(Collider2D other)
     {
         if (flyTriggered == false) return;
-        OnHitObject(other.contacts[0].point);
-        Reflect(other.contacts[0].normal);
-    }
-
-    private void OnHitObject(Vector2 impactPoint)
-    {
-        LogHelper.GetInstance().Log("Boomeraxe".Bolden().Colorize("#83ecd7") + " hit an object", true);
-        bounceCount += 1;
-        originPoint = impactPoint;
-        flyingToTarget = false;
-        returning = false;
+        LogHelper.GetInstance().Log("Returning after touch" + other, true);
+        returning = true;
         onBounce.Invoke(body2d.transform.position, body2d.transform.rotation);
     }
-    private void Reflect(Vector2 normal)
+    public void OnCollideWithHolder()
     {
-        Vector2 inDir = currentFlyDirection;
-        Vector2 outDir = Vector2.Reflect(currentFlyDirection, normal);
-        currentFlyDirection = outDir;
-        LogHelper.GetInstance().Log("Boomeraxe".Bolden().Colorize("#83ecd7") + " Reflect off object with inDir: " + inDir + " | outDir: " + outDir);
+        if (returning)
+        {
+            grip.HoldAxe();
+        }
     }
     public Vector2 GetFlyDirection()
     {

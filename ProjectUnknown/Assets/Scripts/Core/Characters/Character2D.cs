@@ -15,11 +15,23 @@ public class Character2D : MonoBehaviour
     [Required]
     IMovement movement = null;
 
+    [SerializeField]
+    [Required]
+    BoomeraxeGrip grip = null;
+    [SerializeField]
+    [Required]
+    MovementData movementWithAxe = null;
+
+    [SerializeField]
+    [Required]
+    MovementData movementWithouAxe = null;
+
 
     // Start is called before the first frame update
     void Start()
     {
         movement.SetRigidBody(body);
+        movement.SetMovementData(movementWithAxe);
     }
 
     public GameObject GetHost()
@@ -27,8 +39,30 @@ public class Character2D : MonoBehaviour
         return body.gameObject;
     }
 
+    /// <summary>
+    /// Update is called every frame, if the MonoBehaviour is enabled.
+    /// </summary>
+    void Update()
+    {
+        if (grip.IsHoldingAxe())
+        {
+            movement.SetMovementData(movementWithAxe);
+        }
+        else
+        {
+            movement.SetMovementData(movementWithouAxe);
+        }
+    }
     public void Jump()
     {
+        if (grip.IsHoldingAxe())
+        {
+            LogHelper.GetInstance().Log(("Axe is so Heavy!!! ").Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
+        }
+        else
+        {
+            LogHelper.GetInstance().Log(("So light!! ").Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
+        }
         movement.SignalJump();
     }
 

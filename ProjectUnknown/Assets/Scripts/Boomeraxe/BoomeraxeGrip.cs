@@ -167,6 +167,7 @@ public class BoomeraxeGrip : MonoBehaviour
     {
         if (axeCatchable)
         {
+            LogHelper.GetInstance().Log(("Arkkkk, So heavy!").Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
             LogHelper.GetInstance().Log("Catch the Axe!", true);
             boomeraxeFlying.gameObject.SetActive(false);
             isBeingHeld = true;

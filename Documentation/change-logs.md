@@ -106,3 +106,33 @@ Character:
 Bugs:
 
     The vfxs are properbly removed after they had finished playing.
+
+Boomeraxe: 
+
+    Remove Bounce.
+    Track the player down if it reached it max range.
+    Track the player down if it hits anything.
+    The boomeraxe will avoid flying through wall by redirecting if touch any surface.
+    The boomeraxe WILL fly through wall if the player run behind it.
+
+Character:
+
+    Remove Teleport.
+    Move at different stats when holding the axe and otherwise.
+    Holding Axe Stats:
+        Walk Speed: 2
+        Jump Force: 3
+    Without the Axe Stats:
+        Walk Speed: 5
+        Jump Force: 10
+
+Quality Of Life:
+
+    Instead of bombarding everyone with useless log onto the screen. I had decided to add different layer of log. 
+    
+    The Current layer can be set in the Game Master Scene -> LogHelper.
+
+    Possible Layers:
+        - Console
+        - Developer
+        - PlayerFriendly

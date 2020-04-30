@@ -7,6 +7,7 @@ using UnityEngine;
 public class BoomeraxeParams : ScriptableObject
 {
     public float flyDistance = 5f;
+    public float accelration = 2.0f;
     public float flyVelocity = 2f;
     public int maxBounce = 2;
     public int maxTeleport = 2;

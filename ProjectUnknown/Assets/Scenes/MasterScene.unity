@@ -227,6 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fd158b5fa4458f44be65d78f3c2ec9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentMode: 2
 --- !u!4 &1286487664
 Transform:
   m_ObjectHideFlags: 0
@@ -703,5 +704,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skipMainMenu: 0
   gameStateManager: {fileID: 1867409778}
-  startLevel: LevelP
+  startLevel: Level1
   currentInGameLevelIndex: 0

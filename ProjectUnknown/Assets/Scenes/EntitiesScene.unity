@@ -493,6 +493,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axe: {fileID: 1562974584}
+  col: {fileID: 497176114}
 --- !u!60 &497176114
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -503,7 +504,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -690,6 +691,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   datas: {fileID: 11400000, guid: c48c63eac7f6b00429aa58ba2914fba3, type: 2}
   body2d: {fileID: 497176115}
+  holderBody2d: {fileID: 638179320}
   grip: {fileID: 285891218}
   animator: {fileID: 497176116}
   onBounce:
@@ -708,9 +710,7 @@ MonoBehaviour:
         m_CallState: 2
   bounceCount: 0
   flyTriggered: 0
-  flyingToTarget: 0
   returning: 0
-  originPoint: {x: 0, y: 0}
   currentFlyDirection: {x: 0, y: 0}
 --- !u!1 &1619830174
 GameObject:
@@ -959,6 +959,10 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 1.1682109
       objectReference: {fileID: 0}
+    - target: {fileID: 683745224, guid: 2b03fc41f04525f469eccd660ed2db23, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1287017936, guid: 2b03fc41f04525f469eccd660ed2db23, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1043,6 +1047,11 @@ PrefabInstance:
       propertyPath: checkGroundBoxOffset.y
       value: -0.62
       objectReference: {fileID: 0}
+    - target: {fileID: 8558128283662357634, guid: 2b03fc41f04525f469eccd660ed2db23,
+        type: 3}
+      propertyPath: grip
+      value: 
+      objectReference: {fileID: 285891218}
     - target: {fileID: 8558128283915914032, guid: 2b03fc41f04525f469eccd660ed2db23,
         type: 3}
       propertyPath: m_Sprite
@@ -1094,5 +1103,23 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 51e5e318037bb0b40987bab4b7f9d62a, type: 2}
-    m_RemovedComponents: []
+    - target: {fileID: 8558128284077259172, guid: 2b03fc41f04525f469eccd660ed2db23,
+        type: 3}
+      propertyPath: grip
+      value: 
+      objectReference: {fileID: 285891218}
+    - target: {fileID: 8558128284077259172, guid: 2b03fc41f04525f469eccd660ed2db23,
+        type: 3}
+      propertyPath: movementWithAxe
+      value: 
+      objectReference: {fileID: 11400000, guid: 31ed836786ed4204d9d49af6d8e4887b,
+        type: 2}
+    - target: {fileID: 8558128284077259172, guid: 2b03fc41f04525f469eccd660ed2db23,
+        type: 3}
+      propertyPath: movementWithouAxe
+      value: 
+      objectReference: {fileID: 11400000, guid: e5a8a8c29d6822c4c914782e6ff95a65,
+        type: 2}
+    m_RemovedComponents:
+    - {fileID: 683745223, guid: 2b03fc41f04525f469eccd660ed2db23, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2b03fc41f04525f469eccd660ed2db23, type: 3}
