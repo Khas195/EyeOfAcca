@@ -13,18 +13,20 @@ public class BoomeraxeGravityScaleAdjustor : MonoBehaviour
     Movement2DPlatform characterMovement = null;
     [ReadOnly]
     float currentTime = 0;
-
+    bool countingDown = false;
 
     /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.
     /// </summary>
     void Update()
     {
-        currentTime -= Time.deltaTime;
-        if (currentTime <= 0 || characterMovement.IsTouchingGround())
+        if (countingDown)
         {
-
-            characterMovement.SetTimeScale(1.0f);
+            currentTime -= Time.deltaTime;
+            if (currentTime <= 0 || characterMovement.IsTouchingGround())
+            {
+                ResetTimeScale();
+            }
         }
     }
 
@@ -34,6 +36,18 @@ public class BoomeraxeGravityScaleAdjustor : MonoBehaviour
         LogHelper.GetInstance().Log(("Current Settings: Gravity Scale - " + scale + ", time: " + time).Bolden(), true);
         characterMovement.SetTimeScale(scale);
         currentTime = time;
+        countingDown = true;
     }
-
+    public void SetGravityScale(float scale)
+    {
+        LogHelper.GetInstance().Log(("Current Settings: Gravity Scale - " + scale).Bolden(), true);
+        characterMovement.SetTimeScale(scale);
+        countingDown = false;
+    }
+    public void ResetTimeScale()
+    {
+        LogHelper.GetInstance().Log(("Current Settings: Gravity Scale - " + 1).Bolden(), true);
+        characterMovement.SetTimeScale(1.0f);
+        countingDown = false;
+    }
 }

@@ -27,6 +27,10 @@ public class Boomeraxe : MonoBehaviour
     [Required]
     Rigidbody2D body2d = null;
 
+    [BoxGroup("Requirement")]
+    [SerializeField]
+    [Required]
+    BoomeraxeGrip grip = null;
 
 
     [BoxGroup("Requirement")]
@@ -36,24 +40,11 @@ public class Boomeraxe : MonoBehaviour
 
     [BoxGroup("Requirement")]
     [SerializeField]
-    [Required]
-    BoomeraxeGrip grip = null;
-
-
-
-    [BoxGroup("Requirement")]
-    [SerializeField]
     Animator animator = null;
 
     [BoxGroup("Optional")]
     [SerializeField]
     BallBounceEvent onBounce = new BallBounceEvent();
-
-
-    [BoxGroup("Current Status")]
-    [SerializeField]
-    [ReadOnly]
-    int bounceCount = 0;
 
     [BoxGroup("Current Status")]
     [SerializeField]
@@ -65,15 +56,20 @@ public class Boomeraxe : MonoBehaviour
     [ReadOnly]
     bool returning = false;
 
+
+
     [BoxGroup("Current Status")]
     [SerializeField]
     [ReadOnly]
     Vector2 currentFlyDirection = Vector2.zero;
 
-
-    bool doOnce = true;
-
-
+    [SerializeField]
+    [ReadOnly]
+    float currentRecallTime = 0.0f;
+    [SerializeField]
+    [ReadOnly]
+    Vector2 stuckPos = Vector2.one;
+    bool isStuck = false;
     void Start()
     {
         body2d.gravityScale = 0;
@@ -83,24 +79,22 @@ public class Boomeraxe : MonoBehaviour
     {
         if (flyTriggered)
         {
-            Vector2 pos = body2d.transform.position;
-            body2d.MovePosition(pos + currentFlyDirection * datas.flyVelocity * Time.fixedDeltaTime);
-            body2d.velocity = Vector2.ClampMagnitude(body2d.velocity, datas.flyVelocity);
-            if (doOnce && Vector2.Distance(holderBody2d.transform.position, body2d.transform.position) > datas.flyDistance)
+            if (returning)
             {
-                SeekCharacter();
-                returning = true;
-                doOnce = false;
+                body2d.transform.position = Tweener.OutInQuartic(currentRecallTime, stuckPos, holderBody2d.transform.position, datas.recallDuration);
+                currentRecallTime += Time.deltaTime;
+            }
+            else
+            {
+                Vector2 pos = body2d.transform.position;
+                body2d.MovePosition(pos + currentFlyDirection * datas.flyVelocity * Time.fixedDeltaTime);
             }
         }
     }
 
-    private void SeekCharacter()
+    public bool IsStuck()
     {
-        LogHelper.GetInstance().Log(("It's comming back!!!").Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
-        currentFlyDirection = holderBody2d.transform.position - body2d.transform.position;
-        currentFlyDirection.Normalize();
-        returning = true;
+        return isStuck;
     }
 
     public void Fly(Vector2 target)
@@ -108,41 +102,53 @@ public class Boomeraxe : MonoBehaviour
         LogHelper.GetInstance().Log("Player ".Bolden().Colorize(Color.green) + "has thrown the " + "Boomeraxe".Bolden().Colorize("#83ecd7"), true);
         Vector2 pos = body2d.transform.position;
         currentFlyDirection = (target - pos).normalized;
-        flyTriggered = true;
-        doOnce = true;
         returning = false;
+        SetFlyTrigger(true);
+    }
+
+    private void SetFlyTrigger(bool triggered)
+    {
+        flyTriggered = triggered;
         animator.SetBool("Flying", flyTriggered);
     }
 
     public void Reset()
     {
         currentFlyDirection = Vector3.zero;
-        flyTriggered = false;
-        returning = false;
-        doOnce = true;
-        bounceCount = 0;
         body2d.velocity = Vector2.zero;
-        animator.SetBool("Flying", flyTriggered);
+        returning = false;
+        SetFlyTrigger(false);
+        isStuck = false;
         onBounce.Invoke(body2d.transform.position, body2d.transform.rotation);
     }
 
-    public int GetBounceCount()
-    {
-        return bounceCount;
-    }
-
-    public void HandleOnTriggerEnter(Collider2D other)
+    public void HandleCollision(Collision2D other)
     {
         if (flyTriggered == false) return;
-        LogHelper.GetInstance().Log("Returning after touch" + other, true);
-        SeekCharacter();
+        Vector2 pos = body2d.transform.position;
+        pos = other.contacts[0].point;
+        body2d.transform.position = pos;
+        currentFlyDirection = Vector2.zero;
+        body2d.GetComponent<Collider2D>().isTrigger = true;
+        isStuck = true;
+        SetFlyTrigger(false);
         onBounce.Invoke(body2d.transform.position, body2d.transform.rotation);
+    }
+    public void Recall()
+    {
+        returning = true;
+        isStuck = false;
+        stuckPos = body2d.transform.position;
+        SetFlyTrigger(true);
+        onBounce.Invoke(body2d.transform.position, body2d.transform.rotation);
+        currentRecallTime = 0;
     }
     public void OnCollideWithHolder()
     {
         if (returning)
         {
             grip.HoldAxe();
+            body2d.GetComponent<Collider2D>().isTrigger = false;
         }
     }
     public Vector2 GetFlyDirection()

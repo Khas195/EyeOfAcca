@@ -6,11 +6,11 @@ using UnityEngine;
 /*
 Use unity Lerps instead
  */
-public class Tweener 
+public class Tweener
 {
     public enum TweenType
     {
-        LinearTween, 
+        LinearTween,
         EaseInQuad,
         EaseOutQuad,
         EaseInOutQuad
@@ -24,16 +24,16 @@ public class Tweener
                 result = LinearTween(curTime, beginingValue, changeInValue, duration);
                 break;
             case TweenType.EaseInQuad:
-                 result = EaseInQuad(curTime, beginingValue, changeInValue, duration);
+                result = EaseInQuad(curTime, beginingValue, changeInValue, duration);
                 break;
             case TweenType.EaseOutQuad:
-                 result = EaseOutQuad(curTime, beginingValue, changeInValue, duration);
+                result = EaseOutQuad(curTime, beginingValue, changeInValue, duration);
                 break;
             case TweenType.EaseInOutQuad:
-                result =  EaseInOutQuad(curTime, beginingValue, changeInValue, duration);
+                result = EaseInOutQuad(curTime, beginingValue, changeInValue, duration);
                 break;
             default:
-                 result = LinearTween(curTime, beginingValue, changeInValue, duration);
+                result = LinearTween(curTime, beginingValue, changeInValue, duration);
                 break;
         }
         return result;
@@ -56,16 +56,95 @@ public class Tweener
     public static float EaseInQuad(float curTime, float beginingValue, float changeInValue, float duration)
     {
         return changeInValue * (curTime /= duration) * curTime + beginingValue;
-    } 
-   public static float EaseOutQuad(float curTime, float beginingValue, float changeInValue, float duration)
+    }
+
+    public static float EaseOutQuad(float curTime, float beginingValue, float changeInValue, float duration)
     {
 
         return -changeInValue * (curTime /= duration) * (curTime - 2) + beginingValue;
-    } 
-   public static float EaseInOutQuad(float curTime, float beginingValue, float changeInValue, float duration)
+    }
+    public static float EaseInOutQuad(float curTime, float beginingValue, float changeInValue, float duration)
     {
         if ((curTime /= duration / 2) < 1) return changeInValue / 2 * curTime * curTime + beginingValue;
         return -changeInValue / 2 * ((--curTime) * (curTime - 2) - 1) + beginingValue;
     }
+    public static float EaseInQuint(float curTime, float beginingValue, float changeInValue, float duration)
+    {
 
+        return changeInValue * Mathf.Pow(curTime / duration, 5) + beginingValue;
+    }
+    public static float EaseOutQuint(float curTime, float beginingValue, float changeInValue, float duration)
+    {
+        return changeInValue * (Mathf.Pow(curTime / duration - 1, 5) + 1) + beginingValue;
+    }
+    public static float EaseInOutQuint(float curTime, float beginingValue, float changeInValue, float duration)
+    {
+        var temp = curTime / duration;
+        if (temp / 2 < 1)
+        {
+            return changeInValue / 2 * Mathf.Pow(curTime, 4) + beginingValue;
+        }
+        return -changeInValue / 2 * (Mathf.Pow(curTime - 2, 4) - 2) + beginingValue;
+    }
+    public static float EaseInElasticSmall(float curTime, float beginingValue, float changeInValue, float duration)
+    {
+        var ts = (curTime /= duration) * curTime;
+        var tc = ts * curTime;
+        return beginingValue + changeInValue * (33 * tc * ts + -59 * ts * ts + 32 * tc + -5 * ts);
+    }
+    public static float OutInQuartic(float curTime, float beginingValue, float changeInValue, float duration)
+    {
+        var ts = (curTime /= duration) * curTime;
+        var tc = ts * curTime;
+        return beginingValue + changeInValue * (6 * tc + -9 * ts + 4 * curTime);
+    }
+    public static Vector2 EaseInQuad(float curTime, Vector2 beginPos, Vector2 endPos, float duration)
+    {
+        Vector2 result = Vector2.one;
+        result.x = EaseInQuad(curTime, beginPos.x, endPos.x - beginPos.x, duration);
+        result.y = EaseInQuad(curTime, beginPos.y, endPos.y - beginPos.y, duration);
+        return result;
+    }
+    public static Vector2 EaseInQuint(float curTime, Vector2 beginPos, Vector2 endPos, float duration)
+    {
+        Vector2 result = Vector2.one;
+        result.x = EaseInQuint(curTime, beginPos.x, endPos.x - beginPos.x, duration);
+        result.y = EaseInQuint(curTime, beginPos.y, endPos.y - beginPos.y, duration);
+        return result;
+    }
+    public static Vector2 EaseOutQuint(float curTime, Vector2 beginPos, Vector2 endPos, float duration)
+    {
+        Vector2 result = Vector2.one;
+        result.x = EaseOutQuint(curTime, beginPos.x, endPos.x - beginPos.x, duration);
+        result.y = EaseOutQuint(curTime, beginPos.y, endPos.y - beginPos.y, duration);
+        return result;
+    }
+    public static Vector2 EaseInOutQuint(float curTime, Vector2 beginPos, Vector2 endPos, float duration)
+    {
+        Vector2 result = Vector2.one;
+        result.x = EaseInOutQuint(curTime, beginPos.x, endPos.x - beginPos.x, duration);
+        result.y = EaseInOutQuint(curTime, beginPos.y, endPos.y - beginPos.y, duration);
+        return result;
+    }
+    public static Vector2 EaseOutQuad(float curTime, Vector2 beginPos, Vector2 endPos, float duration)
+    {
+        Vector2 result = Vector2.one;
+        result.x = EaseOutQuad(curTime, beginPos.x, endPos.x - beginPos.x, duration);
+        result.y = EaseOutQuad(curTime, beginPos.y, endPos.y - beginPos.y, duration);
+        return result;
+    }
+    public static Vector2 EaseInElasticSmall(float curTime, Vector2 beginPos, Vector2 endPos, float duration)
+    {
+        Vector2 result = Vector2.one;
+        result.x = EaseInElasticSmall(curTime, beginPos.x, endPos.x - beginPos.x, duration);
+        result.y = EaseInElasticSmall(curTime, beginPos.y, endPos.y - beginPos.y, duration);
+        return result;
+    }
+    public static Vector2 OutInQuartic(float curTime, Vector2 beginPos, Vector2 endPos, float duration)
+    {
+        Vector2 result = Vector2.one;
+        result.x = OutInQuartic(curTime, beginPos.x, endPos.x - beginPos.x, duration);
+        result.y = OutInQuartic(curTime, beginPos.y, endPos.y - beginPos.y, duration);
+        return result;
+    }
 }

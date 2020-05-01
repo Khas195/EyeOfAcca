@@ -84,16 +84,16 @@ public class BoomeraxeGrip : MonoBehaviour
         }
         else
         {
+            if (Input.GetMouseButtonDown(0) && boomeraxeFlying.IsStuck() == true)
+            {
+                boomeraxeFlying.Recall();
+                adjustor.SetGravityScale(datas.timeScaleOnAxeRecall);
+            }
             if (OutOfCameraView() && axeIsReturning == false)
             {
                 LogHelper.GetInstance().Log("Boomeraxe".Bolden().Colorize("#83ecd7") + " has exit the Camera Bounds, Return in " + datas.timeTilAxeReturnAfterExitCameraView.ToString().Bolden(), true);
                 StopCoroutine(HoldAxeAfter(datas.timeTilAxeReturnAfterExitCameraView));
                 StartCoroutine(HoldAxeAfter(datas.timeTilAxeReturnAfterExitCameraView));
-            }
-            if (boomeraxeFlying.GetBounceCount() > datas.maxBounce)
-            {
-                axeCatchable = true;
-                HoldAxe();
             }
         }
     }
@@ -116,7 +116,6 @@ public class BoomeraxeGrip : MonoBehaviour
     private void ThrowAxe(Vector3 mousPos)
     {
         isBeingHeld = false;
-        boomeraxeFlying.gameObject.SetActive(true);
         boomeraxeFlying.Fly(mousPos);
         axeCatchable = false;
         adjustor.SetGravityScaleFor(datas.timeScaleAfterThrow, datas.lulPeriodAfterAirborneThrow);
@@ -156,10 +155,10 @@ public class BoomeraxeGrip : MonoBehaviour
         {
             LogHelper.GetInstance().Log(("Arkkkk, So heavy!").Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
             LogHelper.GetInstance().Log("Catch the Axe!", true);
-            boomeraxeFlying.gameObject.SetActive(false);
             isBeingHeld = true;
             axeCatchable = false;
             boomeraxeFlying.Reset();
+            adjustor.ResetTimeScale();
         }
     }
 }

@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: BoomeraxeDatas
   m_EditorClassIdentifier: 
   flyDistance: 6
-  accelration: 2
-  flyVelocity: 10
+  flyVelocity: 15
+  recallDuration: 1
   maxBounce: 9999
   maxTeleport: 0
   lulTimeAfterTeleport: 0.5
   timeScaleAfterTeleport: 0.5
+  timeScaleOnAxeRecall: 0.2
   lulPeriodAfterAirborneThrow: 0
   timeScaleAfterThrow: 0
   timeTilAxeCatchable: 0.2

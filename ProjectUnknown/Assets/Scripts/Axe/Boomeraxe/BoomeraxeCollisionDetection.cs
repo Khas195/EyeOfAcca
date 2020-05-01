@@ -12,19 +12,20 @@ public class BoomeraxeCollisionDetection : MonoBehaviour
     [Required]
     Collider2D col = null;
 
-    void OnTriggerEnter2D(Collider2D other)
+    /// <summary>
+    /// Sent when an incoming collider makes contact with this object's
+    /// collider (2D physics only).
+    /// </summary>
+    /// <param name="other">The Collision2D data associated with this collision.</param>
+    void OnCollisionEnter2D(Collision2D other)
     {
+        Debug.Log(other);
         if (other.gameObject.tag.Equals("Player"))
         {
-            Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), other);
-            return;
+            Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), other.collider);
         }
-        axe.HandleOnTriggerEnter(other);
+        axe.HandleCollision(other);
     }
-
-    /// <summary>
-    /// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
-    /// </summary>
     void Update()
     {
         CheckForOverlap();
