@@ -118,7 +118,7 @@ Character:
     Added temporary character's walking animation.
     Added temporary character's on teleport Particle effect.
 
-#### _**Version 0.0.6 (April 27th, 2020 - May 2nd, 2020)**_
+#### _**Version 0.0.6, 0.0.7 (April 27th, 2020 - May 2nd, 2020)**_
 
 ##### Version 0.0.6
 
