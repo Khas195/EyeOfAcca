@@ -40,6 +40,12 @@ public class BoomeraxeGrip : MonoBehaviour
     [Required]
     Boomeraxe boomeraxeFlying = null;
 
+    [BoxGroup("Optional")]
+    [SerializeField]
+    Shake shake = null;
+
+
+
     [BoxGroup("Current Status")]
     [SerializeField]
     [ReadOnly]
@@ -55,7 +61,7 @@ public class BoomeraxeGrip : MonoBehaviour
     [ReadOnly]
     bool axeIsReturning = false;
 
-
+    bool axeIsShaking = false;
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
     /// any of the Update methods is called the first time.
@@ -86,7 +92,10 @@ public class BoomeraxeGrip : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0) && boomeraxeFlying.IsStuck() == true)
             {
-                boomeraxeFlying.Recall();
+                if (shake != null)
+                {
+                    shake.InduceTrauma(() => boomeraxeFlying.Recall());
+                }
                 adjustor.SetGravityScale(datas.timeScaleOnAxeRecall);
             }
             if (OutOfCameraView() && axeIsReturning == false)
