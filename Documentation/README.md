@@ -170,11 +170,13 @@ Boomeraxe **(REVAMPED)**:
     The Axe now sticks to any surface it hit.
     The axe can be recalled by Left Clicking.
     The axe will pass through everything on its way back.
+    There is a lul time when the character is airborned when recalling the axe.
 
 Gem **(NEW)**:
 
     Introducing gem that will alter the Axe's ability.
     Teleportation gem: ater the axe passes through this gem, instead of recalling on left click. The axe now will teleport the player to it.
+    There is a lul time on teleportation.
 
 **JUICE**:
 

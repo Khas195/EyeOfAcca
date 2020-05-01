@@ -21,13 +21,13 @@ public class TeleportAbility : AxeAbility
         axe.SetHolderPosition(teleportPlace);
 
 
-        axe.GetGrip().GetTimeAdjustor().SetGravityScaleFor(datas.timeScaleAfterTeleport, datas.lulTimeAfterTeleport);
         // Freeze for seconds
 
 
         // Grab the axe
         axe.GetGrip().SetAxeCatchable(true);
         axe.GetGrip().HoldAxe();
+        axe.GetGrip().GetTimeAdjustor().SetGravityScaleFor(datas.timeScaleAfterTeleport, datas.lulTimeAfterTeleport);
     }
 
 }
