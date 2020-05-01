@@ -38,7 +38,7 @@ public class Shake : MonoBehaviour
     void Update()
     {
 
-        if (trauma <= 0.5f)
+        if (trauma <= 0)
         {
             if (hasCallBack && callback != null)
             {
@@ -55,7 +55,9 @@ public class Shake : MonoBehaviour
         var randomPerlinX = maximumTranslateShake.x * ((Mathf.PerlinNoise(seed, Time.time * frequency) * 2) - 1);
         var randomPerlinY = maximumTranslateShake.y * ((Mathf.PerlinNoise(seed + 1, Time.time * frequency) * 2) - 1);
 
-        targetObject.transform.position = posOfTrauma + new Vector2(randomPerlinX, randomPerlinY) * shake;
+        Vector3 pos = posOfTrauma + new Vector2(randomPerlinX, randomPerlinY) * shake;
+        pos.z = targetObject.transform.position.z;
+        targetObject.transform.position = pos;
 
         var randomPerlinRotX = maximumAngularShake.x * ((Mathf.PerlinNoise(seed + 3, Time.time * frequency) * 2) - 1);
         var randomPerlinRotY = maximumAngularShake.y * ((Mathf.PerlinNoise(seed + 4, Time.time * frequency) * 2) - 1);

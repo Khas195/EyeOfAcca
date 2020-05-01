@@ -125,8 +125,9 @@ public class Boomeraxe : MonoBehaviour
     public void HandleCollision(Collision2D other)
     {
         if (flyTriggered == false) return;
-        Vector2 pos = body2d.transform.position;
+        Vector3 pos = body2d.transform.position;
         pos = other.contacts[0].point;
+        pos.z = body2d.transform.position.z;
         body2d.transform.position = pos;
         currentFlyDirection = Vector2.zero;
         body2d.GetComponent<Collider2D>().isTrigger = true;
