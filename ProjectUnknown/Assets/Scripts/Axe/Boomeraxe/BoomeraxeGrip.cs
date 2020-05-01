@@ -14,7 +14,6 @@ public class BoomeraxeGrip : MonoBehaviour
     [DisplayScriptableObjectProperties]
     BoomeraxeParams datas = null;
 
-
     [BoxGroup("Requirement")]
     [SerializeField]
     [Required]
@@ -24,6 +23,12 @@ public class BoomeraxeGrip : MonoBehaviour
     [SerializeField]
     [Required]
     GameObject boomeraxeObject = null;
+
+    [BoxGroup("Requirement")]
+    [SerializeField]
+    [Required]
+    IMovement holderMovement = null;
+
 
     [BoxGroup("Requirement")]
     [SerializeField]
@@ -43,7 +48,6 @@ public class BoomeraxeGrip : MonoBehaviour
     [BoxGroup("Optional")]
     [SerializeField]
     Shake shake = null;
-
 
 
     [BoxGroup("Current Status")]
@@ -94,9 +98,13 @@ public class BoomeraxeGrip : MonoBehaviour
             {
                 if (shake != null)
                 {
-                    shake.InduceTrauma(() => boomeraxeFlying.Recall());
+                    LogHelper.GetInstance().Log(("ACTIVATE!!").Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
+                    shake.InduceTrauma(() => boomeraxeFlying.ActivateAbility());
                 }
-                adjustor.SetGravityScale(datas.timeScaleOnAxeRecall);
+                if (holderMovement.IsTouchingGround() == false)
+                {
+                    adjustor.SetGravityScale(datas.timeScaleOnAxeRecall);
+                }
             }
             if (OutOfCameraView() && axeIsReturning == false)
             {
@@ -169,5 +177,9 @@ public class BoomeraxeGrip : MonoBehaviour
             boomeraxeFlying.Reset();
             adjustor.ResetTimeScale();
         }
+    }
+    public BoomeraxeGravityScaleAdjustor GetTimeAdjustor()
+    {
+        return adjustor;
     }
 }

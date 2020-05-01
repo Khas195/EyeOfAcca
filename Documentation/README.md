@@ -156,3 +156,27 @@ Quality Of Life:
         - Console
         - Developer
         - PlayerFriendly
+
+
+##### Version 0.0.7
+
+Bugs:
+
+    Fixed a problem where the boomeraxe's z position keep jumping infront of the character.
+    The player will no longer teleport inside the environtment.
+
+Boomeraxe **(REVAMPED)**:
+
+    The Axe now sticks to any surface it hit.
+    The axe can be recalled by Left Clicking.
+    The axe will pass through everything on its way back.
+
+Gem **(NEW)**:
+
+    Introducing gem that will alter the Axe's ability.
+    Teleportation gem: ater the axe passes through this gem, instead of recalling on left click. The axe now will teleport the player to it.
+
+**JUICE**:
+
+    The axe shakes a bit before returning.
+    The axe's movement is now more dynamic.

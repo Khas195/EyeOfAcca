@@ -38,7 +38,7 @@ public class Shake : MonoBehaviour
     void Update()
     {
 
-        if (trauma <= 0)
+        if (trauma <= 0.5f)
         {
             if (hasCallBack && callback != null)
             {

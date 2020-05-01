@@ -324,7 +324,7 @@ MonoBehaviour:
   frequency: 30
   maximumTranslateShake: {x: 0.2, y: 0.2, z: 0}
   maximumAngularShake: {x: 2, y: 2, z: 2}
-  recoverySpeed: 0.8
+  recoverySpeed: 1
   traumaExponent: 2
 --- !u!1 &1200764829 stripped
 GameObject:
@@ -362,6 +362,12 @@ PrefabInstance:
       propertyPath: holderBody2d
       value: 
       objectReference: {fileID: 638179320}
+    - target: {fileID: 4475797550433327940, guid: 54031a8a3e953e64b814111327a4b252,
+        type: 3}
+      propertyPath: defaultAbility
+      value: 
+      objectReference: {fileID: 11400000, guid: 240c66c118359b641a29409f9aa37083,
+        type: 2}
     - target: {fileID: 4475797550795852430, guid: 54031a8a3e953e64b814111327a4b252,
         type: 3}
       propertyPath: characterBody
@@ -462,6 +468,11 @@ PrefabInstance:
       propertyPath: shake
       value: 
       objectReference: {fileID: 1128125421}
+    - target: {fileID: 4475797551438043310, guid: 54031a8a3e953e64b814111327a4b252,
+        type: 3}
+      propertyPath: holderMovement
+      value: 
+      objectReference: {fileID: 270376798}
     - target: {fileID: 4475797551516158988, guid: 54031a8a3e953e64b814111327a4b252,
         type: 3}
       propertyPath: m_LocalPosition.y

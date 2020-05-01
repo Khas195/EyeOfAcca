@@ -19,6 +19,8 @@ public class BoomeraxeParams : ScriptableObject
     public float timeTilAxeCatchable = 0.2f;
     public float timeTilAxeReturnAfterExitCameraView = 0.5f;
 
+    public float teleportDistanceAwayFromDestination = 0.2f;
+
     [Button("Save")]
     public void Save()
     {

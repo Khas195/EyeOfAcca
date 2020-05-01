@@ -22,6 +22,8 @@ public class Boomeraxe : MonoBehaviour
     [DisplayScriptableObjectProperties]
     BoomeraxeParams datas = null;
 
+
+
     [BoxGroup("Requirement")]
     [SerializeField]
     [Required]
@@ -42,9 +44,20 @@ public class Boomeraxe : MonoBehaviour
     [SerializeField]
     Animator animator = null;
 
+
+    [BoxGroup("Requirement")]
+    [SerializeField]
+    AxeAbility defaultAbility = null;
+
     [BoxGroup("Optional")]
     [SerializeField]
     BallBounceEvent onBounce = new BallBounceEvent();
+
+
+
+    [BoxGroup("Optional")]
+    [SerializeField]
+    AxeAbility activeAbility = null;
 
     [BoxGroup("Current Status")]
     [SerializeField]
@@ -63,9 +76,12 @@ public class Boomeraxe : MonoBehaviour
     [ReadOnly]
     Vector2 currentFlyDirection = Vector2.zero;
 
+    [BoxGroup("Current Status")]
     [SerializeField]
     [ReadOnly]
     float currentRecallTime = 0.0f;
+
+    [BoxGroup("Current Status")]
     [SerializeField]
     [ReadOnly]
     Vector2 stuckPos = Vector2.one;
@@ -119,21 +135,41 @@ public class Boomeraxe : MonoBehaviour
         returning = false;
         SetFlyTrigger(false);
         isStuck = false;
+        body2d.GetComponent<Collider2D>().isTrigger = false;
         onBounce.Invoke(body2d.transform.position, body2d.transform.rotation);
     }
+    ContactPoint2D contactPoint;
 
     public void HandleCollision(Collision2D other)
     {
         if (flyTriggered == false) return;
-        Vector3 pos = body2d.transform.position;
-        pos = other.contacts[0].point;
-        pos.z = body2d.transform.position.z;
-        body2d.transform.position = pos;
+        PlaceAxeAtContactPoint(other);
         currentFlyDirection = Vector2.zero;
         body2d.GetComponent<Collider2D>().isTrigger = true;
         isStuck = true;
         SetFlyTrigger(false);
         onBounce.Invoke(body2d.transform.position, body2d.transform.rotation);
+    }
+
+    private void PlaceAxeAtContactPoint(Collision2D other)
+    {
+        Vector3 pos = body2d.transform.position;
+        contactPoint = other.contacts[0];
+        pos = other.contacts[0].point;
+        pos.z = body2d.transform.position.z;
+        body2d.transform.position = pos;
+    }
+    public void ActivateAbility()
+    {
+        if (activeAbility == null)
+        {
+            defaultAbility.Activate(this);
+        }
+        else
+        {
+            activeAbility.Activate(this);
+            activeAbility = null;
+        }
     }
     public void Recall()
     {
@@ -156,4 +192,32 @@ public class Boomeraxe : MonoBehaviour
     {
         return currentFlyDirection;
     }
+
+    public Vector2 GetAxePosition()
+    {
+        return body2d.transform.position;
+    }
+
+    public BoomeraxeGrip GetGrip()
+    {
+        return grip;
+    }
+    public void SetHolderPosition(Vector2 pos)
+    {
+        holderBody2d.transform.position = pos;
+    }
+    public Vector2 GetContactPointNormal()
+    {
+        return contactPoint.normal;
+    }
+
+    public Vector3 GetHolderBodyPosition()
+    {
+        return holderBody2d.transform.position;
+    }
+    public void SetActiveAbility(AxeAbility ability)
+    {
+        activeAbility = ability;
+    }
 }
+

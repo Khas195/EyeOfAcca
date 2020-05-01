@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
@@ -11,6 +12,8 @@ public class BoomeraxeCollisionDetection : MonoBehaviour
     [SerializeField]
     [Required]
     Collider2D col = null;
+
+
 
     /// <summary>
     /// Sent when an incoming collider makes contact with this object's
@@ -48,5 +51,9 @@ public class BoomeraxeCollisionDetection : MonoBehaviour
                 }
             }
         }
+    }
+    public Boomeraxe GetAxe()
+    {
+        return axe;
     }
 }
