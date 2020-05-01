@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flyDistance: 6
   accelration: 2
-  flyVelocity: 7
+  flyVelocity: 10
   maxBounce: 9999
   maxTeleport: 0
   lulTimeAfterTeleport: 0.5
   timeScaleAfterTeleport: 0.5
   lulPeriodAfterAirborneThrow: 0
   timeScaleAfterThrow: 0
-  timeTilAxeCatchable: 0.5
+  timeTilAxeCatchable: 0.2
   timeTilAxeReturnAfterExitCameraView: 0.5

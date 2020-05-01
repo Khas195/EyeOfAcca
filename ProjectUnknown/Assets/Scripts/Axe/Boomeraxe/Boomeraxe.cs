@@ -100,6 +100,7 @@ public class Boomeraxe : MonoBehaviour
         LogHelper.GetInstance().Log(("It's comming back!!!").Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
         currentFlyDirection = holderBody2d.transform.position - body2d.transform.position;
         currentFlyDirection.Normalize();
+        returning = true;
     }
 
     public void Fly(Vector2 target)

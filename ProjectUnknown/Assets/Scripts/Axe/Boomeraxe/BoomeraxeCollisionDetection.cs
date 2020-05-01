@@ -25,7 +25,7 @@ public class BoomeraxeCollisionDetection : MonoBehaviour
     /// <summary>
     /// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
     /// </summary>
-    void FixedUpdate()
+    void Update()
     {
         CheckForOverlap();
     }

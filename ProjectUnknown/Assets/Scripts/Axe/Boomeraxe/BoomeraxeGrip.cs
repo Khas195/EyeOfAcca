@@ -20,18 +20,6 @@ public class BoomeraxeGrip : MonoBehaviour
     [Required]
     Camera playerCamera = null;
 
-
-    [BoxGroup("Requirement")]
-    [SerializeField]
-    [Required]
-    GameObject holderBody = null;
-
-    [BoxGroup("Requirement")]
-    [SerializeField]
-    [Required]
-    Movement2DPlatform holderMovementBehavior = null;
-
-
     [BoxGroup("Requirement")]
     [SerializeField]
     [Required]
@@ -46,7 +34,6 @@ public class BoomeraxeGrip : MonoBehaviour
     [SerializeField]
     [Required]
     BoomeraxeGravityScaleAdjustor adjustor = null;
-
 
     [BoxGroup("Requirement")]
     [SerializeField]
