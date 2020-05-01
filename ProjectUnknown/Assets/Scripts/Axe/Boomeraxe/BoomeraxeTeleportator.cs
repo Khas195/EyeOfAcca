@@ -1,8 +1,17 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Events;
+/// <summary>
+/// Experimental scripts for spawning fire vfxxxx
+/// </summary>
+[Serializable]
+public class TeleportEvent : UnityEvent<Vector3, Vector3>
+{
 
+}
 public class BoomeraxeTeleportator : MonoBehaviour
 {
     [BoxGroup("Settings")]
@@ -37,7 +46,7 @@ public class BoomeraxeTeleportator : MonoBehaviour
 
     [BoxGroup("Optional")]
     [SerializeField]
-    GameObjectPool teleportParticlePool = null;
+    TeleportEvent onTeleport = new TeleportEvent();
 
     [BoxGroup("Current Status")]
     [SerializeField]
@@ -67,12 +76,9 @@ public class BoomeraxeTeleportator : MonoBehaviour
 
                 /// teleport 
                 var pos = grip.GetAxePosition();
+                onTeleport.Invoke(pos, boomeraxeHolder.transform.position);
                 boomeraxeHolder.transform.position = pos;
-                if (teleportParticlePool)
-                {
-                    var vfx = teleportParticlePool.RequestInstance();
-                    vfx.transform.position = pos;
-                }
+
 
                 if (datas.lulTimeAfterTeleport > 0)
                 {

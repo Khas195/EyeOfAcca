@@ -63,16 +63,17 @@ public class CameraZoom : MonoBehaviour
         return followPercentage;
     }
 
+
     float GetGreatestDistance(List<Transform> encapsulatedTargets)
     {
         if (encapsulatedTargets.Count <= 1)
         {
             return 0;
         }
-        var bounds = new Bounds();
-        foreach (var target in encapsulatedTargets)
+        var bounds = new Bounds(encapsulatedTargets[0].transform.position, Vector3.one);
+        for (int i = 1; i < encapsulatedTargets.Count; i++)
         {
-            bounds.Encapsulate(target.position);
+            bounds.Encapsulate(encapsulatedTargets[i].transform.position);
         }
         var result = bounds.size.x < bounds.size.y ? bounds.size.y : bounds.size.x;
         return result;

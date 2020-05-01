@@ -9,10 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20511c714e051b0429b5b05f14d2967e, type: 3}
-  m_Name: MovementData
+  m_Script: {fileID: 11500000, guid: 862b96e9d12368a489fc5bf785d29459, type: 3}
+  m_Name: Teleport
   m_EditorClassIdentifier: 
-  walkSpeed: 5
-  runSpeed: 5
-  jumpForce: 10
-  rotateSpeed: 20
+  datas: {fileID: 11400000, guid: c48c63eac7f6b00429aa58ba2914fba3, type: 2}

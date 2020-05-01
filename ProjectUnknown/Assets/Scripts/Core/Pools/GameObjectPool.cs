@@ -22,4 +22,8 @@ public class GameObjectPool : ObjectPooling<GameObject>
     {
         target.SetActive(false);
     }
+    public void SetPrototype(GameObject newPrototype)
+    {
+        prototype = newPrototype;
+    }
 }

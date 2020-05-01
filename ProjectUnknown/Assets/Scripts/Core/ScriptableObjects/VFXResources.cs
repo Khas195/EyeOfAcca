@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 
 
@@ -8,25 +9,17 @@ public class VFXResources : ScriptableObject
 {
     public enum VFXList
     {
-        SwordHitEnemy,
-        EnemyHitPlayer,
         Heal,
-        SwordHitsRock,
         PlayerLand,
-        CrabInterval,
         FootFall,
-        SwordHitChicken,
-        ChickenDeath,
-        SwordHitCrab,
-        CrabDeath,
-        SwordHitSlime,
-        SlimeDeath
+        Bounce,
+        Teleport
     }
     [Serializable]
     public struct VFX
     {
         public VFXList tag;
-        public List<GameObject> prefabs;
+        public GameObject prefab;
     }
     public List<VFX> resourcesList = new List<VFX>();
 }

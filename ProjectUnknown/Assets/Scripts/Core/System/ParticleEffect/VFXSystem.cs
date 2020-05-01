@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
-/// <summary>
-/// Experimental scripts for spawning fire vfxxxx
-/// </summary>
+using UnityEngine.Events;
+
 public class VFXSystem : SingletonMonobehavior<VFXSystem>
 {
     [SerializeField]
@@ -17,16 +16,17 @@ public class VFXSystem : SingletonMonobehavior<VFXSystem>
     }
     public void PlayEffect(VFXResources.VFXList vFX, Vector3 position, Quaternion rotation)
     {
-        foreach (var item in resourcesPack.resourcesList)
+        for (int i = 0; i < resourcesPack.resourcesList.Count; ++i)
         {
+            var item = resourcesPack.resourcesList[i];
             if (item.tag == vFX)
             {
-                if (item.prefabs.Count <= 0)
+
+                if (item.prefab == null)
                 {
                     return;
                 }
-                var chooseRandom = UnityEngine.Random.Range(0, item.prefabs.Count);
-                GameObject.Instantiate(item.prefabs[chooseRandom], position, rotation, this.transform);
+                var particle = GameObject.Instantiate(item.prefab, position, rotation, this.transform);
             }
         }
     }

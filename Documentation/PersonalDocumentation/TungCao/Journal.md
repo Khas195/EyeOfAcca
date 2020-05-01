@@ -69,3 +69,12 @@ We also planned and talked about what kind of aesthetic that we can have in the 
 We choosed the aztec version due to it being the most intersting. Then Sam raised a brilliant idea of kind of merging different aesthetics together. Like the Dwarven in skyrim and endless legends where they combined the steam punk machine with a diffrent kind of art.
 
 At the time that I wrote this, Chris is still combining and finding arts for said purpose. I am sure, Chris will write in a more accurate about said process in his journal. 
+
+
+ ---
+
+### __** Moving Forward (April 27th, 2020 - May 2nd, 2020)**__
+
+We had our first meeting before the prototype session. We talked about how we want to move forward and what we want to have in the next play-test session. I believe that the thing we most aggreed upon was the notion of having autonomous role in the team. Because the three of us at this point had been vision keeper at one point or another and the fact that having someone walking up to us with his task and ask "Is this what you want ?" is not something desirable to have in the group. We don't want someone to be just a mindless developer and we want people to add their own taste and keep asking, adding and questioning about the vision of the game. 
+
+That is why, I object to adding anymore member moving forward. I feel like the current team works because each person can be in controlled of his own role and more. As said in the first section, each of us understand the job of others and ourself which result in us, in meetings, asking more questions like "Is this thing going into the right direction of the vision ?", "Can we steer the direction of the vision this way because of this ?", "I found something really cool that we did not plan which fit the vision. ".

@@ -108,6 +108,10 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     {
         LoadLevel("Level" + levelIndex);
     }
+    public string GetStartLevel()
+    {
+        return startLevel;
+    }
 
     private void LoadPrequisiteScenesForLevel()
     {
