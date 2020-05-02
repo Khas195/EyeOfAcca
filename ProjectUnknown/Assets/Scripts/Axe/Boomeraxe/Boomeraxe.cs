@@ -128,7 +128,7 @@ public class Boomeraxe : MonoBehaviour
         LogHelper.GetInstance().Log("Player ".Bolden().Colorize(Color.green) + "has thrown the " + "Boomeraxe".Bolden().Colorize("#83ecd7"), true);
 
         body2d.gameObject.SetActive(true);
-        Vector2 pos = body2d.transform.position;
+        Vector2 pos = axeHolderPos.transform.position;
         currentFlyDirection = (target - pos).normalized;
         body2d.transform.position = axeHolderPos.transform.position;
         returning = false;

@@ -276,7 +276,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.8749901, y: 0}
   serializedVersion: 2
-  m_Radius: 0.8
+  m_Radius: 0.6
 --- !u!50 &638179320 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 8558128283915914034, guid: 2b03fc41f04525f469eccd660ed2db23,
@@ -807,11 +807,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1287017936, guid: 2b03fc41f04525f469eccd660ed2db23, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.028
       objectReference: {fileID: 0}
     - target: {fileID: 1287017936, guid: 2b03fc41f04525f469eccd660ed2db23, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.75
+      value: 0.263
       objectReference: {fileID: 0}
     - target: {fileID: 8558128282581107802, guid: 2b03fc41f04525f469eccd660ed2db23,
         type: 3}
@@ -893,6 +893,11 @@ PrefabInstance:
         type: 3}
       propertyPath: checkGroundBoxOffset.y
       value: -0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8558128283020694534, guid: 2b03fc41f04525f469eccd660ed2db23,
+        type: 3}
+      propertyPath: timeTilMaxSpeed
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8558128283662357634, guid: 2b03fc41f04525f469eccd660ed2db23,
         type: 3}
