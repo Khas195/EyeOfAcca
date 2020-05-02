@@ -28,6 +28,11 @@ public class Boomeraxe : MonoBehaviour
     [SerializeField]
     [Required]
     BoomeraxeGrip grip = null;
+    [BoxGroup("Requirement")]
+    [SerializeField]
+    [Required]
+    Transform axeHolderPos = null;
+
 
 
     [BoxGroup("Requirement")]
@@ -125,8 +130,7 @@ public class Boomeraxe : MonoBehaviour
         body2d.gameObject.SetActive(true);
         Vector2 pos = body2d.transform.position;
         currentFlyDirection = (target - pos).normalized;
-        Vector3 offset = currentFlyDirection;
-        body2d.transform.position += offset;
+        body2d.transform.position = axeHolderPos.transform.position;
         returning = false;
         SetFlyTrigger(true);
     }

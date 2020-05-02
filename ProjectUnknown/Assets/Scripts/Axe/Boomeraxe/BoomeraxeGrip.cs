@@ -20,6 +20,10 @@ public class BoomeraxeGrip : MonoBehaviour
     [DisplayScriptableObjectProperties]
     BoomeraxeParams datas = null;
 
+    [BoxGroup("Requirement")]
+    [SerializeField]
+    [Required]
+    Flip flip = null;
 
 
     [BoxGroup("Requirement")]
@@ -106,6 +110,7 @@ public class BoomeraxeGrip : MonoBehaviour
 
                 if (Input.GetMouseButtonDown(0))
                 {
+                    flip.CheckFacing(mousPos.x - holderPivot.transform.position.x);
                     axeThrowTriggered = true;
                     axeThrowTrigger.Invoke();
                 }
@@ -154,6 +159,8 @@ public class BoomeraxeGrip : MonoBehaviour
         isBeingHeld = false;
         axeCatchable = false;
         axeThrowTriggered = false;
+
+
 
         boomeraxeFlying.Fly(mousPos);
         adjustor.SetGravityScaleFor(datas.timeScaleAfterThrow, datas.lulPeriodAfterAirborneThrow);
