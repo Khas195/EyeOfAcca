@@ -289,6 +289,18 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 8558128282752617304}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &684434926 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8558128282734045228, guid: 2b03fc41f04525f469eccd660ed2db23,
+    type: 3}
+  m_PrefabInstance: {fileID: 8558128282752617304}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ef793efd290da94aaa4f112b59f8c54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1084060412 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8558128283726493366, guid: 2b03fc41f04525f469eccd660ed2db23,
@@ -298,6 +310,12 @@ Transform:
 --- !u!1 &1287017935 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1287017935, guid: 2b03fc41f04525f469eccd660ed2db23,
+    type: 3}
+  m_PrefabInstance: {fileID: 8558128282752617304}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1287017936 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1287017936, guid: 2b03fc41f04525f469eccd660ed2db23,
     type: 3}
   m_PrefabInstance: {fileID: 8558128282752617304}
   m_PrefabAsset: {fileID: 0}
@@ -475,6 +493,11 @@ PrefabInstance:
       propertyPath: holderBody2d
       value: 
       objectReference: {fileID: 638179320}
+    - target: {fileID: 4475797550433327940, guid: 54031a8a3e953e64b814111327a4b252,
+        type: 3}
+      propertyPath: axeHolderPos
+      value: 
+      objectReference: {fileID: 1287017936}
     - target: {fileID: 4475797550795852430, guid: 54031a8a3e953e64b814111327a4b252,
         type: 3}
       propertyPath: characterBody
@@ -595,6 +618,11 @@ PrefabInstance:
       propertyPath: axeThrowTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 4475797551438043310, guid: 54031a8a3e953e64b814111327a4b252,
+        type: 3}
+      propertyPath: flip
+      value: 
+      objectReference: {fileID: 684434926}
     - target: {fileID: 4475797551516158988, guid: 54031a8a3e953e64b814111327a4b252,
         type: 3}
       propertyPath: m_LocalPosition.y

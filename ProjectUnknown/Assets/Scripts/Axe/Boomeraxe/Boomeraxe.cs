@@ -159,6 +159,18 @@ public class Boomeraxe : MonoBehaviour
 
         LogHelper.GetInstance().Log("*THUD*".Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
 
+        RotateBladeTowardImpactPoint(other);
+        PlaceAxeAtContactPoint(other);
+
+        body2d.GetComponent<Collider2D>().isTrigger = true;
+        SetFlyTrigger(false);
+        isStuck = true;
+        currentFlyDirection = Vector2.zero;
+        onBounce.Invoke(body2d.transform.position, body2d.transform.rotation);
+    }
+
+    private void RotateBladeTowardImpactPoint(Collision2D other)
+    {
         Vector3 myLocation = body2d.transform.position;
         Vector3 targetLocation = other.contacts[0].point;
         targetLocation.z = myLocation.z; // ensure there is no 3D rotation by aligning Z position
@@ -174,14 +186,6 @@ public class Boomeraxe : MonoBehaviour
 
         // changed this from a lerp to a RotateTowards because you were supplying a "speed" not an interpolation value
         body2d.transform.rotation = targetRotation;
-
-        PlaceAxeAtContactPoint(other);
-
-        body2d.GetComponent<Collider2D>().isTrigger = true;
-        SetFlyTrigger(false);
-        isStuck = true;
-        currentFlyDirection = Vector2.zero;
-        onBounce.Invoke(body2d.transform.position, body2d.transform.rotation);
     }
 
     private void PlaceAxeAtContactPoint(Collision2D other)
@@ -201,6 +205,7 @@ public class Boomeraxe : MonoBehaviour
         else
         {
             activeAbility.Activate(this);
+            animator.SetBool("hasPower", false);
             activeAbility = null;
         }
     }
@@ -220,10 +225,6 @@ public class Boomeraxe : MonoBehaviour
             grip.HoldAxe();
             body2d.GetComponent<Collider2D>().isTrigger = false;
         }
-    }
-    public Vector2 GetFlyDirection()
-    {
-        return currentFlyDirection;
     }
 
     public Vector2 GetAxePosition()
@@ -254,6 +255,7 @@ public class Boomeraxe : MonoBehaviour
         {
             return;
         }
+        animator.SetBool("hasPower", true);
         activeAbility = ability;
     }
 }

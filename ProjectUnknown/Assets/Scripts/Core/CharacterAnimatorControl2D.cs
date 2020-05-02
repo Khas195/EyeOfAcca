@@ -22,7 +22,7 @@ public class CharacterAnimatorControl2D : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        anim.SetFloat("Speed", Mathf.Abs(body2d.velocity.x));
+        anim.SetFloat("Speed", Mathf.Abs(characterMovement.GetDesiredMovementHorizontal()));
         anim.SetFloat("VelocityVertical", body2d.velocity.y);
         anim.SetBool("IsHoldingAxe", grip.GetIsHoldingAxe());
         anim.SetBool("IsTouchingGround", characterMovement.IsTouchingGround());

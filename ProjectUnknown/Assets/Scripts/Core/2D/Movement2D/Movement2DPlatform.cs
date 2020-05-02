@@ -58,6 +58,8 @@ public class Movement2DPlatform : IMovement
     {
         timeScale = scale;
     }
+    [SerializeField]
+    [ReadOnly]
     float accelrationTimeCounter = 0.0f;
     private void ProcessMovement()
     {
