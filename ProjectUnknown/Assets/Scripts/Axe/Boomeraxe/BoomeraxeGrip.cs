@@ -3,7 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Events;
 
+[Serializable]
+public class OnAxeThrowCatch : UnityEvent<bool>
+{
+
+}
 public class BoomeraxeGrip : MonoBehaviour
 {
     [BoxGroup("Settings")]
@@ -13,6 +19,8 @@ public class BoomeraxeGrip : MonoBehaviour
     [InfoBox("Boomeraxe Datas - The values below can ONLY be changed by clicking Save in the data object itself", EInfoBoxType.Warning)]
     [DisplayScriptableObjectProperties]
     BoomeraxeParams datas = null;
+
+
 
     [BoxGroup("Requirement")]
     [SerializeField]
@@ -49,6 +57,9 @@ public class BoomeraxeGrip : MonoBehaviour
     [SerializeField]
     Shake shake = null;
 
+    [BoxGroup("Optional")]
+    [SerializeField]
+    OnAxeThrowCatch throwCatchEvent = new OnAxeThrowCatch();
 
     [BoxGroup("Current Status")]
     [SerializeField]
@@ -136,6 +147,7 @@ public class BoomeraxeGrip : MonoBehaviour
         boomeraxeFlying.Fly(mousPos);
         axeCatchable = false;
         adjustor.SetGravityScaleFor(datas.timeScaleAfterThrow, datas.lulPeriodAfterAirborneThrow);
+        throwCatchEvent.Invoke(true);
         StopCoroutine(TurnOnAxeCatchable(datas.timeTilAxeCatchable));
         StartCoroutine(TurnOnAxeCatchable(datas.timeTilAxeCatchable));
     }
@@ -172,8 +184,10 @@ public class BoomeraxeGrip : MonoBehaviour
         {
             LogHelper.GetInstance().Log(("Arkkkk, So heavy!").Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
             LogHelper.GetInstance().Log("Catch the Axe!", true);
+            throwCatchEvent.Invoke(false);
             isBeingHeld = true;
             axeCatchable = false;
+            StickToHolder();
             boomeraxeFlying.Reset();
             adjustor.ResetTimeScale();
         }
@@ -181,5 +195,9 @@ public class BoomeraxeGrip : MonoBehaviour
     public BoomeraxeGravityScaleAdjustor GetTimeAdjustor()
     {
         return adjustor;
+    }
+    public bool GetIsHoldingAxe()
+    {
+        return isBeingHeld;
     }
 }

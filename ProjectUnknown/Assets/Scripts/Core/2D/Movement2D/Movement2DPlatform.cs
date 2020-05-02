@@ -9,9 +9,9 @@ public class Movement2DPlatform : IMovement
     [ShowIf("noCharacter")]
     Rigidbody2D body2D = null;
     [SerializeField]
-    float maxSpeed = 10;
-    [SerializeField]
     float fallMultiplier = 2.5f;
+    [SerializeField]
+    float timeTilMaxSpeed = 0.5f;
     float cachedSide = 0;
     bool jumpSignal = false;
     [SerializeField]
@@ -52,22 +52,32 @@ public class Movement2DPlatform : IMovement
         }
         body2D.velocity *= timeScale;
 
-        if (body2D.velocity.magnitude > maxSpeed)
-        {
-            body2D.velocity = Vector3.ClampMagnitude(body2D.velocity, maxSpeed);
-        }
     }
 
     public void SetTimeScale(float scale)
     {
         timeScale = scale;
     }
-
+    float accelrationTimeCounter = 0.0f;
     private void ProcessMovement()
     {
+        if (cachedSide == 0)
+        {
+            accelrationTimeCounter = 0;
+        }
         var curVel = body2D.velocity;
-        curVel.x = (cachedSide * data.runSpeed);
+        var speed = Tweener.EaseInQuad(accelrationTimeCounter, 0, data.runSpeed, timeTilMaxSpeed);
+        if (speed >= data.runSpeed)
+        {
+            speed = data.runSpeed * cachedSide;
+        }
+        else
+        {
+            speed *= cachedSide;
+        }
+        curVel.x = speed;
         body2D.velocity = curVel;
+        accelrationTimeCounter += Time.deltaTime;
     }
 
     public override void SignalJump()
@@ -90,6 +100,10 @@ public class Movement2DPlatform : IMovement
             return true;
         }
         return false;
+    }
+    public float GetDesiredMovementHorizontal()
+    {
+        return cachedSide;
     }
 
 }

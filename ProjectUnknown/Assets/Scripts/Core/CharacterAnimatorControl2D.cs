@@ -11,17 +11,32 @@ public class CharacterAnimatorControl2D : MonoBehaviour
     [SerializeField]
     [Required]
     Animator anim = null;
+    [SerializeField]
+    [Required]
+    BoomeraxeGrip grip = null;
+
+    [SerializeField]
+    [Required]
+    Movement2DPlatform characterMovement = null;
 
     // Update is called once per frame
     void Update()
     {
-        if (body2d.velocity.x != 0)
+        anim.SetFloat("Speed", Mathf.Abs(body2d.velocity.x));
+        anim.SetFloat("VelocityVertical", body2d.velocity.y);
+        anim.SetBool("IsHoldingAxe", grip.GetIsHoldingAxe());
+        anim.SetBool("IsTouchingGround", characterMovement.IsTouchingGround());
+    }
+    public void ThrowCatchEvent(bool isThrow)
+    {
+        if (isThrow)
         {
-            anim.SetBool("Walking", true);
+            anim.SetTrigger("throwAxeTrigger");
         }
         else
         {
-            anim.SetBool("Walking", false);
+
+            anim.SetTrigger("axeCatchTrigger");
         }
     }
 }

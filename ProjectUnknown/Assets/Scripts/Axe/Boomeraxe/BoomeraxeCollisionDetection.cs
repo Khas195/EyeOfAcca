@@ -26,6 +26,7 @@ public class BoomeraxeCollisionDetection : MonoBehaviour
         if (other.gameObject.tag.Equals("Player"))
         {
             Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), other.collider);
+            return;
         }
         axe.HandleCollision(other);
     }

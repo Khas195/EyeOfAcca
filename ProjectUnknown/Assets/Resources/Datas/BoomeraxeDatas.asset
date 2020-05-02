@@ -17,7 +17,7 @@ MonoBehaviour:
   maxTeleport: 0
   lulTimeAfterTeleport: 0.5
   timeScaleAfterTeleport: 0.5
-  timeScaleOnAxeRecall: 0.2
+  timeScaleOnAxeRecall: 1
   lulPeriodAfterAirborneThrow: 0
   timeScaleAfterThrow: 0
   timeTilAxeCatchable: 0.2

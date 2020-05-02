@@ -9,6 +9,7 @@ public class Flip : MonoBehaviour
     [SerializeField]
     [Required]
     Rigidbody2D body = null;
+    [SerializeField]
     bool isFacingRight = true;
     // Start is called before the first frame update
     void Start()

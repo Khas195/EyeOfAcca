@@ -17,12 +17,7 @@ public class Boomeraxe : MonoBehaviour
     [BoxGroup("Settings")]
     [SerializeField]
     [Required]
-    [InfoBox("Boomeraxe Datas - The values below are applied for ALL scripts that use this Data Object", EInfoBoxType.Warning)]
-    [InfoBox("Boomeraxe Datas - The values below can ONLY be changed by clicking Save in the data object itself", EInfoBoxType.Warning)]
-    [DisplayScriptableObjectProperties]
     BoomeraxeParams datas = null;
-
-
 
     [BoxGroup("Requirement")]
     [SerializeField]
@@ -39,6 +34,12 @@ public class Boomeraxe : MonoBehaviour
     [SerializeField]
     [Required]
     Rigidbody2D holderBody2d = null;
+
+
+    [BoxGroup("Requirement")]
+    [SerializeField]
+    [Required]
+    Transform bladePivot = null;
 
     [BoxGroup("Requirement")]
     [SerializeField]
@@ -85,14 +86,22 @@ public class Boomeraxe : MonoBehaviour
     [SerializeField]
     [ReadOnly]
     Vector2 stuckPos = Vector2.one;
+
+    [BoxGroup("Current Status")]
+    [SerializeField]
+    [ReadOnly]
     bool isStuck = false;
     void Start()
     {
         body2d.gravityScale = 0;
+        Reset();
     }
 
     void FixedUpdate()
     {
+
+        animator.SetBool("isStuck", isStuck);
+
         if (flyTriggered)
         {
             if (returning)
@@ -116,8 +125,11 @@ public class Boomeraxe : MonoBehaviour
     public void Fly(Vector2 target)
     {
         LogHelper.GetInstance().Log("Player ".Bolden().Colorize(Color.green) + "has thrown the " + "Boomeraxe".Bolden().Colorize("#83ecd7"), true);
+
+        body2d.gameObject.SetActive(true);
         Vector2 pos = body2d.transform.position;
         currentFlyDirection = (target - pos).normalized;
+
         returning = false;
         SetFlyTrigger(true);
     }
@@ -125,11 +137,11 @@ public class Boomeraxe : MonoBehaviour
     private void SetFlyTrigger(bool triggered)
     {
         flyTriggered = triggered;
-        animator.SetBool("Flying", flyTriggered);
     }
 
     public void Reset()
     {
+        body2d.gameObject.SetActive(false);
         currentFlyDirection = Vector3.zero;
         body2d.velocity = Vector2.zero;
         returning = false;
@@ -143,11 +155,23 @@ public class Boomeraxe : MonoBehaviour
     public void HandleCollision(Collision2D other)
     {
         if (flyTriggered == false) return;
+
+        LogHelper.GetInstance().Log("*THUD*".Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
         PlaceAxeAtContactPoint(other);
-        currentFlyDirection = Vector2.zero;
+
+        Vector2 bladeDir = (bladePivot.position - holderBody2d.transform.position).normalized;
+
+        Vector2 holdPos = holderBody2d.transform.position;
+        Vector2 impactDir = (other.contacts[0].point - holdPos).normalized;
+
+        float angle = Vector2.Angle(bladeDir, impactDir);
+
+        body2d.transform.rotation = Quaternion.Euler(0, 0, angle);
+
         body2d.GetComponent<Collider2D>().isTrigger = true;
-        isStuck = true;
         SetFlyTrigger(false);
+        isStuck = true;
+        currentFlyDirection = Vector2.zero;
         onBounce.Invoke(body2d.transform.position, body2d.transform.rotation);
     }
 

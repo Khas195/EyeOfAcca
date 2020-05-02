@@ -24,6 +24,7 @@ public class Shake : MonoBehaviour
     float seed = 0;
 
     Vector2 posOfTrauma = Vector2.one;
+    Quaternion rotOfTrauma = Quaternion.identity;
     bool hasCallBack = false;
     System.Action callback = null;
     /// <summary>
@@ -46,6 +47,7 @@ public class Shake : MonoBehaviour
                 callback = null;
                 hasCallBack = false;
             }
+            trauma = 0;
             return;
         }
 
@@ -62,7 +64,8 @@ public class Shake : MonoBehaviour
         var randomPerlinRotX = maximumAngularShake.x * ((Mathf.PerlinNoise(seed + 3, Time.time * frequency) * 2) - 1);
         var randomPerlinRotY = maximumAngularShake.y * ((Mathf.PerlinNoise(seed + 4, Time.time * frequency) * 2) - 1);
 
-        targetObject.transform.localRotation = Quaternion.Euler(new Vector3(randomPerlinRotX, randomPerlinRotY) * shake);
+        Quaternion rot = rotOfTrauma * Quaternion.Euler(new Vector3(randomPerlinRotX, randomPerlinRotY) * shake);
+        targetObject.transform.localRotation = rot;
 
         trauma = Mathf.Clamp01(trauma - recoverySpeed * Time.deltaTime);
     }
@@ -70,9 +73,11 @@ public class Shake : MonoBehaviour
     {
         trauma = 1.0f;
         posOfTrauma = targetObject.transform.position;
+        rotOfTrauma = targetObject.transform.rotation;
     }
     public void InduceTrauma(System.Action callback)
     {
+        if (trauma > 0) return;
         InduceTrauma();
         hasCallBack = true;
         this.callback = callback;
