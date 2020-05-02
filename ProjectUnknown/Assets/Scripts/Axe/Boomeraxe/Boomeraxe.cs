@@ -36,10 +36,6 @@ public class Boomeraxe : MonoBehaviour
     Rigidbody2D holderBody2d = null;
 
 
-    [BoxGroup("Requirement")]
-    [SerializeField]
-    [Required]
-    Transform bladePivot = null;
 
     [BoxGroup("Requirement")]
     [SerializeField]
@@ -129,7 +125,8 @@ public class Boomeraxe : MonoBehaviour
         body2d.gameObject.SetActive(true);
         Vector2 pos = body2d.transform.position;
         currentFlyDirection = (target - pos).normalized;
-
+        Vector3 offset = currentFlyDirection;
+        body2d.transform.position += offset;
         returning = false;
         SetFlyTrigger(true);
     }
@@ -157,16 +154,24 @@ public class Boomeraxe : MonoBehaviour
         if (flyTriggered == false) return;
 
         LogHelper.GetInstance().Log("*THUD*".Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
+
+        Vector3 myLocation = body2d.transform.position;
+        Vector3 targetLocation = other.contacts[0].point;
+        targetLocation.z = myLocation.z; // ensure there is no 3D rotation by aligning Z position
+
+        // vector from this object towards the target location
+        Vector3 vectorToTarget = targetLocation - myLocation;
+        // rotate that vector by 90 degrees around the Z axis
+        Vector3 rotatedVectorToTarget = Quaternion.Euler(0, 0, 90) * vectorToTarget;
+
+        // get the rotation that points the Z axis forward, and the Y axis 90 degrees away from the target
+        // (resulting in the X axis facing the target)
+        Quaternion targetRotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: rotatedVectorToTarget);
+
+        // changed this from a lerp to a RotateTowards because you were supplying a "speed" not an interpolation value
+        body2d.transform.rotation = targetRotation;
+
         PlaceAxeAtContactPoint(other);
-
-        Vector2 bladeDir = (bladePivot.position - holderBody2d.transform.position).normalized;
-
-        Vector2 holdPos = holderBody2d.transform.position;
-        Vector2 impactDir = (other.contacts[0].point - holdPos).normalized;
-
-        float angle = Vector2.Angle(bladeDir, impactDir);
-
-        body2d.transform.rotation = Quaternion.Euler(0, 0, angle);
 
         body2d.GetComponent<Collider2D>().isTrigger = true;
         SetFlyTrigger(false);
@@ -241,6 +246,10 @@ public class Boomeraxe : MonoBehaviour
     }
     public void SetActiveAbility(AxeAbility ability)
     {
+        if (returning || grip.IsHoldingAxe())
+        {
+            return;
+        }
         activeAbility = ability;
     }
 }

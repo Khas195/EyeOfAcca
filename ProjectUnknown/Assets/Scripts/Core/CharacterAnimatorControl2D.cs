@@ -39,4 +39,8 @@ public class CharacterAnimatorControl2D : MonoBehaviour
             anim.SetTrigger("axeCatchTrigger");
         }
     }
+    public void PlayThrowAnimation()
+    {
+        ThrowCatchEvent(true);
+    }
 }
