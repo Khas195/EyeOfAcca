@@ -17,12 +17,7 @@ public class Boomeraxe : MonoBehaviour
     [BoxGroup("Settings")]
     [SerializeField]
     [Required]
-    [InfoBox("Boomeraxe Datas - The values below are applied for ALL scripts that use this Data Object", EInfoBoxType.Warning)]
-    [InfoBox("Boomeraxe Datas - The values below can ONLY be changed by clicking Save in the data object itself", EInfoBoxType.Warning)]
-    [DisplayScriptableObjectProperties]
     BoomeraxeParams datas = null;
-
-
 
     [BoxGroup("Requirement")]
     [SerializeField]
@@ -33,12 +28,19 @@ public class Boomeraxe : MonoBehaviour
     [SerializeField]
     [Required]
     BoomeraxeGrip grip = null;
+    [BoxGroup("Requirement")]
+    [SerializeField]
+    [Required]
+    Transform axeHolderPos = null;
+
 
 
     [BoxGroup("Requirement")]
     [SerializeField]
     [Required]
     Rigidbody2D holderBody2d = null;
+
+
 
     [BoxGroup("Requirement")]
     [SerializeField]
@@ -85,14 +87,22 @@ public class Boomeraxe : MonoBehaviour
     [SerializeField]
     [ReadOnly]
     Vector2 stuckPos = Vector2.one;
+
+    [BoxGroup("Current Status")]
+    [SerializeField]
+    [ReadOnly]
     bool isStuck = false;
     void Start()
     {
         body2d.gravityScale = 0;
+        Reset();
     }
 
     void FixedUpdate()
     {
+
+        animator.SetBool("isStuck", isStuck);
+
         if (flyTriggered)
         {
             if (returning)
@@ -116,8 +126,11 @@ public class Boomeraxe : MonoBehaviour
     public void Fly(Vector2 target)
     {
         LogHelper.GetInstance().Log("Player ".Bolden().Colorize(Color.green) + "has thrown the " + "Boomeraxe".Bolden().Colorize("#83ecd7"), true);
-        Vector2 pos = body2d.transform.position;
+
+        body2d.gameObject.SetActive(true);
+        Vector2 pos = axeHolderPos.transform.position;
         currentFlyDirection = (target - pos).normalized;
+        body2d.transform.position = axeHolderPos.transform.position;
         returning = false;
         SetFlyTrigger(true);
     }
@@ -125,11 +138,11 @@ public class Boomeraxe : MonoBehaviour
     private void SetFlyTrigger(bool triggered)
     {
         flyTriggered = triggered;
-        animator.SetBool("Flying", flyTriggered);
     }
 
     public void Reset()
     {
+        body2d.gameObject.SetActive(false);
         currentFlyDirection = Vector3.zero;
         body2d.velocity = Vector2.zero;
         returning = false;
@@ -143,12 +156,36 @@ public class Boomeraxe : MonoBehaviour
     public void HandleCollision(Collision2D other)
     {
         if (flyTriggered == false) return;
+
+        LogHelper.GetInstance().Log("*THUD*".Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
+
+        RotateBladeTowardImpactPoint(other);
         PlaceAxeAtContactPoint(other);
-        currentFlyDirection = Vector2.zero;
+
         body2d.GetComponent<Collider2D>().isTrigger = true;
-        isStuck = true;
         SetFlyTrigger(false);
+        isStuck = true;
+        currentFlyDirection = Vector2.zero;
         onBounce.Invoke(body2d.transform.position, body2d.transform.rotation);
+    }
+
+    private void RotateBladeTowardImpactPoint(Collision2D other)
+    {
+        Vector3 myLocation = body2d.transform.position;
+        Vector3 targetLocation = other.contacts[0].point;
+        targetLocation.z = myLocation.z; // ensure there is no 3D rotation by aligning Z position
+
+        // vector from this object towards the target location
+        Vector3 vectorToTarget = targetLocation - myLocation;
+        // rotate that vector by 90 degrees around the Z axis
+        Vector3 rotatedVectorToTarget = Quaternion.Euler(0, 0, 90) * vectorToTarget;
+
+        // get the rotation that points the Z axis forward, and the Y axis 90 degrees away from the target
+        // (resulting in the X axis facing the target)
+        Quaternion targetRotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: rotatedVectorToTarget);
+
+        // changed this from a lerp to a RotateTowards because you were supplying a "speed" not an interpolation value
+        body2d.transform.rotation = targetRotation;
     }
 
     private void PlaceAxeAtContactPoint(Collision2D other)
@@ -168,6 +205,7 @@ public class Boomeraxe : MonoBehaviour
         else
         {
             activeAbility.Activate(this);
+            animator.SetBool("hasPower", false);
             activeAbility = null;
         }
     }
@@ -187,10 +225,6 @@ public class Boomeraxe : MonoBehaviour
             grip.HoldAxe();
             body2d.GetComponent<Collider2D>().isTrigger = false;
         }
-    }
-    public Vector2 GetFlyDirection()
-    {
-        return currentFlyDirection;
     }
 
     public Vector2 GetAxePosition()
@@ -217,6 +251,11 @@ public class Boomeraxe : MonoBehaviour
     }
     public void SetActiveAbility(AxeAbility ability)
     {
+        if (returning || grip.IsHoldingAxe())
+        {
+            return;
+        }
+        animator.SetBool("hasPower", true);
         activeAbility = ability;
     }
 }

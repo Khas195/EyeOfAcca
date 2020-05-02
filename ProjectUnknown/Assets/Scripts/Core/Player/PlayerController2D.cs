@@ -13,7 +13,15 @@ public class PlayerController2D : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var side = Input.GetAxisRaw("Horizontal");
+        var side = 0;
+        if (Input.GetKey(KeyCode.A))
+        {
+            side = -1;
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            side = 1;
+        }
         var forward = Input.GetAxisRaw("Vertical");
         character.Move(side, forward);
         if (Input.GetKeyDown(KeyCode.Space))

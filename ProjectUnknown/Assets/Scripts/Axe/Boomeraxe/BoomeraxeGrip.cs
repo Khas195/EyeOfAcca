@@ -3,7 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Events;
 
+[Serializable]
+public class OnAxeThrowCatch : UnityEvent<bool>
+{
+
+}
 public class BoomeraxeGrip : MonoBehaviour
 {
     [BoxGroup("Settings")]
@@ -13,6 +19,12 @@ public class BoomeraxeGrip : MonoBehaviour
     [InfoBox("Boomeraxe Datas - The values below can ONLY be changed by clicking Save in the data object itself", EInfoBoxType.Warning)]
     [DisplayScriptableObjectProperties]
     BoomeraxeParams datas = null;
+
+    [BoxGroup("Requirement")]
+    [SerializeField]
+    [Required]
+    Flip flip = null;
+
 
     [BoxGroup("Requirement")]
     [SerializeField]
@@ -49,6 +61,13 @@ public class BoomeraxeGrip : MonoBehaviour
     [SerializeField]
     Shake shake = null;
 
+    [BoxGroup("Optional")]
+    [SerializeField]
+    OnAxeThrowCatch throwCatchEvent = new OnAxeThrowCatch();
+    [BoxGroup("Optional")]
+    [SerializeField]
+    UnityEvent axeThrowTrigger = new UnityEvent();
+    bool axeThrowTriggered = false;
 
     [BoxGroup("Current Status")]
     [SerializeField]
@@ -78,18 +97,23 @@ public class BoomeraxeGrip : MonoBehaviour
     /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.
     /// </summary>
+    Vector3 mousPos = Vector3.one;
     void Update()
     {
         if (isBeingHeld == true)
         {
             StickToHolder();
-
-            var mousPos = Input.mousePosition;
-            mousPos = playerCamera.ScreenToWorldPoint(mousPos);
-
-            if (Input.GetMouseButtonDown(0))
+            if (axeThrowTriggered == false)
             {
-                ThrowAxe(mousPos);
+                mousPos = Input.mousePosition;
+                mousPos = playerCamera.ScreenToWorldPoint(mousPos);
+
+                if (Input.GetMouseButtonDown(0))
+                {
+                    flip.CheckFacing(mousPos.x - holderPivot.transform.position.x);
+                    axeThrowTriggered = true;
+                    axeThrowTrigger.Invoke();
+                }
             }
         }
         else
@@ -130,12 +154,17 @@ public class BoomeraxeGrip : MonoBehaviour
         return true;
     }
 
-    private void ThrowAxe(Vector3 mousPos)
+    public void ThrowAxe()
     {
         isBeingHeld = false;
-        boomeraxeFlying.Fly(mousPos);
         axeCatchable = false;
+        axeThrowTriggered = false;
+
+
+
+        boomeraxeFlying.Fly(mousPos);
         adjustor.SetGravityScaleFor(datas.timeScaleAfterThrow, datas.lulPeriodAfterAirborneThrow);
+
         StopCoroutine(TurnOnAxeCatchable(datas.timeTilAxeCatchable));
         StartCoroutine(TurnOnAxeCatchable(datas.timeTilAxeCatchable));
     }
@@ -172,8 +201,10 @@ public class BoomeraxeGrip : MonoBehaviour
         {
             LogHelper.GetInstance().Log(("Arkkkk, So heavy!").Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
             LogHelper.GetInstance().Log("Catch the Axe!", true);
+            throwCatchEvent.Invoke(false);
             isBeingHeld = true;
             axeCatchable = false;
+            StickToHolder();
             boomeraxeFlying.Reset();
             adjustor.ResetTimeScale();
         }
@@ -181,5 +212,9 @@ public class BoomeraxeGrip : MonoBehaviour
     public BoomeraxeGravityScaleAdjustor GetTimeAdjustor()
     {
         return adjustor;
+    }
+    public bool GetIsHoldingAxe()
+    {
+        return isBeingHeld;
     }
 }
