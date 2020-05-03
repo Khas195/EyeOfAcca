@@ -73,8 +73,39 @@ At the time that I wrote this, Chris is still combining and finding arts for sai
 
  ---
 
-### __** Moving Forward (April 27th, 2020 - May 2nd, 2020)**__
+### __**Moving Forward (April 27th, 2020 - May 2nd, 2020)**__
 
 We had our first meeting before the prototype session. We talked about how we want to move forward and what we want to have in the next play-test session. I believe that the thing we most aggreed upon was the notion of having autonomous role in the team. Because the three of us at this point had been vision keeper at one point or another and the fact that having someone walking up to us with his task and ask "Is this what you want ?" is not something desirable to have in the group. We don't want someone to be just a mindless developer and we want people to add their own taste and keep asking, adding and questioning about the vision of the game. 
 
 That is why, I object to adding anymore member moving forward. I feel like the current team works because each person can be in controlled of his own role and more. As said in the first section, each of us understand the job of others and ourself which result in us, in meetings, asking more questions like "Is this thing going into the right direction of the vision ?", "Can we steer the direction of the vision this way because of this ?", "I found something really cool that we did not plan which fit the vision. ".
+
+#### Planning and Adapting.
+
+During this meeting, we talked about the bad things and good things from the prototype session. There was too many layers in the core mechanic, we found out. There is the throw, bounce, teleport and it was a bit too much. We decided to strip it down to it core's value which was just the throw. Then we elaborated on how can this "throw" interact with other elements in the game rather than just jam all of the functionalities into the axe.
+
+Sam brought up the design pillar that we learnt from the Creative production class. We decided that Design pillars need to be established. I found that it was a good thing to have since we can easily pointed at the pillars when making decisions during this period.
+
+##### Design pillars
+
+The pillars are Game Juice, Modular and Sprints. To understand what these pillar means, I would like to link that to our Miro Board since I don't want to re-elaborate them here. 
+
+One of the pillar was quite weird for me which is the game juice. Normally, we would only add juice to the game at the last stage and now we're are talking and making decisions on whether a mechanic should be added based on how much we can juice it. However, combined with the sprints pillar where we will live and die by the sprint, it worked out well.
+
+ Basically, in a meeting about the sprint, we would talked as if there is no next week. The game must be at a finished stage after the sprint's period. Which was quite hard because I have to create the mechanic, test it, juice it within one week. Though, I feel like it is in itself very rewarding since it seems like you always have a finished game at the end of the week.
+
+##### The Jungle Gym
+
+Sam brought up an interesting concept where maybe we shoudln't be thinking of only the mechanic in a vaccum. We should think about its core nature and how many interesting interactions it can have. In the end, when all elements are combined together, then that is our toy instead of having one gameplay element being so.
+
+#### Iterations
+
+##### First iteration.
+I made 2 different versions of the boomeraxe this week. The first one was tracing boomeraxe where it could just track you down where ever you go. It was by far the most playful. However, i found out that it could only be playful if you are actively playing with it, just like a cat.
+
+So how it works is, when you throw the boomeraxe, it will tracks you down. The problem with this is you don't have the control over it. Which is quite annoying when you are trying to do something else.
+
+Sam wanted to push this iteration to the end of the week but we all agreed that the 2nd iteration is for the better.
+
+##### 2nd iteration.
+
+In this iteration, the axe only tracks you down on command. When you throw the axe, it will stick to any surface then you can recall it. This is not as playful as the 1st or previous interation but if we go back to the idea of the "Jungle Gym", it has the most promises. Due to it being simple in nature, it can has a wild range of interesting interactions with the other elements. They, together, create a jungle gym which result in a more interesting toy.
