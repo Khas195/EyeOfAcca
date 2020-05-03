@@ -12,12 +12,21 @@ public class BallBounceEvent : UnityEvent<Vector3, Quaternion>
 {
 
 }
+[Serializable]
+public class OnUseAbility : UnityEvent<AxeAbility>
+{
+
+}
+
+
 public class Boomeraxe : MonoBehaviour
 {
     [BoxGroup("Settings")]
     [SerializeField]
     [Required]
     BoomeraxeParams datas = null;
+
+
 
     [BoxGroup("Requirement")]
     [SerializeField]
@@ -32,6 +41,12 @@ public class Boomeraxe : MonoBehaviour
     [SerializeField]
     [Required]
     Transform axeHolderPos = null;
+    [BoxGroup("Requirement")]
+    [SerializeField]
+    [Required]
+    SpriteRenderer axeSprite = null;
+
+
 
 
 
@@ -51,15 +66,18 @@ public class Boomeraxe : MonoBehaviour
     [SerializeField]
     AxeAbility defaultAbility = null;
 
+
     [BoxGroup("Optional")]
     [SerializeField]
     BallBounceEvent onBounce = new BallBounceEvent();
 
-
-
     [BoxGroup("Optional")]
     [SerializeField]
     AxeAbility activeAbility = null;
+    [BoxGroup("Optional")]
+    [SerializeField]
+    OnUseAbility useAbilityEvent = new OnUseAbility();
+
 
     [BoxGroup("Current Status")]
     [SerializeField]
@@ -92,6 +110,10 @@ public class Boomeraxe : MonoBehaviour
     [SerializeField]
     [ReadOnly]
     bool isStuck = false;
+    [BoxGroup("Current Status")]
+    [SerializeField]
+    [ReadOnly]
+    ContactPoint2D contactPoint;
     void Start()
     {
         body2d.gravityScale = 0;
@@ -102,6 +124,7 @@ public class Boomeraxe : MonoBehaviour
     {
 
         animator.SetBool("isStuck", isStuck);
+        animator.SetBool("Recall", returning);
 
         if (flyTriggered)
         {
@@ -132,6 +155,9 @@ public class Boomeraxe : MonoBehaviour
         currentFlyDirection = (target - pos).normalized;
         body2d.transform.position = axeHolderPos.transform.position;
         returning = false;
+
+        axeSprite.sortingLayerName = "AxeBack";
+
         SetFlyTrigger(true);
     }
 
@@ -151,7 +177,6 @@ public class Boomeraxe : MonoBehaviour
         body2d.GetComponent<Collider2D>().isTrigger = false;
         onBounce.Invoke(body2d.transform.position, body2d.transform.rotation);
     }
-    ContactPoint2D contactPoint;
 
     public void HandleCollision(Collision2D other)
     {
@@ -201,13 +226,16 @@ public class Boomeraxe : MonoBehaviour
         if (activeAbility == null)
         {
             defaultAbility.Activate(this);
+            useAbilityEvent.Invoke(defaultAbility);
         }
         else
         {
             activeAbility.Activate(this);
+            useAbilityEvent.Invoke(activeAbility);
             animator.SetBool("hasPower", false);
             activeAbility = null;
         }
+        useAbilityEvent.RemoveAllListeners();
     }
     public void Recall()
     {
@@ -217,6 +245,8 @@ public class Boomeraxe : MonoBehaviour
         SetFlyTrigger(true);
         onBounce.Invoke(body2d.transform.position, body2d.transform.rotation);
         currentRecallTime = 0;
+
+        axeSprite.sortingLayerName = "AxeFront";
     }
     public void OnCollideWithHolder()
     {
@@ -249,14 +279,35 @@ public class Boomeraxe : MonoBehaviour
     {
         return holderBody2d.transform.position;
     }
-    public void SetActiveAbility(AxeAbility ability)
+    public bool SetActiveAbility(AxeAbility ability, UnityAction<AxeAbility> callback = null)
     {
-        if (returning || grip.IsHoldingAxe())
+        if (IsInThrowMotion() == false)
         {
-            return;
+            return false;
         }
         animator.SetBool("hasPower", true);
         activeAbility = ability;
+
+        AddActiveAbilityCallback(callback);
+
+        return true;
+    }
+
+    public bool IsInThrowMotion()
+    {
+        return !(returning || grip.IsHoldingAxe());
+    }
+
+    public void AddActiveAbilityCallback(UnityAction<AxeAbility> callback = null)
+    {
+        if (callback == null) return;
+        // Remove the callback fisrt to make sure there is no duplicate cause it being called twice.
+        useAbilityEvent.RemoveListener(callback);
+        useAbilityEvent.AddListener(callback);
+    }
+    public Transform GetHolder()
+    {
+        return holderBody2d.transform;
     }
 }
 

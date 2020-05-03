@@ -26,7 +26,7 @@ public class ConstraintCamera : MonoBehaviour
         host.transform.position = hostPos;
 
     }
-   private Vector3 Constraint(Vector3 hostPos, float cameraSizeY, float cameraSizeX)
+    private Vector3 Constraint(Vector3 hostPos, float cameraSizeY, float cameraSizeX)
     {
         var rightBound = boundary.transform.position.x + boundary.bounds.extents.x;
         var leftBound = boundary.transform.position.x - boundary.bounds.extents.x;
