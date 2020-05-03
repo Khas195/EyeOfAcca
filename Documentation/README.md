@@ -118,7 +118,7 @@ Character:
     Added temporary character's walking animation.
     Added temporary character's on teleport Particle effect.
 
-#### _**Version 0.0.6, 0.0.7 (April 27th, 2020 - May 2nd, 2020)**_
+#### _**Version 0.0.6, 0.0.7, 0.0.8 (April 27th, 2020 - May 2nd, 2020)**_
 
 ##### Version 0.0.6
 
@@ -182,3 +182,40 @@ Gem **(NEW)**:
 
     The axe shakes a bit before returning.
     The axe's movement is now more dynamic.
+
+
+
+##### Version 0.0.7
+
+Bugs
+
+    Fixed a bug where the axe is behind the environtment when it is recalling.
+    Fixed a bug where if spamming left click when the axe is stuck then it will not return.
+
+Boomeraxe 
+
+    Implement Flying animation.
+    Implement charging animation.
+    The axe now rotates so that it plugs its blade into the surface that is is stuck to.
+
+Character
+
+    Implement character free animaiton.
+    Implement character with axe animation.
+
+Gem
+
+    Implement Gem Animation.
+    Add Gem Sprites.
+
+Block:
+
+    When block is pull it will move along that pulling direction.
+    The pull direction must be on the same side for pulling to work.
+    Block can only move horizontal or vertical.
+    Block can only move within restriction.
+
+
+Level:
+
+    Add a template level with new tiles.

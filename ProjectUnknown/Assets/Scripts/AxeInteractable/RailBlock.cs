@@ -5,17 +5,27 @@ using UnityEngine;
 
 public class RailBlock : AxeInteractable
 {
+    [BoxGroup("Requirements")]
     [SerializeField]
     [Required]
     AxeAbility abilityToInteract = null;
+    [BoxGroup("Requirements")]
     [SerializeField]
     [Required]
     BoxCollider2D box = null;
+
+    [BoxGroup("Settings")]
     [SerializeField]
     float timeTillDestinationReached = 1f;
 
+    [BoxGroup("Settings")]
     [SerializeField]
     int travelBoxWidth = 2;
+
+    [BoxGroup("Settings")]
+    [SerializeField]
+    bool travelHorizontal = true;
+
     Transform holderTrans = null;
 
     Vector3 originPos = Vector3.one;
@@ -56,6 +66,7 @@ public class RailBlock : AxeInteractable
         Gizmos.DrawWireCube(blockLeftContraint, Vector3.one * box.bounds.extents.x * 2);
         Gizmos.DrawLine(originPos, blockRightContraint);
         Gizmos.DrawWireCube(blockRightContraint, Vector3.one * box.bounds.extents.x * 2);
+        Gizmos.color = Color.red;
     }
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
@@ -71,8 +82,9 @@ public class RailBlock : AxeInteractable
     {
         originPos = this.transform.position;
         var boxWidth = box.bounds.extents.x * 2;
-        blockLeftContraint = originPos - new Vector3(boxWidth * travelBoxWidth, 0, 0);
-        blockRightContraint = originPos + new Vector3(boxWidth * travelBoxWidth, 0, 0);
+        blockLeftContraint = originPos - boxWidth * travelBoxWidth * this.transform.right;
+        blockRightContraint = originPos + boxWidth * travelBoxWidth * this.transform.right;
+
     }
 
     /// <summary>
@@ -95,17 +107,31 @@ public class RailBlock : AxeInteractable
     public override void OnAxeHit(Boomeraxe axe)
     {
         base.OnAxeHit(axe);
-        if (axe.GetAxePosition().x >= this.transform.position.x)
+        holderTrans = axe.GetHolder();
+        var axePos = axe.GetAxePosition();
+        if (travelHorizontal)
         {
-            LogHelper.GetInstance().Log(("Axe hit Block on the Right!").Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
-            axeHitSide = 1;
+            if (axePos.x > this.transform.position.x)
+            {
+                axeHitSide = 1;
+            }
+            else if (axePos.x < this.transform.position.x)
+            {
+                axeHitSide = -1;
+            }
+
         }
         else
         {
-            LogHelper.GetInstance().Log(("Axe hit Block on the left!").Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
-            axeHitSide = -1;
+            if (axePos.y > this.transform.position.y)
+            {
+                axeHitSide = 1;
+            }
+            else if (axePos.y < this.transform.position.y)
+            {
+                axeHitSide = -1;
+            }
         }
-        holderTrans = axe.GetHolder();
     }
 
     public override void OnAxeAbilityTriggered(AxeAbility triggeredAbility)
@@ -113,20 +139,36 @@ public class RailBlock : AxeInteractable
         base.OnAxeAbilityTriggered(triggeredAbility);
         if (abilityToInteract.Equals(triggeredAbility))
         {
-            if (holderTrans.position.x >= this.transform.position.x && axeHitSide == 1)
+            if (travelHorizontal)
             {
-                LogHelper.GetInstance().Log(("PULL BLOCK RIGHT!").Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
-                this.destination = blockRightContraint;
-                this.originPos = this.transform.position;
-                inMotion = true;
+                if (holderTrans.position.x > this.transform.position.x && axeHitSide == 1)
+                {
+                    GoTo(blockRightContraint);
+                }
+                else if (holderTrans.position.x < this.transform.position.x && axeHitSide == -1)
+                {
+                    GoTo(blockLeftContraint);
+                }
+
             }
-            else if (holderTrans.position.x < this.transform.position.x && axeHitSide == -1)
+            else
             {
-                LogHelper.GetInstance().Log(("PULL BLOCK LEFT!").Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
-                this.destination = blockLeftContraint;
-                this.originPos = this.transform.position;
-                inMotion = true;
+                if (holderTrans.position.y > this.transform.position.y && axeHitSide == 1)
+                {
+                    GoTo(blockRightContraint);
+                }
+                else if (holderTrans.position.y < this.transform.position.y && axeHitSide == -1)
+                {
+                    GoTo(blockLeftContraint);
+                }
             }
         }
+    }
+
+    private void GoTo(Vector3 targetPos)
+    {
+        this.destination = targetPos;
+        this.originPos = this.transform.position;
+        inMotion = true;
     }
 }

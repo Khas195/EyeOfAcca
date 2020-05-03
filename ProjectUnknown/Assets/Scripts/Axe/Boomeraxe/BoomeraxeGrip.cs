@@ -181,7 +181,7 @@ public class BoomeraxeGrip : MonoBehaviour
     {
         axeIsReturning = true;
         yield return new WaitForSeconds(time);
-        HoldAxe();
+        boomeraxeFlying.ActivateAbility();
         axeIsReturning = false;
     }
 
