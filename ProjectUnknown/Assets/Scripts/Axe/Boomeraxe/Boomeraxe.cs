@@ -26,6 +26,8 @@ public class Boomeraxe : MonoBehaviour
     [Required]
     BoomeraxeParams datas = null;
 
+
+
     [BoxGroup("Requirement")]
     [SerializeField]
     [Required]
@@ -102,6 +104,10 @@ public class Boomeraxe : MonoBehaviour
     [SerializeField]
     [ReadOnly]
     bool isStuck = false;
+    [BoxGroup("Current Status")]
+    [SerializeField]
+    [ReadOnly]
+    ContactPoint2D contactPoint;
     void Start()
     {
         body2d.gravityScale = 0;
@@ -161,7 +167,6 @@ public class Boomeraxe : MonoBehaviour
         body2d.GetComponent<Collider2D>().isTrigger = false;
         onBounce.Invoke(body2d.transform.position, body2d.transform.rotation);
     }
-    ContactPoint2D contactPoint;
 
     public void HandleCollision(Collision2D other)
     {
@@ -270,11 +275,20 @@ public class Boomeraxe : MonoBehaviour
         animator.SetBool("hasPower", true);
         activeAbility = ability;
 
+        AddActiveAbilityCallback(callback);
+
+        return true;
+    }
+    public void AddActiveAbilityCallback(UnityAction<AxeAbility> callback = null)
+    {
+        if (callback == null) return;
         // Remove the callback fisrt to make sure there is no duplicate cause it being called twice.
         useAbilityEvent.RemoveListener(callback);
         useAbilityEvent.AddListener(callback);
-
-        return true;
+    }
+    public Transform GetHolder()
+    {
+        return holderBody2d.transform;
     }
 }
 
