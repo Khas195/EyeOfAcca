@@ -46,18 +46,21 @@ TagManager:
   - name: TileMapBackGround
     uniqueID: 1470101453
     locked: 0
-  - name: Effects
-    uniqueID: 3977018867
+  - name: AxeBack
+    uniqueID: 1193330899
     locked: 0
-  - name: Character
-    uniqueID: 1476381683
-    locked: 0
-  - name: Axe
-    uniqueID: 1538402007
+  - name: TileMapGround
+    uniqueID: 3182988903
     locked: 0
   - name: Systems
     uniqueID: 3131702149
     locked: 0
-  - name: TileMapGround
-    uniqueID: 3182988903
+  - name: AxeFront
+    uniqueID: 1538402007
+    locked: 0
+  - name: Character
+    uniqueID: 1476381683
+    locked: 0
+  - name: Effects
+    uniqueID: 3977018867
     locked: 0

@@ -41,6 +41,12 @@ public class Boomeraxe : MonoBehaviour
     [SerializeField]
     [Required]
     Transform axeHolderPos = null;
+    [BoxGroup("Requirement")]
+    [SerializeField]
+    [Required]
+    SpriteRenderer axeSprite = null;
+
+
 
 
 
@@ -148,6 +154,13 @@ public class Boomeraxe : MonoBehaviour
         currentFlyDirection = (target - pos).normalized;
         body2d.transform.position = axeHolderPos.transform.position;
         returning = false;
+
+        var spriteColor = axeSprite.color;
+        spriteColor.a = 1.0f;
+        axeSprite.color = spriteColor;
+
+        axeSprite.sortingLayerName = "AxeBack";
+
         SetFlyTrigger(true);
     }
 
@@ -235,6 +248,11 @@ public class Boomeraxe : MonoBehaviour
         SetFlyTrigger(true);
         onBounce.Invoke(body2d.transform.position, body2d.transform.rotation);
         currentRecallTime = 0;
+
+        var spriteColor = axeSprite.color;
+        spriteColor.a = 0.6f;
+        axeSprite.color = spriteColor;
+        axeSprite.sortingLayerName = "AxeFront";
     }
     public void OnCollideWithHolder()
     {

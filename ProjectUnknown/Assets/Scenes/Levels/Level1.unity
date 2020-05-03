@@ -126,7 +126,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 823506197}
     m_Modifications:
     - target: {fileID: 336786715, guid: 01d712d8ac1acab45b8137dcdf657e33, type: 3}
       propertyPath: maxSpeed
@@ -145,22 +145,22 @@ PrefabInstance:
     - target: {fileID: 7653792712326664322, guid: 01d712d8ac1acab45b8137dcdf657e33,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 7653792712326664322, guid: 01d712d8ac1acab45b8137dcdf657e33,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7653792712326664322, guid: 01d712d8ac1acab45b8137dcdf657e33,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7653792712326664322, guid: 01d712d8ac1acab45b8137dcdf657e33,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7653792712326664322, guid: 01d712d8ac1acab45b8137dcdf657e33,
         type: 3}
@@ -246,10 +246,17 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1851855190}
+  - {fileID: 1668442472}
   - {fileID: 4966986688699365672}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1668442472 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7653792712326664322, guid: 01d712d8ac1acab45b8137dcdf657e33,
+    type: 3}
+  m_PrefabInstance: {fileID: 336786712}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1851855189
 GameObject:
   m_ObjectHideFlags: 0
@@ -878,8 +885,8 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1111978393
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -15823,7 +15830,7 @@ PrefabInstance:
     - target: {fileID: 3204923655302810493, guid: a55c895ba45264847a7b72ffd2b9383d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3204923655302810493, guid: a55c895ba45264847a7b72ffd2b9383d,
         type: 3}
