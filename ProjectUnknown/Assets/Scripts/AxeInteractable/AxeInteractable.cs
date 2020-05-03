@@ -34,8 +34,11 @@ public abstract class AxeInteractable : MonoBehaviour
                 LogHelper.GetInstance().LogError("Axe had collided with an Axe interactable without an axe reference in axe collision detector script ", true);
                 return;
             }
-            OnAxeHit(axe);
-            axe.AddActiveAbilityCallback(OnAxeAbilityTriggered);
+            if (axe.IsInThrowMotion())
+            {
+                OnAxeHit(axe);
+                axe.AddActiveAbilityCallback(OnAxeAbilityTriggered);
+            }
         }
     }
 

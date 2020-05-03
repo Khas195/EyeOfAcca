@@ -225,6 +225,7 @@ public class Boomeraxe : MonoBehaviour
             animator.SetBool("hasPower", false);
             activeAbility = null;
         }
+        useAbilityEvent.RemoveAllListeners();
     }
     public void Recall()
     {
@@ -268,7 +269,7 @@ public class Boomeraxe : MonoBehaviour
     }
     public bool SetActiveAbility(AxeAbility ability, UnityAction<AxeAbility> callback = null)
     {
-        if (returning || grip.IsHoldingAxe())
+        if (IsInThrowMotion() == false)
         {
             return false;
         }
@@ -279,6 +280,12 @@ public class Boomeraxe : MonoBehaviour
 
         return true;
     }
+
+    public bool IsInThrowMotion()
+    {
+        return !(returning || grip.IsHoldingAxe());
+    }
+
     public void AddActiveAbilityCallback(UnityAction<AxeAbility> callback = null)
     {
         if (callback == null) return;
