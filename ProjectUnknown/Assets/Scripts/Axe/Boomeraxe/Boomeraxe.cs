@@ -12,6 +12,13 @@ public class BallBounceEvent : UnityEvent<Vector3, Quaternion>
 {
 
 }
+[Serializable]
+public class OnUseAbility : UnityEvent<AxeAbility>
+{
+
+}
+
+
 public class Boomeraxe : MonoBehaviour
 {
     [BoxGroup("Settings")]
@@ -51,15 +58,18 @@ public class Boomeraxe : MonoBehaviour
     [SerializeField]
     AxeAbility defaultAbility = null;
 
+
     [BoxGroup("Optional")]
     [SerializeField]
     BallBounceEvent onBounce = new BallBounceEvent();
 
-
-
     [BoxGroup("Optional")]
     [SerializeField]
     AxeAbility activeAbility = null;
+    [BoxGroup("Optional")]
+    [SerializeField]
+    OnUseAbility useAbilityEvent = new OnUseAbility();
+
 
     [BoxGroup("Current Status")]
     [SerializeField]
@@ -201,10 +211,12 @@ public class Boomeraxe : MonoBehaviour
         if (activeAbility == null)
         {
             defaultAbility.Activate(this);
+            useAbilityEvent.Invoke(defaultAbility);
         }
         else
         {
             activeAbility.Activate(this);
+            useAbilityEvent.Invoke(activeAbility);
             animator.SetBool("hasPower", false);
             activeAbility = null;
         }
@@ -249,14 +261,20 @@ public class Boomeraxe : MonoBehaviour
     {
         return holderBody2d.transform.position;
     }
-    public void SetActiveAbility(AxeAbility ability)
+    public bool SetActiveAbility(AxeAbility ability, UnityAction<AxeAbility> callback = null)
     {
         if (returning || grip.IsHoldingAxe())
         {
-            return;
+            return false;
         }
         animator.SetBool("hasPower", true);
         activeAbility = ability;
+
+        // Remove the callback fisrt to make sure there is no duplicate cause it being called twice.
+        useAbilityEvent.RemoveListener(callback);
+        useAbilityEvent.AddListener(callback);
+
+        return true;
     }
 }
 
