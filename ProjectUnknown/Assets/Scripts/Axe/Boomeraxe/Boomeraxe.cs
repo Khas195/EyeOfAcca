@@ -124,6 +124,7 @@ public class Boomeraxe : MonoBehaviour
     {
 
         animator.SetBool("isStuck", isStuck);
+        animator.SetBool("Recall", returning);
 
         if (flyTriggered)
         {
@@ -154,10 +155,6 @@ public class Boomeraxe : MonoBehaviour
         currentFlyDirection = (target - pos).normalized;
         body2d.transform.position = axeHolderPos.transform.position;
         returning = false;
-
-        var spriteColor = axeSprite.color;
-        spriteColor.a = 1.0f;
-        axeSprite.color = spriteColor;
 
         axeSprite.sortingLayerName = "AxeBack";
 
@@ -249,9 +246,6 @@ public class Boomeraxe : MonoBehaviour
         onBounce.Invoke(body2d.transform.position, body2d.transform.rotation);
         currentRecallTime = 0;
 
-        var spriteColor = axeSprite.color;
-        spriteColor.a = 0.6f;
-        axeSprite.color = spriteColor;
         axeSprite.sortingLayerName = "AxeFront";
     }
     public void OnCollideWithHolder()
