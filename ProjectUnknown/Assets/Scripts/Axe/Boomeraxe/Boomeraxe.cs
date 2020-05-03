@@ -145,7 +145,6 @@ public class Boomeraxe : MonoBehaviour
     {
         return isStuck;
     }
-
     public void Fly(Vector2 target)
     {
         LogHelper.GetInstance().Log("Player ".Bolden().Colorize(Color.green) + "has thrown the " + "Boomeraxe".Bolden().Colorize("#83ecd7"), true);
@@ -182,10 +181,17 @@ public class Boomeraxe : MonoBehaviour
     {
         if (flyTriggered == false) return;
 
+        Vector2 pos = body2d.transform.position;
+        pos = (other.contacts[0].point - pos).normalized;
+        if (Vector2.Dot(pos, currentFlyDirection) < 0)
+        {
+            return;
+        }
+
         LogHelper.GetInstance().Log("*THUD*".Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
 
         RotateBladeTowardImpactPoint(other);
-        PlaceAxeAtContactPoint(other);
+        //PlaceAxeAtContactPoint(other);
 
         body2d.GetComponent<Collider2D>().isTrigger = true;
         SetFlyTrigger(false);

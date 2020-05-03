@@ -26,6 +26,7 @@ public class CharacterAnimatorControl2D : MonoBehaviour
         anim.SetFloat("VelocityVertical", body2d.velocity.y);
         anim.SetBool("IsHoldingAxe", grip.GetIsHoldingAxe());
         anim.SetBool("IsTouchingGround", characterMovement.IsTouchingGround());
+        anim.SetBool("Jump", characterMovement.GetJumpTriggered());
     }
     public void ThrowCatchEvent(bool isThrow)
     {

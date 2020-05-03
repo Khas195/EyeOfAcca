@@ -30,7 +30,7 @@ public class BoomeraxeCollisionDetection : MonoBehaviour
         }
         axe.HandleCollision(other);
     }
-    void Update()
+    void FixedUpdate()
     {
         CheckForOverlap();
     }

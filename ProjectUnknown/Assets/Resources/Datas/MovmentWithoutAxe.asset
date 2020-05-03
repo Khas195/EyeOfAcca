@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20511c714e051b0429b5b05f14d2967e, type: 3}
   m_Name: MovmentWithoutAxe
   m_EditorClassIdentifier: 
-  walkSpeed: 10
-  runSpeed: 10
-  jumpForce: 15
+  walkSpeed: 8
+  runSpeed: 8
+  jumpForce: 10
   rotateSpeed: 20

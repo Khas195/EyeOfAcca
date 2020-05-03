@@ -33,13 +33,21 @@ public class Movement2DPlatform : IMovement
     {
         cachedSide = side;
     }
+
+    public bool GetJumpTriggered()
+    {
+        return jumpTriggered;
+    }
+    bool jumpTriggered = false;
     void Update()
     {
+        jumpTriggered = false;
         ProcessMovement();
         if (jumpSignal)
         {
             if (this.IsTouchingGround())
             {
+                jumpTriggered = true;
                 var curVel = body2D.velocity;
                 curVel.y = data.jumpForce;
                 body2D.velocity = curVel;
