@@ -114,6 +114,11 @@ public class Boomeraxe : MonoBehaviour
     [SerializeField]
     [ReadOnly]
     ContactPoint2D contactPoint;
+
+    [BoxGroup("Current Status")]
+    [SerializeField]
+    [ReadOnly]
+    Collider2D stuckObject = null;
     void Start()
     {
         body2d.gravityScale = 0;
@@ -173,8 +178,14 @@ public class Boomeraxe : MonoBehaviour
         returning = false;
         SetFlyTrigger(false);
         isStuck = false;
+        stuckObject = null;
         body2d.GetComponent<Collider2D>().isTrigger = false;
         onBounce.Invoke(body2d.transform.position, body2d.transform.rotation);
+    }
+
+    public Collider2D GetStuckCollider()
+    {
+        return stuckObject;
     }
 
     public void HandleCollision(Collision2D other)
@@ -188,6 +199,7 @@ public class Boomeraxe : MonoBehaviour
             return;
         }
 
+        stuckObject = other.collider;
         LogHelper.GetInstance().Log("*THUD*".Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
 
         RotateBladeTowardImpactPoint(other);

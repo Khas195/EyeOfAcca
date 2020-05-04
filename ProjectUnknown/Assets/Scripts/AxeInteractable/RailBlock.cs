@@ -59,6 +59,11 @@ public class RailBlock : AxeInteractable
     [ReadOnly]
     int axeHitSide = 0;
 
+    [BoxGroup("Status")]
+    [SerializeField]
+    [ReadOnly]
+    Boomeraxe axe = null;
+
     void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
@@ -109,6 +114,7 @@ public class RailBlock : AxeInteractable
         base.OnAxeHit(axe);
         holderTrans = axe.GetHolder();
         var axePos = axe.GetAxePosition();
+        this.axe = axe;
         if (travelHorizontal)
         {
             if (axePos.x > this.transform.position.x)
@@ -137,7 +143,7 @@ public class RailBlock : AxeInteractable
     public override void OnAxeAbilityTriggered(AxeAbility triggeredAbility)
     {
         base.OnAxeAbilityTriggered(triggeredAbility);
-        if (abilityToInteract.Equals(triggeredAbility))
+        if (abilityToInteract.Equals(triggeredAbility) && axe.GetStuckCollider() == box)
         {
             if (travelHorizontal)
             {
