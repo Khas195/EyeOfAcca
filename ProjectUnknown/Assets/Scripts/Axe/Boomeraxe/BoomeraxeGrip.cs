@@ -160,8 +160,6 @@ public class BoomeraxeGrip : MonoBehaviour
         axeCatchable = false;
         axeThrowTriggered = false;
 
-
-
         boomeraxeFlying.Fly(mousPos);
         adjustor.SetGravityScaleFor(datas.timeScaleAfterThrow, datas.lulPeriodAfterAirborneThrow);
 
