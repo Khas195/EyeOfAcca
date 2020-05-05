@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
@@ -15,6 +16,19 @@ public partial class SFXSystem : SingletonMonobehavior<SFXSystem>
     [SerializeField]
     List<AudioSource> activeSources = new List<AudioSource>();
 
+    [SerializeField]
+    AudioSource backgroundMusic = null;
+
+
+    public void PlayBGMusic()
+    {
+        backgroundMusic.Stop();
+        backgroundMusic.Play();
+    }
+    public void StopBGMusic()
+    {
+        backgroundMusic.Stop();
+    }
 
     public AudioSource PlaySound(SFXResources.SFXList soundsEnum)
     {
@@ -29,6 +43,7 @@ public partial class SFXSystem : SingletonMonobehavior<SFXSystem>
             {
                 source.clip = sfx.clip;
                 source.loop = sfx.loop;
+                source.volume = sfx.volumn;
                 source.Play();
                 return source;
             }
@@ -54,6 +69,18 @@ public partial class SFXSystem : SingletonMonobehavior<SFXSystem>
                 audioPool.ReturnInstance(activeSources[i].gameObject);
                 activeSources.RemoveAt(i);
             }
+        }
+    }
+
+    public void StopAllSounds()
+    {
+        LogHelper.GetInstance().Log(("STOP ALL Audios ").Bolden(), true);
+        for (int i = 0; i < activeSources.Count; i++)
+        {
+            activeSources[i].Stop();
+            activeSources[i].clip = null;
+            audioPool.ReturnInstance(activeSources[i].gameObject);
+            activeSources.RemoveAt(i);
         }
     }
 }

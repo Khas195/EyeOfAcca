@@ -74,6 +74,8 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     }
     public void GoToMainMenu()
     {
+        SFXSystem.GetInstance().StopAllSounds();
+        SFXSystem.GetInstance().PlayBGMusic();
         UnloadAllScenesExcept("MasterScene");
         LoadSceneAdditively("MainMenu");
         gameStateManager.RequestState(GameState.GameStateEnum.MainMenu);
@@ -127,6 +129,7 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
         LoadSceneAdditively(levelName);
         currentInGameLevelIndex = (int)Char.GetNumericValue(levelName.ToCharArray()[levelName.Length - 1]);
         gameStateManager.RequestState(GameState.GameStateEnum.InGame);
+        SFXSystem.GetInstance().PlayBGMusic();
     }
 
     private void UnloadCurrentLevel()

@@ -20,6 +20,8 @@ public class SFXResources : ScriptableObject
         public SFXList tag;
         public AudioClip clip;
         public bool loop;
+        [Range(0, 1)]
+        public float volumn;
     }
 
     public List<SFX> resourcesList = new List<SFX>();
