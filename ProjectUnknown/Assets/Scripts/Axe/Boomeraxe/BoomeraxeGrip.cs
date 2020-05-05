@@ -130,12 +130,12 @@ public class BoomeraxeGrip : MonoBehaviour
                     adjustor.SetGravityScale(datas.timeScaleOnAxeRecall);
                 }
             }
-            if (OutOfCameraView() && axeIsReturning == false)
-            {
-                LogHelper.GetInstance().Log("Boomeraxe".Bolden().Colorize("#83ecd7") + " has exit the Camera Bounds, Return in " + datas.timeTilAxeReturnAfterExitCameraView.ToString().Bolden(), true);
-                StopCoroutine(HoldAxeAfter(datas.timeTilAxeReturnAfterExitCameraView));
-                StartCoroutine(HoldAxeAfter(datas.timeTilAxeReturnAfterExitCameraView));
-            }
+            // if (OutOfCameraView() && axeIsReturning == false)
+            // {
+            //     LogHelper.GetInstance().Log("Boomeraxe".Bolden().Colorize("#83ecd7") + " has exit the Camera Bounds, Return in " + datas.timeTilAxeReturnAfterExitCameraView.ToString().Bolden(), true);
+            //     StopCoroutine(HoldAxeAfter(datas.timeTilAxeReturnAfterExitCameraView));
+            //     StartCoroutine(HoldAxeAfter(datas.timeTilAxeReturnAfterExitCameraView));
+            // }
         }
     }
     public void SetAxeCatchable(bool catchable)

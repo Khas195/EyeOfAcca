@@ -202,7 +202,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 24300563}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1411548318}
+        m_MethodName: Exit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &24300563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -544,6 +555,7 @@ GameObject:
   - component: {fileID: 1411548322}
   - component: {fileID: 1411548321}
   - component: {fileID: 1411548320}
+  - component: {fileID: 1411548318}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -551,6 +563,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1411548318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411548317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5bbeba7ed483244fa903e1d3ac422b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  chooseLevelManager: {fileID: 0}
 --- !u!114 &1411548320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -717,7 +743,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1807938261}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1411548318}
+        m_MethodName: LoadFistLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1807938261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1055,7 +1092,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: V 0.0.8
+  m_Text: V 0.0.9
 --- !u!222 &2133216290
 CanvasRenderer:
   m_ObjectHideFlags: 0

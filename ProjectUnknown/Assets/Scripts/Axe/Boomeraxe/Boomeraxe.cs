@@ -125,12 +125,12 @@ public class Boomeraxe : MonoBehaviour
         Reset();
     }
 
+    AudioSource spinning = null;
     void FixedUpdate()
     {
 
         animator.SetBool("isStuck", isStuck);
         animator.SetBool("Recall", returning);
-
         if (flyTriggered)
         {
             if (returning)
@@ -154,6 +154,7 @@ public class Boomeraxe : MonoBehaviour
     {
         LogHelper.GetInstance().Log("Player ".Bolden().Colorize(Color.green) + "has thrown the " + "Boomeraxe".Bolden().Colorize("#83ecd7"), true);
 
+
         body2d.gameObject.SetActive(true);
         Vector2 pos = axeHolderPos.transform.position;
         currentFlyDirection = (target - pos).normalized;
@@ -168,10 +169,23 @@ public class Boomeraxe : MonoBehaviour
     private void SetFlyTrigger(bool triggered)
     {
         flyTriggered = triggered;
+        if (triggered)
+        {
+            spinning = SFXSystem.GetInstance().PlaySound(SFXResources.SFXList.axeSpinning);
+        }
+        else
+        {
+            if (spinning != null)
+            {
+                spinning.Stop();
+                spinning = null;
+            }
+        }
     }
 
     public void Reset()
     {
+
         body2d.gameObject.SetActive(false);
         currentFlyDirection = Vector3.zero;
         body2d.velocity = Vector2.zero;
@@ -257,6 +271,7 @@ public class Boomeraxe : MonoBehaviour
     }
     public void Recall()
     {
+
         returning = true;
         isStuck = false;
         stuckPos = body2d.transform.position;

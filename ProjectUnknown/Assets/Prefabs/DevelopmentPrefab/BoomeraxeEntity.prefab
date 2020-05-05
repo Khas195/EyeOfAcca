@@ -74,13 +74,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3794102613272474176}
-  m_LocalRotation: {x: 0, y: 0, z: 0.76604444, w: 0.64278764}
-  m_LocalPosition: {x: -0.327, y: 0.654, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4475797551516158988}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 100}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!95 &7150286637253573445
 Animator:
   serializedVersion: 3
@@ -136,10 +136,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1193330899
+  m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 5046417761766301487, guid: b0f1bf75532cd8a429a18ba8241a0419,
+  m_Sprite: {fileID: -2632856618228259914, guid: b0f1bf75532cd8a429a18ba8241a0419,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -197,6 +197,8 @@ MonoBehaviour:
   datas: {fileID: 11400000, guid: c48c63eac7f6b00429aa58ba2914fba3, type: 2}
   body2d: {fileID: 4475797551516158991}
   grip: {fileID: 4475797551438043310}
+  axeHolderPos: {fileID: 0}
+  axeSprite: {fileID: 9180699861786296944}
   holderBody2d: {fileID: 0}
   animator: {fileID: 7150286637253573445}
   defaultAbility: {fileID: 11400000, guid: 240c66c118359b641a29409f9aa37083, type: 2}
@@ -215,12 +217,16 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   activeAbility: {fileID: 0}
+  useAbilityEvent:
+    m_PersistentCalls:
+      m_Calls: []
   flyTriggered: 0
   returning: 0
   currentFlyDirection: {x: 0, y: 0}
   currentRecallTime: 0
   stuckPos: {x: 1, y: 1}
   isStuck: 0
+  stuckObject: {fileID: 0}
 --- !u!1 &4475797550795852428
 GameObject:
   m_ObjectHideFlags: 0
@@ -408,6 +414,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   datas: {fileID: 11400000, guid: c48c63eac7f6b00429aa58ba2914fba3, type: 2}
+  flip: {fileID: 0}
   playerCamera: {fileID: 0}
   boomeraxeObject: {fileID: 4475797551516158994}
   holderMovement: {fileID: 0}
@@ -421,6 +428,20 @@ MonoBehaviour:
       - m_Target: {fileID: 0}
         m_MethodName: ThrowCatchEvent
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  axeThrowTrigger:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: PlayThrowAnimation
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -443,7 +464,7 @@ GameObject:
   - component: {fileID: 4475797551516158988}
   - component: {fileID: 4475797551516158991}
   - component: {fileID: 4475797551516158989}
-  - component: {fileID: 1200764830}
+  - component: {fileID: 602995394}
   m_Layer: 9
   m_Name: Boomeraxe
   m_TagString: Boomeraxe
@@ -459,8 +480,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4475797551516158994}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.789, y: 1.507, z: 0}
-  m_LocalScale: {x: 0.9, y: 0.9, z: 1}
+  m_LocalPosition: {x: -0.132, y: 1.058, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2025924594911818963}
   m_Father: {fileID: 4475797550885735068}
@@ -500,9 +521,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axe: {fileID: 4475797550433327940}
-  col: {fileID: 1200764830}
---- !u!60 &1200764830
-PolygonCollider2D:
+  col: {fileID: 602995394}
+--- !u!58 &602995394
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -514,29 +535,9 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4, y: 4}
-    newSize: {x: 0.2, y: 0.2}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.41046146, y: 0.44421753}
-      - {x: 0.23301947, y: 0.7373831}
-      - {x: -0.43338287, y: 0.721994}
-      - {x: -0.75920504, y: 0.36553013}
-      - {x: -0.7472699, y: -0.0082718}
-      - {x: -0.35979313, y: -0.013086001}
-      - {x: -0.63428247, y: -0.64137715}
-      - {x: -0.27318996, y: -0.93492067}
-      - {x: 0.0038725801, y: -0.7885482}
-      - {x: 0.34827712, y: -0.17103793}
-      - {x: 0.19623783, y: 0.2075924}
+  m_Offset: {x: 0.040118165, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.62
 --- !u!1 &4475797551582585650
 GameObject:
   m_ObjectHideFlags: 0
