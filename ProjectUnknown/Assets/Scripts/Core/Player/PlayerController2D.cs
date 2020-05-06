@@ -7,12 +7,22 @@ using UnityEngine.Events;
 
 public class PlayerController2D : MonoBehaviour
 {
+    [BoxGroup("Settings")]
     [SerializeField]
     [Required]
     Character2D character = null;
+
+    [BoxGroup("Settings")]
+    [SerializeField]
+    [Required]
+    BoomeraxeGrip grip = null;
     // Update is called once per frame
     void Update()
     {
+        if (GameMaster.GetInstance().GetStateManager().GetCurrentState().GetEnum().Equals(GameState.GameStateEnum.InGame) == false)
+        {
+            return;
+        }
         var side = 0;
         if (Input.GetKey(KeyCode.A))
         {
@@ -28,6 +38,10 @@ public class PlayerController2D : MonoBehaviour
         {
             character.Jump();
 
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
+            grip.UseAxe();
         }
     }
 

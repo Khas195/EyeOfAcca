@@ -16,18 +16,21 @@ public class IMovement : MonoBehaviour
         Walk,
         Run
     }
+
+    [BoxGroup("Settings")]
     [SerializeField]
     protected bool noCharacter;
-    /** The container for all movement related data */
-    [InfoBox("Movement Data Object - The values below are applied for script that use this Data Object", EInfoBoxType.Warning)]
+
+    [BoxGroup("Settings")]
     [Required]
     [SerializeField]
-    [DisplayScriptableObjectProperties]
-    [BoxGroup("Movement Data")]
     protected MovementData data = null;
 
 
 
+    [BoxGroup("Current Status")]
+    [SerializeField]
+    [ReadOnly]
     /** The current movement mode */
     protected MovementType moveMode = MovementType.Walk;
     /** All movements actions should be handle in this function*/

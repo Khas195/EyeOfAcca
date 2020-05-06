@@ -6,9 +6,11 @@ using UnityEngine;
 
 public class Flip : MonoBehaviour
 {
+    [BoxGroup("Requirements")]
     [SerializeField]
     [Required]
     Rigidbody2D body = null;
+    [BoxGroup("Current Status")]
     [SerializeField]
     bool isFacingRight = true;
     // Start is called before the first frame update

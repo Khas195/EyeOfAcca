@@ -5,16 +5,22 @@ using UnityEngine;
 
 public class CharacterAnimatorControl2D : MonoBehaviour
 {
+    [BoxGroup("Requirements")]
     [SerializeField]
     [Required]
     Rigidbody2D body2d = null;
+
+    [BoxGroup("Requirements")]
     [SerializeField]
     [Required]
     Animator anim = null;
+
+    [BoxGroup("Requirements")]
     [SerializeField]
     [Required]
     BoomeraxeGrip grip = null;
 
+    [BoxGroup("Requirements")]
     [SerializeField]
     [Required]
     Movement2DPlatform characterMovement = null;

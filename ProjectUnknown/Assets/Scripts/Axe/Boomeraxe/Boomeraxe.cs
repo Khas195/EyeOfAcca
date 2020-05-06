@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
@@ -110,6 +110,7 @@ public class Boomeraxe : MonoBehaviour
     [SerializeField]
     [ReadOnly]
     bool isStuck = false;
+
     [BoxGroup("Current Status")]
     [SerializeField]
     [ReadOnly]

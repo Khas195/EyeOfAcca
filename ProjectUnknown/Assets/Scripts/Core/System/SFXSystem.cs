@@ -9,6 +9,9 @@ public partial class SFXSystem : SingletonMonobehavior<SFXSystem>
 
     [SerializeField]
     SFXResources sFXResources;
+
+
+
     [SerializeField]
     [Required]
     GameObjectPool audioPool = null;
@@ -28,6 +31,10 @@ public partial class SFXSystem : SingletonMonobehavior<SFXSystem>
     public void StopBGMusic()
     {
         backgroundMusic.Stop();
+    }
+    public bool IsBGMusicPlaying()
+    {
+        return backgroundMusic.isPlaying;
     }
 
     public AudioSource PlaySound(SFXResources.SFXList soundsEnum)

@@ -4,26 +4,40 @@ using UnityEngine;
 
 public class Movement2DPlatform : IMovement
 {
+    [BoxGroup("Settings")]
     [SerializeField]
     [Required]
     [ShowIf("noCharacter")]
     Rigidbody2D body2D = null;
-    [SerializeField]
-    float fallMultiplier = 2.5f;
-    [SerializeField]
-    float timeTilMaxSpeed = 0.5f;
-    float cachedSide = 0;
-    bool jumpSignal = false;
+
+    [BoxGroup("Settings")]
     [SerializeField]
     Vector2 checkGroundBoxSize = Vector2.one;
+    [BoxGroup("Settings")]
     [SerializeField]
     Vector3 checkGroundBoxOffset = Vector3.one;
+    [BoxGroup("Settings")]
     [SerializeField]
     LayerMask jumpableLayer;
+
+    [BoxGroup("Current Status")]
     [SerializeField]
     [ReadOnly]
     float timeScale = 1.0f;
 
+    [BoxGroup("Current Status")]
+    [SerializeField]
+    [ReadOnly]
+    bool jumpSignal = false;
+
+    [BoxGroup("Current Status")]
+    [SerializeField]
+    [ReadOnly]
+    float accelrationTimeCounter = 0.0f;
+    [BoxGroup("Current Status")]
+    [SerializeField]
+    [ReadOnly]
+    float cachedSide = 0;
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -56,7 +70,7 @@ public class Movement2DPlatform : IMovement
         }
         if (body2D.velocity.y < 0)
         {
-            body2D.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+            body2D.velocity += Vector2.up * Physics2D.gravity.y * (data.fallMultiplier - 1) * Time.deltaTime;
         }
         body2D.velocity *= timeScale;
 
@@ -66,9 +80,6 @@ public class Movement2DPlatform : IMovement
     {
         timeScale = scale;
     }
-    [SerializeField]
-    [ReadOnly]
-    float accelrationTimeCounter = 0.0f;
     private void ProcessMovement()
     {
         if (cachedSide == 0)
@@ -76,7 +87,7 @@ public class Movement2DPlatform : IMovement
             accelrationTimeCounter = 0;
         }
         var curVel = body2D.velocity;
-        var speed = Tweener.EaseInQuad(accelrationTimeCounter, 0, data.runSpeed, timeTilMaxSpeed);
+        var speed = Tweener.EaseInQuad(accelrationTimeCounter, 0, data.runSpeed, data.timeTilMaxSpeed);
         if (speed >= data.runSpeed)
         {
             speed = data.runSpeed * cachedSide;
