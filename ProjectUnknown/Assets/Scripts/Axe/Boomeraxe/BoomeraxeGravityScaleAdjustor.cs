@@ -5,14 +5,26 @@ using UnityEngine;
 
 public class BoomeraxeGravityScaleAdjustor : MonoBehaviour
 {
+    [BoxGroup("Requirements")]
     [SerializeField]
     [Required]
     Rigidbody2D characterBody = null;
+
+    [BoxGroup("Requirements")]
     [SerializeField]
     [Required]
     Movement2DPlatform characterMovement = null;
+
+    [BoxGroup("Current Status")]
+    [SerializeField]
+
     [ReadOnly]
     float currentTime = 0;
+    [BoxGroup("Current Status")]
+    [SerializeField]
+
+    [ReadOnly]
+
     bool countingDown = false;
 
     /// <summary>

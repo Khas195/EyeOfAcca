@@ -18,6 +18,8 @@ public class MovementData : ScriptableObject
     public float walkSpeed = 5;
     public float runSpeed = 10;
     public float jumpForce = 5;
+    public float fallMultiplier = 2.5f;
+    public float timeTilMaxSpeed = 0.2f;
     public float rotateSpeed = 20f;
     [Button("Save")]
     public void SaveData()

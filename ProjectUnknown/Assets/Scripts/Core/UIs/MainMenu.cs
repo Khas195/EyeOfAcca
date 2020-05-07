@@ -7,10 +7,8 @@ using UnityEngine;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField]
-    [Required]
     Animator animator = null;
     [SerializeField]
-    [Required]
     ChooseLevelManager chooseLevelManager = null;
     public void GoToMainMenu()
     {

@@ -12,6 +12,8 @@ public class MainMenuState : GameState
 
     public override void OnStateEnter()
     {
+        SFXSystem.GetInstance().StopAllSounds();
+        SFXSystem.GetInstance().PlayBGMusic();
     }
 
     public override void OnStateExit()

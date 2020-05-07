@@ -9,6 +9,8 @@ public class BoomeraxeCollisionDetection : MonoBehaviour
     [SerializeField]
     [Required]
     Boomeraxe axe = null;
+
+
     [SerializeField]
     [Required]
     Collider2D col = null;
@@ -20,7 +22,7 @@ public class BoomeraxeCollisionDetection : MonoBehaviour
     /// collider (2D physics only).
     /// </summary>
     /// <param name="other">The Collision2D data associated with this collision.</param>
-    void OnCollisionEnter2D(Collision2D other)
+    void OnCollisionStay2D(Collision2D other)
     {
         Debug.Log(other);
         if (other.gameObject.tag.Equals("Player"))
@@ -30,7 +32,7 @@ public class BoomeraxeCollisionDetection : MonoBehaviour
         }
         axe.HandleCollision(other);
     }
-    void Update()
+    void FixedUpdate()
     {
         CheckForOverlap();
     }

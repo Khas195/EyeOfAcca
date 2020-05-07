@@ -15,13 +15,17 @@ public class Character2D : MonoBehaviour
     [Required]
     IMovement movement = null;
 
+    [BoxGroup("Requirements")]
     [SerializeField]
     [Required]
     BoomeraxeGrip grip = null;
+
+    [BoxGroup("Settings")]
     [SerializeField]
     [Required]
     MovementData movementWithAxe = null;
 
+    [BoxGroup("Settings")]
     [SerializeField]
     [Required]
     MovementData movementWithouAxe = null;

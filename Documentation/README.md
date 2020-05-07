@@ -118,7 +118,7 @@ Character:
     Added temporary character's walking animation.
     Added temporary character's on teleport Particle effect.
 
-#### _**Version 0.0.6, 0.0.7, 0.0.8 (April 27th, 2020 - May 2nd, 2020)**_
+#### _**Version 0.0.6, 0.0.7, 0.0.8, 0.0.9 (April 27th, 2020 - May 2nd, 2020)**_
 
 ##### Version 0.0.6
 
@@ -185,7 +185,7 @@ Gem **(NEW)**:
 
 
 
-##### Version 0.0.7
+##### Version 0.0.8
 
 Bugs
 
@@ -219,3 +219,43 @@ Block:
 Level:
 
     Add a template level with new tiles.
+
+
+
+##### Version 0.0.9
+
+Bugs:
+
+    Fixed animation bugs where there are transition time between 2d Animations.
+
+    Fixed bugs where the axe hit the surface behind the character at throw.
+
+Sound:
+
+        Added footstep sound walk.
+        Added footstep sound run.
+        Added axe spinning sound.
+        Added axe hit sound.
+        Added player Jump sounds 
+        Added Axe Throw.
+
+Camera:
+
+        Increase Base camera zoom: 7 -> 10.
+        Increase Camera Max Zoom: 10 -> 15.
+
+Character:
+
+        Adjusted the player character's speed and jump force.
+
+        Holding Axe Stats:
+            Walk Speed: 2 -> 4
+            Jump Force: 3 
+        Without the Axe Stats:
+            Walk Speed: 5 -> 8
+            Jump Force: 10
+
+Level:
+
+        Added new play test level.
+        Added new Menu scene.

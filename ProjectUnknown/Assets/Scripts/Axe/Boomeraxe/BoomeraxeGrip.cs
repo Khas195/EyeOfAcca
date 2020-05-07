@@ -15,9 +15,6 @@ public class BoomeraxeGrip : MonoBehaviour
     [BoxGroup("Settings")]
     [SerializeField]
     [Required]
-    [InfoBox("Boomeraxe Datas - The values below are applied for ALL scripts that use this Data Object", EInfoBoxType.Warning)]
-    [InfoBox("Boomeraxe Datas - The values below can ONLY be changed by clicking Save in the data object itself", EInfoBoxType.Warning)]
-    [DisplayScriptableObjectProperties]
     BoomeraxeParams datas = null;
 
     [BoxGroup("Requirement")]
@@ -40,6 +37,7 @@ public class BoomeraxeGrip : MonoBehaviour
     [SerializeField]
     [Required]
     IMovement holderMovement = null;
+
 
 
     [BoxGroup("Requirement")]
@@ -84,7 +82,17 @@ public class BoomeraxeGrip : MonoBehaviour
     [ReadOnly]
     bool axeIsReturning = false;
 
+    [BoxGroup("Current Status")]
+    [SerializeField]
+    [ReadOnly]
     bool axeIsShaking = false;
+
+    [BoxGroup("Current Status")]
+    [SerializeField]
+    [ReadOnly]
+    bool useAxe = false;
+
+
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
     /// any of the Update methods is called the first time.
@@ -108,17 +116,18 @@ public class BoomeraxeGrip : MonoBehaviour
                 mousPos = Input.mousePosition;
                 mousPos = playerCamera.ScreenToWorldPoint(mousPos);
 
-                if (Input.GetMouseButtonDown(0))
+                if (useAxe)
                 {
                     flip.CheckFacing(mousPos.x - holderPivot.transform.position.x);
                     axeThrowTriggered = true;
                     axeThrowTrigger.Invoke();
+                    useAxe = false;
                 }
             }
         }
         else
         {
-            if (Input.GetMouseButtonDown(0) && boomeraxeFlying.IsStuck() == true)
+            if (useAxe && boomeraxeFlying.IsStuck() == true && axeIsShaking == false)
             {
                 if (shake != null)
                 {
@@ -129,13 +138,14 @@ public class BoomeraxeGrip : MonoBehaviour
                 {
                     adjustor.SetGravityScale(datas.timeScaleOnAxeRecall);
                 }
+                useAxe = false;
             }
-            if (OutOfCameraView() && axeIsReturning == false)
-            {
-                LogHelper.GetInstance().Log("Boomeraxe".Bolden().Colorize("#83ecd7") + " has exit the Camera Bounds, Return in " + datas.timeTilAxeReturnAfterExitCameraView.ToString().Bolden(), true);
-                StopCoroutine(HoldAxeAfter(datas.timeTilAxeReturnAfterExitCameraView));
-                StartCoroutine(HoldAxeAfter(datas.timeTilAxeReturnAfterExitCameraView));
-            }
+            // if (OutOfCameraView() && axeIsReturning == false)
+            // {
+            //     LogHelper.GetInstance().Log("Boomeraxe".Bolden().Colorize("#83ecd7") + " has exit the Camera Bounds, Return in " + datas.timeTilAxeReturnAfterExitCameraView.ToString().Bolden(), true);
+            //     StopCoroutine(HoldAxeAfter(datas.timeTilAxeReturnAfterExitCameraView));
+            //     StartCoroutine(HoldAxeAfter(datas.timeTilAxeReturnAfterExitCameraView));
+            // }
         }
     }
     public void SetAxeCatchable(bool catchable)
@@ -159,8 +169,6 @@ public class BoomeraxeGrip : MonoBehaviour
         isBeingHeld = false;
         axeCatchable = false;
         axeThrowTriggered = false;
-
-
 
         boomeraxeFlying.Fly(mousPos);
         adjustor.SetGravityScaleFor(datas.timeScaleAfterThrow, datas.lulPeriodAfterAirborneThrow);
@@ -216,5 +224,9 @@ public class BoomeraxeGrip : MonoBehaviour
     public bool GetIsHoldingAxe()
     {
         return isBeingHeld;
+    }
+    public void UseAxe()
+    {
+        useAxe = true;
     }
 }

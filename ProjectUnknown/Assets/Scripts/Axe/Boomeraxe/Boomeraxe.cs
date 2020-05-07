@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
@@ -110,27 +110,51 @@ public class Boomeraxe : MonoBehaviour
     [SerializeField]
     [ReadOnly]
     bool isStuck = false;
+
     [BoxGroup("Current Status")]
     [SerializeField]
     [ReadOnly]
     ContactPoint2D contactPoint;
+
+    [BoxGroup("Current Status")]
+    [SerializeField]
+    [ReadOnly]
+    Collider2D stuckObject = null;
+
+    [BoxGroup("Current Status")]
+    [SerializeField]
+    [ReadOnly]
+    float currentRecallDuration = 0.0f;
     void Start()
     {
         body2d.gravityScale = 0;
         Reset();
     }
 
+    AudioSource spinning = null;
+    /// <summary>
+    /// Callback to draw gizmos that are pickable and always drawn.
+    /// </summary>
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(holderBody2d.transform.position, datas.maxRecallVelScaleUpDistance);
+        Gizmos.DrawWireSphere(holderBody2d.transform.position, datas.minRecallVelFallOffDistance);
+    }
     void FixedUpdate()
     {
 
         animator.SetBool("isStuck", isStuck);
         animator.SetBool("Recall", returning);
-
         if (flyTriggered)
         {
             if (returning)
             {
-                body2d.transform.position = Tweener.OutInQuartic(currentRecallTime, stuckPos, holderBody2d.transform.position, datas.recallDuration);
+                if (currentRecallTime >= currentRecallDuration)
+                {
+                    OnCollideWithHolder();
+                }
+                body2d.transform.position = Tweener.EaseInQuad(currentRecallTime, stuckPos, holderBody2d.transform.position, currentRecallDuration);
                 currentRecallTime += Time.deltaTime;
             }
             else
@@ -145,10 +169,10 @@ public class Boomeraxe : MonoBehaviour
     {
         return isStuck;
     }
-
     public void Fly(Vector2 target)
     {
         LogHelper.GetInstance().Log("Player ".Bolden().Colorize(Color.green) + "has thrown the " + "Boomeraxe".Bolden().Colorize("#83ecd7"), true);
+
 
         body2d.gameObject.SetActive(true);
         Vector2 pos = axeHolderPos.transform.position;
@@ -164,28 +188,55 @@ public class Boomeraxe : MonoBehaviour
     private void SetFlyTrigger(bool triggered)
     {
         flyTriggered = triggered;
+        if (triggered)
+        {
+            spinning = SFXSystem.GetInstance().PlaySound(SFXResources.SFXList.axeSpinning);
+        }
+        else
+        {
+            if (spinning != null)
+            {
+                spinning.Stop();
+                spinning = null;
+            }
+        }
     }
 
     public void Reset()
     {
+
         body2d.gameObject.SetActive(false);
         currentFlyDirection = Vector3.zero;
         body2d.velocity = Vector2.zero;
         returning = false;
         SetFlyTrigger(false);
         isStuck = false;
+        stuckObject = null;
         body2d.GetComponent<Collider2D>().isTrigger = false;
         onBounce.Invoke(body2d.transform.position, body2d.transform.rotation);
+    }
+
+    public Collider2D GetStuckCollider()
+    {
+        return stuckObject;
     }
 
     public void HandleCollision(Collision2D other)
     {
         if (flyTriggered == false) return;
 
+        Vector2 pos = body2d.transform.position;
+        pos = (other.contacts[0].point - pos).normalized;
+        if (Vector2.Dot(pos, currentFlyDirection) < 0)
+        {
+            return;
+        }
+
+        stuckObject = other.collider;
         LogHelper.GetInstance().Log("*THUD*".Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
 
         RotateBladeTowardImpactPoint(other);
-        PlaceAxeAtContactPoint(other);
+        //PlaceAxeAtContactPoint(other);
 
         body2d.GetComponent<Collider2D>().isTrigger = true;
         SetFlyTrigger(false);
@@ -239,6 +290,7 @@ public class Boomeraxe : MonoBehaviour
     }
     public void Recall()
     {
+
         returning = true;
         isStuck = false;
         stuckPos = body2d.transform.position;
@@ -247,7 +299,28 @@ public class Boomeraxe : MonoBehaviour
         currentRecallTime = 0;
 
         axeSprite.sortingLayerName = "AxeFront";
+        CalculateRecallDistance();
     }
+
+    private void CalculateRecallDistance()
+    {
+        var axeToHolderDistance = Vector2.Distance(body2d.transform.position, holderBody2d.transform.position);
+        if (axeToHolderDistance >= datas.maxRecallVelScaleUpDistance)
+        {
+            currentRecallDuration = datas.recallDuration;
+        }
+        else if (axeToHolderDistance <= datas.minRecallVelFallOffDistance)
+        {
+            currentRecallDuration = datas.minRecallDuration;
+        }
+        else
+        {
+            // scalre recall duration with distance at the point of recall.
+            var durationScalePercentage = (axeToHolderDistance - datas.minRecallVelFallOffDistance) / (datas.maxRecallVelScaleUpDistance - datas.minRecallVelFallOffDistance);
+            currentRecallDuration = durationScalePercentage * datas.recallDuration;
+        }
+    }
+
     public void OnCollideWithHolder()
     {
         if (returning)
