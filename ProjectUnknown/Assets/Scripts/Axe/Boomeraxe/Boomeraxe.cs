@@ -120,6 +120,11 @@ public class Boomeraxe : MonoBehaviour
     [SerializeField]
     [ReadOnly]
     Collider2D stuckObject = null;
+
+    [BoxGroup("Current Status")]
+    [SerializeField]
+    [ReadOnly]
+    float currentRecallDuration = 0.0f;
     void Start()
     {
         body2d.gravityScale = 0;
@@ -127,6 +132,15 @@ public class Boomeraxe : MonoBehaviour
     }
 
     AudioSource spinning = null;
+    /// <summary>
+    /// Callback to draw gizmos that are pickable and always drawn.
+    /// </summary>
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(holderBody2d.transform.position, datas.maxRecallVelScaleUpDistance);
+        Gizmos.DrawWireSphere(holderBody2d.transform.position, datas.minRecallVelFallOffDistance);
+    }
     void FixedUpdate()
     {
 
@@ -136,7 +150,11 @@ public class Boomeraxe : MonoBehaviour
         {
             if (returning)
             {
-                body2d.transform.position = Tweener.OutInQuartic(currentRecallTime, stuckPos, holderBody2d.transform.position, datas.recallDuration);
+                if (currentRecallTime >= currentRecallDuration)
+                {
+                    OnCollideWithHolder();
+                }
+                body2d.transform.position = Tweener.EaseInQuad(currentRecallTime, stuckPos, holderBody2d.transform.position, currentRecallDuration);
                 currentRecallTime += Time.deltaTime;
             }
             else
@@ -281,7 +299,28 @@ public class Boomeraxe : MonoBehaviour
         currentRecallTime = 0;
 
         axeSprite.sortingLayerName = "AxeFront";
+        CalculateRecallDistance();
     }
+
+    private void CalculateRecallDistance()
+    {
+        var axeToHolderDistance = Vector2.Distance(body2d.transform.position, holderBody2d.transform.position);
+        if (axeToHolderDistance >= datas.maxRecallVelScaleUpDistance)
+        {
+            currentRecallDuration = datas.recallDuration;
+        }
+        else if (axeToHolderDistance <= datas.minRecallVelFallOffDistance)
+        {
+            currentRecallDuration = datas.minRecallDuration;
+        }
+        else
+        {
+            // scalre recall duration with distance at the point of recall.
+            var durationScalePercentage = (axeToHolderDistance - datas.minRecallVelFallOffDistance) / (datas.maxRecallVelScaleUpDistance - datas.minRecallVelFallOffDistance);
+            currentRecallDuration = durationScalePercentage * datas.recallDuration;
+        }
+    }
+
     public void OnCollideWithHolder()
     {
         if (returning)

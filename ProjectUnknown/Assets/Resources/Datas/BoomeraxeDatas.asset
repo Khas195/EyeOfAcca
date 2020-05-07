@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b53a8a7e804a140a6cf85042782c2e, type: 3}
   m_Name: BoomeraxeDatas
   m_EditorClassIdentifier: 
-  flyVelocity: 20
-  recallDuration: 0.9
+  flyVelocity: 35
+  maxRecallVelScaleUpDistance: 12
+  minRecallVelFallOffDistance: 4
+  recallDuration: 0.4
+  minRecallDuration: 0.2
+  catchDistance: 0.5
   maxTeleport: 0
   lulTimeAfterTeleport: 0.5
   timeScaleAfterTeleport: 0.5

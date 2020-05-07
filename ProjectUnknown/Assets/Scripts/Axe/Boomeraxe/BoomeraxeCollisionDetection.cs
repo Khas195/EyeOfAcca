@@ -9,6 +9,8 @@ public class BoomeraxeCollisionDetection : MonoBehaviour
     [SerializeField]
     [Required]
     Boomeraxe axe = null;
+
+
     [SerializeField]
     [Required]
     Collider2D col = null;
