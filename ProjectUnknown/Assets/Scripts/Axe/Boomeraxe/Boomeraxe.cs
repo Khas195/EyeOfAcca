@@ -124,7 +124,14 @@ public class Boomeraxe : MonoBehaviour
     [BoxGroup("Current Status")]
     [SerializeField]
     [ReadOnly]
+    Vector2 offsetWithStuckSurface;
+
+
+    [BoxGroup("Current Status")]
+    [SerializeField]
+    [ReadOnly]
     float currentRecallDuration = 0.0f;
+
     void Start()
     {
         body2d.gravityScale = 0;
@@ -161,6 +168,14 @@ public class Boomeraxe : MonoBehaviour
             {
                 Vector2 pos = body2d.transform.position;
                 body2d.MovePosition(pos + currentFlyDirection * datas.flyVelocity * Time.fixedDeltaTime);
+            }
+        }
+        else
+        {
+            if (isStuck)
+            {
+                Vector2 stuckObjCurPos = stuckObject.transform.position;
+                body2d.transform.position = stuckObjCurPos - offsetWithStuckSurface;
             }
         }
     }
@@ -223,12 +238,17 @@ public class Boomeraxe : MonoBehaviour
 
     public void HandleCollision(Collision2D other)
     {
-        if (flyTriggered == false) return;
+        if (flyTriggered == false)
+        {
+            LogHelper.GetInstance().Log(("Axe touched " + other + "but fly is not triggerd ").Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.Console);
+            return;
+        }
 
         Vector2 pos = body2d.transform.position;
         pos = (other.contacts[0].point - pos).normalized;
-        if (Vector2.Dot(pos, currentFlyDirection) < 0)
+        if (Vector2.Dot(pos, currentFlyDirection) < -0.8)
         {
+            LogHelper.GetInstance().Log(("Axe touched " + other + "but obj is behind the axe - Dot Product: " + Vector2.Dot(pos, currentFlyDirection)).Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.Console);
             return;
         }
 
@@ -236,11 +256,15 @@ public class Boomeraxe : MonoBehaviour
         LogHelper.GetInstance().Log("*THUD*".Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
 
         RotateBladeTowardImpactPoint(other);
-        //PlaceAxeAtContactPoint(other);
 
         body2d.GetComponent<Collider2D>().isTrigger = true;
         SetFlyTrigger(false);
+
         isStuck = true;
+        Vector2 stuckObj = other.collider.transform.position;
+        Vector2 axePos = body2d.transform.position;
+        offsetWithStuckSurface = (stuckObj - axePos);
+
         currentFlyDirection = Vector2.zero;
         onBounce.Invoke(body2d.transform.position, body2d.transform.rotation);
     }
@@ -290,14 +314,13 @@ public class Boomeraxe : MonoBehaviour
     }
     public void Recall()
     {
-
         returning = true;
         isStuck = false;
         stuckPos = body2d.transform.position;
         SetFlyTrigger(true);
         onBounce.Invoke(body2d.transform.position, body2d.transform.rotation);
+        body2d.GetComponent<Collider2D>().isTrigger = true;
         currentRecallTime = 0;
-
         axeSprite.sortingLayerName = "AxeFront";
         CalculateRecallDistance();
     }
@@ -381,6 +404,15 @@ public class Boomeraxe : MonoBehaviour
     public Transform GetHolder()
     {
         return holderBody2d.transform;
+    }
+
+    public void NullAbility()
+    {
+        activeAbility = null;
+        useAbilityEvent.Invoke(activeAbility);
+        animator.SetBool("hasPower", false);
+        useAbilityEvent.RemoveAllListeners();
+        ActivateAbility();
     }
 }
 

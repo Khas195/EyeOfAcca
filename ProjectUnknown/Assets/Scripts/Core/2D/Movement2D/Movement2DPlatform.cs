@@ -34,6 +34,7 @@ public class Movement2DPlatform : IMovement
     [SerializeField]
     [ReadOnly]
     float accelrationTimeCounter = 0.0f;
+
     [BoxGroup("Current Status")]
     [SerializeField]
     [ReadOnly]

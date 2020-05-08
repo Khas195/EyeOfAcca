@@ -10,8 +10,6 @@ public partial class SFXSystem : SingletonMonobehavior<SFXSystem>
     [SerializeField]
     SFXResources sFXResources;
 
-
-
     [SerializeField]
     [Required]
     GameObjectPool audioPool = null;
@@ -61,7 +59,6 @@ public partial class SFXSystem : SingletonMonobehavior<SFXSystem>
     // Update is called once per frame
     void Update()
     {
-
         TurnOffInactiveSource();
     }
 

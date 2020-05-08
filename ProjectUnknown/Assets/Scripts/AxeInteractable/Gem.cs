@@ -25,10 +25,7 @@ public class Gem : AxeInteractable
     public override void OnAxeAbilityTriggered(AxeAbility triggeredAbility)
     {
         base.OnAxeAbilityTriggered(triggeredAbility);
-        if (ability.Equals(triggeredAbility))
-        {
-            LogHelper.GetInstance().Log(("Gem recharging power - Teleportation!").Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
-            anim.SetBool("HasPower", true);
-        }
+        LogHelper.GetInstance().Log(("Gem recharging power - Teleportation!").Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
+        anim.SetBool("HasPower", true);
     }
 }

@@ -13,7 +13,7 @@ public abstract class AxeInteractable : MonoBehaviour
     {
         return;
     }
-    void OnTriggerEnter2D(Collider2D other)
+    protected virtual void OnTriggerEnter2D(Collider2D other)
     {
         ProcessCollider(other);
     }
@@ -42,7 +42,7 @@ public abstract class AxeInteractable : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collisionInfo)
+    protected virtual void OnCollisionEnter2D(Collision2D collisionInfo)
     {
         ProcessCollider(collisionInfo.collider);
     }
