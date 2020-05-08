@@ -24,7 +24,7 @@ public class BoomeraxeCollisionDetection : MonoBehaviour
     /// <param name="other">The Collision2D data associated with this collision.</param>
     void OnCollisionStay2D(Collision2D other)
     {
-        Debug.Log(other);
+        LogHelper.GetInstance().Log(("Axe Touch " + other).Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.Console);
         if (other.gameObject.tag.Equals("Player"))
         {
             Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), other.collider);

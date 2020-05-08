@@ -7,7 +7,6 @@ public class TeleportAbility : AxeAbility
     BoomeraxeParams datas;
     public override void Activate(Boomeraxe axe)
     {
-        base.Activate(axe);
 
         LogHelper.GetInstance().Log(("TELEPORT!").Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
         /// teleport 
@@ -29,5 +28,12 @@ public class TeleportAbility : AxeAbility
         axe.GetGrip().HoldAxe();
         axe.GetGrip().GetTimeAdjustor().SetGravityScaleFor(datas.timeScaleAfterTeleport, datas.lulTimeAfterTeleport);
     }
+
+
+    public override string GetAbilityPower()
+    {
+        return "hasTeleportPower";
+    }
+
 
 }

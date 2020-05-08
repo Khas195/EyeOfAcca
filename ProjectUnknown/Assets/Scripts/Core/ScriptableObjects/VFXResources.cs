@@ -13,7 +13,8 @@ public class VFXResources : ScriptableObject
         PlayerLand,
         FootFall,
         Bounce,
-        Teleport
+        Teleport,
+        AxeHasPowerFlash
     }
     [Serializable]
     public struct VFX

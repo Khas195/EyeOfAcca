@@ -7,9 +7,13 @@ public class RecallAbility : AxeAbility
 {
     public override void Activate(Boomeraxe axe)
     {
-        base.Activate(axe);
         LogHelper.GetInstance().Log(("CRACKED!!").Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
         axe.Recall();
         LogHelper.GetInstance().Log(("COME TO ME!!!").Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
+    }
+
+    public override string GetAbilityPower()
+    {
+        return "hasRecallPower";
     }
 }

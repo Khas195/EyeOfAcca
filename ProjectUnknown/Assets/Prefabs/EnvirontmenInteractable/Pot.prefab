@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7653792712326664324
+--- !u!1 &5103749224381843069
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,38 +8,38 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7653792712326664322}
-  - component: {fileID: 7653792712326664323}
-  - component: {fileID: 336786714}
-  - component: {fileID: 336786715}
-  m_Layer: 10
-  m_Name: RailBlock
+  - component: {fileID: 4180951959496621078}
+  - component: {fileID: 4012810374685848099}
+  - component: {fileID: 7791059352916555771}
+  - component: {fileID: 7791059352916555772}
+  m_Layer: 0
+  m_Name: Pot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7653792712326664322
+--- !u!4 &4180951959496621078
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7653792712326664324}
+  m_GameObject: {fileID: 5103749224381843069}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 26.42, y: -9.06, z: 0}
+  m_LocalScale: {x: 0.32954285, y: 1.1090821, z: 0.90908366}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &7653792712326664323
+--- !u!212 &4012810374685848099
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7653792712326664324}
+  m_GameObject: {fileID: 5103749224381843069}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -69,67 +69,56 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1163265147
-  m_SortingLayer: 4
-  m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: cbf4a0a783bbf5247b763fef7b436597, type: 3}
+  m_SortingLayerID: -1111978393
+  m_SortingLayer: 3
+  m_SortingOrder: 0
+  m_Sprite: {fileID: -7543565521884176014, guid: 06dc95ea8c183cb4b984e5bb6d771340,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 4, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &336786714
+--- !u!61 &7791059352916555771
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7653792712326664324}
+  m_GameObject: {fileID: 5103749224381843069}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
-    newSize: {x: 2, y: 2}
+    oldSize: {x: 4, y: 4}
+    newSize: {x: 4, y: 4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 4, y: 4}
   m_EdgeRadius: 0
---- !u!114 &336786715
+--- !u!114 &7791059352916555772
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7653792712326664324}
+  m_GameObject: {fileID: 5103749224381843069}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a87de8e70030fe4f8bcfbde94b7a45b, type: 3}
+  m_Script: {fileID: 11500000, guid: 8edf0fbd1f7aad34f8d96165bfdcb389, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilityToInteract: {fileID: 11400000, guid: 240c66c118359b641a29409f9aa37083, type: 2}
-  box: {fileID: 336786714}
-  timeTillDestinationReached: 1
-  travelBoxWidth: 3
-  travelHorizontal: 1
-  blockLeftContraint: {x: 14.969999, y: 5.02, z: 0}
-  blockRightContraint: {x: 26.97, y: 5.02, z: 0}
-  inMotion: 0
-  destination: {x: 0, y: 0, z: 0}
-  currentTravelTime: 0
-  axeHitSide: 0
-  axe: {fileID: 0}
