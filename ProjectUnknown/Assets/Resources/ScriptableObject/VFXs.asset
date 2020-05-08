@@ -16,8 +16,8 @@ MonoBehaviour:
   - tag: 4
     prefab: {fileID: 2451939251177005006, guid: eb989887509f0104aac5097254d8e9f2,
       type: 3}
-    pool: {fileID: 0}
   - tag: 3
     prefab: {fileID: 1308346968847954323, guid: 639fcd0964b56f34d8dfec0c68610419,
       type: 3}
-    pool: {fileID: 0}
+  - tag: 5
+    prefab: {fileID: 904892624921608172, guid: 1b4f3aede0828934da0ea4f274fcb7ae, type: 3}

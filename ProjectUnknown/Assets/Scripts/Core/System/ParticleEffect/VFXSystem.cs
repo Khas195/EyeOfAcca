@@ -14,7 +14,7 @@ public class VFXSystem : SingletonMonobehavior<VFXSystem>
     {
         base.Awake();
     }
-    public void PlayEffect(VFXResources.VFXList vFX, Vector3 position, Quaternion rotation)
+    public GameObject PlayEffect(VFXResources.VFXList vFX, Vector3 position, Quaternion rotation)
     {
         for (int i = 0; i < resourcesPack.resourcesList.Count; ++i)
         {
@@ -24,10 +24,12 @@ public class VFXSystem : SingletonMonobehavior<VFXSystem>
 
                 if (item.prefab == null)
                 {
-                    return;
+                    return null;
                 }
-                var particle = GameObject.Instantiate(item.prefab, position, rotation, this.transform);
+                return GameObject.Instantiate(item.prefab, position, rotation, this.transform);
             }
         }
+        return null;
     }
+
 }

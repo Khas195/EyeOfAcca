@@ -8,12 +8,12 @@ using UnityEngine.Events;
 /// Experimental scripts for spawning fire vfxxxx
 /// </summary>
 [Serializable]
-public class BallBounceEvent : UnityEvent<Vector3, Quaternion>
+public class AxeTransformEvent : UnityEvent<Vector3, Quaternion>
 {
 
 }
 [Serializable]
-public class OnUseAbility : UnityEvent<AxeAbility>
+public class AxeAbilityEvent : UnityEvent<AxeAbility>
 {
 
 }
@@ -33,6 +33,8 @@ public class Boomeraxe : MonoBehaviour
     [Required]
     Rigidbody2D body2d = null;
 
+
+
     [BoxGroup("Requirement")]
     [SerializeField]
     [Required]
@@ -45,10 +47,6 @@ public class Boomeraxe : MonoBehaviour
     [SerializeField]
     [Required]
     SpriteRenderer axeSprite = null;
-
-
-
-
 
     [BoxGroup("Requirement")]
     [SerializeField]
@@ -69,14 +67,20 @@ public class Boomeraxe : MonoBehaviour
 
     [BoxGroup("Optional")]
     [SerializeField]
-    BallBounceEvent onBounce = new BallBounceEvent();
+    AxeTransformEvent OnStuck = new AxeTransformEvent();
+
+    [BoxGroup("Optional")]
+    [SerializeField]
+    AxeAbilityEvent useAbilityEvent = new AxeAbilityEvent();
+    [BoxGroup("Optional")]
+    [SerializeField]
+    AxeAbilityEvent axeStuckWithAbilityEvent = new AxeAbilityEvent();
+
+
 
     [BoxGroup("Optional")]
     [SerializeField]
     AxeAbility activeAbility = null;
-    [BoxGroup("Optional")]
-    [SerializeField]
-    OnUseAbility useAbilityEvent = new OnUseAbility();
 
 
     [BoxGroup("Current Status")]
@@ -88,8 +92,6 @@ public class Boomeraxe : MonoBehaviour
     [SerializeField]
     [ReadOnly]
     bool returning = false;
-
-
 
     [BoxGroup("Current Status")]
     [SerializeField]
@@ -228,7 +230,7 @@ public class Boomeraxe : MonoBehaviour
         isStuck = false;
         stuckObject = null;
         body2d.GetComponent<Collider2D>().isTrigger = false;
-        onBounce.Invoke(body2d.transform.position, body2d.transform.rotation);
+        OnStuck.Invoke(body2d.transform.position, body2d.transform.rotation);
     }
 
     public Collider2D GetStuckCollider()
@@ -261,12 +263,17 @@ public class Boomeraxe : MonoBehaviour
         SetFlyTrigger(false);
 
         isStuck = true;
+
         Vector2 stuckObj = other.collider.transform.position;
         Vector2 axePos = body2d.transform.position;
         offsetWithStuckSurface = (stuckObj - axePos);
 
         currentFlyDirection = Vector2.zero;
-        onBounce.Invoke(body2d.transform.position, body2d.transform.rotation);
+        if (activeAbility)
+        {
+            axeStuckWithAbilityEvent.Invoke(activeAbility);
+        }
+        OnStuck.Invoke(body2d.transform.position, body2d.transform.rotation);
     }
 
     private void RotateBladeTowardImpactPoint(Collision2D other)
@@ -307,7 +314,7 @@ public class Boomeraxe : MonoBehaviour
         {
             activeAbility.Activate(this);
             useAbilityEvent.Invoke(activeAbility);
-            animator.SetBool("hasPower", false);
+            animator.SetBool(activeAbility.GetAbilityPower(), false);
             activeAbility = null;
         }
         useAbilityEvent.RemoveAllListeners();
@@ -318,7 +325,7 @@ public class Boomeraxe : MonoBehaviour
         isStuck = false;
         stuckPos = body2d.transform.position;
         SetFlyTrigger(true);
-        onBounce.Invoke(body2d.transform.position, body2d.transform.rotation);
+        OnStuck.Invoke(body2d.transform.position, body2d.transform.rotation);
         body2d.GetComponent<Collider2D>().isTrigger = true;
         currentRecallTime = 0;
         axeSprite.sortingLayerName = "AxeFront";
@@ -381,7 +388,11 @@ public class Boomeraxe : MonoBehaviour
         {
             return false;
         }
-        animator.SetBool("hasPower", true);
+
+        if (ability != null)
+        {
+            animator.SetBool(ability.GetAbilityPower(), true);
+        }
         activeAbility = ability;
 
         AddActiveAbilityCallback(callback);
@@ -408,11 +419,18 @@ public class Boomeraxe : MonoBehaviour
 
     public void NullAbility()
     {
+        if (activeAbility)
+        {
+            animator.SetBool(activeAbility.GetAbilityPower(), false);
+        }
         activeAbility = null;
         useAbilityEvent.Invoke(activeAbility);
-        animator.SetBool("hasPower", false);
         useAbilityEvent.RemoveAllListeners();
         ActivateAbility();
+    }
+    public bool HasActiveAbility()
+    {
+        return activeAbility != null;
     }
 }
 

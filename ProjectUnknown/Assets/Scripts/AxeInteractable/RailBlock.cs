@@ -18,7 +18,6 @@ public class RailBlock : AxeInteractable
 
     [BoxGroup("Requirements")]
     [SerializeField]
-    [Required]
     bool moveHorizontal = true;
 
     [BoxGroup("Requirements")]
