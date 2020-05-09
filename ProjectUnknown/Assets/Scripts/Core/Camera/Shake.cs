@@ -12,17 +12,12 @@ public class Shake : MonoBehaviour
     [SerializeField]
     [Required]
     ShakeData data;
-
-
+    private Vector2 originPos;
     [BoxGroup("Current Status")]
     [SerializeField]
     [ReadOnly]
-    float trauma = 0;
+    float currentShakeDuration = 0.0f;
 
-    [BoxGroup("Current Status")]
-    [SerializeField]
-    [ReadOnly]
-    float seed = 0;
 
     [BoxGroup("Current Status")]
     [SerializeField]
@@ -33,59 +28,46 @@ public class Shake : MonoBehaviour
     [SerializeField]
     [ReadOnly]
     System.Action callback = null;
+
+    [BoxGroup("Current Status")]
+    [SerializeField]
+    [ReadOnly]
+    bool isShaking = false;
     /// <summary>
     /// Awake is called when the script instance is being loaded.
     /// </summary>
     void Awake()
     {
-        seed = UnityEngine.Random.value;
+        currentShakeDuration = -1;
     }
 
-    // Update is called once per frame
     void Update()
     {
-
-        if (trauma <= 0.5f)
+        if (isShaking)
         {
-            if (hasCallBack && callback != null)
+            if (currentShakeDuration >= 0)
             {
-                this.callback();
-                callback = null;
-                hasCallBack = false;
+                targetObject.transform.localPosition = originPos + Random.insideUnitCircle * data.shakeAmount;
+                currentShakeDuration -= Time.deltaTime * data.decreaseFactor;
             }
-            trauma = 0;
-            return;
+            else
+            {
+                targetObject.transform.localPosition = originPos;
+                isShaking = false;
+                if (callback != null)
+                {
+                    callback();
+                }
+            }
         }
 
-        var shake = Mathf.Pow(trauma, data.traumaExponent);
-        // return [0, 1]
-        // Then translate it to [-1, 1]
-        var randomPerlinX = data.maximumTranslateShake.x * ((Mathf.PerlinNoise(seed, Time.time * data.frequency) * 2) - 1);
-        var randomPerlinY = data.maximumTranslateShake.y * ((Mathf.PerlinNoise(seed + 1, Time.time * data.frequency) * 2) - 1);
-
-        Vector2 targetObjPos = targetObject.transform.position;
-        Vector3 pos = targetObjPos + new Vector2(randomPerlinX, randomPerlinY) * shake;
-        pos.z = targetObject.transform.position.z;
-        targetObject.transform.position = pos;
-
-        var randomPerlinRotX = data.maximumAngularShake.x * ((Mathf.PerlinNoise(seed + 3, Time.time * data.frequency) * 2) - 1);
-        var randomPerlinRotY = data.maximumAngularShake.y * ((Mathf.PerlinNoise(seed + 4, Time.time * data.frequency) * 2) - 1);
-
-        var targetObjRot = targetObject.transform.rotation;
-        Quaternion rot = targetObjRot * Quaternion.Euler(new Vector3(randomPerlinRotX, randomPerlinRotY) * shake);
-        targetObject.transform.localRotation = rot;
-
-        trauma = Mathf.Clamp01(trauma - data.recoverySpeed * Time.deltaTime);
-    }
-    public void InduceTrauma()
-    {
-        trauma = 1.0f;
     }
     public void InduceTrauma(System.Action callback)
     {
-        if (trauma > 0) return;
-        InduceTrauma();
+        originPos = targetObject.transform.position;
         hasCallBack = true;
         this.callback = callback;
+        isShaking = true;
+        currentShakeDuration = data.shakeDuration;
     }
 }

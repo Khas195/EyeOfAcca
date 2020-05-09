@@ -322,36 +322,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8558128282752617304}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1339542088
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1339542089}
-  m_Layer: 8
-  m_Name: LandLocation
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1339542089
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1339542088}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.923, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 8558128282752617310}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1481426448 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 4475797551516158991, guid: 54031a8a3e953e64b814111327a4b252,
@@ -898,81 +868,5 @@ PrefabInstance:
       propertyPath: grip
       value: 
       objectReference: {fileID: 285891218}
-    - target: {fileID: 8558128284077259172, guid: 2b03fc41f04525f469eccd660ed2db23,
-        type: 3}
-      propertyPath: movementWithAxe
-      value: 
-      objectReference: {fileID: 11400000, guid: e5a8a8c29d6822c4c914782e6ff95a65,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b03fc41f04525f469eccd660ed2db23, type: 3}
---- !u!1 &8558128282752617305 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8558128283915914046, guid: 2b03fc41f04525f469eccd660ed2db23,
-    type: 3}
-  m_PrefabInstance: {fileID: 8558128282752617304}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8558128282752617306
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8558128282752617305}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c771ec8fac858c47b3dd8fbae4b718b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grip: {fileID: 0}
---- !u!114 &8558128282752617307
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8558128282752617305}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 733ce98ede21f3e4b8d3c0972b3ce7d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  locationA: {fileID: 8558128282752617309}
-  locationB: {fileID: 8558128282752617308}
-  footstepParticles: {fileID: 6303564167127427143, guid: dfc65f12838dded4d89a7d55901f5a0d,
-    type: 3}
---- !u!4 &8558128282752617308 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3550210622636208882, guid: 2b03fc41f04525f469eccd660ed2db23,
-    type: 3}
-  m_PrefabInstance: {fileID: 8558128282752617304}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &8558128282752617309 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7132950047522920484, guid: 2b03fc41f04525f469eccd660ed2db23,
-    type: 3}
-  m_PrefabInstance: {fileID: 8558128282752617304}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &8558128282752617310 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 189443608238693890, guid: 2b03fc41f04525f469eccd660ed2db23,
-    type: 3}
-  m_PrefabInstance: {fileID: 8558128282752617304}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8558128282752617311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8558128282752617305}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9675ad48d7a29fc44ae12320ac65ba63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jumpParticles: {fileID: 4225577283194478014, guid: bbb34edcc22c37b47a00149174d11ca0,
-    type: 3}
-  landParticles: {fileID: 5756795858081917393, guid: d9f27476829b5454eb70b0a3949cb272,
-    type: 3}
-  particleLocation: {fileID: 1339542089}

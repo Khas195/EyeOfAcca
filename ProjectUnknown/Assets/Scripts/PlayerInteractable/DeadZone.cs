@@ -19,6 +19,7 @@ public class DeadZone : AxeInteractable
         base.OnTriggerEnter2D(other);
         if (other.tag.Equals("Player"))
         {
+            SFXSystem.GetInstance().StopAllSounds();
             LogHelper.GetInstance().Log(("Player entered Dead Zone").Bolden(), true, LogHelper.LogLayer.PlayerFriendly);
             GameMaster.GetInstance().LoadLevel(GameMaster.GetInstance().GetStartLevel());
         }

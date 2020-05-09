@@ -13,7 +13,46 @@ public class Tweener
         LinearTween,
         EaseInQuad,
         EaseOutQuad,
-        EaseInOutQuad
+        EaseInOutQuad,
+        EaseInQuint,
+        EaseOutQuint,
+        EaseInOutQuint,
+        EaseInElastic,
+        OutInQuartic
+    }
+    public static Vector2 Tween(TweenType type, float curTime, Vector2 beginPos, Vector2 endPos, float duration)
+    {
+        Vector2 result = Vector2.one;
+
+        switch (type)
+        {
+            case TweenType.EaseInQuad:
+                result = EaseInQuad(curTime, beginPos, endPos, duration);
+                break;
+            case TweenType.EaseOutQuad:
+                result = EaseOutQuad(curTime, beginPos, endPos, duration);
+                break;
+            case TweenType.EaseInQuint:
+                result = EaseInQuint(curTime, beginPos, endPos, duration);
+                break;
+            case TweenType.EaseOutQuint:
+                result = EaseOutQuint(curTime, beginPos, endPos, duration);
+                break;
+            case TweenType.EaseInOutQuint:
+                result = EaseInOutQuint(curTime, beginPos, endPos, duration);
+                break;
+            case TweenType.EaseInElastic:
+                result = EaseInElasticSmall(curTime, beginPos, endPos, duration);
+                break;
+            case TweenType.OutInQuartic:
+                result = OutInQuartic(curTime, beginPos, endPos, duration);
+                break;
+            default:
+                result = EaseInQuad(curTime, beginPos, endPos, duration);
+                break;
+        }
+
+        return result;
     }
     public static float Tween(TweenType type, float curTime, float beginingValue, float changeInValue, float duration)
     {

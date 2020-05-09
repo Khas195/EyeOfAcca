@@ -15,15 +15,13 @@ public class BoomeraxeVFXHandler : MonoBehaviour
     }
     public void OnAxeStuck(Vector3 pos, Quaternion rotation)
     {
-
-        if (axe.HasActiveAbility() == true) return;
-        VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.Bounce, pos, rotation);
-    }
-    public void OnAxeStuckWithAbility(AxeAbility ability)
-    {
         var effect = VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.AxeHasPowerFlash, Vector3.zero, Quaternion.identity);
         effect.transform.parent = gemPosition;
         effect.transform.localPosition = Vector2.zero;
         effect.transform.localRotation = Quaternion.identity;
+    }
+    public void OnAxeStuckWithAbility(AxeAbility ability)
+    {
+
     }
 }

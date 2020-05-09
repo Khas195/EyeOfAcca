@@ -134,13 +134,17 @@ public class Boomeraxe : MonoBehaviour
     [ReadOnly]
     float currentRecallDuration = 0.0f;
 
+    [BoxGroup("Current Status")]
+    [SerializeField]
+    [ReadOnly]
+
+    AudioSource spinningSource = null;
     void Start()
     {
         body2d.gravityScale = 0;
         Reset();
     }
 
-    AudioSource spinning = null;
     /// <summary>
     /// Callback to draw gizmos that are pickable and always drawn.
     /// </summary>
@@ -207,20 +211,25 @@ public class Boomeraxe : MonoBehaviour
         flyTriggered = triggered;
         if (triggered)
         {
-            spinning = SFXSystem.GetInstance().PlaySound(SFXResources.SFXList.axeSpinning);
+            spinningSource = SFXSystem.GetInstance().PlaySound(SFXResources.SFXList.axeSpinning);
         }
         else
         {
-            if (spinning != null)
+            if (spinningSource != null)
             {
-                spinning.Stop();
-                spinning = null;
+                spinningSource.Stop();
+                spinningSource = null;
             }
         }
     }
 
     public void Reset()
     {
+        if (spinningSource)
+        {
+            spinningSource.Stop();
+            spinningSource = null;
+        }
 
         body2d.gameObject.SetActive(false);
         currentFlyDirection = Vector3.zero;
@@ -230,7 +239,6 @@ public class Boomeraxe : MonoBehaviour
         isStuck = false;
         stuckObject = null;
         body2d.GetComponent<Collider2D>().isTrigger = false;
-        OnStuck.Invoke(body2d.transform.position, body2d.transform.rotation);
     }
 
     public Collider2D GetStuckCollider()
@@ -263,6 +271,12 @@ public class Boomeraxe : MonoBehaviour
         SetFlyTrigger(false);
 
         isStuck = true;
+
+        if (spinningSource)
+        {
+            spinningSource.Stop();
+            spinningSource = null;
+        }
 
         Vector2 stuckObj = other.collider.transform.position;
         Vector2 axePos = body2d.transform.position;
@@ -321,11 +335,12 @@ public class Boomeraxe : MonoBehaviour
     }
     public void Recall()
     {
+
+        animator.SetBool("Recall", false);
         returning = true;
         isStuck = false;
         stuckPos = body2d.transform.position;
         SetFlyTrigger(true);
-        OnStuck.Invoke(body2d.transform.position, body2d.transform.rotation);
         body2d.GetComponent<Collider2D>().isTrigger = true;
         currentRecallTime = 0;
         axeSprite.sortingLayerName = "AxeFront";
@@ -356,10 +371,8 @@ public class Boomeraxe : MonoBehaviour
         if (returning)
         {
             grip.HoldAxe();
-            body2d.GetComponent<Collider2D>().isTrigger = false;
         }
     }
-
     public Vector2 GetAxePosition()
     {
         return body2d.transform.position;
@@ -422,6 +435,11 @@ public class Boomeraxe : MonoBehaviour
         if (activeAbility)
         {
             animator.SetBool(activeAbility.GetAbilityPower(), false);
+        }
+        if (spinningSource)
+        {
+            spinningSource.Stop();
+            spinningSource = null;
         }
         activeAbility = null;
         useAbilityEvent.Invoke(activeAbility);

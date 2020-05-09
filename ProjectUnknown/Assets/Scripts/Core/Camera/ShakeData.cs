@@ -6,14 +6,10 @@ using UnityEngine;
 [Serializable]
 public class ShakeData : ScriptableObject
 {
-    [InfoBox("The speed of the shake.", EInfoBoxType.Normal)]
-    public float frequency = 25;
-    public Vector3 maximumTranslateShake = Vector3.one * 0.5f;
+    public float shakeDuration = 0.5f;
+    public float shakeAmount = 0.7f;
+    public float decreaseFactor = 1.0f;
 
-    public Vector3 maximumAngularShake = Vector3.one * 2;
-
-    public float recoverySpeed = 1.5f;
-    public float traumaExponent = 2;
     [Button("Save")]
     public void SaveData()
     {
