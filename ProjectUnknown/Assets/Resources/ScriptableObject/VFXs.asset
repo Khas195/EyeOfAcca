@@ -14,10 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resourcesList:
   - tag: 4
-    prefab: {fileID: 2451939251177005006, guid: eb989887509f0104aac5097254d8e9f2,
-      type: 3}
+    prefab: {fileID: 637679812654740514, guid: 7fae762e8baead64fad90b5e062decc1, type: 3}
   - tag: 3
-    prefab: {fileID: 1308346968847954323, guid: 639fcd0964b56f34d8dfec0c68610419,
+    prefab: {fileID: 4523563065567120071, guid: cb661e66a00aee146863d14964f14627,
+      type: 3}
+  - tag: 6
+    prefab: {fileID: 904892624921608172, guid: 1b4f3aede0828934da0ea4f274fcb7ae, type: 3}
+  - tag: 6
+    prefab: {fileID: 8994976554120875036, guid: 87017e4e2fe61314c80787ab6e7ecf06,
       type: 3}
   - tag: 5
-    prefab: {fileID: 904892624921608172, guid: 1b4f3aede0828934da0ea4f274fcb7ae, type: 3}
+    prefab: {fileID: 5586519671656894247, guid: f0ab03ec861c48b4699f4e0abe8a25db,
+      type: 3}

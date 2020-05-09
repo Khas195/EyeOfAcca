@@ -19,6 +19,7 @@ public class Gem : AxeInteractable
         {
             LogHelper.GetInstance().Log(("Absorbed Power - Teleportation!").Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
             anim.SetBool("HasPower", false);
+            VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.OnTeleGemHit, this.transform.position, Quaternion.identity);
         }
     }
 
