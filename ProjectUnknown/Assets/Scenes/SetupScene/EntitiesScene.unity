@@ -969,6 +969,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8558128282752617307, guid: 2b03fc41f04525f469eccd660ed2db23,
+        type: 3}
+      propertyPath: footstepParticles
+      value: 
+      objectReference: {fileID: 5312488557546469004, guid: 4eace9834faa5b946b487a47fe1f25ac,
+        type: 3}
+    - target: {fileID: 8558128282752617311, guid: 2b03fc41f04525f469eccd660ed2db23,
+        type: 3}
+      propertyPath: jumpParticles
+      value: 
+      objectReference: {fileID: 6472966089825613612, guid: 663a831c141b8a74fb483c9c70fe2de8,
+        type: 3}
+    - target: {fileID: 8558128282752617311, guid: 2b03fc41f04525f469eccd660ed2db23,
+        type: 3}
+      propertyPath: landParticles
+      value: 
+      objectReference: {fileID: 7396061940163454768, guid: 8f36cbce92fde7e48bb752ee06cda720,
+        type: 3}
     - target: {fileID: 8558128283662357634, guid: 2b03fc41f04525f469eccd660ed2db23,
         type: 3}
       propertyPath: grip
