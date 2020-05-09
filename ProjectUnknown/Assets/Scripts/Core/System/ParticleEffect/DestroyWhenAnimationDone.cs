@@ -9,4 +9,11 @@ public class DestroyWhenAnimationDone : MonoBehaviour
     {
         Destroy(this.gameObject);
     }
+    /// <summary>
+    /// This function is called when the behaviour becomes disabled or inactive.
+    /// </summary>
+    void OnDisable()
+    {
+        DestroySelf();
+    }
 }

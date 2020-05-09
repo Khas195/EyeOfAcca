@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 5586519671656894242}
   - component: {fileID: 5586519671656894245}
   - component: {fileID: 5586519671656894244}
+  - component: {fileID: 1689094130}
+  - component: {fileID: 7627152932300943506}
   m_Layer: 0
   m_Name: EnergyOrbs_prfb
   m_TagString: Untagged
@@ -102,3 +104,27 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1689094130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5586519671656894247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6107f4715a9c2624fa238adc7286bfed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7627152932300943506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5586519671656894247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4adf744edd490b40a56aa9afacf3f1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
