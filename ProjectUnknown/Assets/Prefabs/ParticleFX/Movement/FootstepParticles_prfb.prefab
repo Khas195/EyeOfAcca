@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6303564167127427142}
   - component: {fileID: 6303564167127427143}
   - component: {fileID: 6303564167127427136}
+  - component: {fileID: 1587198557459621119}
   m_Layer: 0
   m_Name: FootstepParticles_prfb
   m_TagString: Untagged
@@ -4790,7 +4791,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1291095597
-  m_SortingLayer: 4
+  m_SortingLayer: 8
   m_SortingOrder: 5
   m_RenderMode: 0
   m_SortMode: 0
@@ -4815,3 +4816,15 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &1587198557459621119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6303564167127427137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bc0147c91df72443aa58f79cf9810d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
