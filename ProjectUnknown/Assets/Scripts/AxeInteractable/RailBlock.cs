@@ -39,6 +39,7 @@ public class RailBlock : AxeInteractable
 
 
 
+
     [BoxGroup("Status")]
     [SerializeField]
     [ReadOnly]
@@ -97,6 +98,7 @@ public class RailBlock : AxeInteractable
                 {
                     OnBlockMoveB.Invoke();
                 }
+
                 OnBlockMove.Invoke();
             }
         }

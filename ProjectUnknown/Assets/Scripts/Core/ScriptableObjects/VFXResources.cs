@@ -16,7 +16,8 @@ public class VFXResources : ScriptableObject
         Teleport,
         OrbGatherPower,
         AxeHasPowerFlash,
-        OnTeleGemHit
+        OnTeleGemHit,
+        RailBlockParticles
     }
     [Serializable]
     public struct VFX
