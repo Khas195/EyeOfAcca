@@ -33,6 +33,16 @@ public class MoveAB : MonoBehaviour
 
     [BoxGroup("Settings")]
     [SerializeField]
+    Tweener.TweenType moveType = Tweener.TweenType.EaseOutQuad;
+
+
+    [BoxGroup("Settings")]
+    [SerializeField]
+    bool allowInteractionDuringMoveBack = false;
+
+
+    [BoxGroup("Settings")]
+    [SerializeField]
     float timeTillDestinationReached = 1;
 
     [BoxGroup("Settings")]
@@ -44,6 +54,8 @@ public class MoveAB : MonoBehaviour
     [SerializeField]
     [OnValueChanged("OnStartPositionChanged")]
     MoveABEnum startPos = MoveABEnum.Middle;
+
+
 
     [BoxGroup("Current Status")]
     [SerializeField]
@@ -132,7 +144,7 @@ public class MoveAB : MonoBehaviour
     {
         if (inMotion)
         {
-            this.box.transform.position = Tweener.EaseOutQuad(curTime, originPos, destination, currentTimeTillDestinationReaded);
+            this.box.transform.position = Tweener.Tween(moveType, curTime, originPos, destination, currentTimeTillDestinationReaded);
             curTime += Time.deltaTime;
             if (HasReachedDestination())
             {
@@ -146,6 +158,7 @@ public class MoveAB : MonoBehaviour
                 {
                     isMovingBack = false;
                     inMotion = false;
+                    this.box.transform.position = destination;
                 }
                 curTime = 0;
             }
@@ -154,12 +167,13 @@ public class MoveAB : MonoBehaviour
 
     public bool HasReachedDestination()
     {
-        return Vector2.Distance(box.transform.position, destination) <= 0.01f;
+        return Vector2.Distance(box.transform.position, destination) <= 0.05f || curTime >= currentTimeTillDestinationReaded || inMotion == false;
     }
 
     public void GoTo(MoveABEnum moveDestination)
     {
-        if (isMovingBack) return;
+        if (allowInteractionDuringMoveBack == false && isMovingBack) return;
+
         if (moveDestination == MoveABEnum.A)
         {
             destination = aPosition.position;
@@ -193,5 +207,8 @@ public class MoveAB : MonoBehaviour
             return Vector2.Distance(box.transform.position, (aPosition.position + bPosition.position) / 2) < 0.01f;
         }
     }
-
+    public MoveABEnum GetStartPos()
+    {
+        return startPos;
+    }
 }

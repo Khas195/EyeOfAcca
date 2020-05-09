@@ -77,9 +77,9 @@ public class Door : MonoBehaviour
     /// </summary>
     void FixedUpdate()
     {
-        CheckIsOpen();
     }
 
+    [Button("Switch")]
     public void TriggerMechanism()
     {
         if (isOpen)
@@ -92,13 +92,15 @@ public class Door : MonoBehaviour
         }
     }
 
-    private void Open()
+    [Button("Open")]
+    public void Open()
     {
         moveAB.GoTo(OpenPos);
         isOpen = true;
     }
 
-    private void Close()
+    [Button("Close")]
+    public void Close()
     {
         if (OpenPos == MoveAB.MoveABEnum.A)
         {
