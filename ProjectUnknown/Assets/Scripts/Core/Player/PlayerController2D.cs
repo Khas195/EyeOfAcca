@@ -36,8 +36,10 @@ public class PlayerController2D : MonoBehaviour
         character.Move(side, forward);
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            character.Jump();
-
+            if (Input.GetKey(KeyCode.S) == false || character.TryDropDown() == false)
+            {
+                character.Jump();
+            }
         }
         if (Input.GetMouseButtonDown(0))
         {

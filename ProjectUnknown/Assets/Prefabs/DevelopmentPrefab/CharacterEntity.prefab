@@ -128,7 +128,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1287017935}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.08, y: 0.25, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8558128283915914033}
@@ -381,7 +381,7 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: e5a8a8c29d6822c4c914782e6ff95a65, type: 2}
   moveMode: 0
   body2D: {fileID: 8558128283915914034}
-  checkGroundBoxSize: {x: 0.27, y: 0.2}
+  checkGroundBoxSize: {x: 0.86, y: 0.2}
   checkGroundBoxOffset: {x: 0, y: -0.9, z: 1}
   jumpableLayer:
     serializedVersion: 2
@@ -484,7 +484,6 @@ GameObject:
   - component: {fileID: 8558128283915914035}
   - component: {fileID: 8558128283915914034}
   - component: {fileID: 8558128283915914036}
-  - component: {fileID: 8558128282752617306}
   - component: {fileID: 8558128282752617307}
   - component: {fileID: 8558128282752617311}
   m_Layer: 8
@@ -548,7 +547,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1476381683
-  m_SortingLayer: 5
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 8072833411399725738, guid: 8755c720b7a5db945a09d6817007a50a,
     type: 3}
@@ -655,19 +654,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &8558128282752617306
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8558128283915914046}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c771ec8fac858c47b3dd8fbae4b718b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grip: {fileID: 0}
 --- !u!114 &8558128282752617307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -682,7 +668,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   locationA: {fileID: 7132950047522920484}
   locationB: {fileID: 3550210622636208882}
-  footstepParticles: {fileID: 6303564167127427143, guid: dfc65f12838dded4d89a7d55901f5a0d,
+  footstepParticles: {fileID: 5312488557546469004, guid: 4eace9834faa5b946b487a47fe1f25ac,
     type: 3}
 --- !u!114 &8558128282752617311
 MonoBehaviour:
@@ -696,9 +682,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9675ad48d7a29fc44ae12320ac65ba63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpParticles: {fileID: 4225577283194478014, guid: bbb34edcc22c37b47a00149174d11ca0,
+  jumpParticles: {fileID: 6472966089825613612, guid: 663a831c141b8a74fb483c9c70fe2de8,
     type: 3}
-  landParticles: {fileID: 5756795858081917393, guid: d9f27476829b5454eb70b0a3949cb272,
+  landParticles: {fileID: 7396061940163454768, guid: 8f36cbce92fde7e48bb752ee06cda720,
     type: 3}
   particleLocation: {fileID: 1339542089}
 --- !u!1 &8558128283960274154
