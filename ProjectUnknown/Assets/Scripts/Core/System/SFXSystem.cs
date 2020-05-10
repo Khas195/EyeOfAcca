@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public partial class SFXSystem : SingletonMonobehavior<SFXSystem>
 {
@@ -19,10 +20,16 @@ public partial class SFXSystem : SingletonMonobehavior<SFXSystem>
 
     [SerializeField]
     AudioSource backgroundMusic = null;
-
+    [SerializeField]
+    AudioMixerGroup masterGroup = null;
+    [SerializeField]
+    AudioMixerGroup soundsGroup = null;
+    [SerializeField]
+    AudioMixerGroup musicGroup = null;
 
     public void PlayBGMusic()
     {
+        backgroundMusic.outputAudioMixerGroup = musicGroup;
         backgroundMusic.Stop();
         backgroundMusic.Play();
     }
@@ -49,6 +56,7 @@ public partial class SFXSystem : SingletonMonobehavior<SFXSystem>
                 source.clip = sfx.clip;
                 source.loop = sfx.loop;
                 source.volume = sfx.volumn;
+                source.outputAudioMixerGroup = soundsGroup;
                 source.Play();
                 return source;
             }

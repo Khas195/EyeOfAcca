@@ -11,7 +11,8 @@ public class LoadLevelButton : MonoBehaviour
     bool loadDesignatedLevel = false;
     [SerializeField]
     [ShowIf(" loadDesignatedLevel")]
-    int levelIndex = 0;
+    [Scene]
+    string levelIndex = "";
     [SerializeField]
     Button button = null;
 
@@ -31,9 +32,8 @@ public class LoadLevelButton : MonoBehaviour
         if (loadDesignatedLevel)
         {
             LogHelper.GetInstance().Log(this + " loading level with level index " + levelIndex);
-            master.SetCurrentInGameLevel(levelIndex);
         }
-        master.LoadLevel(master.GetInGameLevelIndex());
+        master.LoadLevel(levelIndex);
         master.GetStateManager().RequestState(GameState.GameStateEnum.InGame);
     }
 }

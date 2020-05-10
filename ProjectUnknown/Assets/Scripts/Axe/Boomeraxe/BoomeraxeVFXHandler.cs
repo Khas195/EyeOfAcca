@@ -20,7 +20,7 @@ public class BoomeraxeVFXHandler : MonoBehaviour
     public void OnAxeStuckWithAbility(Vector3 pos, Quaternion rotation)
     {
         var ability = axe.GetCurrentAbility();
-        var effect = VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.OrbGatherPower, Vector2.one, Quaternion.identity);
+        var effect = VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.AxeHasPowerFlash, Vector2.one, Quaternion.identity);
         effect.transform.position = gemPosition.position;
         effect.transform.parent = axe.GetAxeTransform();
         effect.GetComponent<Animator>().SetBool(ability.GetAbilityPower(), true);

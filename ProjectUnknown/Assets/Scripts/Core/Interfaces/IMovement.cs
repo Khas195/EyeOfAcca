@@ -41,6 +41,11 @@ public class IMovement : MonoBehaviour
         return 0;
     }
 
+    public virtual Collider2D GetGroundCollider2D()
+    {
+        return null;
+    }
+
     /** Signaled that the jump command had been called */
     public virtual void SignalJump()
     {
