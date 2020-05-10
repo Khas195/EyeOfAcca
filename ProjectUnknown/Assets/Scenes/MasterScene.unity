@@ -740,6 +740,11 @@ PrefabInstance:
       propertyPath: m_FontData.m_MaxSize
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 1891663336847751271, guid: 5f50411c103bd3b47b74085a90978f70,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 1891663337051015295, guid: 5f50411c103bd3b47b74085a90978f70,
         type: 3}
       propertyPath: m_CellSize.x
@@ -991,5 +996,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skipMainMenu: 1
   gameStateManager: {fileID: 1867409778}
-  startLevel: Level-2-3
+  startLevel: Level-2-6
   currentInGameLevelIndex: 0
