@@ -30,7 +30,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 5134555799131602465}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -71,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1163265147
-  m_SortingLayer: 4
+  m_SortingLayer: 8
   m_SortingOrder: 5
   m_Sprite: {fileID: -7016553723182078250, guid: d1fe409ccba7ab94ba243c03d48eb991,
     type: 3}
@@ -144,3 +145,85 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ability: {fileID: 11400000, guid: 69fc433673b054a4abd3df86248f1ef6, type: 2}
   anim: {fileID: 3204923655302810495}
+  gemParticles: {fileID: 5134555799131602466}
+--- !u!1001 &1872950740263510088
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3204923655302810493}
+    m_Modifications:
+    - target: {fileID: 6827339997060734569, guid: 4efa4f0d6bcd3d443abd8e93add38726,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6827339997060734569, guid: 4efa4f0d6bcd3d443abd8e93add38726,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6827339997060734569, guid: 4efa4f0d6bcd3d443abd8e93add38726,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6827339997060734569, guid: 4efa4f0d6bcd3d443abd8e93add38726,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6827339997060734569, guid: 4efa4f0d6bcd3d443abd8e93add38726,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6827339997060734569, guid: 4efa4f0d6bcd3d443abd8e93add38726,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6827339997060734569, guid: 4efa4f0d6bcd3d443abd8e93add38726,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6827339997060734569, guid: 4efa4f0d6bcd3d443abd8e93add38726,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6827339997060734569, guid: 4efa4f0d6bcd3d443abd8e93add38726,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6827339997060734569, guid: 4efa4f0d6bcd3d443abd8e93add38726,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6827339997060734569, guid: 4efa4f0d6bcd3d443abd8e93add38726,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6827339997060734570, guid: 4efa4f0d6bcd3d443abd8e93add38726,
+        type: 3}
+      propertyPath: m_Name
+      value: GemActiveParticles_prfb
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4efa4f0d6bcd3d443abd8e93add38726, type: 3}
+--- !u!1 &5134555799131602466 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6827339997060734570, guid: 4efa4f0d6bcd3d443abd8e93add38726,
+    type: 3}
+  m_PrefabInstance: {fileID: 1872950740263510088}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5134555799131602465 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6827339997060734569, guid: 4efa4f0d6bcd3d443abd8e93add38726,
+    type: 3}
+  m_PrefabInstance: {fileID: 1872950740263510088}
+  m_PrefabAsset: {fileID: 0}

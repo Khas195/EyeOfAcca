@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6683412071956575874}
   - component: {fileID: 6683412071956575877}
   - component: {fileID: 6683412071956575876}
+  - component: {fileID: 1626421165729026746}
   m_Layer: 0
   m_Name: DoorCloseParticles_prfb
   m_TagString: Untagged
@@ -4812,3 +4813,15 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &1626421165729026746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6683412071956575879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bc0147c91df72443aa58f79cf9810d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

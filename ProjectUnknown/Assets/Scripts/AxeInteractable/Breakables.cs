@@ -1,9 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 
 public class Breakables : AxeInteractable
 {
+    [SerializeField]
+    [Required]
+    SpriteRenderer spriteRender = null;
+    [SerializeField]
+    [Required]
+    Sprite brokenState = null;
+    [SerializeField]
+    [Required]
+    Collider2D box = null;
+
     public override void OnAxeAbilityTriggered(AxeAbility triggeredAbility)
     {
         base.OnAxeAbilityTriggered(triggeredAbility);
@@ -13,6 +24,9 @@ public class Breakables : AxeInteractable
     {
         base.OnAxeHit(axe);
         LogHelper.GetInstance().Log(("BREAK POT").Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
+        spriteRender.sprite = brokenState;
+        box.enabled = false;
+        VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.PotBreak, this.transform.position, Quaternion.identity);
     }
 
 

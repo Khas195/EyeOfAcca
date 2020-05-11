@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MoveAB : MonoBehaviour
 {
@@ -54,6 +55,15 @@ public class MoveAB : MonoBehaviour
     [SerializeField]
     [OnValueChanged("OnStartPositionChanged")]
     MoveABEnum startPos = MoveABEnum.Middle;
+
+
+    [BoxGroup("Settings")]
+    [SerializeField]
+    UnityEvent OnReachA = new UnityEvent();
+
+    [BoxGroup("Settings")]
+    [SerializeField]
+    UnityEvent OnReachB = new UnityEvent();
 
 
 
@@ -160,6 +170,16 @@ public class MoveAB : MonoBehaviour
                     inMotion = false;
                     this.box.transform.position = destination;
                 }
+                Vector2 posA = aPosition.position;
+                Vector2 posB = bPosition.position;
+                if (IsAt(MoveABEnum.A))
+                {
+                    OnReachA.Invoke();
+                }
+                else if (IsAt(MoveABEnum.B))
+                {
+                    OnReachB.Invoke();
+                }
                 curTime = 0;
             }
         }
@@ -195,16 +215,16 @@ public class MoveAB : MonoBehaviour
     {
         if (posEnum == MoveABEnum.A)
         {
-            return Vector2.Distance(box.transform.position, aPosition.position) < 0.01f;
+            return Vector2.Distance(box.transform.position, aPosition.position) < 0.05f;
         }
         else if (posEnum == MoveABEnum.B)
         {
 
-            return Vector2.Distance(box.transform.position, bPosition.position) < 0.01f;
+            return Vector2.Distance(box.transform.position, bPosition.position) < 0.05f;
         }
         else
         {
-            return Vector2.Distance(box.transform.position, (aPosition.position + bPosition.position) / 2) < 0.01f;
+            return Vector2.Distance(box.transform.position, (aPosition.position + bPosition.position) / 2) < 0.05f;
         }
     }
     public MoveABEnum GetStartPos()

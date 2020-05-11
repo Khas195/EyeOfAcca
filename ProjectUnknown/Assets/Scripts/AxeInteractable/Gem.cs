@@ -5,12 +5,19 @@ using UnityEngine;
 
 public class Gem : AxeInteractable
 {
+    [BoxGroup("Requirements")]
     [SerializeField]
     [Required]
     AxeAbility ability = null;
+
+    [BoxGroup("Requirements")]
     [SerializeField]
     [Required]
     Animator anim = null;
+
+    [BoxGroup("Optional")]
+    [SerializeField]
+    GameObject gemParticles = null;
 
 
 
@@ -28,6 +35,10 @@ public class Gem : AxeInteractable
             LogHelper.GetInstance().Log(("Absorbed Power - Teleportation!").Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
             anim.SetBool("HasPower", false);
             VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.OnTeleGemHit, this.transform.position, Quaternion.identity);
+            if (gemParticles != null)
+            {
+                gemParticles.SetActive(false);
+            }
         }
     }
 
@@ -37,5 +48,9 @@ public class Gem : AxeInteractable
         LogHelper.GetInstance().Log(("Gem recharging power - Teleportation!").Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
         VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.AxeHasPowerFlash, this.transform.position, Quaternion.identity);
         anim.SetBool("HasPower", true);
+        if (gemParticles != null)
+        {
+            gemParticles.SetActive(true);
+        }
     }
 }
