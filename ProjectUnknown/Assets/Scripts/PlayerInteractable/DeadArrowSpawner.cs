@@ -28,6 +28,11 @@ public class DeadArrowSpawner : MonoBehaviour
     [Required]
     Transform endPosition = null;
 
+    [BoxGroup("Optional")]
+    [SerializeField]
+    [Required]
+    Transform trapArrowPaticleSpawnPos = null;
+
     [BoxGroup("Current Status")]
     [SerializeField]
     [ReadOnly]
@@ -54,10 +59,18 @@ public class DeadArrowSpawner : MonoBehaviour
         {
             var arrow = arrowSpawner.RequestInstance();
             var deadArrow = arrow.GetComponent<DeadArrow>();
-            deadArrow.SetFlyDirection((endPosition.position - startPosition.position).normalized);
+            Vector3 flyDir = (endPosition.position - startPosition.position).normalized;
+            deadArrow.SetFlyDirection(flyDir);
             deadArrow.SetPosition(startPosition.position);
             deadArrow.SetSpeed(arrowSpeed);
             deadArrow.SetCallBackOnHit(OnArrowHit);
+            if (trapArrowPaticleSpawnPos != null)
+            {
+                var effect = VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.TrapFireSmoke, Vector3.zero, Quaternion.identity);
+                effect.transform.position = trapArrowPaticleSpawnPos.position;
+                effect.transform.rotation = Quaternion.LookRotation(flyDir);
+            }
+
             currentTime = spawnInterval;
         }
         currentTime -= Time.deltaTime;

@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 4463628741195651386}
   - component: {fileID: 4463628741195651387}
   - component: {fileID: 4463628741195651384}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Lever
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -278,6 +278,12 @@ MonoBehaviour:
   timeTillDestinationReached: 1
   moveBackTime: 10
   startPos: 1
+  OnReachA:
+    m_PersistentCalls:
+      m_Calls: []
+  OnReachB:
+    m_PersistentCalls:
+      m_Calls: []
   inMotion: 0
   isMovingBack: 0
   curTime: 0

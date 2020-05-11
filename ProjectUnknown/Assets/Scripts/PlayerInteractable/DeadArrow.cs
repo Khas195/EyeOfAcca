@@ -17,6 +17,12 @@ public class DeadArrow : MonoBehaviour
     [SerializeField]
     float speed = 2.0f;
 
+    [BoxGroup("Optional")]
+    [SerializeField]
+    Transform arrowBreakPlace = null;
+
+
+
     [BoxGroup("Status")]
     [SerializeField]
     [ReadOnly]
@@ -54,6 +60,12 @@ public class DeadArrow : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collisionInfo)
     {
+        if (arrowBreakPlace != null)
+        {
+            var effect = VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.ArrowBreaks, this.arrowBreakPlace.position, Quaternion.identity);
+            effect.transform.rotation = Quaternion.LookRotation(flyDirection);
+        }
+
         this.onHit(body.gameObject);
         if (collisionInfo.collider.tag.Equals("Player"))
         {

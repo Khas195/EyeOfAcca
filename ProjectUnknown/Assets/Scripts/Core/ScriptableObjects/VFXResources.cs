@@ -17,7 +17,12 @@ public class VFXResources : ScriptableObject
         OrbGatherPower,
         AxeHasPowerFlash,
         OnTeleGemHit,
-        RailBlockParticles
+        RailBlockParticles,
+        DoorCloseDust,
+        AxeRecalling,
+        PotBreak,
+        TrapFireSmoke,
+        ArrowBreaks
     }
     [Serializable]
     public struct VFX
