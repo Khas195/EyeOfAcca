@@ -1,31 +1,18 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[Serializable]
-public class SceneChooser
-{
-    [Scene]
-    public string sceneName;
-}
 public class GameMaster : SingletonMonobehavior<GameMaster>
 {
-    [SerializeField]
-    bool skipMainMenu = false;
     [SerializeField]
     [Required]
     StateManager gameStateManager = null;
 
     [SerializeField]
-    [Scene]
-    string startLevel = "";
-
-    [SerializeField]
-    int currentInGameLevelIndex = 1;
-
+    [Required]
+    GameMasterSettings settings;
 
 
     /// <summary>
@@ -36,9 +23,9 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     {
         UnloadAllScenesExcept("MasterScene");
 
-        if (skipMainMenu)
+        if (settings.skipMainMenu)
         {
-            this.LoadLevel(startLevel);
+            this.LoadLevel(settings.startLevel);
         }
         else
         {
@@ -104,13 +91,10 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
         }
 
     }
-    public void LoadLevel(int levelIndex)
-    {
-        LoadLevel("Level" + levelIndex);
-    }
+
     public string GetStartLevel()
     {
-        return startLevel;
+        return settings.startLevel;
     }
 
     private void LoadPrequisiteScenesForLevel()
@@ -122,10 +106,10 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
 
     public void LoadLevel(string levelName)
     {
+        SFXSystem.GetInstance().StopAllSounds();
         SaveLoadManager.LoadAllData();
         LoadPrequisiteScenesForLevel();
         LoadSceneAdditively(levelName);
-        currentInGameLevelIndex = (int)Char.GetNumericValue(levelName.ToCharArray()[levelName.Length - 1]);
         gameStateManager.RequestState(GameState.GameStateEnum.InGame);
     }
 
@@ -147,22 +131,6 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
         SceneManager.UnloadSceneAsync(sceneName);
     }
 
-    public void LoadNextLevel()
-    {
-        int nextLevelIndex = currentInGameLevelIndex + 1;
-        LogHelper.GetInstance().Log("Checking if level " + nextLevelIndex + " can be loaded", true);
-        if (Application.CanStreamedLevelBeLoaded("Level" + nextLevelIndex))
-        {
-            LoadLevel(nextLevelIndex);
-            currentInGameLevelIndex = nextLevelIndex;
-        }
-        else
-        {
-            LogHelper.GetInstance().LogWarning("Level " + nextLevelIndex + " could not be loaded", true);
-            LogHelper.GetInstance().Log("Restarting current level instead", true);
-            RestartLevel();
-        }
-    }
 
     public void SetMouseVisibility(bool visibility)
     {
@@ -188,19 +156,13 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
 #endif
     }
 
-    public void SetCurrentInGameLevel(int levelIndex)
-    {
-        currentInGameLevelIndex = levelIndex;
-    }
+
     public StateManager GetStateManager()
     {
         return gameStateManager;
     }
 
-    public int GetInGameLevelIndex()
-    {
-        return currentInGameLevelIndex;
-    }
+
     public bool IsInState(GameState.GameStateEnum stateToCheck)
     {
         if (gameStateManager == null)
@@ -214,8 +176,8 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     }
     public void RestartLevel()
     {
-        LogHelper.GetInstance().Log(("Restarting Level: " + currentInGameLevelIndex).Bolden(), true);
-        this.LoadLevel(currentInGameLevelIndex);
+        LogHelper.GetInstance().Log(("Restarting Level: " + SceneManager.GetActiveScene().name).Bolden(), true);
+        this.LoadLevel(SceneManager.GetActiveScene().name);
     }
 
     public void SetGameTimeScale(float newTimeScale)

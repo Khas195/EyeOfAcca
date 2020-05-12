@@ -29,6 +29,17 @@ public class RailBlock : AxeInteractable
     [SerializeField]
     UnityEvent OnBlockMove = new UnityEvent();
 
+    [BoxGroup("Settings")]
+    [SerializeField]
+    UnityEvent OnBlockMoveA = new UnityEvent();
+    [BoxGroup("Settings")]
+    [SerializeField]
+    UnityEvent OnBlockMoveB = new UnityEvent();
+
+
+
+
+
     [BoxGroup("Status")]
     [SerializeField]
     [ReadOnly]
@@ -49,6 +60,7 @@ public class RailBlock : AxeInteractable
     public override void OnAxeAbilityTriggered(AxeAbility triggeredAbility)
     {
         base.OnAxeAbilityTriggered(triggeredAbility);
+        bool moveA = true;
         if (abilityToInteract.Equals(triggeredAbility) && axe.GetStuckCollider() == box)
         {
             if (moveHorizontal)
@@ -56,6 +68,7 @@ public class RailBlock : AxeInteractable
                 if (holderTrans.transform.position.x > box.transform.position.x)
                 {
                     moveAb.GoTo(MoveAB.MoveABEnum.B);
+                    moveA = false;
                 }
                 else
                 {
@@ -67,6 +80,7 @@ public class RailBlock : AxeInteractable
                 if (holderTrans.transform.position.y >= box.transform.position.y)
                 {
                     moveAb.GoTo(MoveAB.MoveABEnum.B);
+                    moveA = false;
                 }
                 else
                 {
@@ -76,6 +90,15 @@ public class RailBlock : AxeInteractable
             }
             if (moveAb.HasReachedDestination() == false)
             {
+                if (moveA)
+                {
+                    OnBlockMoveA.Invoke();
+                }
+                else
+                {
+                    OnBlockMoveB.Invoke();
+                }
+
                 OnBlockMove.Invoke();
             }
         }

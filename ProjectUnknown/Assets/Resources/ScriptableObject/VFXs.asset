@@ -14,10 +14,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resourcesList:
   - tag: 4
-    prefab: {fileID: 2451939251177005006, guid: eb989887509f0104aac5097254d8e9f2,
+    prefab: {fileID: 6070847051010924072, guid: 7bfd76f6f69d6ff4caa0b108a51c6a06,
       type: 3}
   - tag: 3
-    prefab: {fileID: 1308346968847954323, guid: 639fcd0964b56f34d8dfec0c68610419,
+    prefab: {fileID: 4523563065567120071, guid: cb661e66a00aee146863d14964f14627,
+      type: 3}
+  - tag: 6
+    prefab: {fileID: 904892624921608172, guid: 1b4f3aede0828934da0ea4f274fcb7ae, type: 3}
+  - tag: 7
+    prefab: {fileID: 8990166003693400440, guid: 97861ebb784546244ac15c70cbbe1c56,
       type: 3}
   - tag: 5
-    prefab: {fileID: 904892624921608172, guid: 1b4f3aede0828934da0ea4f274fcb7ae, type: 3}
+    prefab: {fileID: 5586519671656894247, guid: f0ab03ec861c48b4699f4e0abe8a25db,
+      type: 3}
+  - tag: 8
+    prefab: {fileID: 1642555741818393424, guid: b65a6393822000340a6756bff46ffe6f,
+      type: 3}
+  - tag: 9
+    prefab: {fileID: 6683412071956575879, guid: 91723ac300b45584e95201941bf412f7,
+      type: 3}
+  - tag: 10
+    prefab: {fileID: 1197926270639397159, guid: e240d00f715fdb74d94b6796c47f18b5,
+      type: 3}
+  - tag: 11
+    prefab: {fileID: 3040361779249726119, guid: a384f878cc2851b47ad2a6eeb05c1cde,
+      type: 3}
+  - tag: 12
+    prefab: {fileID: 2460629270307363985, guid: 62c3cef1208e1c443b2201bb73bab892,
+      type: 3}
+  - tag: 13
+    prefab: {fileID: 5605060172774985163, guid: cb584fba205d09941aa9d6dcec09f48d,
+      type: 3}

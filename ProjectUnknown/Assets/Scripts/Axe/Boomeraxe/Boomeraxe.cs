@@ -43,6 +43,9 @@ public class Boomeraxe : MonoBehaviour
     [SerializeField]
     [Required]
     Transform axeHolderPos = null;
+
+
+
     [BoxGroup("Requirement")]
     [SerializeField]
     [Required]
@@ -69,13 +72,15 @@ public class Boomeraxe : MonoBehaviour
     [SerializeField]
     AxeTransformEvent OnStuck = new AxeTransformEvent();
 
+
+    [BoxGroup("Optional")]
+    [SerializeField]
+    AxeTransformEvent OnRecall = new AxeTransformEvent();
+
+
     [BoxGroup("Optional")]
     [SerializeField]
     AxeAbilityEvent useAbilityEvent = new AxeAbilityEvent();
-    [BoxGroup("Optional")]
-    [SerializeField]
-    AxeAbilityEvent axeStuckWithAbilityEvent = new AxeAbilityEvent();
-
 
 
     [BoxGroup("Optional")]
@@ -134,13 +139,23 @@ public class Boomeraxe : MonoBehaviour
     [ReadOnly]
     float currentRecallDuration = 0.0f;
 
+    [BoxGroup("Current Status")]
+    [SerializeField]
+    [ReadOnly]
+
+    AudioSource spinningSource = null;
+
+    [BoxGroup("Current Status")]
+    [SerializeField]
+    [ReadOnly]
+    private GameObject axeRecallingEffect;
+
     void Start()
     {
         body2d.gravityScale = 0;
         Reset();
     }
 
-    AudioSource spinning = null;
     /// <summary>
     /// Callback to draw gizmos that are pickable and always drawn.
     /// </summary>
@@ -207,20 +222,25 @@ public class Boomeraxe : MonoBehaviour
         flyTriggered = triggered;
         if (triggered)
         {
-            spinning = SFXSystem.GetInstance().PlaySound(SFXResources.SFXList.axeSpinning);
+            spinningSource = SFXSystem.GetInstance().PlaySound(SFXResources.SFXList.axeSpinning);
         }
         else
         {
-            if (spinning != null)
+            if (spinningSource != null)
             {
-                spinning.Stop();
-                spinning = null;
+                spinningSource.Stop();
+                spinningSource = null;
             }
         }
     }
 
     public void Reset()
     {
+        if (spinningSource)
+        {
+            spinningSource.Stop();
+            spinningSource = null;
+        }
 
         body2d.gameObject.SetActive(false);
         currentFlyDirection = Vector3.zero;
@@ -230,7 +250,6 @@ public class Boomeraxe : MonoBehaviour
         isStuck = false;
         stuckObject = null;
         body2d.GetComponent<Collider2D>().isTrigger = false;
-        OnStuck.Invoke(body2d.transform.position, body2d.transform.rotation);
     }
 
     public Collider2D GetStuckCollider()
@@ -254,6 +273,7 @@ public class Boomeraxe : MonoBehaviour
             return;
         }
 
+        contactPoint = other.contacts[0];
         stuckObject = other.collider;
         LogHelper.GetInstance().Log("*THUD*".Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
 
@@ -264,16 +284,18 @@ public class Boomeraxe : MonoBehaviour
 
         isStuck = true;
 
+        if (spinningSource)
+        {
+            spinningSource.Stop();
+            spinningSource = null;
+        }
+
         Vector2 stuckObj = other.collider.transform.position;
         Vector2 axePos = body2d.transform.position;
         offsetWithStuckSurface = (stuckObj - axePos);
 
         currentFlyDirection = Vector2.zero;
-        if (activeAbility)
-        {
-            axeStuckWithAbilityEvent.Invoke(activeAbility);
-        }
-        OnStuck.Invoke(body2d.transform.position, body2d.transform.rotation);
+        OnStuck.Invoke(contactPoint.point, body2d.transform.rotation);
     }
 
     private void RotateBladeTowardImpactPoint(Collision2D other)
@@ -294,15 +316,6 @@ public class Boomeraxe : MonoBehaviour
         // changed this from a lerp to a RotateTowards because you were supplying a "speed" not an interpolation value
         body2d.transform.rotation = targetRotation;
     }
-
-    private void PlaceAxeAtContactPoint(Collision2D other)
-    {
-        Vector3 pos = body2d.transform.position;
-        contactPoint = other.contacts[0];
-        pos = other.contacts[0].point;
-        pos.z = body2d.transform.position.z;
-        body2d.transform.position = pos;
-    }
     public void ActivateAbility()
     {
         if (activeAbility == null)
@@ -321,15 +334,21 @@ public class Boomeraxe : MonoBehaviour
     }
     public void Recall()
     {
+
+        animator.SetBool("Recall", false);
         returning = true;
         isStuck = false;
         stuckPos = body2d.transform.position;
         SetFlyTrigger(true);
-        OnStuck.Invoke(body2d.transform.position, body2d.transform.rotation);
         body2d.GetComponent<Collider2D>().isTrigger = true;
         currentRecallTime = 0;
         axeSprite.sortingLayerName = "AxeFront";
         CalculateRecallDistance();
+        OnRecall.Invoke(contactPoint.point, body2d.transform.rotation);
+        // axeRecallingEffect = VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.AxeRecalling, Vector3.zero, Quaternion.identity);
+        // axeRecallingEffect.transform.parent = body2d.transform;
+        // axeRecallingEffect.transform.localPosition = Vector3.zero;
+
     }
 
     private void CalculateRecallDistance()
@@ -356,13 +375,23 @@ public class Boomeraxe : MonoBehaviour
         if (returning)
         {
             grip.HoldAxe();
-            body2d.GetComponent<Collider2D>().isTrigger = false;
+            // axeRecallingEffect.transform.parent = null;
+            // StartCoroutine(DestroyAfter(0.3f, axeRecallingEffect));
         }
     }
+    // public IEnumerator DestroyAfter(float time, GameObject gameObject)
+    // {
+    //     yield return new WaitForSeconds(time);
+    //     Destroy(axeRecallingEffect);
 
+    // }
     public Vector2 GetAxePosition()
     {
         return body2d.transform.position;
+    }
+    public Transform GetAxeTransform()
+    {
+        return body2d.transform;
     }
 
     public BoomeraxeGrip GetGrip()
@@ -423,6 +452,11 @@ public class Boomeraxe : MonoBehaviour
         {
             animator.SetBool(activeAbility.GetAbilityPower(), false);
         }
+        if (spinningSource)
+        {
+            spinningSource.Stop();
+            spinningSource = null;
+        }
         activeAbility = null;
         useAbilityEvent.Invoke(activeAbility);
         useAbilityEvent.RemoveAllListeners();
@@ -431,6 +465,17 @@ public class Boomeraxe : MonoBehaviour
     public bool HasActiveAbility()
     {
         return activeAbility != null;
+    }
+    public AxeAbility GetCurrentAbility()
+    {
+        if (activeAbility != null)
+        {
+            return activeAbility;
+        }
+        else
+        {
+            return defaultAbility;
+        }
     }
 }
 

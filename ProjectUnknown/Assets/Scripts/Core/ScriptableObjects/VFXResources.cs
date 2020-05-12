@@ -12,9 +12,17 @@ public class VFXResources : ScriptableObject
         Heal,
         PlayerLand,
         FootFall,
-        Bounce,
+        Pebbles,
         Teleport,
-        AxeHasPowerFlash
+        OrbGatherPower,
+        AxeHasPowerFlash,
+        OnTeleGemHit,
+        RailBlockParticles,
+        DoorCloseDust,
+        AxeRecalling,
+        PotBreak,
+        TrapFireSmoke,
+        ArrowBreaks
     }
     [Serializable]
     public struct VFX

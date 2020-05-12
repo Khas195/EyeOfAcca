@@ -471,6 +471,12 @@ MonoBehaviour:
   audioPool: {fileID: 1106618749}
   activeSources: []
   backgroundMusic: {fileID: 1106618747}
+  masterGroup: {fileID: 24300002, guid: 7e48b736210e6bb41a991d0299f1149c, type: 2}
+  soundsGroup: {fileID: 4075282771249249686, guid: 7e48b736210e6bb41a991d0299f1149c,
+    type: 2}
+  musicGroup: {fileID: -1692070969337322398, guid: 7e48b736210e6bb41a991d0299f1149c,
+    type: 2}
+  masterMixer: {fileID: 24100000, guid: 7e48b736210e6bb41a991d0299f1149c, type: 2}
 --- !u!114 &1106618749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -743,6 +749,11 @@ PrefabInstance:
     - target: {fileID: 1891663336847751271, guid: 5f50411c103bd3b47b74085a90978f70,
         type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: -0.24951172
+      objectReference: {fileID: 0}
+    - target: {fileID: 1891663337051015292, guid: 5f50411c103bd3b47b74085a90978f70,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: -0.25
       objectReference: {fileID: 0}
     - target: {fileID: 1891663337051015295, guid: 5f50411c103bd3b47b74085a90978f70,
@@ -994,7 +1005,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8908253c5bbeca4bb28967ae7e1a840, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skipMainMenu: 1
   gameStateManager: {fileID: 1867409778}
-  startLevel: Level-2-6
-  currentInGameLevelIndex: 0
+  settings: {fileID: 11400000, guid: ec07c30a6fa72d0489a07bc455aec572, type: 2}

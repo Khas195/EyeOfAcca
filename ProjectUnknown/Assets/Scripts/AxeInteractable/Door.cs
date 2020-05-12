@@ -16,10 +16,15 @@ public class Door : MonoBehaviour
     [OnValueChanged("CheckIsOpen")]
     MoveAB.MoveABEnum OpenPos = MoveAB.MoveABEnum.A;
 
+    [BoxGroup("Optional")]
+    [SerializeField]
+    Transform particleSpawnPoint = null;
+
     [BoxGroup("Current Status")]
     [SerializeField]
     [ReadOnly]
     bool isOpen = false;
+
 
     /// <summary>
     /// Awake is called when the script instance is being loaded.
@@ -77,9 +82,14 @@ public class Door : MonoBehaviour
     /// </summary>
     void FixedUpdate()
     {
-        CheckIsOpen();
-    }
 
+    }
+    public void SpawnParticle()
+    {
+        var effect = VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.DoorCloseDust, particleSpawnPoint.transform.position, Quaternion.identity);
+        effect.transform.parent = particleSpawnPoint.transform;
+    }
+    [Button("Switch")]
     public void TriggerMechanism()
     {
         if (isOpen)
@@ -92,13 +102,15 @@ public class Door : MonoBehaviour
         }
     }
 
-    private void Open()
+    [Button("Open")]
+    public void Open()
     {
         moveAB.GoTo(OpenPos);
         isOpen = true;
     }
 
-    private void Close()
+    [Button("Close")]
+    public void Close()
     {
         if (OpenPos == MoveAB.MoveABEnum.A)
         {

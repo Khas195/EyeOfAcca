@@ -4,7 +4,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CameraSettings", menuName = "Data/CameraSettings", order = 1)]
 public class CameraSettings : ScriptableObject
 {
-    public float maxCameraFollwAxeDistance = 5f;
     [Range(0, 1f)]
     public float followPercentage = 0.08f;
     [Button("Save")]

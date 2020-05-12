@@ -43,6 +43,25 @@ public class Character2D : MonoBehaviour
         return body.gameObject;
     }
 
+    public bool TryDropDown()
+    {
+        var col = movement.GetGroundCollider2D();
+        if (col == null) return false;
+        if (col.tag.Equals("Oneway-Platform"))
+        {
+            Physics2D.IgnoreCollision(col, body.GetComponent<Collider2D>());
+            StartCoroutine(EnableCollision(0.5f, col));
+            return true;
+        }
+        return false;
+    }
+
+    IEnumerator EnableCollision(float delay, Collider2D platform)
+    {
+        yield return new WaitForSeconds(delay);
+        Physics2D.IgnoreCollision(platform, body.GetComponent<Collider2D>(), false);
+    }
+
     /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.
     /// </summary>
@@ -57,8 +76,9 @@ public class Character2D : MonoBehaviour
             movement.SetMovementData(movementWithouAxe);
         }
     }
-    public void Jump()
+    public bool Jump()
     {
+        if (movement.IsTouchingGround() == false) return false;
         if (grip.IsHoldingAxe())
         {
             LogHelper.GetInstance().Log(("Axe is so Heavy!!! ").Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
@@ -68,6 +88,7 @@ public class Character2D : MonoBehaviour
             LogHelper.GetInstance().Log(("So light!! ").Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
         }
         movement.SignalJump();
+        return true;
     }
 
 

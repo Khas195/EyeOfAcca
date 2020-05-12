@@ -8,22 +8,16 @@ public class BoomeraxeVFXHandler : MonoBehaviour
     Transform gemPosition = null;
     [SerializeField]
     Boomeraxe axe = null;
-    public void OnTeleport(Vector3 newPos, Vector3 oldPos)
+    public void SpawnPebbles(Vector3 pos, Quaternion rotation)
     {
-        VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.Teleport, newPos, Quaternion.identity);
-        VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.Teleport, oldPos, Quaternion.identity);
+        var effect = VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.Pebbles, pos, rotation);
     }
-    public void OnAxeStuck(Vector3 pos, Quaternion rotation)
+    public void OnAxeStuckWithAbility(Vector3 pos, Quaternion rotation)
     {
-
-        if (axe.HasActiveAbility() == true) return;
-        VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.Bounce, pos, rotation);
-    }
-    public void OnAxeStuckWithAbility(AxeAbility ability)
-    {
-        var effect = VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.AxeHasPowerFlash, Vector3.zero, Quaternion.identity);
-        effect.transform.parent = gemPosition;
-        effect.transform.localPosition = Vector2.zero;
-        effect.transform.localRotation = Quaternion.identity;
+        var ability = axe.GetCurrentAbility();
+        var effect = VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.AxeHasPowerFlash, Vector2.one, Quaternion.identity);
+        effect.transform.position = gemPosition.position;
+        effect.transform.parent = axe.GetAxeTransform();
+        effect.GetComponent<Animator>().SetBool(ability.GetAbilityPower(), true);
     }
 }

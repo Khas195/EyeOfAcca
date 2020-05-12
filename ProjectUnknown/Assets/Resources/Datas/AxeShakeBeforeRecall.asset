@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21f714ef91344ba47ae7ca37e2acd072, type: 3}
   m_Name: AxeShakeBeforeRecall
   m_EditorClassIdentifier: 
-  frequency: 1000
-  maximumTranslateShake: {x: 0.5, y: 0.5, z: 0.5}
-  maximumAngularShake: {x: 2, y: 2, z: 2}
-  recoverySpeed: 1.5
-  traumaExponent: 2
+  shakeDuration: 0.3
+  shakeAmount: 0.1
+  decreaseFactor: 1

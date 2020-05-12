@@ -127,5 +127,30 @@ public class Movement2DPlatform : IMovement
     {
         return cachedSide;
     }
+    public override Collider2D GetGroundCollider2D()
+    {
 
+        var cols = Physics2D.OverlapBoxAll(this.body2D.transform.position + checkGroundBoxOffset, checkGroundBoxSize, 0, jumpableLayer);
+        if (cols.Length > 0)
+        {
+            return cols[0];
+        }
+        return null;
+    }
+
+
+    public override void SetRigidBody(Rigidbody hostRigidBody)
+    {
+        base.SetRigidBody(hostRigidBody);
+    }
+
+    public override MovementData GetMovementData()
+    {
+        return base.GetMovementData();
+    }
+
+    public override void RotateToward(Vector3 direction, bool rotateY)
+    {
+        base.RotateToward(direction, rotateY);
+    }
 }

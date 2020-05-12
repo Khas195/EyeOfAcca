@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MoveAB : MonoBehaviour
 {
@@ -33,6 +34,16 @@ public class MoveAB : MonoBehaviour
 
     [BoxGroup("Settings")]
     [SerializeField]
+    Tweener.TweenType moveType = Tweener.TweenType.EaseOutQuad;
+
+
+    [BoxGroup("Settings")]
+    [SerializeField]
+    bool allowInteractionDuringMoveBack = false;
+
+
+    [BoxGroup("Settings")]
+    [SerializeField]
     float timeTillDestinationReached = 1;
 
     [BoxGroup("Settings")]
@@ -44,6 +55,17 @@ public class MoveAB : MonoBehaviour
     [SerializeField]
     [OnValueChanged("OnStartPositionChanged")]
     MoveABEnum startPos = MoveABEnum.Middle;
+
+
+    [BoxGroup("Settings")]
+    [SerializeField]
+    UnityEvent OnReachA = new UnityEvent();
+
+    [BoxGroup("Settings")]
+    [SerializeField]
+    UnityEvent OnReachB = new UnityEvent();
+
+
 
     [BoxGroup("Current Status")]
     [SerializeField]
@@ -132,7 +154,7 @@ public class MoveAB : MonoBehaviour
     {
         if (inMotion)
         {
-            this.box.transform.position = Tweener.EaseOutQuad(curTime, originPos, destination, currentTimeTillDestinationReaded);
+            this.box.transform.position = Tweener.Tween(moveType, curTime, originPos, destination, currentTimeTillDestinationReaded);
             curTime += Time.deltaTime;
             if (HasReachedDestination())
             {
@@ -146,6 +168,17 @@ public class MoveAB : MonoBehaviour
                 {
                     isMovingBack = false;
                     inMotion = false;
+                    this.box.transform.position = destination;
+                }
+                Vector2 posA = aPosition.position;
+                Vector2 posB = bPosition.position;
+                if (IsAt(MoveABEnum.A))
+                {
+                    OnReachA.Invoke();
+                }
+                else if (IsAt(MoveABEnum.B))
+                {
+                    OnReachB.Invoke();
                 }
                 curTime = 0;
             }
@@ -154,12 +187,13 @@ public class MoveAB : MonoBehaviour
 
     public bool HasReachedDestination()
     {
-        return Vector2.Distance(box.transform.position, destination) <= 0.01f;
+        return Vector2.Distance(box.transform.position, destination) <= 0.05f || curTime >= currentTimeTillDestinationReaded || inMotion == false;
     }
 
     public void GoTo(MoveABEnum moveDestination)
     {
-        if (isMovingBack) return;
+        if (allowInteractionDuringMoveBack == false && isMovingBack) return;
+
         if (moveDestination == MoveABEnum.A)
         {
             destination = aPosition.position;
@@ -181,17 +215,20 @@ public class MoveAB : MonoBehaviour
     {
         if (posEnum == MoveABEnum.A)
         {
-            return Vector2.Distance(box.transform.position, aPosition.position) < 0.01f;
+            return Vector2.Distance(box.transform.position, aPosition.position) < 0.05f;
         }
         else if (posEnum == MoveABEnum.B)
         {
 
-            return Vector2.Distance(box.transform.position, bPosition.position) < 0.01f;
+            return Vector2.Distance(box.transform.position, bPosition.position) < 0.05f;
         }
         else
         {
-            return Vector2.Distance(box.transform.position, (aPosition.position + bPosition.position) / 2) < 0.01f;
+            return Vector2.Distance(box.transform.position, (aPosition.position + bPosition.position) / 2) < 0.05f;
         }
     }
-
+    public MoveABEnum GetStartPos()
+    {
+        return startPos;
+    }
 }

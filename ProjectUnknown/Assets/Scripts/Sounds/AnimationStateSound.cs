@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class AnimationStateSound : StateMachineBehaviour
 {
@@ -22,7 +23,7 @@ public class AnimationStateSound : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (source != null && source.loop == true)
+        if (source != null)
         {
             source.Stop();
             source = null;
@@ -40,4 +41,5 @@ public class AnimationStateSound : StateMachineBehaviour
     //{
     //    // Implement code that sets up animation IK (inverse kinematics)
     //}
+
 }
