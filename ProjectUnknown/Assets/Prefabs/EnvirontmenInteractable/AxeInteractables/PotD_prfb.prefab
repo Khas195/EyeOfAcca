@@ -70,7 +70,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1615924293
-  m_SortingLayer: 10
+  m_SortingLayer: 6
   m_SortingOrder: 6
   m_Sprite: {fileID: 5029522885662545562, guid: 59287e77b60468c4c8ff3ee2aae3280b,
     type: 3}
@@ -94,7 +94,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.008552074, y: -0.29934072}
@@ -126,3 +126,4 @@ MonoBehaviour:
   brokenState: {fileID: -8064890547992031170, guid: 59287e77b60468c4c8ff3ee2aae3280b,
     type: 3}
   box: {fileID: 835765172}
+  breakingSound: 11

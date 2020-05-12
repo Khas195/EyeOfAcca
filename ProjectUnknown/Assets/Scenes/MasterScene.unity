@@ -476,6 +476,7 @@ MonoBehaviour:
     type: 2}
   musicGroup: {fileID: -1692070969337322398, guid: 7e48b736210e6bb41a991d0299f1149c,
     type: 2}
+  masterMixer: {fileID: 24100000, guid: 7e48b736210e6bb41a991d0299f1149c, type: 2}
 --- !u!114 &1106618749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -744,6 +745,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_FontData.m_MaxSize
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1891663336847751271, guid: 5f50411c103bd3b47b74085a90978f70,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.24951172
+      objectReference: {fileID: 0}
+    - target: {fileID: 1891663337051015292, guid: 5f50411c103bd3b47b74085a90978f70,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.25
       objectReference: {fileID: 0}
     - target: {fileID: 1891663337051015295, guid: 5f50411c103bd3b47b74085a90978f70,
         type: 3}

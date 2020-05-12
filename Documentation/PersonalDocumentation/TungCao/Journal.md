@@ -109,3 +109,29 @@ Sam wanted to push this iteration to the end of the week but we all agreed that 
 ##### 2nd iteration.
 
 In this iteration, the axe only tracks you down on command. When you throw the axe, it will stick to any surface then you can recall it. This is not as playful as the 1st or previous interation but if we go back to the idea of the "Jungle Gym", it has the most promises. Due to it being simple in nature, it can has a wild range of interesting interactions with the other elements. They, together, create a jungle gym which result in a more interesting toy.
+
+
+
+### __**Moving Forward (May 3rd, 2020 - May 10th, 2020)**__
+
+##### First thought.
+
+I asked prof Csongor about the miro board being the journal itself. It turned out that we also need personal thoughts as well. I, however, do not like mixing works and private matters. Eventhough, everyone can read this journal anyway.
+
+To get to the point, this journal will be less work related like what was done and my processing on accomplishing a certain task, and more just thoughts of what happened. 
+
+##### Playtest Tuesday.
+
+It was dull as hell. No one joined to play our game. There were 11 downloads and some people didn't give any feedbacks. Shame on them!!. 
+
+The axe's fly back motion was real nice but people didn't like it. Oh, well I guess. 
+
+##### Team orngization.
+
+Ousama is being pushed into the team for no real reasons. He has a team that is welcoming him and the just because the he said he doesn't like it, the prof is pushing him into the team. Even though, we clearly stated that we don't like it as well. Does his words matter more ?.
+
+Got Ousama in the team, he will be in charge of testing the limit of the our mechanics. Such as, how many interesting puzzle that can be made out of a set of mechanics.
+
+He made some nice instances where the mechanic can be more than just a puzzle i.e. short-cut, creating a path. Though, I don't think he noticed that he created those features. We, then, give him feedbacks and advices to point him in the right direction.
+
+He took off some of the workloads needed for testing the mechanics beforehand. Which mean we can go into making actual levels sooner, pretty nice.

@@ -23,19 +23,15 @@ public class BoomerAxeFollow : MonoBehaviour
     [SerializeField]
     [Required]
     CameraSettings settings;
+    [SerializeField]
+    [Required]
+    Camera playerCamera = null;
 
-    void OnDrawGizmos()
-    {
-        if (characterBody == null || settings == null)
-        {
-            return;
-        }
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(characterBody.transform.position, settings.maxCameraFollwAxeDistance);
-    }
     void Update()
     {
-        if (Vector2.Distance(characterBody.transform.position, axeBody.transform.position) >= settings.maxCameraFollwAxeDistance)
+        var cameraSizeY = 2 * playerCamera.orthographicSize;
+        var cameraSizeX = cameraSizeY * playerCamera.aspect;
+        if (Mathf.Abs(axeBody.transform.position.x - characterBody.transform.position.x) > cameraSizeX || Mathf.Abs(axeBody.transform.position.y - characterBody.transform.position.y) > cameraSizeY)
         {
             follow.RemoveEncapsolate(axeBody.transform);
         }

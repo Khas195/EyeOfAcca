@@ -28,7 +28,7 @@ MonoBehaviour:
   - tag: 4
     clip: {fileID: 8300000, guid: fa1967aa71e1b4292899cee866d42ce8, type: 3}
     loop: 0
-    volumn: 1
+    volumn: 0.733
   - tag: 5
     clip: {fileID: 8300000, guid: 2c156b69fa78e4e0aa9074bf3d19fd4d, type: 3}
     loop: 0
@@ -36,8 +36,24 @@ MonoBehaviour:
   - tag: 3
     clip: {fileID: 8300000, guid: 8563fdfaba82c499d8f63492a8d2d711, type: 3}
     loop: 1
-    volumn: 0.3
+    volumn: 0.2
   - tag: 7
     clip: {fileID: 8300000, guid: 2c17da8412fbd43088c2f8a8cec0195d, type: 3}
     loop: 0
     volumn: 0.8
+  - tag: 8
+    clip: {fileID: 8300000, guid: 4cb4c5cce4a4b4e5893bad49c4aa0a2d, type: 3}
+    loop: 0
+    volumn: 0.5
+  - tag: 9
+    clip: {fileID: 8300000, guid: b01663e200e8d45129f69beeaed797d4, type: 3}
+    loop: 0
+    volumn: 0.4
+  - tag: 10
+    clip: {fileID: 8300000, guid: c550f207cfaaf4a3e95569f65ea3fdb7, type: 3}
+    loop: 1
+    volumn: 0
+  - tag: 11
+    clip: {fileID: 8300000, guid: 5a3e48998ca784e5ea3367e528d21a7e, type: 3}
+    loop: 0
+    volumn: 1

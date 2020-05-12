@@ -259,3 +259,134 @@ Level:
 
         Added new play test level.
         Added new Menu scene.
+
+#### _**Version 0.1.0, 0.1.1, 0.1.2, 0.1.3 (May 3rd, 2020 - May 11th, 2020)**_
+
+##### Version 0.1.0
+
+Change Notes:
+
+Bugs fixed:
+
+    Fixed issue where the axe miss the character on recall.
+
+Character:
+
+    Same speed regardless of holding the axe or not.
+
+Axe:
+
+    Changed recall behavior.
+    Reduce recall time from : 1s - > 0.4s.
+    Min Recall Duration: 12s.
+    Max Recall Velocity Scale Distance: 12.
+    Min Recall velocity Fall Off distance: 4.
+
+Notes:
+
+    These duration are calculated at the time of recall.
+    Recall duration will scale based on percentage between 4 - 12 distance.
+    Fly Velocity: 20 -> 35.
+
+Camera:
+
+    Camera will no long center between the axe and player if he get too far. (Represent by the cyan color circle in editor).
+
+
+##### Version 0.1.1
+
+Change Notes:
+
+Bugs fixed:
+
+    Fixed axe sliding instead of sticking.
+
+Axe:
+
+    Added new gem effect when going through a gem.
+
+Block:
+
+    The block will move toward the side of the character regardless where the axe was stuck.
+
+Pot:
+
+    Add breakables pot.
+
+Dead Zone (Spikes):
+
+    Added dead zone.
+    Restart level on character touching deadzone.
+    Axe's ability gained before touching dead zone will be nullified.
+    Axe recalls immediately on touching dead zone.
+
+Timed Door:
+
+    Added door that open depend on block movement.
+    Door can close automatically or by moving block.
+    Added Door close automatically time: 5s.
+
+Block and Timed Door: 
+
+    Now using MoveAB script for movement.
+
+ 
+##### Version 0.1.2
+
+Change Notes:
+
+Bugs fixed:
+
+    Axe has blue power as a natural state.
+    Fixed crazy shaking.
+    Fixed Crazy spinning sounds.
+
+Axe:
+
+    added Animation effect when axe stuck.
+    added teleport gathering power.
+    added recall gathering power.
+
+One-way Platform:
+
+    Added Oneway platform Grid.
+
+Timed Door:
+
+    Implemented the timed door lever.
+    Setting up the lever and the door is a time sensitive manner. -> They do not move in conjuncture in their own but setting up the movement time can create this effect,
+
+Dead Arrow:
+    
+    Added dead arrow and dead arrow spawner.
+
+##### Version 0.1.3
+
+
+Change Notes:
+
+Bugs fixed:
+
+    Axe throw at an angled when in the air.
+
+
+Arrow Trap:
+
+    Added arrow traps + juice.
+
+One-way Platform:
+
+    Added Oneway platform Grid.
+
+Gem and Gem On axe:
+
+    Remove gathering Power
+    Added juice.
+
+Pots:
+
+    Added normal state sprite and broken state sprite.
+
+Player:
+
+    Can now press down + jump to drop down form one way platform.
