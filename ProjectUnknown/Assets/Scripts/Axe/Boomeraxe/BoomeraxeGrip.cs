@@ -62,6 +62,9 @@ public class BoomeraxeGrip : MonoBehaviour
     [BoxGroup("Optional")]
     [SerializeField]
     OnAxeThrowCatch throwCatchEvent = new OnAxeThrowCatch();
+
+
+
     [BoxGroup("Optional")]
     [SerializeField]
     UnityEvent axeThrowTrigger = new UnityEvent();
@@ -71,6 +74,8 @@ public class BoomeraxeGrip : MonoBehaviour
     [SerializeField]
     [ReadOnly]
     bool isBeingHeld = true;
+
+
 
     [BoxGroup("Current Status")]
     [SerializeField]
@@ -87,10 +92,8 @@ public class BoomeraxeGrip : MonoBehaviour
     [ReadOnly]
     bool axeIsShaking = false;
 
-    [BoxGroup("Current Status")]
-    [SerializeField]
-    [ReadOnly]
-    bool useAxe = false;
+    bool axeAbilityActivated;
+
 
 
     /// <summary>
@@ -102,79 +105,40 @@ public class BoomeraxeGrip : MonoBehaviour
         HoldAxe();
     }
 
-    /// <summary>
-    /// Update is called every frame, if the MonoBehaviour is enabled.
-    /// </summary>
-    Vector3 mousPos = Vector3.one;
+
     void Update()
     {
         if (isBeingHeld == true)
         {
             StickToHolder();
-            if (axeThrowTriggered == false)
-            {
-                mousPos = Input.mousePosition;
-                mousPos = playerCamera.ScreenToWorldPoint(mousPos);
-
-                if (useAxe)
-                {
-                    flip.CheckFacing(mousPos.x - holderPivot.transform.position.x);
-                    axeThrowTriggered = true;
-                    axeThrowTrigger.Invoke();
-                    useAxe = false;
-                }
-            }
         }
         else
         {
-            if (useAxe && boomeraxeFlying.IsStuck() == true && axeIsShaking == false)
-            {
-                if (shake != null)
-                {
-                    LogHelper.GetInstance().Log(("ACTIVATE!!").Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
-                    shake.InduceTrauma(() => boomeraxeFlying.ActivateAbility());
-                }
-                if (holderMovement.IsTouchingGround() == false)
-                {
-                    adjustor.SetGravityScale(datas.timeScaleOnAxeRecall);
-                }
-                useAxe = false;
-            }
-            // if (OutOfCameraView() && axeIsReturning == false)
-            // {
-            //     LogHelper.GetInstance().Log("Boomeraxe".Bolden().Colorize("#83ecd7") + " has exit the Camera Bounds, Return in " + datas.timeTilAxeReturnAfterExitCameraView.ToString().Bolden(), true);
-            //     StopCoroutine(HoldAxeAfter(datas.timeTilAxeReturnAfterExitCameraView));
-            //     StartCoroutine(HoldAxeAfter(datas.timeTilAxeReturnAfterExitCameraView));
-            // }
+
+
         }
     }
     public void SetAxeCatchable(bool catchable)
     {
         axeCatchable = catchable;
     }
-
-    private bool OutOfCameraView()
+    public bool ThrowAxe(Vector3 at)
     {
-        var planes = GeometryUtility.CalculateFrustumPlanes(this.playerCamera);
-        var boomeraxeCollider2d = boomeraxeObject.GetComponent<Collider2D>();
-        if (GeometryUtility.TestPlanesAABB(planes, boomeraxeCollider2d.bounds))
-        {
-            return false;
-        }
-        return true;
-    }
+        if (isBeingHeld == false) return false;
 
-    public void ThrowAxe()
-    {
+        flip.CheckFacing(at.x - holderPivot.transform.position.x);
+        axeThrowTriggered = true;
+        axeThrowTrigger.Invoke();
+
         isBeingHeld = false;
         axeCatchable = false;
-        axeThrowTriggered = false;
 
-        boomeraxeFlying.Fly(mousPos);
+        boomeraxeFlying.Fly(at);
         adjustor.SetGravityScaleFor(datas.timeScaleAfterThrow, datas.lulPeriodAfterAirborneThrow);
 
         StopCoroutine(TurnOnAxeCatchable(datas.timeTilAxeCatchable));
         StartCoroutine(TurnOnAxeCatchable(datas.timeTilAxeCatchable));
+        return true;
     }
     public bool IsHoldingAxe()
     {
@@ -225,8 +189,27 @@ public class BoomeraxeGrip : MonoBehaviour
     {
         return isBeingHeld;
     }
-    public void UseAxe()
+
+    public bool ActivateAxeAbility()
     {
-        useAxe = true;
+        if (boomeraxeFlying.IsStuck() == false || axeAbilityActivated == true) return false;
+
+        axeAbilityActivated = true;
+        if (shake != null)
+        {
+            LogHelper.GetInstance().Log(("ACTIVATE!!").Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
+            var soundEffect = SFXSystem.GetInstance().PlaySound(SFXResources.SFXList.AxeShaking);
+            shake.InduceTrauma(() =>
+            {
+                boomeraxeFlying.ActivateAbility();
+                axeAbilityActivated = false;
+                soundEffect.Stop();
+            });
+        }
+        if (holderMovement.IsTouchingGround() == false)
+        {
+            adjustor.SetGravityScale(datas.timeScaleOnAxeRecall);
+        }
+        return true;
     }
 }

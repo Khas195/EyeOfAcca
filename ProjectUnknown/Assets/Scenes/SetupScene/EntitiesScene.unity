@@ -969,11 +969,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8558128283020694534, guid: 2b03fc41f04525f469eccd660ed2db23,
+        type: 3}
+      propertyPath: checkGroundBoxSize.x
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 8558128283662357634, guid: 2b03fc41f04525f469eccd660ed2db23,
         type: 3}
       propertyPath: grip
       value: 
       objectReference: {fileID: 285891218}
+    - target: {fileID: 8558128283662357634, guid: 2b03fc41f04525f469eccd660ed2db23,
+        type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 424431176}
+    - target: {fileID: 8558128283662357634, guid: 2b03fc41f04525f469eccd660ed2db23,
+        type: 3}
+      propertyPath: inputBufferTime
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8558128283662357634, guid: 2b03fc41f04525f469eccd660ed2db23,
+        type: 3}
+      propertyPath: jumpInputBufferTime
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8558128283915914036, guid: 2b03fc41f04525f469eccd660ed2db23,
+        type: 3}
+      propertyPath: axeThrowEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8558128283915914036, guid: 2b03fc41f04525f469eccd660ed2db23,
         type: 3}
       propertyPath: axeThrowEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target

@@ -12,8 +12,10 @@ public class TeleportAbility : AxeAbility
         /// teleport 
         var pos = axe.GetAxePosition();
         Vector3 teleportPlace = pos + axe.GetContactPointNormal() * datas.teleportDistanceAwayFromDestination;
+
         VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.Teleport, axe.GetHolderBodyPosition(), Quaternion.identity);
         VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.Teleport, teleportPlace, Quaternion.identity);
+        SFXSystem.GetInstance().PlaySound(SFXResources.SFXList.Teleport);
 
         teleportPlace.z = axe.GetHolderBodyPosition().z;
 

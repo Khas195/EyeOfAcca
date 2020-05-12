@@ -106,6 +106,7 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
 
     public void LoadLevel(string levelName)
     {
+        SFXSystem.GetInstance().StopAllSounds();
         SaveLoadManager.LoadAllData();
         LoadPrequisiteScenesForLevel();
         LoadSceneAdditively(levelName);

@@ -8,11 +8,6 @@ public class BoomeraxeVFXHandler : MonoBehaviour
     Transform gemPosition = null;
     [SerializeField]
     Boomeraxe axe = null;
-    public void OnTeleport(Vector3 newPos, Vector3 oldPos)
-    {
-        VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.Teleport, newPos, Quaternion.identity);
-        VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.Teleport, oldPos, Quaternion.identity);
-    }
     public void SpawnPebbles(Vector3 pos, Quaternion rotation)
     {
         var effect = VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.Pebbles, pos, rotation);
