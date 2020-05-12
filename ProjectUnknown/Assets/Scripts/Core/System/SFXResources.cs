@@ -17,7 +17,8 @@ public class SFXResources : ScriptableObject
         playerLand,
         RaillMoving,
         Teleport,
-        AxeShaking
+        AxeShaking,
+        PotBreak
     }
     [Serializable]
     public struct SFX

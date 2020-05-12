@@ -6,8 +6,16 @@ public class SFXHelper : MonoBehaviour
 {
     [SerializeField]
     SFXResources.SFXList soundToPlay;
+    AudioSource sound = null;
     public void PlaySound()
     {
-        SFXSystem.GetInstance().PlaySound(soundToPlay);
+        sound = SFXSystem.GetInstance().PlaySound(soundToPlay);
+    }
+    public void StopSound()
+    {
+        if (sound)
+        {
+            sound.Stop();
+        }
     }
 }

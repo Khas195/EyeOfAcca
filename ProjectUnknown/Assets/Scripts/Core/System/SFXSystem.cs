@@ -24,8 +24,11 @@ public partial class SFXSystem : SingletonMonobehavior<SFXSystem>
     AudioMixerGroup masterGroup = null;
     [SerializeField]
     AudioMixerGroup soundsGroup = null;
+
     [SerializeField]
     AudioMixerGroup musicGroup = null;
+    [SerializeField]
+    AudioMixer masterMixer = null;
 
     public void PlayBGMusic()
     {
@@ -37,6 +40,9 @@ public partial class SFXSystem : SingletonMonobehavior<SFXSystem>
     {
         backgroundMusic.Stop();
     }
+
+
+
     public bool IsBGMusicPlaying()
     {
         return backgroundMusic.isPlaying;
@@ -93,6 +99,28 @@ public partial class SFXSystem : SingletonMonobehavior<SFXSystem>
             activeSources[i].clip = null;
             audioPool.ReturnInstance(activeSources[i].gameObject);
             activeSources.RemoveAt(i);
+        }
+    }
+    public void SwitchMusic(bool on)
+    {
+        if (on)
+        {
+            this.masterMixer.SetFloat("musicVol", -21.0f);
+        }
+        else
+        {
+            this.masterMixer.SetFloat("musicVol", -80.0f);
+        }
+    }
+    public void SwitchSounds(bool on)
+    {
+        if (on)
+        {
+            this.masterMixer.SetFloat("sfxVol", -21.0f);
+        }
+        else
+        {
+            this.masterMixer.SetFloat("sfxVol", -80.0f);
         }
     }
 }

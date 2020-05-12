@@ -14,6 +14,9 @@ public class Breakables : AxeInteractable
     [SerializeField]
     [Required]
     Collider2D box = null;
+    [SerializeField]
+    [Required]
+    SFXResources.SFXList breakingSound;
 
     public override void OnAxeAbilityTriggered(AxeAbility triggeredAbility)
     {
@@ -27,6 +30,7 @@ public class Breakables : AxeInteractable
         spriteRender.sprite = brokenState;
         box.enabled = false;
         VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.PotBreak, this.transform.position, Quaternion.identity);
+        SFXSystem.GetInstance().PlaySound(breakingSound);
     }
 
 

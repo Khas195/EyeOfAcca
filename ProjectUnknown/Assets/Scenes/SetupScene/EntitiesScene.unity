@@ -381,6 +381,7 @@ MonoBehaviour:
   characterBody: {fileID: 638179320}
   axeBody: {fileID: 1481426448}
   settings: {fileID: 11400000, guid: b2dd0d22e649e5542ab1e7ee755e2cce, type: 2}
+  playerCamera: {fileID: 424431176}
 --- !u!4 &1925956753 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7188433439482887247, guid: 19c4c104f02ffa34ead48f24ad97343b,
