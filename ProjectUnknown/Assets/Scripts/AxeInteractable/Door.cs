@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
+
+
     [BoxGroup("Requirements")]
     [SerializeField]
     [Required]

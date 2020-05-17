@@ -55,7 +55,7 @@ public class PlayerController2D : MonoBehaviour
         }
         var forward = Input.GetAxisRaw("Vertical");
         character.Move(side, forward);
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || forward > 0)
         {
             currentJumpBufferTime = jumpInputBufferTime;
         }
