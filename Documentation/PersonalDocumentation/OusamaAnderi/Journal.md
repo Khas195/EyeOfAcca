@@ -15,3 +15,5 @@ After Thinking a bit about working alone I had this feeling that it will be a lo
 ## After Joining Samartha Team , 8/5/2020 Acas Eye.
 *I joined the team of Samartha later on and Started the work from scratch with them.
 I am currently using all thier systems and mechanics and trying to squeeze them as much as possible to make new puzzles ideas etc.
+So far I have made 9 diffrent scenes in unity with diffrent puzzle instances, ideas even new mechanics but we are all still discussing what works and what doesn't.
+
