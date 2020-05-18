@@ -432,7 +432,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   host: {fileID: 1925956753}
-  boundBoxSize: {x: 10000, y: 10000}
+  boundBoxSize: {x: 500, y: 500}
   follow: {fileID: 1080578821}
   cam: {fileID: 424431176}
 --- !u!1001 &4475797551723659836
@@ -773,12 +773,12 @@ PrefabInstance:
     - target: {fileID: 7188433439482887247, guid: 19c4c104f02ffa34ead48f24ad97343b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 7188433439482887247, guid: 19c4c104f02ffa34ead48f24ad97343b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 5.3
       objectReference: {fileID: 0}
     - target: {fileID: 7188433439587899957, guid: 19c4c104f02ffa34ead48f24ad97343b,
         type: 3}
@@ -928,12 +928,12 @@ PrefabInstance:
     - target: {fileID: 8558128282581107803, guid: 2b03fc41f04525f469eccd660ed2db23,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.32
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 8558128282581107803, guid: 2b03fc41f04525f469eccd660ed2db23,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 8558128282581107803, guid: 2b03fc41f04525f469eccd660ed2db23,
         type: 3}
