@@ -39,7 +39,9 @@ public class CameraFollow : MonoBehaviour
         encapsolatedTarget.Add(character);
         if (GameMaster.GetInstance().SpawnPositionSet() == true)
         {
-            host.position = GameMaster.GetInstance().GetSpawnPosition();
+            var pos = GameMaster.GetInstance().GetSpawnPosition();
+            pos.z = host.position.z;
+            host.position = pos;
         }
     }
 
