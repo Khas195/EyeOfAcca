@@ -135,3 +135,10 @@ Got Ousama in the team, he will be in charge of testing the limit of the our mec
 He made some nice instances where the mechanic can be more than just a puzzle i.e. short-cut, creating a path. Though, I don't think he noticed that he created those features. We, then, give him feedbacks and advices to point him in the right direction.
 
 He took off some of the workloads needed for testing the mechanics beforehand. Which mean we can go into making actual levels sooner, pretty nice.
+
+### __**Level and Narrative Design (May 11th, 2020 - May 19th, 2020)**__
+
+During this sprint, the focus was more about the level and narrative in the game. In meetings, we talked more about those aspect while Chris is working on the new art version and concepting and Ousama is working on more puzzle instances.
+
+I took this time to see the way Ousama creating the levels and improve our unity editor to make the process easier. Which result in this sprint being a quality of life improvment in the Unity editor on coding the side. The changes can be seen in Version 0.1.4.
+

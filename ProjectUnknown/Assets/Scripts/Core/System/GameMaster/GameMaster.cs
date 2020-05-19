@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
@@ -13,6 +14,9 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     [SerializeField]
     [Required]
     GameMasterSettings settings;
+
+    Vector3 spawnPosition;
+    bool spawnPositionSet = false;
 
 
     /// <summary>
@@ -31,6 +35,16 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
         {
             this.GoToMainMenu();
         }
+    }
+
+    public bool SpawnPositionSet()
+    {
+        return this.spawnPositionSet;
+    }
+
+    public Vector3 GetSpawnPosition()
+    {
+        return this.spawnPosition;
     }
 
     /// <summary>
@@ -66,6 +80,12 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
         gameStateManager.RequestState(GameState.GameStateEnum.MainMenu);
     }
 
+    public void SetSpawnPoint(Vector3 position)
+    {
+        this.spawnPosition = position;
+        spawnPositionSet = true;
+    }
+
     private void UnloadAllScenesExcept(string sceneNotToUnloadName)
     {
         int numOfScene = SceneManager.sceneCount;
@@ -97,20 +117,18 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
         return settings.startLevel;
     }
 
-    private void LoadPrequisiteScenesForLevel()
-    {
-        UnloadAllScenesExcept("MasterScene");
-        LoadSceneAdditively("EntitiesScene");
-        LoadSceneAdditively("InGameMenu");
-    }
-
     public void LoadLevel(string levelName)
     {
+        UnloadAllScenesExcept("MasterScene");
+
         SFXSystem.GetInstance().StopAllSounds();
         SaveLoadManager.LoadAllData();
-        LoadPrequisiteScenesForLevel();
         LoadSceneAdditively(levelName);
         gameStateManager.RequestState(GameState.GameStateEnum.InGame);
+
+        LoadSceneAdditively("EntitiesScene");
+        LoadSceneAdditively("InGameMenu");
+
     }
 
     private void UnloadCurrentLevel()
