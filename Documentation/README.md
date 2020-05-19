@@ -391,3 +391,22 @@ Pots:
 Player:
 
     Can now press down + jump to drop down form one way platform.
+
+
+#### _**Version 0.1.4 (May 11th, 2020 - May 19th, 2020)**_
+
+##### Version 0.1.4
+
+Change Notes:
+
+This version is more a less about improving quality of life in the Unity Editor to make it easier and more intuitive in the process of creating levels.
+
+Unity Editor:
+    
+    Created a data object for game setting so people don't have to open the gameobject in Master scene to change in.
+    Created a drop down menu to quickly create prefab of the environment without having to drag it from the project view.
+    Created a quick and dirty check point system so that you don't have to re run your whole level if you die.
+
+Level:
+    
+    Added a tutorial levels with puzzles inspired by the instances that everyone came up with.
