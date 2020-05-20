@@ -77,6 +77,8 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     {
         UnloadAllScenesExcept("MasterScene");
         LoadSceneAdditively("MainMenu");
+        spawnPosition = Vector3.zero;
+        spawnPositionSet = false;
         gameStateManager.RequestState(GameState.GameStateEnum.MainMenu);
     }
 
