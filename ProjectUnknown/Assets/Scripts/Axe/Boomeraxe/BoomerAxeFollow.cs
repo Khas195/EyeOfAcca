@@ -7,22 +7,18 @@ public class BoomerAxeFollow : MonoBehaviour
     [BoxGroup("Requirements")]
     [SerializeField]
     [Required]
-    CameraFollow follow;
+    CameraFollow follow = null;
 
     [BoxGroup("Requirements")]
     [SerializeField]
     [Required]
-    Rigidbody2D characterBody;
+    Rigidbody2D characterBody = null;
 
     [BoxGroup("Requirements")]
     [SerializeField]
     [Required]
-    Rigidbody2D axeBody;
+    Rigidbody2D axeBody = null;
 
-    [BoxGroup("Settings")]
-    [SerializeField]
-    [Required]
-    CameraSettings settings;
     [SerializeField]
     [Required]
     Camera playerCamera = null;

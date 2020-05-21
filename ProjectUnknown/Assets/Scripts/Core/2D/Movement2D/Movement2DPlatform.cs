@@ -20,6 +20,16 @@ public class Movement2DPlatform : IMovement
     [SerializeField]
     LayerMask jumpableLayer;
 
+    [BoxGroup("Settings")]
+    [SerializeField]
+    Vector3 headColSize = Vector3.one;
+
+    [BoxGroup("Settings")]
+    [SerializeField]
+    Vector3 headColOffset = Vector3.one;
+
+
+
     [BoxGroup("Current Status")]
     [SerializeField]
     [ReadOnly]
@@ -39,10 +49,48 @@ public class Movement2DPlatform : IMovement
     [SerializeField]
     [ReadOnly]
     float cachedSide = 0;
+
+    [BoxGroup("Current Status")]
+    [SerializeField]
+    [ReadOnly]
+    Vector3 maxHeightPos = Vector3.one;
+
+    [BoxGroup("Current Status")]
+    [SerializeField]
+    [ReadOnly]
+    Vector3 decelHeight = Vector3.one;
+    [BoxGroup("Current Status")]
+    [SerializeField]
+    [ReadOnly]
+    bool jumpTriggered = false;
+    [BoxGroup("Current Status")]
+    [SerializeField]
+    [ReadOnly]
+    bool isAccelUp = false;
+
+    /// <summary>
+    /// Start is called on the frame when a script is enabled just before
+    /// any of the Update methods is called the first time.
+    /// </summary>
+    void Start()
+    {
+
+        maxHeightPos = body2D.transform.position + new Vector3(0, data.maxJumpHeight, 0);
+        decelHeight = body2D.transform.position + new Vector3(0, data.jumpHeightForDecel, 0);
+    }
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(body2D.transform.position + checkGroundBoxOffset, checkGroundBoxSize);
+        Gizmos.color = Color.green;
+
+        Gizmos.DrawLine(body2D.transform.position, maxHeightPos);
+        Gizmos.DrawWireCube(maxHeightPos, Vector3.one);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube(decelHeight, Vector3.one);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(headColOffset + body2D.transform.position, headColSize);
+
     }
     public override void Move(float forward, float side)
     {
@@ -53,7 +101,6 @@ public class Movement2DPlatform : IMovement
     {
         return jumpTriggered;
     }
-    bool jumpTriggered = false;
     void Update()
     {
         jumpTriggered = false;
@@ -63,13 +110,36 @@ public class Movement2DPlatform : IMovement
             if (this.IsTouchingGround())
             {
                 jumpTriggered = true;
-                var curVel = body2D.velocity;
-                curVel.y = data.jumpForce;
-                body2D.velocity = curVel;
+                isAccelUp = true;
+                maxHeightPos = body2D.transform.position + new Vector3(0, data.maxJumpHeight, 0);
+                decelHeight = body2D.transform.position + new Vector3(0, data.jumpHeightForDecel, 0);
             }
             jumpSignal = false;
         }
-        if (body2D.velocity.y < 0)
+        if (isAccelUp)
+        {
+            if (Physics2D.OverlapBox(body2D.transform.position + headColOffset, headColSize, 0, jumpableLayer) != null)
+            {
+                isAccelUp = false;
+            }
+
+            var vel = body2D.velocity;
+            var curPosVertical = maxHeightPos.y - body2D.transform.position.y;
+            if (curPosVertical <= decelHeight.y)
+            {
+                vel.y = Tweener.EaseOutQuad(curPosVertical, 0, data.maxVelUp, data.jumpHeightForDecel);
+            }
+            else
+            {
+                vel.y = Tweener.EaseOutQuad(curPosVertical, data.maxVelUp, 0, data.maxJumpHeight);
+            }
+            body2D.velocity = vel;
+            if (Mathf.Abs(maxHeightPos.y - body2D.transform.position.y) <= 1)
+            {
+                isAccelUp = false;
+            }
+        }
+        if (isAccelUp == false)
         {
             body2D.velocity += Vector2.up * Physics2D.gravity.y * (data.fallMultiplier - 1) * Time.deltaTime;
         }

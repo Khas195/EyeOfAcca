@@ -5,23 +5,23 @@ using UnityEngine;
 public class SpawnFootstepAt : MonoBehaviour
 {
     [SerializeField]
-    private Transform locationA;
+    private Transform locationA = null;
     [SerializeField]
-    private Transform locationB;
+    private Transform locationB = null;
 
     [SerializeField]
-    private ParticleSystem footstepParticles;
+    private ParticleSystem footstepParticles = null;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void SpawnEm(int i)

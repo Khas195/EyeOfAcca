@@ -4,7 +4,7 @@ using UnityEngine;
 public class TeleportAbility : AxeAbility
 {
     [SerializeField]
-    BoomeraxeParams datas;
+    BoomeraxeParams datas = null;
     public override void Activate(Boomeraxe axe)
     {
 

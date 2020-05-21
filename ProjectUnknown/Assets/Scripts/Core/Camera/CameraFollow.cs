@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour
+public class CameraFollow : SingletonMonobehavior<CameraFollow>
 {
     [BoxGroup("Requirements")]
     [SerializeField]
@@ -18,7 +18,7 @@ public class CameraFollow : MonoBehaviour
     [BoxGroup("Settings")]
     [SerializeField]
     [Required]
-    CameraSettings settings;
+    CameraSettings settings = null;
     [BoxGroup("Settings")]
     [SerializeField]
     bool followX = false;
@@ -37,12 +37,7 @@ public class CameraFollow : MonoBehaviour
     void Start()
     {
         encapsolatedTarget.Add(character);
-        if (GameMaster.GetInstance().SpawnPositionSet() == true)
-        {
-            var pos = GameMaster.GetInstance().GetSpawnPosition();
-            pos.z = host.position.z;
-            host.position = pos;
-        }
+
     }
 
     void FixedUpdate()
@@ -111,4 +106,10 @@ public class CameraFollow : MonoBehaviour
         return bounds.center;
     }
 
+    public void SetPosition(Vector3 landingPosition)
+    {
+        var pos = landingPosition;
+        pos.z = host.position.z;
+        host.position = pos;
+    }
 }

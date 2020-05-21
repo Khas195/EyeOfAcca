@@ -11,7 +11,7 @@ public class Shake : MonoBehaviour
     [BoxGroup("Requirements")]
     [SerializeField]
     [Required]
-    ShakeData data;
+    ShakeData data = null;
     private Vector2 originPos;
     [BoxGroup("Current Status")]
     [SerializeField]
@@ -19,10 +19,6 @@ public class Shake : MonoBehaviour
     float currentShakeDuration = 0.0f;
 
 
-    [BoxGroup("Current Status")]
-    [SerializeField]
-    [ReadOnly]
-    bool hasCallBack = false;
 
     [BoxGroup("Current Status")]
     [SerializeField]
@@ -65,7 +61,6 @@ public class Shake : MonoBehaviour
     public void InduceTrauma(System.Action callback)
     {
         originPos = targetObject.transform.position;
-        hasCallBack = true;
         this.callback = callback;
         isShaking = true;
         currentShakeDuration = data.shakeDuration;

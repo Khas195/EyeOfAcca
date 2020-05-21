@@ -2,23 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent (typeof (BoxCollider2D))]
-[RequireComponent (typeof (Rigidbody2D))]
+[RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(Rigidbody2D))]
 
 public class EntityMove : MonoBehaviour
 {
-    private Rigidbody2D myRigidbody;
+    private Rigidbody2D myRigidbody = null;
 
     [SerializeField]
-    private float movementSpeed;
+    private float movementSpeed = 0;
     [SerializeField]
-    private float acceleration;
+    private float acceleration = 0;
     [SerializeField]
-    private float dragGround;
+    private float dragGround = 0;
     [SerializeField]
-    private float dragAir;
+    private float dragAir = 0;
 
-    private float drag;
+    private float drag = 0;
 
     private bool bDrag = false;
 

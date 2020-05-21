@@ -11,7 +11,7 @@ public class LevelCheckPoint
     public Transform checkPointTriggerTrans = null;
     public Vector2 checkPointTriggerSize = Vector2.one;
 }
-public class Level : MonoBehaviour
+public class Level : SingletonMonobehavior<Level>
 {
     [SerializeField]
     List<LevelCheckPoint> checkpoints = new List<LevelCheckPoint>();
@@ -19,6 +19,8 @@ public class Level : MonoBehaviour
     [SerializeField]
     [ReadOnly]
     LevelCheckPoint current = null;
+    [SerializeField]
+    List<LevelTransitionDoor> doors = new List<LevelTransitionDoor>();
     void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
@@ -56,5 +58,10 @@ public class Level : MonoBehaviour
             }
         }
 
+    }
+
+    public GameObject GetDoor(int doorIndex)
+    {
+        return this.doors[doorIndex].gameObject;
     }
 }

@@ -12,6 +12,7 @@ public class GameMasterSettings : ScriptableObject
     [Scene]
     public string startLevel = "";
 
+
     [Button("Save")]
     public void SaveData()
     {

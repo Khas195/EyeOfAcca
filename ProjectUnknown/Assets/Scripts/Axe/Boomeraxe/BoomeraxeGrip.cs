@@ -23,10 +23,6 @@ public class BoomeraxeGrip : MonoBehaviour
     Flip flip = null;
 
 
-    [BoxGroup("Requirement")]
-    [SerializeField]
-    [Required]
-    Camera playerCamera = null;
 
     [BoxGroup("Requirement")]
     [SerializeField]
@@ -68,7 +64,6 @@ public class BoomeraxeGrip : MonoBehaviour
     [BoxGroup("Optional")]
     [SerializeField]
     UnityEvent axeThrowTrigger = new UnityEvent();
-    bool axeThrowTriggered = false;
 
     [BoxGroup("Current Status")]
     [SerializeField]
@@ -82,15 +77,7 @@ public class BoomeraxeGrip : MonoBehaviour
     [ReadOnly]
     bool axeCatchable = false;
 
-    [BoxGroup("Current Status")]
-    [SerializeField]
-    [ReadOnly]
-    bool axeIsReturning = false;
 
-    [BoxGroup("Current Status")]
-    [SerializeField]
-    [ReadOnly]
-    bool axeIsShaking = false;
 
     bool axeAbilityActivated;
 
@@ -112,11 +99,6 @@ public class BoomeraxeGrip : MonoBehaviour
         {
             StickToHolder();
         }
-        else
-        {
-
-
-        }
     }
     public void SetAxeCatchable(bool catchable)
     {
@@ -127,7 +109,6 @@ public class BoomeraxeGrip : MonoBehaviour
         if (isBeingHeld == false) return false;
 
         flip.CheckFacing(at.x - holderPivot.transform.position.x);
-        axeThrowTriggered = true;
         axeThrowTrigger.Invoke();
 
         isBeingHeld = false;
@@ -151,10 +132,8 @@ public class BoomeraxeGrip : MonoBehaviour
     }
     IEnumerator HoldAxeAfter(float time)
     {
-        axeIsReturning = true;
         yield return new WaitForSeconds(time);
         boomeraxeFlying.ActivateAbility();
-        axeIsReturning = false;
     }
 
     private void StickToHolder()
