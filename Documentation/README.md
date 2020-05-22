@@ -411,6 +411,8 @@ Level:
     
     Added a tutorial levels with puzzles inspired by the instances that everyone came up with.
 
+#### _**Version 0.1.5(May 20th, 2020 - May 26th, 2020)**_
+
 ##### Version 0.1.5
 
 Change Notes:
@@ -422,6 +424,7 @@ Unity Editor:
 
 Character:
 
+    The player will accelerate up, on jump, until he reached the jump height for deceleration. Then he will start decelerating his velocity up until he reached max Jump Height.
     Decrease Max Velocity when jumpuing: 25 -> 20
     Decrease Max Jump Height: 4 -> 3
     Decrease Jump height point for decelleration: 3 -> 2
