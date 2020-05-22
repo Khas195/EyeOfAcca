@@ -11,7 +11,7 @@ public class LogHelper : SingletonMonobehavior<LogHelper>
         PlayerFriendly
     }
     [SerializeField]
-    LogLayer currentMode = LogLayer.Developer;
+    LogLayer currentMode = LogLayer.PlayerFriendly;
 
     [Conditional("ENABLE_LOGS")]
     public void LogError(string message, bool showLogOnInGame = false, LogLayer mode = LogLayer.Console)

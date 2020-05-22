@@ -19,7 +19,9 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
 
     [SerializeField]
     int doorIndex = 0;
-    Vector3 spawnPosition;
+    [SerializeField]
+    [ReadOnly]
+    string currentLevel = "";
     List<AsyncOperation> scenesLoading = new List<AsyncOperation>();
 
 
@@ -41,10 +43,9 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
         }
     }
 
-
-    public Vector3 GetSpawnPosition()
+    public void ReloadCurrentLevel()
     {
-        return this.spawnPosition;
+        LoadLevel(currentLevel);
     }
 
     /// <summary>
@@ -77,13 +78,7 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     {
         UnloadAllScenesExcept("MasterScene");
         LoadSceneAdditively("MainMenu");
-        spawnPosition = Vector3.zero;
         gameStateManager.RequestState(GameState.GameStateEnum.MainMenu);
-    }
-
-    public void SetSpawnPoint(Vector3 position)
-    {
-        this.spawnPosition = position;
     }
 
     private void UnloadAllScenesExcept(string sceneNotToUnloadName)
@@ -130,6 +125,7 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
         SFXSystem.GetInstance().StopAllSounds();
         SaveLoadManager.LoadAllData();
         LoadSceneAdditively(levelName);
+        currentLevel = levelName;
         gameStateManager.RequestState(GameState.GameStateEnum.InGame);
 
         LoadSceneAdditively("EntitiesScene");
@@ -175,7 +171,6 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
         var landingPosition = level.GetDoor(doorIndex).transform.position;
         player.SetLandingPosition(landingPosition);
         camera.SetPosition(landingPosition);
-        doorIndex = 0;
     }
 
     private void UnloadCurrentLevel()

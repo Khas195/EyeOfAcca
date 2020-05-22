@@ -12,10 +12,22 @@ public static class GameSystemMenu
         obj.transform.SetParent(Selection.activeGameObject.transform);
         obj.transform.position = GetScenePosition();
     }
+    [MenuItem("GameObject/3D Object/Game System/Level Door")]
+    public static void CreateLevelDoor()
+    {
+        var level = Level.GetInstance(false);
+        if (level == null)
+        {
+            LogHelper.GetInstance().LogError("Cannot create a level door without the level.");
+            return;
+        }
+        GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(Resources.Load<GameObject>("Prefabs/EnvirontmenInteractable/PlayerInteractables/Door"));
+        obj.transform.SetParent(Selection.activeGameObject.transform);
+        obj.transform.position = GetScenePosition();
+        level.AddDoor(obj.GetComponent<LevelTransitionDoor>());
+    }
 
-
-
-    [MenuItem("GameObject/3D Object/Game System/Door")]
+    [MenuItem("GameObject/3D Object/Game System/Timed Door")]
     public static void CreateDoor()
     {
         GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(Resources.Load<GameObject>("Prefabs/EnvirontmenInteractable/AxeInteractables/DoorEntity"));

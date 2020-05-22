@@ -14,43 +14,31 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/UIScenes/InGameMenu.unity
     guid: 51c74ec88e8a2074b8e4578467d6d9a1
-  - enabled: 0
-    path: Assets/Scenes/LevelScene/Ousama/Level-2-2.unity
-    guid: 4a3520ecc9b0f48b29a3d813a23d0951
-  - enabled: 0
-    path: Assets/Scenes/LevelScene/Ousama/Level-2-1.unity
-    guid: ad66720cef7feb44c8440d4d6981a263
-  - enabled: 0
-    path: Assets/Scenes/LevelScene/Ousama/Level-2-3.unity
-    guid: 7e546e713d692dd40af77e3729cb88dd
-  - enabled: 0
-    path: Assets/Scenes/LevelScene/Ousama/Level-2-4.unity
-    guid: d7b1fb7a9d4e2184a838e86ab3c8dcdd
-  - enabled: 0
-    path: Assets/Scenes/LevelScene/Ousama/Level-2-5.unity
-    guid: 38b0f74919a69034bbb92b621a78f9a3
-  - enabled: 0
-    path: Assets/Scenes/LevelScene/Ousama/Level-2-6.unity
-    guid: 94caba371127b114bb1fc5a4b85cc89d
-  - enabled: 0
-    path: Assets/Scenes/LevelScene/Levels-2ndSprint/Level1-2ndSprint.unity
-    guid: 0c4160e688921b54e9f97a115cd93ec3
-  - enabled: 0
-    path: Assets/Scenes/LevelScene/Ousama/3-1.unity
-    guid: 0d9d8373a3c82a240a78062c25f3723c
-  - enabled: 0
-    path: Assets/Scenes/LevelScene/Ousama/3-2.unity
-    guid: 2c39788093bcbc74ebce45ec7ea10dcc
-  - enabled: 0
-    path: Assets/Scenes/LevelScene/Ousama/3-3.unity
-    guid: a49f0592b6cc8fd4dab6a380fa13c181
-  - enabled: 0
-    path: Assets/Scenes/LevelScene/Ousama/3-4.unity
-    guid: 1591c5156e7224c4bbaf286460a4e549
   - enabled: 1
     path: Assets/Scenes/UIScenes/MainMenu.unity
     guid: d40facadd877545989a3650f78cbdde0
   - enabled: 1
     path: Assets/Scenes/LevelScene/Levels-2ndSprint/Level-WithTutorials.unity
     guid: 52c9825967f7fbd42860bf6ddcf71449
+  - enabled: 1
+    path: Assets/Scenes/LevelScene/TestConnectedLevels/TestLevel-Begin.unity
+    guid: d6b184aa2bb34264baa8ba6506dac102
+  - enabled: 1
+    path: Assets/Scenes/LevelScene/TestConnectedLevels/TestLevel-A.unity
+    guid: 92c183a519e606d4688eca047252899b
+  - enabled: 1
+    path: Assets/Scenes/LevelScene/TestConnectedLevels/TestLevel-AB-E.unity
+    guid: f2b6cbf380a564243af893de2a2ffc83
+  - enabled: 1
+    path: Assets/Scenes/LevelScene/TestConnectedLevels/TestLevel-A-C.unity
+    guid: 9282e9d183bd5c74e8ae64fadaabd9bf
+  - enabled: 1
+    path: Assets/Scenes/LevelScene/TestConnectedLevels/TestLevel-AC-F.unity
+    guid: 477401c5ba381b442b9524e52c875974
+  - enabled: 1
+    path: Assets/Scenes/LevelScene/TestConnectedLevels/TestLevel-A-B.unity
+    guid: aad23cc7e540a434fa824fdd2b60ad76
+  - enabled: 1
+    path: Assets/Scenes/LevelScene/TestConnectedLevels/TestLevel-ABE-ACF-G.unity
+    guid: 20d0890498ce71645a1c7b170868e88f
   m_configObjects: {}

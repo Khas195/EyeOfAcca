@@ -101,6 +101,19 @@ public class Movement2DPlatform : IMovement
     {
         return jumpTriggered;
     }
+    /// <summary>
+    /// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
+    /// </summary>
+    void FixedUpdate()
+    {
+        if (isAccelUp)
+        {
+            if (Physics2D.OverlapBoxAll(body2D.transform.position + headColOffset, headColSize, 0, jumpableLayer).Length > 0)
+            {
+                isAccelUp = false;
+            }
+        }
+    }
     void Update()
     {
         jumpTriggered = false;
@@ -118,11 +131,6 @@ public class Movement2DPlatform : IMovement
         }
         if (isAccelUp)
         {
-            if (Physics2D.OverlapBox(body2D.transform.position + headColOffset, headColSize, 0, jumpableLayer) != null)
-            {
-                isAccelUp = false;
-            }
-
             var vel = body2D.velocity;
             var curPosVertical = maxHeightPos.y - body2D.transform.position.y;
             if (curPosVertical <= decelHeight.y)
@@ -182,13 +190,8 @@ public class Movement2DPlatform : IMovement
     }
     public override bool IsTouchingGround()
     {
-        var cols = Physics2D.OverlapBoxAll(this.body2D.transform.position + checkGroundBoxOffset, checkGroundBoxSize, 0, jumpableLayer);
-        if (cols.Length > 0)
+        if (GetGroundCollider2D() != null)
         {
-            for (int i = 0; i < cols.Length; i++)
-            {
-                LogHelper.GetInstance().Log(body2D.name.Bolden() + " is standing on " + cols[i].name.Bolden());
-            }
             return true;
         }
         return false;

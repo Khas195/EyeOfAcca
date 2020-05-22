@@ -21,7 +21,7 @@ public class DeadZone : AxeInteractable
         if (other.tag.Equals("Player"))
         {
             LogHelper.GetInstance().Log(("Player entered Dead Zone").Bolden(), true, LogHelper.LogLayer.PlayerFriendly);
-            GameMaster.GetInstance().LoadLevel(GameMaster.GetInstance().GetStartLevel());
+            GameMaster.GetInstance().ReloadCurrentLevel();
         }
     }
 }
