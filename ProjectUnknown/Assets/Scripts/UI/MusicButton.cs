@@ -7,18 +7,18 @@ using UnityEngine.UI;
 public class MusicButton : MonoBehaviour
 {
     [SerializeField]
-    Sprite musicSprite;
+    Sprite musicSprite = null;
     [SerializeField]
-    Image normalImage;
+    Image normalImage = null;
     [SerializeField]
-    Sprite mutedMusicSprite;
+    Sprite mutedMusicSprite = null;
 
     [SerializeField]
-    Sprite soundSprite;
+    Sprite soundSprite = null;
     [SerializeField]
-    Image normalSoundImage;
+    Image normalSoundImage = null;
     [SerializeField]
-    Sprite mutedSoundSprite;
+    Sprite mutedSoundSprite = null;
 
     bool music = true;
     bool sound = true;

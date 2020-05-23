@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent (typeof (EntityMove))]
+[RequireComponent(typeof(EntityMove))]
 
 public class MoveCharacter : MonoBehaviour
 {
@@ -14,12 +14,12 @@ public class MoveCharacter : MonoBehaviour
 
     private DIRECTON facing;
 
-    private EntityMove myMover;
+    private EntityMove myMover = null;
 
-    private Vector2 inputDirection;
+    private Vector2 inputDirection = Vector2.one;
 
     [SerializeField]
-    private float jumpForce;
+    private float jumpForce = 0;
 
     private GroundChecker myGrounder;
 
@@ -72,7 +72,7 @@ public class MoveCharacter : MonoBehaviour
             myMover.MoveEntity(inputDirection);
 
         }
-        
+
     }
 
     private void FlipX()

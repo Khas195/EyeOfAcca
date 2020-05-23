@@ -6,6 +6,9 @@ public class CameraSettings : ScriptableObject
 {
     [Range(0, 1f)]
     public float followPercentage = 0.08f;
+
+    public Vector2 cameraFollowDeadZoneBoxSize = Vector2.one;
+
     [Button("Save")]
     public void SaveData()
     {

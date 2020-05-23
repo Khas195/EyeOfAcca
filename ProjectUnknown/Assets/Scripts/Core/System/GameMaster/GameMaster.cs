@@ -13,10 +13,16 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
 
     [SerializeField]
     [Required]
-    GameMasterSettings settings;
+    GameMasterSettings settings = null;
 
-    Vector3 spawnPosition;
-    bool spawnPositionSet = false;
+
+
+    [SerializeField]
+    int doorIndex = 0;
+    [SerializeField]
+    [ReadOnly]
+    string currentLevel = "";
+    List<AsyncOperation> scenesLoading = new List<AsyncOperation>();
 
 
     /// <summary>
@@ -37,14 +43,9 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
         }
     }
 
-    public bool SpawnPositionSet()
+    public void ReloadCurrentLevel()
     {
-        return this.spawnPositionSet;
-    }
-
-    public Vector3 GetSpawnPosition()
-    {
-        return this.spawnPosition;
+        LoadLevel(currentLevel);
     }
 
     /// <summary>
@@ -77,15 +78,7 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     {
         UnloadAllScenesExcept("MasterScene");
         LoadSceneAdditively("MainMenu");
-        spawnPosition = Vector3.zero;
-        spawnPositionSet = false;
         gameStateManager.RequestState(GameState.GameStateEnum.MainMenu);
-    }
-
-    public void SetSpawnPoint(Vector3 position)
-    {
-        this.spawnPosition = position;
-        spawnPositionSet = true;
     }
 
     private void UnloadAllScenesExcept(string sceneNotToUnloadName)
@@ -106,12 +99,18 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     public void LoadSceneAdditively(string sceneName)
     {
         LogHelper.GetInstance().Log(" Loading Additively " + sceneName.Bolden() + "", true);
-        SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+        this.scenesLoading.Add(SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive));
         if (SceneManager.GetActiveScene().name.Equals("MasterScene") == false)
         {
             SceneManager.SetActiveScene(SceneManager.GetSceneByName("MasterScene"));
         }
 
+    }
+
+    public void LoadLevelWithLandingIndex(string targetScene, int doorIndex)
+    {
+        this.doorIndex = doorIndex;
+        LoadLevel(targetScene);
     }
 
     public string GetStartLevel()
@@ -126,11 +125,52 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
         SFXSystem.GetInstance().StopAllSounds();
         SaveLoadManager.LoadAllData();
         LoadSceneAdditively(levelName);
+        currentLevel = levelName;
         gameStateManager.RequestState(GameState.GameStateEnum.InGame);
 
         LoadSceneAdditively("EntitiesScene");
         LoadSceneAdditively("InGameMenu");
+        StartCoroutine(GetLevelLoadProcess());
+    }
+    public IEnumerator GetLevelLoadProcess()
+    {
+        for (int i = 0; i < scenesLoading.Count; i++)
+        {
+            while (!scenesLoading[i].isDone)
+            {
+                yield return null;
+            }
+        }
+        StageLevel();
+        yield return null;
+    }
 
+    public void StageLevel()
+    {
+        var player = PlayerController2D.GetInstance(false);
+        if (player == null)
+        {
+            LogHelper.GetInstance().LogError("Loading Level without Entities Scene");
+            return;
+        }
+        var level = Level.GetInstance(false);
+        if (level == null)
+        {
+            LogHelper.GetInstance().LogError("Loading Level without Level Script");
+            return;
+
+        }
+        var camera = CameraFollow.GetInstance(false);
+        if (camera == null)
+        {
+            LogHelper.GetInstance().LogError("Loading Level without Camera Follow");
+            return;
+
+        }
+
+        var landingPosition = level.GetDoor(doorIndex).transform.position;
+        player.SetLandingPosition(landingPosition);
+        camera.SetPosition(landingPosition);
     }
 
     private void UnloadCurrentLevel()

@@ -380,7 +380,6 @@ MonoBehaviour:
   follow: {fileID: 1080578821}
   characterBody: {fileID: 638179320}
   axeBody: {fileID: 1481426448}
-  settings: {fileID: 11400000, guid: b2dd0d22e649e5542ab1e7ee755e2cce, type: 2}
   playerCamera: {fileID: 424431176}
 --- !u!4 &1925956753 stripped
 Transform:
@@ -413,7 +412,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2065472229}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 239.3, y: 244.7, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7188433440261101923}
@@ -433,7 +432,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   host: {fileID: 1925956753}
   boundBoxSize: {x: 500, y: 500}
-  follow: {fileID: 1080578821}
   cam: {fileID: 424431176}
 --- !u!1001 &4475797551723659836
 PrefabInstance:
@@ -773,12 +771,12 @@ PrefabInstance:
     - target: {fileID: 7188433439482887247, guid: 19c4c104f02ffa34ead48f24ad97343b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 238.8
+      value: 120.98
       objectReference: {fileID: 0}
     - target: {fileID: 7188433439482887247, guid: 19c4c104f02ffa34ead48f24ad97343b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 37.05
+      value: 45.44
       objectReference: {fileID: 0}
     - target: {fileID: 7188433439587899957, guid: 19c4c104f02ffa34ead48f24ad97343b,
         type: 3}
@@ -869,12 +867,12 @@ PrefabInstance:
     - target: {fileID: 7188433440675534628, guid: 19c4c104f02ffa34ead48f24ad97343b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.25
       objectReference: {fileID: 0}
     - target: {fileID: 7188433440675534628, guid: 19c4c104f02ffa34ead48f24ad97343b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2.94
       objectReference: {fileID: 0}
     - target: {fileID: 7188433440675534634, guid: 19c4c104f02ffa34ead48f24ad97343b,
         type: 3}
@@ -984,6 +982,66 @@ PrefabInstance:
         type: 3}
       propertyPath: checkGroundBoxSize.x
       value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8558128283020694534, guid: 2b03fc41f04525f469eccd660ed2db23,
+        type: 3}
+      propertyPath: headColSize.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8558128283020694534, guid: 2b03fc41f04525f469eccd660ed2db23,
+        type: 3}
+      propertyPath: maxHeightPos.x
+      value: 238.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 8558128283020694534, guid: 2b03fc41f04525f469eccd660ed2db23,
+        type: 3}
+      propertyPath: maxHeightPos.y
+      value: 43
+      objectReference: {fileID: 0}
+    - target: {fileID: 8558128283020694534, guid: 2b03fc41f04525f469eccd660ed2db23,
+        type: 3}
+      propertyPath: maxHeightPos.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8558128283020694534, guid: 2b03fc41f04525f469eccd660ed2db23,
+        type: 3}
+      propertyPath: headColSize.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8558128283020694534, guid: 2b03fc41f04525f469eccd660ed2db23,
+        type: 3}
+      propertyPath: headColSize.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8558128283020694534, guid: 2b03fc41f04525f469eccd660ed2db23,
+        type: 3}
+      propertyPath: headColOffset.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8558128283020694534, guid: 2b03fc41f04525f469eccd660ed2db23,
+        type: 3}
+      propertyPath: decelHeight.x
+      value: 238.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 8558128283020694534, guid: 2b03fc41f04525f469eccd660ed2db23,
+        type: 3}
+      propertyPath: decelHeight.y
+      value: 41
+      objectReference: {fileID: 0}
+    - target: {fileID: 8558128283020694534, guid: 2b03fc41f04525f469eccd660ed2db23,
+        type: 3}
+      propertyPath: decelHeight.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8558128283020694534, guid: 2b03fc41f04525f469eccd660ed2db23,
+        type: 3}
+      propertyPath: headColOffset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8558128283020694534, guid: 2b03fc41f04525f469eccd660ed2db23,
+        type: 3}
+      propertyPath: headColOffset.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8558128283662357634, guid: 2b03fc41f04525f469eccd660ed2db23,
         type: 3}

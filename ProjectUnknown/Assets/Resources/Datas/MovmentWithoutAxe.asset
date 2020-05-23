@@ -14,5 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 8
   runSpeed: 8
-  jumpForce: 10
+  maxVelUp: 20
+  fallMultiplier: 3
+  maxJumpHeight: 3
+  jumpHeightForDecel: 2
+  timeTilMaxSpeed: 0.1
   rotateSpeed: 20

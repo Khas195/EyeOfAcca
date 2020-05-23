@@ -34,10 +34,6 @@ public class Character2D : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (GameMaster.GetInstance().SpawnPositionSet() == true)
-        {
-            body.transform.position = GameMaster.GetInstance().GetSpawnPosition();
-        }
         movement.SetRigidBody(body);
         movement.SetMovementData(movementWithAxe);
     }
@@ -104,5 +100,10 @@ public class Character2D : MonoBehaviour
     public string GetName()
     {
         return name;
+    }
+
+    public void SetPosition(Vector3 landingPosition)
+    {
+        this.body.transform.position = landingPosition;
     }
 }

@@ -21,8 +21,6 @@ public partial class SFXSystem : SingletonMonobehavior<SFXSystem>
     [SerializeField]
     AudioSource backgroundMusic = null;
     [SerializeField]
-    AudioMixerGroup masterGroup = null;
-    [SerializeField]
     AudioMixerGroup soundsGroup = null;
 
     [SerializeField]

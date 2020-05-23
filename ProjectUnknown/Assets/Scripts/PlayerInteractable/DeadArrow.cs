@@ -71,7 +71,7 @@ public class DeadArrow : MonoBehaviour
         {
             SFXSystem.GetInstance().StopAllSounds();
             LogHelper.GetInstance().Log(("Player hit Player").Bolden(), true, LogHelper.LogLayer.PlayerFriendly);
-            GameMaster.GetInstance().LoadLevel(GameMaster.GetInstance().GetStartLevel());
+            GameMaster.GetInstance().ReloadCurrentLevel();
         }
     }
 

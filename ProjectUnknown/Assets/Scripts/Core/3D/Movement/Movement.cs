@@ -163,8 +163,8 @@ public class Movement : IMovement
     /// </summary>
     private void Jump()
     {
-        LogHelper.GetInstance().Log("Character jump with force of " + data.jumpForce);
-        charRigidbody.AddForce(Vector3.up * data.jumpForce, ForceMode.Impulse);
+        LogHelper.GetInstance().Log("Character jump with force of " + data.maxVelUp);
+        charRigidbody.AddForce(Vector3.up * data.maxVelUp, ForceMode.Impulse);
     }
     /// <summary>
     ///  Check whether the rigid body of the host object is touching the ground by raycasting from the list of points (checkGroundsList)

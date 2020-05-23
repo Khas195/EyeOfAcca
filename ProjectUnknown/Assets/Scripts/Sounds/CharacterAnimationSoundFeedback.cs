@@ -5,8 +5,6 @@ using UnityEngine;
 public class CharacterAnimationSoundFeedback : MonoBehaviour
 {
     AudioSource walkSource = null;
-    [SerializeField]
-    BoomeraxeGrip grip = null;
     public void PlayWalkSound()
     {
         walkSource = SFXSystem.GetInstance().PlaySound(SFXResources.SFXList.footStep_Walk);

@@ -471,7 +471,6 @@ MonoBehaviour:
   audioPool: {fileID: 1106618749}
   activeSources: []
   backgroundMusic: {fileID: 1106618747}
-  masterGroup: {fileID: 24300002, guid: 7e48b736210e6bb41a991d0299f1149c, type: 2}
   soundsGroup: {fileID: 4075282771249249686, guid: 7e48b736210e6bb41a991d0299f1149c,
     type: 2}
   musicGroup: {fileID: -1692070969337322398, guid: 7e48b736210e6bb41a991d0299f1149c,
@@ -1007,3 +1006,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameStateManager: {fileID: 1867409778}
   settings: {fileID: 11400000, guid: ec07c30a6fa72d0489a07bc455aec572, type: 2}
+  doorIndex: 0
+  currentLevel: 

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour
+public class CameraFollow : SingletonMonobehavior<CameraFollow>
 {
     [BoxGroup("Requirements")]
     [SerializeField]
@@ -18,7 +18,7 @@ public class CameraFollow : MonoBehaviour
     [BoxGroup("Settings")]
     [SerializeField]
     [Required]
-    CameraSettings settings;
+    CameraSettings settings = null;
     [BoxGroup("Settings")]
     [SerializeField]
     bool followX = false;
@@ -32,34 +32,66 @@ public class CameraFollow : MonoBehaviour
     [SerializeField]
     List<Transform> encapsolatedTarget = new List<Transform>();
 
+    bool honeIn = false;
 
     // Start is called before the first frame update
     void Start()
     {
         encapsolatedTarget.Add(character);
-        if (GameMaster.GetInstance().SpawnPositionSet() == true)
-        {
-            var pos = GameMaster.GetInstance().GetSpawnPosition();
-            pos.z = host.position.z;
-            host.position = pos;
-        }
+
+    }
+    /// <summary>
+    /// Callback to draw gizmos that are pickable and always drawn.
+    /// </summary>
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+
+        Gizmos.DrawWireCube(host.position, settings.cameraFollowDeadZoneBoxSize);
+        var targetPos = GetCenterPosition(encapsolatedTarget);
+        Gizmos.DrawWireSphere(targetPos, 1f);
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(host.position, 0.5f);
     }
 
     void FixedUpdate()
     {
         var targetPos = GetCenterPosition(encapsolatedTarget);
         var hostPos = host.position;
-        if (followX)
+
+        var rightSide = hostPos.x + settings.cameraFollowDeadZoneBoxSize.x / 2;
+        var leftSide = hostPos.x - settings.cameraFollowDeadZoneBoxSize.x / 2;
+        var topSide = hostPos.y + settings.cameraFollowDeadZoneBoxSize.y / 2;
+        var bottomSide = hostPos.y - settings.cameraFollowDeadZoneBoxSize.y / 2;
+        if (targetPos.x < leftSide || targetPos.x > rightSide)
         {
-            hostPos.x = Mathf.Lerp(hostPos.x, targetPos.x, settings.followPercentage);
+            honeIn = true;
         }
-        if (followY)
+        if (targetPos.y < bottomSide || targetPos.y > topSide)
         {
-            hostPos.y = Mathf.Lerp(hostPos.y, targetPos.y, settings.followPercentage);
+            honeIn = true;
         }
-        if (followZ)
+
+        if (honeIn)
         {
-            hostPos.z = Mathf.Lerp(hostPos.z, targetPos.z, settings.followPercentage);
+            if (followX)
+            {
+                hostPos.x = Mathf.Lerp(hostPos.x, targetPos.x, settings.followPercentage);
+            }
+            if (followY)
+            {
+                hostPos.y = Mathf.Lerp(hostPos.y, targetPos.y, settings.followPercentage);
+            }
+
+            if (followZ)
+            {
+                hostPos.z = Mathf.Lerp(hostPos.z, targetPos.z, settings.followPercentage);
+            }
+        }
+
+        if (Vector2.Distance(targetPos, hostPos) <= 0.5f)
+        {
+            honeIn = false;
         }
         host.transform.position = hostPos;
     }
@@ -111,4 +143,10 @@ public class CameraFollow : MonoBehaviour
         return bounds.center;
     }
 
+    public void SetPosition(Vector3 landingPosition)
+    {
+        var pos = landingPosition;
+        pos.z = host.position.z;
+        host.position = pos;
+    }
 }
