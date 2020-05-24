@@ -40,7 +40,8 @@ public class PlayerController2D : SingletonMonobehavior<PlayerController2D>
     float currentAxeUseBufferTime = 0.0f;
     void Update()
     {
-        if (GameMaster.GetInstance().GetStateManager().GetCurrentState().GetEnum().Equals(GameState.GameStateEnum.InGame) == false)
+        var gameMaster = GameMaster.GetInstance();
+        if (gameMaster.GetStateManager().GetCurrentState().GetEnum().Equals(GameState.GameStateEnum.InGame) == false)
         {
             return;
         }
