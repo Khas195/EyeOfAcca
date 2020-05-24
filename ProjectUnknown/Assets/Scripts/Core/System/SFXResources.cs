@@ -18,7 +18,11 @@ public class SFXResources : ScriptableObject
         RaillMoving,
         Teleport,
         AxeShaking,
-        PotBreak
+        PotBreak,
+        DoorFalling,
+        DoorClosed,
+        OnRailMove,
+        RailBlockStop
     }
     [Serializable]
     public struct SFX

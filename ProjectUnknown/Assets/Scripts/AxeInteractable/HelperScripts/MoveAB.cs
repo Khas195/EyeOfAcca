@@ -65,6 +65,9 @@ public class MoveAB : MonoBehaviour
     [SerializeField]
     UnityEvent OnReachB = new UnityEvent();
 
+    [BoxGroup("Settings")]
+    [SerializeField]
+    UnityEvent OnReturn = new UnityEvent();
 
 
     [BoxGroup("Current Status")]
@@ -158,18 +161,6 @@ public class MoveAB : MonoBehaviour
             curTime += Time.deltaTime;
             if (HasReachedDestination())
             {
-                if (automaticallyMoveBackToStart && IsAt(startPos) == false)
-                {
-                    GoTo(startPos);
-                    isMovingBack = true;
-                    currentTimeTillDestinationReaded = moveBackTime;
-                }
-                else
-                {
-                    isMovingBack = false;
-                    inMotion = false;
-                    this.box.transform.position = destination;
-                }
                 Vector2 posA = aPosition.position;
                 Vector2 posB = bPosition.position;
                 if (IsAt(MoveABEnum.A))
@@ -179,6 +170,20 @@ public class MoveAB : MonoBehaviour
                 else if (IsAt(MoveABEnum.B))
                 {
                     OnReachB.Invoke();
+                }
+
+                if (automaticallyMoveBackToStart && IsAt(startPos) == false)
+                {
+                    GoTo(startPos);
+                    isMovingBack = true;
+                    currentTimeTillDestinationReaded = moveBackTime;
+                    OnReturn.Invoke();
+                }
+                else
+                {
+                    isMovingBack = false;
+                    inMotion = false;
+                    this.box.transform.position = destination;
                 }
                 curTime = 0;
             }
