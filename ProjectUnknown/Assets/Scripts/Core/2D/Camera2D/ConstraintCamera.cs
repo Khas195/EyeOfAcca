@@ -1,11 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConstraintCamera : MonoBehaviour
+public class ConstraintCamera : SingletonMonobehavior<ConstraintCamera>
 {
     [SerializeField]
     Transform host = null;
+    [SerializeField]
+    private Vector2 boundPos = Vector2.one;
     [SerializeField]
     Vector2 boundBoxSize = Vector2.one;
 
@@ -24,8 +27,8 @@ public class ConstraintCamera : MonoBehaviour
 
         var cameraSizeY = 2 * cam.orthographicSize;
         var cameraSizeX = cameraSizeY * cam.aspect;
-        Gizmos.DrawWireCube(hostPos, new Vector3(cameraSizeX, cameraSizeY, 0));
-        Gizmos.DrawWireCube(this.transform.position, boundBoxSize);
+        Gizmos.DrawWireCube(host.position, new Vector3(cameraSizeX, cameraSizeY, 0));
+        Gizmos.DrawWireCube(boundPos, boundBoxSize);
     }
     private void LateUpdate()
     {
@@ -41,8 +44,8 @@ public class ConstraintCamera : MonoBehaviour
     }
     private Vector3 Constraint(Vector3 hostPos, float cameraSizeY, float cameraSizeX)
     {
-        var rightBound = this.transform.position.x + this.boundBoxSize.x / 2;
-        var leftBound = this.transform.position.x - this.boundBoxSize.x / 2;
+        var rightBound = boundPos.x + this.boundBoxSize.x / 2;
+        var leftBound = boundPos.x - this.boundBoxSize.x / 2;
         if (hostPos.x + cameraSizeX / 2 >= rightBound)
         {
             hostPos.x = rightBound - cameraSizeX / 2;
@@ -52,8 +55,8 @@ public class ConstraintCamera : MonoBehaviour
             hostPos.x = leftBound + cameraSizeX / 2;
         }
 
-        var upperBound = this.transform.position.y + this.boundBoxSize.y / 2;
-        var lowerBound = this.transform.position.y - this.boundBoxSize.y / 2;
+        var upperBound = boundPos.y + this.boundBoxSize.y / 2;
+        var lowerBound = boundPos.y - this.boundBoxSize.y / 2;
         if (hostPos.y + cameraSizeY / 2 >= upperBound)
         {
             hostPos.y = upperBound - cameraSizeY / 2;
@@ -65,5 +68,11 @@ public class ConstraintCamera : MonoBehaviour
 
 
         return hostPos;
+    }
+
+    public void SetConstraint(Vector2 position, Vector2 size)
+    {
+        this.boundPos = position;
+        this.boundBoxSize = size;
     }
 }

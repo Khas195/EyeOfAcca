@@ -9,6 +9,7 @@ TagManager:
   - Ground
   - Dead
   - Oneway-Platform
+  - SecondaryCamera
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - Jumpable
   - DeadZone
   - LevelTransitionDoor
-  - 
+  - LoadingUI
   - 
   - 
   - 
@@ -75,4 +76,7 @@ TagManager:
     locked: 0
   - name: Effects
     uniqueID: 3977018867
+    locked: 0
+  - name: UI
+    uniqueID: 4051663801
     locked: 0

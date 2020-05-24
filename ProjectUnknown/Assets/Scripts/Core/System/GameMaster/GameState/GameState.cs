@@ -11,7 +11,8 @@ public abstract class GameState : State
         MainMenu,
         InGame,
         GamePaused,
-        InInventory
+        InInventory,
+        Loading
     }
     [SerializeField]
     [ReadOnly]

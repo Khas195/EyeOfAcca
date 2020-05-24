@@ -17,7 +17,7 @@ To read the developers personal documentation such as: Journal, Motivation, Rese
  * [Tung Cao](./PersonalDocumentation/TungCao).
  * [Samartha Ingle](./PersonalDocumentation/SamarthaIngle).
  * [ChristopherBukalChilicuisa](./PersonalDocumentation/ChristioherBukalChilicuisa).
- * [Ousama_Andari]
+* [Ousama_Andari](./PersonalDocumentation/OusamaAnderi).
 
 ### Change-Logs
 
@@ -436,3 +436,24 @@ Level:
     Added new test levels to test Connection.
     The levels are linked together via lever door.
     Upon entering a door, the level will remember the door and will respawn the character there on death.
+
+##### Version 0.1.6
+
+Level
+
+    Add Loading screen between level.
+    Made the level more compact by removing wasted space.
+
+Particle Effect:
+
+    Removed Particles from Door Lever and Rail block.
+
+Player Camera:
+
+    Move the camera above the character.
+
+Fixed:
+
+    Sound glitch.
+    Character sometimes lost his axe.
+

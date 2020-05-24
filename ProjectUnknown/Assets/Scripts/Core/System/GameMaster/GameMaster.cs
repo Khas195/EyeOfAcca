@@ -15,6 +15,10 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     [Required]
     GameMasterSettings settings = null;
 
+    [SerializeField]
+    [Required]
+    LoadingControl loadingControl = null;
+
 
 
     [SerializeField]
@@ -31,11 +35,12 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     /// </summary>
     void Start()
     {
+
         UnloadAllScenesExcept("MasterScene");
 
         if (settings.skipMainMenu)
         {
-            this.LoadLevel(settings.startLevel);
+            this.InitiateLoadLevelSequence(settings.startLevel);
         }
         else
         {
@@ -45,7 +50,7 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
 
     public void ReloadCurrentLevel()
     {
-        LoadLevel(currentLevel);
+        InitiateLoadLevelSequence(currentLevel, doorIndex);
     }
 
     /// <summary>
@@ -76,9 +81,14 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     }
     public void GoToMainMenu()
     {
-        UnloadAllScenesExcept("MasterScene");
-        LoadSceneAdditively("MainMenu");
-        gameStateManager.RequestState(GameState.GameStateEnum.MainMenu);
+        if (gameStateManager.RequestState(GameState.GameStateEnum.Loading) == false) return;
+
+        loadingControl.FadeIn(() =>
+        {
+            UnloadAllScenesExcept("MasterScene");
+            LoadSceneAdditively("MainMenu");
+            StartCoroutine(GetLevelLoadProcess(GameState.GameStateEnum.MainMenu));
+        });
     }
 
     private void UnloadAllScenesExcept(string sceneNotToUnloadName)
@@ -107,15 +117,26 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
 
     }
 
-    public void LoadLevelWithLandingIndex(string targetScene, int doorIndex)
+    public void LoadLevelWithLandingIndex(string targetScene, int newDoorIndex)
     {
-        this.doorIndex = doorIndex;
-        LoadLevel(targetScene);
+        InitiateLoadLevelSequence(targetScene, newDoorIndex);
     }
 
     public string GetStartLevel()
     {
         return settings.startLevel;
+    }
+
+    public void InitiateLoadLevelSequence(string levelName, int doorIndex = 0)
+    {
+        if (gameStateManager.RequestState(GameState.GameStateEnum.Loading) == false) return;
+        this.doorIndex = doorIndex;
+        SFXSystem.GetInstance().StopAllSounds();
+        loadingControl.FadeIn(() =>
+        {
+            LoadLevel(levelName);
+            StartCoroutine(GetLevelLoadProcess(GameState.GameStateEnum.InGame));
+        });
     }
 
     public void LoadLevel(string levelName)
@@ -126,13 +147,12 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
         SaveLoadManager.LoadAllData();
         LoadSceneAdditively(levelName);
         currentLevel = levelName;
-        gameStateManager.RequestState(GameState.GameStateEnum.InGame);
 
         LoadSceneAdditively("EntitiesScene");
         LoadSceneAdditively("InGameMenu");
-        StartCoroutine(GetLevelLoadProcess());
     }
-    public IEnumerator GetLevelLoadProcess()
+
+    public IEnumerator GetLevelLoadProcess(GameState.GameStateEnum gamestateAfterLoad)
     {
         for (int i = 0; i < scenesLoading.Count; i++)
         {
@@ -141,7 +161,16 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
                 yield return null;
             }
         }
-        StageLevel();
+        if (gamestateAfterLoad.Equals(GameState.GameStateEnum.InGame))
+        {
+            StageLevel();
+        }
+
+
+        loadingControl.FadeOut(() =>
+        {
+            gameStateManager.RequestState(gamestateAfterLoad);
+        });
         yield return null;
     }
 
@@ -167,10 +196,20 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
             return;
 
         }
+        var cameraConstaint = ConstraintCamera.GetInstance(false);
+        if (cameraConstaint == null)
+        {
+            LogHelper.GetInstance().LogError("Loading Level without Camera Constraint");
+            return;
+
+        }
 
         var landingPosition = level.GetDoor(doorIndex).transform.position;
         player.SetLandingPosition(landingPosition);
         camera.SetPosition(landingPosition);
+        Vector2 position = level.GetGroundMapPosition();
+        Vector2 size = level.GetGroundMapBounds();
+        cameraConstaint.SetConstraint(position, size);
     }
 
     private void UnloadCurrentLevel()
@@ -237,7 +276,7 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     public void RestartLevel()
     {
         LogHelper.GetInstance().Log(("Restarting Level: " + SceneManager.GetActiveScene().name).Bolden(), true);
-        this.LoadLevel(SceneManager.GetActiveScene().name);
+        this.InitiateLoadLevelSequence(SceneManager.GetActiveScene().name);
     }
 
     public void SetGameTimeScale(float newTimeScale)
