@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class SoundPlayer : MonoBehaviour
 {
+    [SerializeField]
+    private AudioSource mySource;
+
+    [SerializeField]
+    private List<AudioClip> footstepClips;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +20,10 @@ public class SoundPlayer : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void PlayFootstep()
+    {
+        this.mySource.PlayOneShot(this.footstepClips[Random.Range(0, this.footstepClips.Count)]);
     }
 }
