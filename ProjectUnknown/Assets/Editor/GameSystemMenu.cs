@@ -90,6 +90,20 @@ public static class GameSystemMenu
         obj.transform.SetParent(Selection.activeGameObject.transform);
         obj.transform.position = GetScenePosition();
     }
+    [MenuItem("GameObject/3D Object/Game System/Decoration/Vine")]
+    public static void CreateVine()
+    {
+        GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(Resources.Load<GameObject>("Prefabs/EnvirontmenInteractable/AxeInteractables/Vine"));
+        obj.transform.SetParent(Selection.activeGameObject.transform);
+        obj.transform.position = GetScenePosition();
+    }
+    [MenuItem("GameObject/3D Object/Game System/Decoration/Grass")]
+    public static void Grass()
+    {
+        GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(Resources.Load<GameObject>("Prefabs/EnvirontmenInteractable/AxeInteractables/GrassClump"));
+        obj.transform.SetParent(Selection.activeGameObject.transform);
+        obj.transform.position = GetScenePosition();
+    }
     private static Vector3 GetScenePosition()
     {
         Camera sceneCam = SceneView.lastActiveSceneView.camera;
