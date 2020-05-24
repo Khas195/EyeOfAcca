@@ -17,7 +17,7 @@ To read the developers personal documentation such as: Journal, Motivation, Rese
  * [Tung Cao](./PersonalDocumentation/TungCao).
  * [Samartha Ingle](./PersonalDocumentation/SamarthaIngle).
  * [ChristopherBukalChilicuisa](./PersonalDocumentation/ChristioherBukalChilicuisa).
- * [Ousama_Andari]
+* [Ousama_Andari](./PersonalDocumentation/OusamaAnderi).
 
 ### Change-Logs
 
