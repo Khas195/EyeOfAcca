@@ -16,11 +16,11 @@ MonoBehaviour:
   - tag: 0
     clip: {fileID: 8300000, guid: ea48c8df407a440d5aaedf828aa90429, type: 3}
     loop: 1
-    volumn: 0.8
+    volumn: 0
   - tag: 1
     clip: {fileID: 8300000, guid: 75c0499d57cbe4daca90ef8d9c75dbc2, type: 3}
     loop: 1
-    volumn: 0.8
+    volumn: 0
   - tag: 2
     clip: {fileID: 8300000, guid: a87a7729cf38d4a8a8887990c668b93b, type: 3}
     loop: 0
@@ -60,7 +60,7 @@ MonoBehaviour:
   - tag: 12
     clip: {fileID: 8300000, guid: a8fec3c5651c4c34f908217324e71474, type: 3}
     loop: 1
-    volumn: 1
+    volumn: 0.495
   - tag: 13
     clip: {fileID: 8300000, guid: ab3fe54e94967734580bed8b835589fc, type: 3}
     loop: 0
