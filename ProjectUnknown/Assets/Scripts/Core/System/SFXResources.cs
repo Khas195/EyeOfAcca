@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "SFXs", menuName = "SFX", order = 0)]
@@ -34,5 +35,6 @@ public class SFXResources : ScriptableObject
         public float volumn;
     }
 
+    [ReorderableList]
     public List<SFX> resourcesList = new List<SFX>();
 }
