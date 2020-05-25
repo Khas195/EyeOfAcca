@@ -182,7 +182,10 @@ public class BoomeraxeGrip : MonoBehaviour
             {
                 boomeraxeFlying.ActivateAbility();
                 axeAbilityActivated = false;
-                soundEffect.Stop();
+                if (soundEffect)
+                {
+                    soundEffect.Stop();
+                }
             });
         }
         if (holderMovement.IsTouchingGround() == false)

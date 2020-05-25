@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a7460afdd59e1f4cb306d254057bc60, type: 3}
   m_Name: CameraSettings
   m_EditorClassIdentifier: 
-  followPercentage: 0.05
+  cameraSpeed: 4
   cameraFollowDeadZoneBoxSize: {x: 10, y: 5}

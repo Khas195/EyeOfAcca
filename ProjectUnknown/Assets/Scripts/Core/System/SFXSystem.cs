@@ -57,6 +57,10 @@ public partial class SFXSystem : SingletonMonobehavior<SFXSystem>
             var sfx = sFXResources.resourcesList[i];
             if (sfx.tag.Equals(soundsEnum))
             {
+                if (sfx.clip == null)
+                {
+                    return null;
+                }
                 source.clip = sfx.clip;
                 source.loop = sfx.loop;
                 source.volume = sfx.volumn;

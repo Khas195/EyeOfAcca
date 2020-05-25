@@ -4,8 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CameraSettings", menuName = "Data/CameraSettings", order = 1)]
 public class CameraSettings : ScriptableObject
 {
-    [Range(0, 1f)]
-    public float followPercentage = 0.08f;
+    public float cameraSpeed = 0.08f;
 
     public Vector2 cameraFollowDeadZoneBoxSize = Vector2.one;
 

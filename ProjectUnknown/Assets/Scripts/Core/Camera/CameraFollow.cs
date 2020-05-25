@@ -76,16 +76,16 @@ public class CameraFollow : SingletonMonobehavior<CameraFollow>
         {
             if (followX)
             {
-                hostPos.x = Mathf.Lerp(hostPos.x, targetPos.x, settings.followPercentage);
+                hostPos.x = Mathf.Lerp(hostPos.x, targetPos.x, settings.cameraSpeed * Time.fixedDeltaTime);
             }
             if (followY)
             {
-                hostPos.y = Mathf.Lerp(hostPos.y, targetPos.y, settings.followPercentage);
+                hostPos.y = Mathf.Lerp(hostPos.y, targetPos.y, settings.cameraSpeed * Time.fixedDeltaTime);
             }
 
             if (followZ)
             {
-                hostPos.z = Mathf.Lerp(hostPos.z, targetPos.z, settings.followPercentage);
+                hostPos.z = Mathf.Lerp(hostPos.z, targetPos.z, settings.cameraSpeed * Time.fixedDeltaTime);
             }
         }
 
@@ -106,7 +106,7 @@ public class CameraFollow : SingletonMonobehavior<CameraFollow>
 
     public void SetFollowPercentage(float value)
     {
-        settings.followPercentage = value;
+        settings.cameraSpeed = value;
     }
 
     public void Clear(bool clearPlayer)
@@ -120,7 +120,7 @@ public class CameraFollow : SingletonMonobehavior<CameraFollow>
 
     public float GetFollowPercentage()
     {
-        return settings.followPercentage;
+        return settings.cameraSpeed;
     }
 
     public void AddEncapsolateObject(Transform obj)
