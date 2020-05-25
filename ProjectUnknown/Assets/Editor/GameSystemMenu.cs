@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public static class GameSystemMenu
@@ -103,6 +104,18 @@ public static class GameSystemMenu
         GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(Resources.Load<GameObject>("Prefabs/EnvirontmenInteractable/AxeInteractables/GrassClump"));
         obj.transform.SetParent(Selection.activeGameObject.transform);
         obj.transform.position = GetScenePosition();
+    }
+    [MenuItem("Edit/Play-Stop, But From Master Scene %`")]
+    public static void PlayFromPrelaunchScene()
+    {
+        if (EditorApplication.isPlaying == true)
+        {
+            EditorApplication.isPlaying = false;
+            return;
+        }
+
+        EditorSceneManager.OpenScene("Assets/Scenes/SetupScene/MasterScene.unity");
+        EditorApplication.isPlaying = true;
     }
     private static Vector3 GetScenePosition()
     {
