@@ -78,7 +78,6 @@ public class Character2D : MonoBehaviour
     }
     public bool Jump()
     {
-        if (movement.IsTouchingGround() == false) return false;
         if (grip.IsHoldingAxe())
         {
             LogHelper.GetInstance().Log(("Axe is so Heavy!!! ").Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);

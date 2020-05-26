@@ -6,8 +6,16 @@ using UnityEngine;
 [Serializable]
 public class ShakeData : ScriptableObject
 {
+    public bool usePerlin = false;
+    [NonSerialized]
     public float shakeDuration = 0.5f;
+    [Tooltip("Shake amount = trauma * trauma")]
+    [ReadOnly]
     public float shakeAmount = 0.7f;
+
+    [Range(0.0f, 1.0f)]
+    public float trauma = 0.2f;
+    [Tooltip("How fast trauma is reduced. Current Trauma = Time.deltaTime * decreaseFactor")]
     public float decreaseFactor = 1.0f;
 
     [Button("Save")]

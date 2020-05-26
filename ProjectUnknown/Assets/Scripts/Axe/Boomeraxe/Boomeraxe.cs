@@ -145,11 +145,6 @@ public class Boomeraxe : MonoBehaviour
 
     AudioSource spinningSource = null;
 
-    [BoxGroup("Current Status")]
-    [SerializeField]
-    [ReadOnly]
-    private GameObject axeRecallingEffect;
-
     void Start()
     {
         body2d.gravityScale = 0;
@@ -345,9 +340,6 @@ public class Boomeraxe : MonoBehaviour
         axeSprite.sortingLayerName = "AxeFront";
         CalculateRecallDistance();
         OnRecall.Invoke(contactPoint.point, body2d.transform.rotation);
-        // axeRecallingEffect = VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.AxeRecalling, Vector3.zero, Quaternion.identity);
-        // axeRecallingEffect.transform.parent = body2d.transform;
-        // axeRecallingEffect.transform.localPosition = Vector3.zero;
 
     }
 
@@ -375,16 +367,9 @@ public class Boomeraxe : MonoBehaviour
         if (returning)
         {
             grip.HoldAxe();
-            // axeRecallingEffect.transform.parent = null;
-            // StartCoroutine(DestroyAfter(0.3f, axeRecallingEffect));
         }
     }
-    // public IEnumerator DestroyAfter(float time, GameObject gameObject)
-    // {
-    //     yield return new WaitForSeconds(time);
-    //     Destroy(axeRecallingEffect);
 
-    // }
     public Vector2 GetAxePosition()
     {
         return body2d.transform.position;

@@ -62,4 +62,14 @@ public class BoomeraxeGravityScaleAdjustor : MonoBehaviour
         characterMovement.SetTimeScale(1.0f);
         countingDown = false;
     }
+    public void SlowTime(float time)
+    {
+        Time.timeScale = 0.2f;
+        StartCoroutine(SlowTimeFor(time));
+    }
+    public IEnumerator SlowTimeFor(float time)
+    {
+        yield return new WaitForSeconds(time);
+        Time.timeScale = 1;
+    }
 }
