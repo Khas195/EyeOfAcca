@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21f714ef91344ba47ae7ca37e2acd072, type: 3}
   m_Name: CameraShakeData
   m_EditorClassIdentifier: 
-  shakeDuration: 0.1
+  usePerlin: 0
   shakeAmount: 0
   trauma: 0.5
   decreaseFactor: 1
