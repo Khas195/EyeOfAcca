@@ -121,6 +121,10 @@ public class Movement2DPlatform : IMovement
             }
         }
     }
+    public override bool CanJump()
+    {
+        return this.IsTouchingGround() || currentJumpBufferTime <= data.bufferTimeForJump && isAccelUp == false;
+    }
     void Update()
     {
         jumpTriggered = false;
@@ -135,16 +139,9 @@ public class Movement2DPlatform : IMovement
         ProcessMovement();
         if (jumpSignal)
         {
-            if (this.IsTouchingGround())
+            if (CanJump())
             {
                 this.Jump();
-            }
-            else
-            {
-                if (currentJumpBufferTime <= data.bufferTimeForJump && isAccelUp == false)
-                {
-                    Jump();
-                }
             }
             jumpSignal = false;
         }
