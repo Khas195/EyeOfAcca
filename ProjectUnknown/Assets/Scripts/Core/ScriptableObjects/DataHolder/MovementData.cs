@@ -15,6 +15,7 @@ using UnityEngine;
 [Serializable]
 public class MovementData : ScriptableObject
 {
+    public float bufferTimeForJump = 0.1f;
     public float walkSpeed = 5;
     public float runSpeed = 10;
     public float maxVelUp = 20;

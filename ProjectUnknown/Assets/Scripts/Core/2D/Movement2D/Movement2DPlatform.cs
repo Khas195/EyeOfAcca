@@ -1,9 +1,14 @@
 using System;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Movement2DPlatform : IMovement
 {
+    [BoxGroup("Settings")]
+    [SerializeField]
+    UnityEvent jumpEvent = new UnityEvent();
+
     [BoxGroup("Settings")]
     [SerializeField]
     [Required]
@@ -67,6 +72,7 @@ public class Movement2DPlatform : IMovement
     [SerializeField]
     [ReadOnly]
     bool isAccelUp = false;
+    float currentJumpBufferTime = 0.0f;
 
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
@@ -110,6 +116,7 @@ public class Movement2DPlatform : IMovement
         {
             if (Physics2D.OverlapBoxAll(body2D.transform.position + headColOffset, headColSize, 0, jumpableLayer).Length > 0)
             {
+                LogHelper.GetInstance().Log("Stop accel up, head hit something", true, LogHelper.LogLayer.PlayerFriendly);
                 isAccelUp = false;
             }
         }
@@ -117,18 +124,31 @@ public class Movement2DPlatform : IMovement
     void Update()
     {
         jumpTriggered = false;
+        if (this.IsTouchingGround() == false)
+        {
+            currentJumpBufferTime += Time.deltaTime;
+        }
+        else
+        {
+            currentJumpBufferTime = 0;
+        }
         ProcessMovement();
         if (jumpSignal)
         {
             if (this.IsTouchingGround())
             {
-                jumpTriggered = true;
-                isAccelUp = true;
-                maxHeightPos = body2D.transform.position + new Vector3(0, data.maxJumpHeight, 0);
-                decelHeight = body2D.transform.position + new Vector3(0, data.jumpHeightForDecel, 0);
+                this.Jump();
+            }
+            else
+            {
+                if (currentJumpBufferTime <= data.bufferTimeForJump && isAccelUp == false)
+                {
+                    Jump();
+                }
             }
             jumpSignal = false;
         }
+
         if (isAccelUp)
         {
             var vel = body2D.velocity;
@@ -153,6 +173,15 @@ public class Movement2DPlatform : IMovement
         }
         body2D.velocity *= timeScale;
 
+    }
+
+    private void Jump()
+    {
+        jumpEvent.Invoke();
+        jumpTriggered = true;
+        isAccelUp = true;
+        maxHeightPos = body2D.transform.position + new Vector3(0, data.maxJumpHeight, 0);
+        decelHeight = body2D.transform.position + new Vector3(0, data.jumpHeightForDecel, 0);
     }
 
     public void SetTimeScale(float scale)
