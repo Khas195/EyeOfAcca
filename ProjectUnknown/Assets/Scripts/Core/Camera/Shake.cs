@@ -12,6 +12,10 @@ public class Shake : MonoBehaviour
     [SerializeField]
     [Required]
     ShakeData data = null;
+    [BoxGroup("Requirements")]
+    [SerializeField]
+    bool shakeRotate = false;
+
     private Vector2 originPos;
     [BoxGroup("Current Status")]
     [SerializeField]
@@ -29,6 +33,11 @@ public class Shake : MonoBehaviour
     [SerializeField]
     [ReadOnly]
     bool isShaking = false;
+
+    [BoxGroup("Current Status")]
+    [SerializeField]
+    [ReadOnly]
+    float currentTrauma = 0;
     /// <summary>
     /// Awake is called when the script instance is being loaded.
     /// </summary>
@@ -41,15 +50,34 @@ public class Shake : MonoBehaviour
     {
         if (isShaking)
         {
-            if (currentShakeDuration >= 0)
+            if (currentTrauma >= 0)
             {
-                targetObject.transform.localPosition = originPos + Random.insideUnitCircle * data.shakeAmount;
-                currentShakeDuration -= Time.deltaTime * data.decreaseFactor;
+                data.shakeAmount = currentTrauma * currentTrauma;
+                if (data.usePerlin)
+                {
+                    var offX = originPos.x * Mathf.PerlinNoise(0, Time.time) * data.shakeAmount;
+                    var offy = originPos.y * Mathf.PerlinNoise(1, Time.time) * data.shakeAmount;
+                    targetObject.transform.localPosition = new Vector2(offX, offy);
+                }
+                else
+                {
+                    targetObject.transform.localPosition = originPos + Random.insideUnitCircle * data.shakeAmount;
+                }
+                if (shakeRotate)
+                {
+                    targetObject.transform.localRotation = Quaternion.Euler(Random.insideUnitSphere * data.shakeAmount);
+                }
+                currentTrauma -= Time.deltaTime * data.decreaseFactor;
             }
             else
             {
                 targetObject.transform.localPosition = originPos;
+                if (shakeRotate)
+                {
+                    targetObject.transform.localRotation = Quaternion.identity;
+                }
                 isShaking = false;
+                data.shakeAmount = 0;
                 if (callback != null)
                 {
                     callback();
@@ -60,9 +88,14 @@ public class Shake : MonoBehaviour
     }
     public void InduceTrauma(System.Action callback)
     {
-        originPos = targetObject.transform.position;
+        originPos = targetObject.transform.localPosition;
         this.callback = callback;
         isShaking = true;
         currentShakeDuration = data.shakeDuration;
+        currentTrauma = data.trauma;
+    }
+    public void InduceTrauma()
+    {
+        InduceTrauma(null);
     }
 }

@@ -1,9 +1,14 @@
 using System;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Movement2DPlatform : IMovement
 {
+    [BoxGroup("Settings")]
+    [SerializeField]
+    UnityEvent jumpEvent = new UnityEvent();
+
     [BoxGroup("Settings")]
     [SerializeField]
     [Required]
@@ -122,6 +127,7 @@ public class Movement2DPlatform : IMovement
         {
             if (this.IsTouchingGround())
             {
+                jumpEvent.Invoke();
                 jumpTriggered = true;
                 isAccelUp = true;
                 maxHeightPos = body2D.transform.position + new Vector3(0, data.maxJumpHeight, 0);

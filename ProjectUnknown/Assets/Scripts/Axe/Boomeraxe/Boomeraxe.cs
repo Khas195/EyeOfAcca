@@ -145,11 +145,6 @@ public class Boomeraxe : MonoBehaviour
 
     AudioSource spinningSource = null;
 
-    [BoxGroup("Current Status")]
-    [SerializeField]
-    [ReadOnly]
-    private GameObject axeRecallingEffect;
-
     void Start()
     {
         body2d.gravityScale = 0;
