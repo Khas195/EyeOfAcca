@@ -122,4 +122,8 @@ public class IMovement : MonoBehaviour
     public virtual void RotateToward(Vector3 direction, bool rotateY)
     {
     }
+    public virtual bool CanJump()
+    {
+        return true;
+    }
 }

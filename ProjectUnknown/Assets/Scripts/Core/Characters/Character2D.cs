@@ -87,7 +87,7 @@ public class Character2D : MonoBehaviour
             LogHelper.GetInstance().Log(("So light!! ").Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
         }
         movement.SignalJump();
-        return true;
+        return movement.CanJump();
     }
 
 
