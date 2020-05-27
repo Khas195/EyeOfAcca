@@ -411,7 +411,7 @@ Level:
     
     Added a tutorial levels with puzzles inspired by the instances that everyone came up with.
 
-#### _**Version 0.1.5(May 20th, 2020 - May 26th, 2020)**_
+#### _**Version 0.1.5, 0.1.6, 0.1.7, 0.1.8, 0.1.9(May 20th, 2020 - May 26th, 2020)**_
 
 ##### Version 0.1.5
 
@@ -457,3 +457,65 @@ Fixed:
     Sound glitch.
     Character sometimes lost his axe.
 
+#### Version 0.1.7
+
+Arts: 
+
+    Added vines and grasses
+        Vines and grass has animation.
+    Vines and Grasses now interact with the player and the axe.
+    Added new tilesets.
+    Added new door sprite.
+
+
+#### Version 0.1.8
+
+Bug fixes:
+
+    Fixed an error where sounds are not play probably.
+
+Sounds:
+
+    Removed:
+        Axe shake sound
+
+    Added:
+        player Jump.
+        player land.
+        player run.
+        player walk.
+        teleport.
+        Axe fllying.
+        axe hit.
+
+#### Version 0.1.9
+
+Editor:
+
+    Added preview button to sfxs.
+    Added new menu button so developers don't have to drag in the master scene to run the game.
+
+Arts:
+
+    Added new tile sets.
+    Added level map.
+
+Level:
+
+    Decorate levels with new tile set.
+    Removing looping in the last level: player cannot go back from the last level.
+
+Juicing:
+
+    Added time slow and screen shake for when the axe hit and when the player pull the axe.
+        Time Slow: 0.02s.
+        Time scale: 0.02f
+
+    Added a jump buffer after the player start falling -> It makes the control feels better.
+        Time: 0.3f
+
+Builds:
+
+    Added a build version for mac but haven't tested it yet.
+
+#### _**Version 0.2.0 (May 27th, 2020 - June 3rd, 2020)**_
