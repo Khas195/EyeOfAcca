@@ -78,16 +78,12 @@ public class Character2D : MonoBehaviour
     }
     public bool Jump()
     {
-        if (grip.IsHoldingAxe())
+        if (movement.CanJump())
         {
-            LogHelper.GetInstance().Log(("Axe is so Heavy!!! ").Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
+            movement.SignalJump();
+            return true;
         }
-        else
-        {
-            LogHelper.GetInstance().Log(("So light!! ").Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
-        }
-        movement.SignalJump();
-        return movement.CanJump();
+        return false;
     }
 
 
