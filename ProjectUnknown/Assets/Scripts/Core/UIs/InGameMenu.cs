@@ -31,8 +31,6 @@ public class InGameMenu : SingletonMonobehavior<InGameMenu>
     /// </summary>
     void Start()
     {
-        fadeTrans.TransitionOut();
-        scaleTrans.TransitionOut();
     }
     public void HideInGameMenu()
     {

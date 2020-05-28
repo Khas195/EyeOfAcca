@@ -8,6 +8,8 @@ public class BoomeraxeVFXHandler : MonoBehaviour
     Transform gemPosition = null;
     [SerializeField]
     Boomeraxe axe = null;
+    [SerializeField]
+    Ripple rippleEffect = null;
 
     public void SpawnPebbles(Vector3 pos, Quaternion rotation)
     {
@@ -20,5 +22,6 @@ public class BoomeraxeVFXHandler : MonoBehaviour
         effect.transform.position = gemPosition.position;
         effect.transform.parent = axe.GetAxeTransform();
         effect.GetComponent<Animator>().SetBool(ability.GetAbilityPower(), true);
+        rippleEffect.RippleAt(axe.GetAxePosition());
     }
 }

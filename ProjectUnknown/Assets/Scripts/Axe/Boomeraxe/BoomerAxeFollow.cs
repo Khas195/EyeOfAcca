@@ -27,7 +27,7 @@ public class BoomerAxeFollow : MonoBehaviour
     {
         var cameraSizeY = 2 * playerCamera.orthographicSize;
         var cameraSizeX = cameraSizeY * playerCamera.aspect;
-        if (Mathf.Abs(axeBody.transform.position.x - characterBody.transform.position.x) > cameraSizeX || Mathf.Abs(axeBody.transform.position.y - characterBody.transform.position.y) > cameraSizeY)
+        if (Mathf.Abs(axeBody.transform.position.x - characterBody.transform.position.x) > cameraSizeX / 1.5f || Mathf.Abs(axeBody.transform.position.y - characterBody.transform.position.y) > cameraSizeY / 2.0f)
         {
             follow.RemoveEncapsolate(axeBody.transform);
         }

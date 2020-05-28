@@ -9,23 +9,26 @@ public class LoadingControl : MonoBehaviour
 {
     [BoxGroup("Requirements")]
     [SerializeField]
+    Material screenTransitionMat = null;
+
+    [BoxGroup("Requirements")]
+    [SerializeField]
+    Texture2D transInTexture = null;
+
+    [BoxGroup("Requirements")]
+    [SerializeField]
+    Texture2D transOutTexture = null;
+
+    [BoxGroup("Requirements")]
+    [SerializeField]
+    public TransitionCurve transCurve = null;
+
+
+    [BoxGroup("Requirements")]
+    [SerializeField]
     [Required]
     Text loadingText = null;
-    [BoxGroup("Requirements")]
-    [SerializeField]
-    [Required]
-    GameObject loadingUI = null;
-    [BoxGroup("Requirements")]
-    [SerializeField]
-    [Required]
-    Image loadingBG = null;
-    [BoxGroup("Requirements")]
-    [SerializeField]
-    [Required]
-    Camera tempCam = null;
-    [BoxGroup("Settings")]
-    [SerializeField]
-    float fadeTime = 0.5f;
+
     [BoxGroup("Settings")]
     [SerializeField]
     int dotBehindText = 3;
@@ -37,30 +40,13 @@ public class LoadingControl : MonoBehaviour
     [SerializeField]
     [ReadOnly]
     int curDot = 0;
+
+
     [BoxGroup("Status")]
     [SerializeField]
     [ReadOnly]
     float curtime = 0;
-    [BoxGroup("Status")]
-    [SerializeField]
-    [ReadOnly]
-    bool isFading = false;
-    [BoxGroup("Status")]
-    [SerializeField]
-    [ReadOnly]
-    bool isFadingOut = false;
-    [BoxGroup("Status")]
-    [SerializeField]
-    [ReadOnly]
-    float curFadingTime = 0;
-    [BoxGroup("Status")]
-    [SerializeField]
-    [ReadOnly]
-    float endBGAlpha = 0;
-    [BoxGroup("Status")]
-    [SerializeField]
-    [ReadOnly]
-    float beginBGAlpha = 0;
+
     [BoxGroup("Status")]
     [SerializeField]
     [ReadOnly]
@@ -77,46 +63,29 @@ public class LoadingControl : MonoBehaviour
     /// </summary>
     void Update()
     {
-        LoadingText();
-        if (isFading)
-        {
-            if (curFadingTime >= fadeTime)
-            {
-                isFading = false;
-                if (callbackAfterFade != null)
-                {
-                    callbackAfterFade();
-                    callbackAfterFade = null;
-                }
-                if (isFadingOut)
-                {
-                    this.transform.gameObject.SetActive(false);
-                    isFadingOut = false;
-                }
-                else
-                {
-                    tempCam.gameObject.SetActive(true);
-                }
-                return;
-            }
-            var bgColor = loadingBG.color;
-            if (isFadingOut)
-            {
-                bgColor.a = 1 - Tweener.LinearTween(curFadingTime, beginBGAlpha, endBGAlpha, fadeTime);
-            }
-            else
-            {
-                bgColor.a = Tweener.LinearTween(curFadingTime, beginBGAlpha, endBGAlpha, fadeTime);
-            }
-            curFadingTime += Time.unscaledDeltaTime;
-            loadingBG.color = bgColor;
 
+        LoadingText();
+        this.screenTransitionMat.SetFloat("_CutOff", transCurve.GetCurrentValue());
+        transCurve.AdvanceTime(Time.unscaledDeltaTime);
+
+        if (transCurve.IsCurrentTimeInGraph() == false)
+        {
+            if (callbackAfterFade != null)
+            {
+                callbackAfterFade();
+                callbackAfterFade = null;
+                if (transCurve.IsTransIn() == false)
+                {
+                    this.gameObject.SetActive(false);
+                }
+            }
         }
+
     }
 
     private void LoadingText()
     {
-        curtime += Time.deltaTime;
+        curtime += Time.unscaledDeltaTime;
         if (curtime > dotTime)
         {
             curDot += 1;
@@ -135,29 +104,16 @@ public class LoadingControl : MonoBehaviour
 
     public void FadeIn(Action callback)
     {
+        this.screenTransitionMat.SetTexture("_TransitionTexture", transInTexture);
         this.gameObject.SetActive(true);
-        var bgColor = loadingBG.color;
-        bgColor.a = 0;
-        loadingBG.color = bgColor;
-        isFading = true;
-        beginBGAlpha = 0;
-        curFadingTime = 0;
-        endBGAlpha = 1;
         callbackAfterFade = callback;
+        transCurve.TransitionIn();
     }
 
     public void FadeOut(Action callback)
     {
-        tempCam.gameObject.SetActive(false);
-        this.gameObject.SetActive(true);
-        var bgColor = loadingBG.color;
-        bgColor.a = 1;
-        loadingBG.color = bgColor;
-        isFading = true;
-        beginBGAlpha = 0;
-        curFadingTime = 0;
-        endBGAlpha = 1;
+        this.screenTransitionMat.SetTexture("_TransitionTexture", transOutTexture);
         callbackAfterFade = callback;
-        isFadingOut = true;
+        transCurve.TransitionOut();
     }
 }

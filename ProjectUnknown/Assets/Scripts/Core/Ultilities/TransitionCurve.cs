@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
@@ -20,7 +21,6 @@ public class TransitionCurve : MonoBehaviour
 
     [BoxGroup("Status")]
     [SerializeField]
-    [ReadOnly]
 
     float curTime = 0;
 
@@ -46,5 +46,17 @@ public class TransitionCurve : MonoBehaviour
     {
         curTime = 0;
         curCurve = transOutCurve;
+    }
+
+    public bool IsCurrentTimeInGraph()
+    {
+        float lastKeyTime = curCurve.keys[curCurve.length - 1].time;
+
+        return curTime <= lastKeyTime && curTime >= 0;
+    }
+
+    public bool IsTransIn()
+    {
+        return curCurve == transInCurve;
     }
 }
