@@ -107,26 +107,17 @@ public class Movement2DPlatform : IMovement
     {
         return jumpTriggered;
     }
-    /// <summary>
-    /// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
-    /// </summary>
-    void FixedUpdate()
-    {
-        if (isAccelUp)
-        {
-            if (Physics2D.OverlapBoxAll(body2D.transform.position + headColOffset, headColSize, 0, jumpableLayer).Length > 0)
-            {
-                LogHelper.GetInstance().Log("Stop accel up, head hit something", true, LogHelper.LogLayer.PlayerFriendly);
-                isAccelUp = false;
-            }
-        }
-    }
+
     public override bool CanJump()
     {
-        return this.IsTouchingGround() || currentJumpBufferTime <= data.bufferTimeForJump && isAccelUp == false;
+        return jumpSignal == false && isAccelUp == false && (this.IsTouchingGround() || currentJumpBufferTime <= data.bufferTimeForJump);
     }
     void Update()
     {
+        if (Physics2D.OverlapBoxAll(body2D.transform.position + headColOffset, headColSize, 0, jumpableLayer).Length > 0)
+        {
+            isAccelUp = false;
+        }
         jumpTriggered = false;
         if (this.IsTouchingGround() == false)
         {
@@ -139,15 +130,12 @@ public class Movement2DPlatform : IMovement
         ProcessMovement();
         if (jumpSignal)
         {
-            if (CanJump())
-            {
-                this.Jump();
-            }
-            jumpSignal = false;
+            this.Jump();
         }
 
         if (isAccelUp)
         {
+            jumpSignal = false;
             var vel = body2D.velocity;
             var curPosVertical = maxHeightPos.y - body2D.transform.position.y;
             if (curPosVertical <= decelHeight.y)
@@ -175,6 +163,7 @@ public class Movement2DPlatform : IMovement
     private void Jump()
     {
         jumpEvent.Invoke();
+        LogHelper.GetInstance().Log("Jump", true, LogHelper.LogLayer.PlayerFriendly);
         jumpTriggered = true;
         isAccelUp = true;
         maxHeightPos = body2D.transform.position + new Vector3(0, data.maxJumpHeight, 0);

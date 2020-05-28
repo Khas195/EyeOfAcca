@@ -142,3 +142,12 @@ During this sprint, the focus was more about the level and narrative in the game
 
 I took this time to see the way Ousama creating the levels and improve our unity editor to make the process easier. Which result in this sprint being a quality of life improvment in the Unity editor on coding the side. The changes can be seen in Version 0.1.4.
 
+### __**Level and New tilesets(May 20th, 2020 - May 26th, 2020)**__
+
+There was more thoughts on adding new mechanic to the game but I told them that we won't have the time to polish it to the extend of the current mechanic. I rather keep polishing current mechanics and game feel than making half finish mechanic.
+
+Chris made some amazing tileset art but it is so time consuming to add them into the game. Maybe a better solution can be found in the future.
+
+Ousama also made some pretty good puzzles. Though we talked about what we want from our puzzles. Just because our game are inspired by celeste, that doesn't mean we need to make out level the way they make it. Celeste has an emphasis on their movement, jumping and dashing as their core mechanic. Ours, however, focus more in the the throwing and recalling of the axe. Hence, the level he made so far missed the point but after we talked about it. The levels place a heavier emphasis on the axe which leads to some very interesting results. 
+
+However, his levels are still too convoluted with unncessary elements. Though, I think I can work with his levels to balance it out. Remove unncessary elements and introducing the level's idea slowly to the player.

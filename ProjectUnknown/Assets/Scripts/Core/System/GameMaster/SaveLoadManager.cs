@@ -35,13 +35,27 @@ public static class SaveLoadManager
     public static void Save<T>(T savedObject, string fileName)
     {
         LogHelper.GetInstance().Log("Saved Obj: ".Bolden() + fileName.Bolden(), true);
+        var dataPath = "";
+#if UNITY_STANDALONE_OSX
+        dataPath = Application.dataPath + "/Resources/Data/StreamingAssets/SavedData/" + fileName + ".json";
+#else
+        dataPath = Application.dataPath + "/StreamingAssets/SavedData/" + fileName + ".json";
+#endif
         string jsonSaved = JsonUtility.ToJson(savedObject);
-        File.WriteAllText(Application.dataPath + "/StreamingAssets/SavedData/" + fileName + ".json", jsonSaved);
+        File.WriteAllText(dataPath, jsonSaved);
     }
+
     public static void Load<T>(T objectToLoad, string fileName)
     {
         LogHelper.GetInstance().Log("Loaded Obj: ".Bolden() + fileName.Bolden(), true);
-        string jsonLoad = File.ReadAllText(Application.dataPath + "/StreamingAssets/SavedData/" + fileName + ".json");
+        var dataPath = "";
+
+#if UNITY_STANDALONE_OSX
+        dataPath = Application.dataPath + "/Resources/Data/StreamingAssets/SavedData/" + fileName + ".json";
+#else
+        dataPath = Application.dataPath + "/StreamingAssets/SavedData/" + fileName + ".json";
+#endif
+        string jsonLoad = File.ReadAllText(dataPath);
         JsonUtility.FromJsonOverwrite(jsonLoad, objectToLoad);
     }
 }
