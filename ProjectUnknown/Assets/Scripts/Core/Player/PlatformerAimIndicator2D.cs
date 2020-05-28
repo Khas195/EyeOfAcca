@@ -30,6 +30,8 @@ public class PlatformerAimIndicator2D : MonoBehaviour
     [SerializeField]
     TransitionCurve scaleTrans = null;
 
+    Vector2 aimOriginPos;
+
 
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
@@ -37,6 +39,7 @@ public class PlatformerAimIndicator2D : MonoBehaviour
     /// </summary>
     void Start()
     {
+        aimOriginPos = indicatorSprite.transform.localPosition;
         Show();
     }
 
@@ -48,7 +51,6 @@ public class PlatformerAimIndicator2D : MonoBehaviour
             return;
         }
         pivot.transform.position = characterTrans.transform.position;
-        rotateScript.RotateXAxisTowardMouse();
 
         var indicatorColor = indicatorSprite.color;
         indicatorColor.a = fade.GetCurrentValue();
@@ -57,10 +59,19 @@ public class PlatformerAimIndicator2D : MonoBehaviour
 
         var scale = indicatorSprite.transform.localScale;
         scale.y = scale.x = scaleTrans.GetCurrentValue();
+        indicatorSprite.transform.localPosition = aimOriginPos + scale.x * Vector2.right;
         indicatorSprite.transform.localScale = scale;
         scaleTrans.AdvanceTime(Time.deltaTime);
     }
 
+    /// <summary>
+    /// LateUpdate is called every frame, if the Behaviour is enabled.
+    /// It is called after all Update functions have been called.
+    /// </summary>
+    void LateUpdate()
+    {
+        rotateScript.RotateXAxisTowardMouse();
+    }
     public void Show()
     {
         fade.TransitionIn();

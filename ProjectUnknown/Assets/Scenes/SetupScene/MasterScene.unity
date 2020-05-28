@@ -606,7 +606,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1335997348}
-  m_LocalRotation: {x: -0.07282044, y: 0.079758175, z: -0.67031324, w: 0.7341772}
+  m_LocalRotation: {x: 0.004122184, y: -0.10792213, z: 0.03794357, w: -0.9934265}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1241,10 +1241,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screenTransitionMat: {fileID: 2100000, guid: f96fe1fb54431a5499be3c808f8d2861, type: 2}
+  transInTexture: {fileID: 2800000, guid: 2569b2b0d8423df4fb0e7daf82a5366f, type: 3}
+  transOutTexture: {fileID: 2800000, guid: a30ffd55ed4907c45b3b8d1fb7e3e9b4, type: 3}
   transCurve: {fileID: 1899728966}
   loadingText: {fileID: 2071099492}
-  loadingUI: {fileID: 2069664996}
-  tempCam: {fileID: 1698077062}
   dotBehindText: 3
   dotTime: 0.3
   curDot: 0

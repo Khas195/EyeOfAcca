@@ -55,7 +55,7 @@ public class InGameMenu : SingletonMonobehavior<InGameMenu>
     /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.
     /// </summary>
-    void Update()
+    void LateUpdate()
     {
         var axe = BoomeraxeGrip.GetInstance(false);
         var playerCam = CameraFollow.GetInstance(false);
@@ -86,20 +86,20 @@ public class InGameMenu : SingletonMonobehavior<InGameMenu>
 
         if (axeScreenPoint.x <= 0)
         {
-            axeScreenPoint.x = 0 + axeIndicator.sprite.rect.width * 4;
+            axeScreenPoint.x = 0 + axeIndicator.sprite.rect.width / 3;
         }
         if (axeScreenPoint.x >= Screen.width)
         {
-            axeScreenPoint.x = Screen.width - axeIndicator.sprite.rect.width * 4;
+            axeScreenPoint.x = Screen.width - axeIndicator.sprite.rect.width / 3;
         }
 
         if (axeScreenPoint.y <= 0)
         {
-            axeScreenPoint.y = 0 + axeIndicator.sprite.rect.height * 4;
+            axeScreenPoint.y = 0 + axeIndicator.sprite.rect.height / 3;
         }
         if (axeScreenPoint.y >= Screen.height)
         {
-            axeScreenPoint.y = Screen.height - axeIndicator.sprite.rect.height * 4;
+            axeScreenPoint.y = Screen.height - axeIndicator.sprite.rect.height / 3;
         }
         if (showIndicator == true)
         {
