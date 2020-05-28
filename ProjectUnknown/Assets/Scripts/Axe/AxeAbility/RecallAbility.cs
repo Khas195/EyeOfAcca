@@ -16,4 +16,9 @@ public class RecallAbility : AxeAbility
     {
         return "hasRecallPower";
     }
+
+    public override Color GetGemColor()
+    {
+        return Color.cyan;
+    }
 }

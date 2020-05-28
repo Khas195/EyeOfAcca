@@ -37,5 +37,8 @@ public class TeleportAbility : AxeAbility
         return "hasTeleportPower";
     }
 
-
+    public override Color GetGemColor()
+    {
+        return Color.red;
+    }
 }

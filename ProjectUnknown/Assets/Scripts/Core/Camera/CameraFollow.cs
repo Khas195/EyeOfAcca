@@ -54,6 +54,11 @@ public class CameraFollow : SingletonMonobehavior<CameraFollow>
         Gizmos.DrawWireSphere(host.position, 0.5f);
     }
 
+    public Camera GetCamera()
+    {
+        return this.host.GetComponentInChildren<Camera>();
+    }
+
     void FixedUpdate()
     {
         var targetPos = GetCenterPosition(encapsolatedTarget);

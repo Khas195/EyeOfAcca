@@ -8,4 +8,5 @@ public abstract class AxeAbility : ScriptableObject
     public abstract void Activate(Boomeraxe axe);
 
     public abstract string GetAbilityPower();
+    public abstract Color GetGemColor();
 }
