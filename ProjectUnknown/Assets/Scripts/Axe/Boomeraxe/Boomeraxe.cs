@@ -339,6 +339,7 @@ public class Boomeraxe : MonoBehaviour
         currentRecallTime = 0;
         axeSprite.sortingLayerName = "AxeFront";
         CalculateRecallDistance();
+
         OnRecall.Invoke(contactPoint.point, body2d.transform.rotation);
 
     }

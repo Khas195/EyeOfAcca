@@ -42,10 +42,17 @@ public static class GameSystemMenu
         obj.transform.SetParent(Selection.activeGameObject.transform);
         obj.transform.position = GetScenePosition();
     }
-    [MenuItem("GameObject/2D Object/Game System/RailBlock")]
+    [MenuItem("GameObject/2D Object/Game System/RailBlock-Horitzontal")]
     public static void CreateRailBlock()
     {
-        GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(Resources.Load<GameObject>("Prefabs/EnvirontmenInteractable/AxeInteractables/RailBlockEntity"));
+        GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(Resources.Load<GameObject>("Prefabs/EnvirontmenInteractable/AxeInteractables/RailBlockEntity-Horizontal"));
+        obj.transform.SetParent(Selection.activeGameObject.transform);
+        obj.transform.position = GetScenePosition();
+    }
+    [MenuItem("GameObject/2D Object/Game System/RailBlock-Vertical")]
+    public static void CreateRailBlockVertical()
+    {
+        GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(Resources.Load<GameObject>("Prefabs/EnvirontmenInteractable/AxeInteractables/RailBlockEntity-Vertical"));
         obj.transform.SetParent(Selection.activeGameObject.transform);
         obj.transform.position = GetScenePosition();
     }

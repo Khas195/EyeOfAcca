@@ -10,7 +10,7 @@ public class OnAxeThrowCatch : UnityEvent<bool>
 {
 
 }
-public class BoomeraxeGrip : MonoBehaviour
+public class BoomeraxeGrip : SingletonMonobehavior<BoomeraxeGrip>
 {
     [BoxGroup("Settings")]
     [SerializeField]
@@ -160,6 +160,12 @@ public class BoomeraxeGrip : MonoBehaviour
             adjustor.ResetTimeScale();
         }
     }
+
+    public Boomeraxe GetAxeFlying()
+    {
+        return boomeraxeFlying;
+    }
+
     public BoomeraxeGravityScaleAdjustor GetTimeAdjustor()
     {
         return adjustor;
