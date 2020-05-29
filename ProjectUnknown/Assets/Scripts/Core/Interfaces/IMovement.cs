@@ -94,21 +94,7 @@ public class IMovement : MonoBehaviour
 */
     protected float GetSpeedBasedOnMode()
     {
-        float moveSpeed;
-        switch (moveMode)
-        {
-            case MovementType.Run:
-                moveSpeed = data.runSpeed;
-                break;
-            case MovementType.Walk:
-                moveSpeed = data.walkSpeed;
-                break;
-            default:
-                moveSpeed = data.runSpeed;
-                break;
-        }
-
-        return moveSpeed;
+        return 0;
     }
     public virtual bool IsTouchingGround()
     {

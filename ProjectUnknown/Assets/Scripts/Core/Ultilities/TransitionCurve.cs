@@ -21,6 +21,7 @@ public class TransitionCurve : MonoBehaviour
 
     [BoxGroup("Status")]
     [SerializeField]
+    [ReadOnly]
 
     float curTime = 0;
 

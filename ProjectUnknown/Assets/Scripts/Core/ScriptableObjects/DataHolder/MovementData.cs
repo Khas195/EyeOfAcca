@@ -16,13 +16,14 @@ using UnityEngine;
 public class MovementData : ScriptableObject
 {
     public float bufferTimeForJump = 0.1f;
-    public float walkSpeed = 5;
-    public float runSpeed = 10;
+
+    public AnimationCurve accelCurve = null;
+    public AnimationCurve decelCurve = null;
+
     public float maxVelUp = 20;
     public float fallMultiplier = 2.5f;
     public float maxJumpHeight = 5f;
     public float jumpHeightForDecel = 3f;
-    public float timeTilMaxSpeed = 0.2f;
     public float rotateSpeed = 20f;
     [Button("Save")]
     public void SaveData()

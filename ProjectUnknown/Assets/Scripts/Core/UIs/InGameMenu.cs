@@ -59,13 +59,14 @@ public class InGameMenu : SingletonMonobehavior<InGameMenu>
     {
         var axe = BoomeraxeGrip.GetInstance(false);
         var playerCam = CameraFollow.GetInstance(false);
-        if (axe == null || playerCam == null) return;
-        Vector3 pos = axe.GetAxePosition();
-        pos.z = playerCam.GetCamera().nearClipPlane;
+        var playerControl = PlayerController2D.GetInstance(false);
         rotateScript.SetPivot(axeIndicatorPivot);
-        var axeScreenPoint = playerCam.GetCamera().WorldToScreenPoint(pos);
+        if (axe == null || playerCam == null || playerControl == null) return;
 
-        if (axeScreenPoint.x <= 0 || axeScreenPoint.x >= Screen.width || axeScreenPoint.y <= 0 || axeScreenPoint.y >= Screen.height)
+        Vector3 axePos = axe.GetAxePosition();
+        var axeScreenPos = playerCam.GetCamera().WorldToScreenPoint(axePos);
+
+        if (IsPosOffCameraView(axeScreenPos))
         {
             if (showIndicator == false)
             {
@@ -73,6 +74,8 @@ public class InGameMenu : SingletonMonobehavior<InGameMenu>
                 fadeTrans.TransitionIn();
                 scaleTrans.TransitionIn();
             }
+            UpdateIndicatorPosition(playerCam, playerControl, axePos);
+
         }
         else
         {
@@ -83,36 +86,52 @@ public class InGameMenu : SingletonMonobehavior<InGameMenu>
                 showIndicator = false;
             }
         }
+        ProcessTransition(axe);
+    }
 
-        if (axeScreenPoint.x <= 0)
+    private static bool IsPosOffCameraView(Vector3 posToCheck)
+    {
+        return posToCheck.x <= 0 || posToCheck.x >= Screen.width || posToCheck.y <= 0 || posToCheck.y >= Screen.height;
+    }
+
+    private void UpdateIndicatorPosition(CameraFollow playerCam, PlayerController2D playerControl, Vector3 axePos)
+    {
+        var characterTrans = playerControl.GetCharacter().GetHost();
+
+        Vector3 borderPos = GetIntersectPositionBetweenABAndCamera(axePos, characterTrans.transform.position);
+
+        var indicatorPos = playerCam.GetCamera().WorldToScreenPoint(borderPos);
+
+        indicatorPos.x = Mathf.Clamp(indicatorPos.x, axeIndicator.rectTransform.sizeDelta.x * 2f, Screen.width - axeIndicator.rectTransform.sizeDelta.x * 2f);
+        indicatorPos.y = Mathf.Clamp(indicatorPos.y, axeIndicator.rectTransform.sizeDelta.y * 2f, Screen.height - axeIndicator.rectTransform.sizeDelta.y * 2f);
+
+        rotateScript.RotateXAxisToward(playerCam.GetCamera().WorldToScreenPoint(axePos));
+
+        targetPos = indicatorPos;
+        axeIndicatorPivot.transform.position = Vector3.Lerp(axeIndicatorPivot.transform.position, targetPos, Time.deltaTime * moveSpeed);
+    }
+
+    private static Vector3 GetIntersectPositionBetweenABAndCamera(Vector3 posA, Vector3 posB)
+    {
+        var hits = Physics2D.RaycastAll(posA, (posB - posA).normalized);
+
+        Vector3 borderPos = Vector3.zero;
+        for (int i = 0; i < hits.Length; i++)
         {
-            axeScreenPoint.x = 0 + axeIndicator.sprite.rect.width / 3;
-        }
-        if (axeScreenPoint.x >= Screen.width)
-        {
-            axeScreenPoint.x = Screen.width - axeIndicator.sprite.rect.width / 3;
+            if (hits[i].collider.gameObject.tag.Equals("MainCamera"))
+            {
+                borderPos = hits[i].point;
+                break;
+            }
         }
 
-        if (axeScreenPoint.y <= 0)
-        {
-            axeScreenPoint.y = 0 + axeIndicator.sprite.rect.height / 3;
-        }
-        if (axeScreenPoint.y >= Screen.height)
-        {
-            axeScreenPoint.y = Screen.height - axeIndicator.sprite.rect.height / 3;
-        }
-        if (showIndicator == true)
-        {
-            rotateScript.RotateXAxisToward(playerCam.GetCamera().WorldToScreenPoint(pos));
-            targetPos = axeScreenPoint;
-            axeIndicatorPivot.transform.position = Vector3.Lerp(axeIndicatorPivot.transform.position, targetPos, Time.deltaTime * moveSpeed);
-        }
+        return borderPos;
+    }
 
-
+    private void ProcessTransition(BoomeraxeGrip axe)
+    {
         axeIndicator.color = axe.GetAxeFlying().GetCurrentAbility().GetGemColor();
-
         var indicatorColor = axeIndicator.color;
-        axe.GetAxeFlying();
         indicatorColor.a = fadeTrans.GetCurrentValue();
         axeIndicator.color = indicatorColor;
         fadeTrans.AdvanceTime(Time.deltaTime);

@@ -36,10 +36,6 @@ public class Movement2D : IMovement
      */
     private void UpdateCurrentSpeed()
     {
-        if (inMotion == true && currentSpeed < data.runSpeed)
-        {
-            currentSpeed = Mathf.Lerp(currentSpeed, data.runSpeed, smoothAcceleration);
-        }
     }
     /**
      *  Move the host object towards the forward and side inputs of the player.
