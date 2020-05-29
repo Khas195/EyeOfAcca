@@ -24,4 +24,11 @@ public class BoomeraxeVFXHandler : MonoBehaviour
         effect.GetComponent<Animator>().SetBool(ability.GetAbilityPower(), true);
         rippleEffect.RippleAt(axe.GetAxePosition());
     }
+    public void OnAbilityActivate(AxeAbility ability)
+    {
+        if (ability.GetAbilityPower().Equals("hasTeleportPower"))
+        {
+            rippleEffect.RippleAt(axe.GetHolderBodyPosition());
+        }
+    }
 }
