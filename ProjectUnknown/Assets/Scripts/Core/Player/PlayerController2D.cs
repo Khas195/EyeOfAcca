@@ -38,6 +38,10 @@ public class PlayerController2D : SingletonMonobehavior<PlayerController2D>
     [SerializeField]
     [ReadOnly]
     float currentAxeUseBufferTime = 0.0f;
+    public Character2D GetCharacter()
+    {
+        return this.character;
+    }
     void Update()
     {
         var gameMaster = GameMaster.GetInstance();

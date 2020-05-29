@@ -970,6 +970,8 @@ MonoBehaviour:
   manualAssign: 0
   playerCam: {fileID: 0}
   pivot: {fileID: 0}
+  minDistanceToMous: 5
+  rotateSpeed: 2000
 --- !u!1 &1588762159
 GameObject:
   m_ObjectHideFlags: 0
