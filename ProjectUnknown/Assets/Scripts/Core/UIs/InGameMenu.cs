@@ -63,9 +63,57 @@ public class InGameMenu : SingletonMonobehavior<InGameMenu>
         rotateScript.SetPivot(axeIndicatorPivot);
         if (axe == null || playerCam == null || playerControl == null) return;
 
-        var characterTrans = playerControl.GetCharacter().GetHost();
         Vector3 axePos = axe.GetAxePosition();
-        var hits = Physics2D.RaycastAll(axePos, (characterTrans.transform.position - axePos).normalized);
+        var axeScreenPos = playerCam.GetCamera().WorldToScreenPoint(axePos);
+
+        if (IsPosOffCameraView(axeScreenPos))
+        {
+            if (showIndicator == false)
+            {
+                showIndicator = true;
+                fadeTrans.TransitionIn();
+                scaleTrans.TransitionIn();
+            }
+            UpdateIndicatorPosition(playerCam, playerControl, axePos);
+
+        }
+        else
+        {
+            if (showIndicator == true)
+            {
+                scaleTrans.TransitionOut();
+                fadeTrans.TransitionOut();
+                showIndicator = false;
+            }
+        }
+        ProcessTransition(axe);
+    }
+
+    private static bool IsPosOffCameraView(Vector3 posToCheck)
+    {
+        return posToCheck.x <= 0 || posToCheck.x >= Screen.width || posToCheck.y <= 0 || posToCheck.y >= Screen.height;
+    }
+
+    private void UpdateIndicatorPosition(CameraFollow playerCam, PlayerController2D playerControl, Vector3 axePos)
+    {
+        var characterTrans = playerControl.GetCharacter().GetHost();
+
+        Vector3 borderPos = GetIntersectPositionBetweenABAndCamera(axePos, characterTrans.transform.position);
+
+        var indicatorPos = playerCam.GetCamera().WorldToScreenPoint(borderPos);
+
+        indicatorPos.x = Mathf.Clamp(indicatorPos.x, axeIndicator.rectTransform.sizeDelta.x * 2f, Screen.width - axeIndicator.rectTransform.sizeDelta.x * 2f);
+        indicatorPos.y = Mathf.Clamp(indicatorPos.y, axeIndicator.rectTransform.sizeDelta.y * 2f, Screen.height - axeIndicator.rectTransform.sizeDelta.y * 2f);
+
+        rotateScript.RotateXAxisToward(playerCam.GetCamera().WorldToScreenPoint(axePos));
+
+        targetPos = indicatorPos;
+        axeIndicatorPivot.transform.position = Vector3.Lerp(axeIndicatorPivot.transform.position, targetPos, Time.deltaTime * moveSpeed);
+    }
+
+    private static Vector3 GetIntersectPositionBetweenABAndCamera(Vector3 posA, Vector3 posB)
+    {
+        var hits = Physics2D.RaycastAll(posA, (posB - posA).normalized);
 
         Vector3 borderPos = Vector3.zero;
         for (int i = 0; i < hits.Length; i++)
@@ -77,40 +125,12 @@ public class InGameMenu : SingletonMonobehavior<InGameMenu>
             }
         }
 
+        return borderPos;
+    }
 
-        var axeScreenPos = playerCam.GetCamera().WorldToScreenPoint(axePos);
-        var indicatorPos = playerCam.GetCamera().WorldToScreenPoint(borderPos);
-
-        if (axeScreenPos.x <= 0 || axeScreenPos.x >= Screen.width || axeScreenPos.y <= 0 || axeScreenPos.y >= Screen.height)
-        {
-            if (showIndicator == false)
-            {
-                showIndicator = true;
-                fadeTrans.TransitionIn();
-                scaleTrans.TransitionIn();
-            }
-        }
-        else
-        {
-            if (showIndicator == true)
-            {
-                scaleTrans.TransitionOut();
-                fadeTrans.TransitionOut();
-                showIndicator = false;
-            }
-        }
-        if (showIndicator == true)
-        {
-            indicatorPos.x = Mathf.Clamp(indicatorPos.x, axeIndicator.rectTransform.sizeDelta.x * 2f, Screen.width - axeIndicator.rectTransform.sizeDelta.x * 2f);
-            indicatorPos.y = Mathf.Clamp(indicatorPos.y, axeIndicator.rectTransform.sizeDelta.y * 2f, Screen.height - axeIndicator.rectTransform.sizeDelta.y * 2f);
-            rotateScript.RotateXAxisToward(playerCam.GetCamera().WorldToScreenPoint(axePos));
-            targetPos = indicatorPos;
-            axeIndicatorPivot.transform.position = Vector3.Lerp(axeIndicatorPivot.transform.position, targetPos, Time.deltaTime * moveSpeed);
-        }
-
-
+    private void ProcessTransition(BoomeraxeGrip axe)
+    {
         axeIndicator.color = axe.GetAxeFlying().GetCurrentAbility().GetGemColor();
-
         var indicatorColor = axeIndicator.color;
         indicatorColor.a = fadeTrans.GetCurrentValue();
         axeIndicator.color = indicatorColor;

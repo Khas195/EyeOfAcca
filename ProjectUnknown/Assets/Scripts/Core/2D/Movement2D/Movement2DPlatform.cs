@@ -98,9 +98,32 @@ public class Movement2DPlatform : IMovement
         Gizmos.DrawWireCube(headColOffset + body2D.transform.position, headColSize);
 
     }
+    int moveDirHorizontal = 0;
+    float previousSide = 0;
+    float curVelTime = 0.0f;
+    AnimationCurve currentVelCurve = null;
     public override void Move(float forward, float side)
     {
+        previousSide = cachedSide;
         cachedSide = side;
+        if (Mathf.Approximately(previousSide, 0) == false && Mathf.Approximately(cachedSide, 0))
+        {
+            currentVelCurve = data.decelCurve;
+            curVelTime = 0;
+        }
+        else if (Mathf.Approximately(previousSide, 0) == true && Mathf.Approximately(cachedSide, 0) == false)
+        {
+            currentVelCurve = data.accelCurve;
+            curVelTime = 0;
+        }
+        if (cachedSide > 0)
+        {
+            moveDirHorizontal = 1;
+        }
+        else if (cachedSide < 0)
+        {
+            moveDirHorizontal = -1;
+        }
     }
 
     public bool GetJumpTriggered()
@@ -111,6 +134,10 @@ public class Movement2DPlatform : IMovement
     public override bool CanJump()
     {
         return jumpSignal == false && isAccelUp == false && (this.IsTouchingGround() || currentJumpBufferTime <= data.bufferTimeForJump);
+    }
+    void FixedUpdate()
+    {
+        ProcessMovement();
     }
     void Update()
     {
@@ -127,7 +154,6 @@ public class Movement2DPlatform : IMovement
         {
             currentJumpBufferTime = 0;
         }
-        ProcessMovement();
         if (jumpSignal)
         {
             this.Jump();
@@ -176,23 +202,19 @@ public class Movement2DPlatform : IMovement
     }
     private void ProcessMovement()
     {
-        if (cachedSide == 0)
-        {
-            accelrationTimeCounter = 0;
-        }
         var curVel = body2D.velocity;
-        var speed = Tweener.EaseInQuad(accelrationTimeCounter, 0, data.runSpeed, data.timeTilMaxSpeed);
-        if (speed >= data.runSpeed)
+
+        if (this.currentVelCurve != null)
         {
-            speed = data.runSpeed * cachedSide;
+            curVel.x = this.currentVelCurve.Evaluate(curVelTime) * moveDirHorizontal;
         }
         else
         {
-            speed *= cachedSide;
+            curVel.x = 0;
         }
-        curVel.x = speed;
+
         body2D.velocity = curVel;
-        accelrationTimeCounter += Time.deltaTime;
+        curVelTime += Time.deltaTime;
     }
 
     public override void SignalJump()

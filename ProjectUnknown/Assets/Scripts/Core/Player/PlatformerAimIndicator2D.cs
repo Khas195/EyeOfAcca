@@ -51,7 +51,11 @@ public class PlatformerAimIndicator2D : MonoBehaviour
             return;
         }
         pivot.transform.position = characterTrans.transform.position;
+        ProcessTransition();
+    }
 
+    private void ProcessTransition()
+    {
         var indicatorColor = indicatorSprite.color;
         indicatorColor.a = fade.GetCurrentValue();
         indicatorSprite.color = indicatorColor;
