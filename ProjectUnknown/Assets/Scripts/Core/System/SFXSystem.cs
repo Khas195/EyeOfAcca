@@ -66,10 +66,10 @@ public partial class SFXSystem : SingletonMonobehavior<SFXSystem>
                 source.volume = sfx.volumn;
                 source.outputAudioMixerGroup = soundsGroup;
                 source.Play();
-                return source;
+                break;
             }
         }
-        return null;
+        return source;
     }
 
     // Update is called once per frame
