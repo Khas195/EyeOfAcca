@@ -50,8 +50,18 @@ public partial class SFXSystem : SingletonMonobehavior<SFXSystem>
     {
         var sourceObj = audioPool.RequestInstance();
         var source = sourceObj.GetComponent<AudioSource>();
+        if (soundsEnum.Equals(SFXResources.SFXList.axeHit))
+        {
+            Debug.LogError("test");
+        }
         activeSources.Add(source);
+        PlaySound(soundsEnum, source);
 
+        return source;
+    }
+
+    public void PlaySound(SFXResources.SFXList soundsEnum, AudioSource source)
+    {
         for (int i = 0; i < sFXResources.resourcesList.Count; i++)
         {
             var sfx = sFXResources.resourcesList[i];
@@ -59,17 +69,16 @@ public partial class SFXSystem : SingletonMonobehavior<SFXSystem>
             {
                 if (sfx.clip == null)
                 {
-                    return null;
+                    break;
                 }
                 source.clip = sfx.clip;
                 source.loop = sfx.loop;
                 source.volume = sfx.volumn;
                 source.outputAudioMixerGroup = soundsGroup;
-                source.Play();
                 break;
             }
         }
-        return source;
+        source.Play();
     }
 
     // Update is called once per frame

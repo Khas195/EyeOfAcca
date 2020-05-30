@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Breakables : AxeInteractable
 {
@@ -15,8 +16,8 @@ public class Breakables : AxeInteractable
     [Required]
     Collider2D box = null;
     [SerializeField]
-    [Required]
-    SFXResources.SFXList breakingSound;
+    UnityEvent onPotBreak = new UnityEvent();
+
 
     public override void OnAxeAbilityTriggered(AxeAbility triggeredAbility)
     {
@@ -30,7 +31,7 @@ public class Breakables : AxeInteractable
         spriteRender.sprite = brokenState;
         box.enabled = false;
         VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.PotBreak, this.transform.position, Quaternion.identity);
-        SFXSystem.GetInstance().PlaySound(breakingSound);
+        onPotBreak.Invoke();
     }
 
 
