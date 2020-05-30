@@ -68,6 +68,5 @@ public class ChooseLevelManager : MonoBehaviour
 
     public void OnLoadLevelRequest(string levelName)
     {
-        GameMaster.GetInstance().InitiateLoadLevelSequence(levelName);
     }
 }

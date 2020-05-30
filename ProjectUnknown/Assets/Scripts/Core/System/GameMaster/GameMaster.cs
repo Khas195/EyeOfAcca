@@ -27,6 +27,7 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     [ReadOnly]
     string currentLevel = "";
     List<AsyncOperation> scenesLoading = new List<AsyncOperation>();
+    private TransitionDoorProfile currentSpawn;
 
 
     /// <summary>
@@ -40,7 +41,7 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
 
         if (settings.skipMainMenu)
         {
-            this.InitiateLoadLevelSequence(settings.startLevel);
+            this.InitiateLoadLevelSequence(settings.startDoor);
         }
         else
         {
@@ -50,7 +51,7 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
 
     public void ReloadCurrentLevel()
     {
-        InitiateLoadLevelSequence(currentLevel, doorIndex);
+        InitiateLoadLevelSequence(this.currentSpawn);
     }
 
     /// <summary>
@@ -117,24 +118,24 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
 
     }
 
-    public void LoadLevelWithLandingIndex(string targetScene, int newDoorIndex)
+    public void LoadLevelWithLandingDoor(TransitionDoorProfile profileToland)
     {
-        InitiateLoadLevelSequence(targetScene, newDoorIndex);
+        InitiateLoadLevelSequence(profileToland);
     }
 
-    public string GetStartLevel()
+    public TransitionDoorProfile GetStartLevel()
     {
-        return settings.startLevel;
+        return settings.startDoor;
     }
 
-    public void InitiateLoadLevelSequence(string levelName, int doorIndex = 0)
+    public void InitiateLoadLevelSequence(TransitionDoorProfile profileToland)
     {
         if (gameStateManager.RequestState(GameState.GameStateEnum.Loading) == false) return;
-        this.doorIndex = doorIndex;
         SFXSystem.GetInstance().StopAllSounds();
+        this.currentSpawn = profileToland;
         loadingControl.FadeIn(() =>
         {
-            LoadLevel(levelName);
+            LoadLevel(profileToland.doorHome);
             StartCoroutine(GetLevelLoadProcess(GameState.GameStateEnum.InGame));
         });
     }
@@ -204,7 +205,7 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
 
         }
 
-        var landingPosition = level.GetDoor(doorIndex).transform.position;
+        var landingPosition = this.currentSpawn.doorLocation;
         player.SetLandingPosition(landingPosition);
         camera.SetPosition(landingPosition);
         Vector2 position = level.GetGroundMapPosition();
@@ -276,7 +277,7 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     public void RestartLevel()
     {
         LogHelper.GetInstance().Log(("Restarting Level: " + SceneManager.GetActiveScene().name).Bolden(), true);
-        this.InitiateLoadLevelSequence(SceneManager.GetActiveScene().name);
+        this.InitiateLoadLevelSequence(this.currentSpawn);
     }
 
     public void SetGameTimeScale(float newTimeScale)

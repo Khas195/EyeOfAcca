@@ -793,7 +793,7 @@ PrefabInstance:
     - target: {fileID: 4475797550433327940, guid: 54031a8a3e953e64b814111327a4b252,
         type: 3}
       propertyPath: useAbilityEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4475797550433327940, guid: 54031a8a3e953e64b814111327a4b252,
         type: 3}
@@ -1044,6 +1044,31 @@ PrefabInstance:
         type: 3}
       propertyPath: useAbilityEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_FloatArgument
       value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4475797550433327940, guid: 54031a8a3e953e64b814111327a4b252,
+        type: 3}
+      propertyPath: useAbilityEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4475797550433327940, guid: 54031a8a3e953e64b814111327a4b252,
+        type: 3}
+      propertyPath: useAbilityEvent.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4475797550433327940, guid: 54031a8a3e953e64b814111327a4b252,
+        type: 3}
+      propertyPath: useAbilityEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1159987239}
+    - target: {fileID: 4475797550433327940, guid: 54031a8a3e953e64b814111327a4b252,
+        type: 3}
+      propertyPath: useAbilityEvent.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: OnAbilityActivate
+      objectReference: {fileID: 0}
+    - target: {fileID: 4475797550433327940, guid: 54031a8a3e953e64b814111327a4b252,
+        type: 3}
+      propertyPath: useAbilityEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4475797550795852430, guid: 54031a8a3e953e64b814111327a4b252,
         type: 3}
