@@ -44,11 +44,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetObject: {fileID: 4475797551516158994}
-  frequency: 30
-  maximumTranslateShake: {x: 0.2, y: 0.2, z: 0}
-  maximumAngularShake: {x: 2, y: 2, z: 2}
-  recoverySpeed: 1
-  traumaExponent: 2
+  data: {fileID: 0}
+  shakeRotate: 0
+  currentShakeDuration: 0
+  isShaking: 0
+  currentTrauma: 0
 --- !u!1 &3794102613272474176
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,9 +137,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1193330899
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2632856618228259914, guid: b0f1bf75532cd8a429a18ba8241a0419,
+  m_Sprite: {fileID: -7080088286883458023, guid: 3ceca227c31d5a34ea693c343f8bd8a3,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -202,24 +202,16 @@ MonoBehaviour:
   holderBody2d: {fileID: 0}
   animator: {fileID: 7150286637253573445}
   defaultAbility: {fileID: 11400000, guid: 240c66c118359b641a29409f9aa37083, type: 2}
-  onBounce:
+  OnStuck:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4475797551582585644}
-        m_MethodName: OnBounce
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  activeAbility: {fileID: 0}
+      m_Calls: []
+  OnRecall:
+    m_PersistentCalls:
+      m_Calls: []
   useAbilityEvent:
     m_PersistentCalls:
       m_Calls: []
+  activeAbility: {fileID: 0}
   flyTriggered: 0
   returning: 0
   currentFlyDirection: {x: 0, y: 0}
@@ -227,6 +219,9 @@ MonoBehaviour:
   stuckPos: {x: 1, y: 1}
   isStuck: 0
   stuckObject: {fileID: 0}
+  offsetWithStuckSurface: {x: 0, y: 0}
+  currentRecallDuration: 0
+  spinningSource: {fileID: 0}
 --- !u!1 &4475797550795852428
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,6 +267,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterBody: {fileID: 0}
   characterMovement: {fileID: 0}
+  currentTime: 0
+  countingDown: 0
 --- !u!1 &4475797550885735075
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,7 +412,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   datas: {fileID: 11400000, guid: c48c63eac7f6b00429aa58ba2914fba3, type: 2}
   flip: {fileID: 0}
-  playerCamera: {fileID: 0}
   boomeraxeObject: {fileID: 4475797551516158994}
   holderMovement: {fileID: 0}
   holderPivot: {fileID: 0}
@@ -452,7 +448,6 @@ MonoBehaviour:
         m_CallState: 2
   isBeingHeld: 1
   axeCatchable: 0
-  axeIsReturning: 0
 --- !u!1 &4475797551516158994
 GameObject:
   m_ObjectHideFlags: 0
@@ -581,3 +576,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e6c2d906e059dc4da26d48b94651150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gemPosition: {fileID: 0}
+  axe: {fileID: 0}
+  rippleEffect: {fileID: 0}
