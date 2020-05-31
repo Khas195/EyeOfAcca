@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2e2206c7e5f2aa43923778b69544a2e, type: 3}
   m_Name: GameMasterSetting
   m_EditorClassIdentifier: 
-  skipMainMenu: 1
+  skipMainMenu: 0
   startDoor: {fileID: 11400000, guid: 93fabecaa48128d468e780326e109180, type: 2}
