@@ -141,7 +141,6 @@ public class Boomeraxe : MonoBehaviour
 
     [BoxGroup("Current Status")]
     [SerializeField]
-    [ReadOnly]
 
     AudioSource spinningSource = null;
 
@@ -217,26 +216,17 @@ public class Boomeraxe : MonoBehaviour
         flyTriggered = triggered;
         if (triggered)
         {
-            spinningSource = SFXSystem.GetInstance().PlaySound(SFXResources.SFXList.axeSpinning);
+            SFXSystem.GetInstance().PlaySound(SFXResources.SFXList.axeSpinning, spinningSource);
         }
         else
         {
-            if (spinningSource != null)
-            {
-                spinningSource.Stop();
-                spinningSource = null;
-            }
+            spinningSource.Stop();
         }
     }
 
     public void Reset()
     {
-        if (spinningSource)
-        {
-            spinningSource.Stop();
-            spinningSource = null;
-        }
-
+        spinningSource.Stop();
         body2d.gameObject.SetActive(false);
         currentFlyDirection = Vector3.zero;
         body2d.velocity = Vector2.zero;
@@ -279,11 +269,7 @@ public class Boomeraxe : MonoBehaviour
 
         isStuck = true;
 
-        if (spinningSource)
-        {
-            spinningSource.Stop();
-            spinningSource = null;
-        }
+        spinningSource.Stop();
 
         Vector2 stuckObj = other.collider.transform.position;
         Vector2 axePos = body2d.transform.position;
@@ -438,11 +424,7 @@ public class Boomeraxe : MonoBehaviour
         {
             animator.SetBool(activeAbility.GetAbilityPower(), false);
         }
-        if (spinningSource)
-        {
-            spinningSource.Stop();
-            spinningSource = null;
-        }
+        spinningSource.Stop();
         activeAbility = null;
         useAbilityEvent.Invoke(activeAbility);
         useAbilityEvent.RemoveAllListeners();

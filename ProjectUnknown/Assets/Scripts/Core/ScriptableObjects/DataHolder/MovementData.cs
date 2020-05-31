@@ -25,6 +25,7 @@ public class MovementData : ScriptableObject
     public float maxJumpHeight = 5f;
     public float jumpHeightForDecel = 3f;
     public float rotateSpeed = 20f;
+    public Vector2 currentVelocity;
     [Button("Save")]
     public void SaveData()
     {

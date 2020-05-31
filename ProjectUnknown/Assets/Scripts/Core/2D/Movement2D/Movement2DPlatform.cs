@@ -133,7 +133,15 @@ public class Movement2DPlatform : IMovement
 
     public override bool CanJump()
     {
-        return jumpSignal == false && isAccelUp == false && (this.IsTouchingGround() || currentJumpBufferTime <= data.bufferTimeForJump);
+        bool temp = (jumpTriggered == false && currentJumpBufferTime <= data.bufferTimeForJump);
+        if (this.IsTouchingGround())
+        {
+            return true;
+        }
+        else
+        {
+            return temp;
+        }
     }
     void FixedUpdate()
     {
@@ -145,23 +153,27 @@ public class Movement2DPlatform : IMovement
         {
             isAccelUp = false;
         }
-        jumpTriggered = false;
-        if (this.IsTouchingGround() == false)
+        if (isAccelUp == false)
         {
-            currentJumpBufferTime += Time.deltaTime;
+            if (this.IsTouchingGround() == false)
+            {
+                currentJumpBufferTime += Time.deltaTime;
+            }
+            else
+            {
+                jumpTriggered = false;
+                currentJumpBufferTime = 0;
+            }
         }
-        else
-        {
-            currentJumpBufferTime = 0;
-        }
+
         if (jumpSignal)
         {
             this.Jump();
+            jumpSignal = false;
         }
 
         if (isAccelUp)
         {
-            jumpSignal = false;
             var vel = body2D.velocity;
             var curPosVertical = maxHeightPos.y - body2D.transform.position.y;
             if (curPosVertical <= decelHeight.y)
@@ -180,17 +192,17 @@ public class Movement2DPlatform : IMovement
         }
         if (isAccelUp == false)
         {
-            body2D.velocity += Vector2.up * Physics2D.gravity.y * (data.fallMultiplier - 1) * Time.deltaTime;
+            body2D.velocity += Vector2.up * Physics2D.gravity.y * (data.fallMultiplier) * Time.deltaTime;
         }
         body2D.velocity *= timeScale;
-
+        data.currentVelocity = body2D.velocity;
     }
 
     private void Jump()
     {
         jumpEvent.Invoke();
-        LogHelper.GetInstance().Log("Jump", true, LogHelper.LogLayer.PlayerFriendly);
         jumpTriggered = true;
+        currentJumpBufferTime = data.bufferTimeForJump + 1;
         isAccelUp = true;
         maxHeightPos = body2D.transform.position + new Vector3(0, data.maxJumpHeight, 0);
         decelHeight = body2D.transform.position + new Vector3(0, data.jumpHeightForDecel, 0);

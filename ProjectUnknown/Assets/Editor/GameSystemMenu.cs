@@ -25,7 +25,6 @@ public static class GameSystemMenu
         GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(Resources.Load<GameObject>("Prefabs/EnvirontmenInteractable/PlayerInteractables/Door"));
         obj.transform.SetParent(Selection.activeGameObject.transform);
         obj.transform.position = GetScenePosition();
-        level.AddDoor(obj.GetComponent<LevelTransitionDoor>());
     }
 
     [MenuItem("GameObject/2D Object/Game System/Timed Door")]

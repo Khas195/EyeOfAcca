@@ -9,8 +9,7 @@ public class GameMasterSettings : ScriptableObject
 {
     public bool skipMainMenu = false;
 
-    [Scene]
-    public string startLevel = "";
+    public TransitionDoorProfile startDoor = null;
 
 
     [Button("Save")]

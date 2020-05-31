@@ -11,8 +11,7 @@ public class LoadLevelButton : MonoBehaviour
     bool loadDesignatedLevel = false;
     [SerializeField]
     [ShowIf(" loadDesignatedLevel")]
-    [Scene]
-    string levelIndex = "";
+    TransitionDoorProfile levelDoor = null;
     [SerializeField]
     Button button = null;
 
@@ -31,9 +30,8 @@ public class LoadLevelButton : MonoBehaviour
         var master = GameMaster.FindInstance();
         if (loadDesignatedLevel)
         {
-            LogHelper.GetInstance().Log(this + " loading level with level index " + levelIndex);
+            LogHelper.GetInstance().Log(this + " loading level with level index " + levelDoor);
         }
-        master.InitiateLoadLevelSequence(levelIndex);
-        master.GetStateManager().RequestState(GameState.GameStateEnum.InGame);
+        master.InitiateLoadLevelSequence(levelDoor);
     }
 }

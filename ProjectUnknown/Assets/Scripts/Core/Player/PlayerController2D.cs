@@ -122,8 +122,8 @@ public class PlayerController2D : SingletonMonobehavior<PlayerController2D>
     {
         if (door.IsUsuable())
         {
-            TransitionLandingLocation location = door.GetLandingLocation();
-            GameMaster.GetInstance().LoadLevelWithLandingIndex(location.targetScene, location.doorIndex);
+            TransitionDoorProfile location = door.GetLandingLocation();
+            GameMaster.GetInstance().LoadLevelWithLandingDoor(location);
         }
     }
 

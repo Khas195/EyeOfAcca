@@ -8,18 +8,33 @@ public class LevelTransitionDoor : MonoBehaviour
 {
     [SerializeField]
     [Required]
-    TransitionLandingLocation landingPlace = null;
+    TransitionDoorProfile profile = null;
 
-    [SerializeField]
-    bool doorUsuable = true;
+#if UNITY_EDITOR
+    [Button]
+    public void CreateProfile()
+    {
+        var newProfile = ScriptableObject.CreateInstance<TransitionDoorProfile>();
+        var sceneName = this.gameObject.scene.name;
+        System.IO.Directory.CreateDirectory("Assets/Resources/Datas/LevelDoor/" + sceneName);
+        UnityEditor.AssetDatabase.CreateAsset(newProfile, "Assets/Resources/Datas/LevelDoor/" + sceneName + "/" + sceneName + "-" + this.gameObject.name + ".asset");
+        UnityEditor.AssetDatabase.SaveAssets();
+        UnityEditor.EditorUtility.FocusProjectWindow();
+        newProfile.doorHome = this.gameObject.scene.name;
+        newProfile.doorLocation = this.transform.position;
+        this.profile = newProfile;
 
+    }
+#endif
     public bool IsUsuable()
     {
-        return doorUsuable;
+        return profile.landingPlace != null;
     }
 
-    public TransitionLandingLocation GetLandingLocation()
+    public TransitionDoorProfile GetLandingLocation()
     {
-        return landingPlace;
+        return profile.landingPlace;
     }
+
+
 }
