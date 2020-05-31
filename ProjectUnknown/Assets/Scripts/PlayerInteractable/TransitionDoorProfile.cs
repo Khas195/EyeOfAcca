@@ -1,7 +1,9 @@
+using System;
 using NaughtyAttributes;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "LevelDoor", menuName = "Data/LevelDoor", order = 1)]
+[Serializable]
 public class TransitionDoorProfile : ScriptableObject
 {
     [Scene]
