@@ -19,20 +19,20 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 14.036104
-      outSlope: 14.036104
+      inSlope: 16.87417
+      outSlope: 16.87417
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.041331306
+      outWeight: 0.037725512
     - serializedVersion: 3
       time: 0.3
       value: 8
-      inSlope: 43.446896
-      outSlope: 43.446896
+      inSlope: 50.156162
+      outSlope: 50.156162
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.040815968
+      inWeight: 0.029085774
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -61,9 +61,41 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  maxVelUp: 20
-  fallMultiplier: 2
-  maxJumpHeight: 3
-  jumpHeightForDecel: 2
+  jumpCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 22.764074
+      outSlope: 22.764074
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.0438598
+    - serializedVersion: 3
+      time: 0.8
+      value: 8
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1.6
+      value: 0
+      inSlope: -16.917923
+      outSlope: -16.917923
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.03558074
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  initialJumpVelocity: 20
+  jumpGravity: -25
+  fallGravity: -24.999998
   rotateSpeed: 20
-  currentVelocity: {x: 0.000008308431, y: -0.67212045}
+  currentVelocity: {x: 0, y: 0}

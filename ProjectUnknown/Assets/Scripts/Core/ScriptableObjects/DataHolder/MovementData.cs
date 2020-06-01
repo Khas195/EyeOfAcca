@@ -20,10 +20,28 @@ public class MovementData : ScriptableObject
     public AnimationCurve accelCurve = null;
     public AnimationCurve decelCurve = null;
 
-    public float maxVelUp = 20;
-    public float fallMultiplier = 2.5f;
-    public float maxJumpHeight = 5f;
-    public float jumpHeightForDecel = 3f;
+    [OnValueChanged("CalcualteInitialVelocityAndGravity")]
+    public AnimationCurve jumpCurve = null;
+    public void CalcualteInitialVelocityAndGravity(AnimationCurve oldValue, AnimationCurve newValue)
+    {
+        var maxHeight = 0.0f;
+        var timeToReachPeak = 0.0f;
+        for (int i = 0; i < jumpCurve.keys.Length; i++)
+        {
+            if (maxHeight < jumpCurve.keys[i].value)
+            {
+                maxHeight = jumpCurve.keys[i].value;
+                timeToReachPeak = jumpCurve.keys[i].time;
+            }
+        }
+        initialJumpVelocity = (2 * maxHeight) / timeToReachPeak;
+        jumpGravity = -initialJumpVelocity / timeToReachPeak;
+        fallGravity = -(2 * maxHeight) / Mathf.Pow(jumpCurve.keys[jumpCurve.keys.Length - 1].time - timeToReachPeak, 2);
+    }
+
+    public float initialJumpVelocity = 0;
+    public float jumpGravity = 0;
+    public float fallGravity = 0;
     public float rotateSpeed = 20f;
     public Vector2 currentVelocity;
     [Button("Save")]

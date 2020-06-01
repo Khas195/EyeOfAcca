@@ -51,6 +51,10 @@ public class TransitionCurve : MonoBehaviour
 
     public bool IsCurrentTimeInGraph()
     {
+        if (curCurve.keys.Length < 1)
+        {
+            return false;
+        }
         float lastKeyTime = curCurve.keys[curCurve.length - 1].time;
 
         return curTime <= lastKeyTime && curTime >= 0;
