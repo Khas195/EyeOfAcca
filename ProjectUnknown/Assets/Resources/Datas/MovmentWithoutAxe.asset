@@ -19,20 +19,20 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: 14.036104
+      outSlope: 14.036104
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.041331306
     - serializedVersion: 3
       time: 0.3
       value: 8
-      inSlope: 0
-      outSlope: 0
+      inSlope: 43.446896
+      outSlope: 43.446896
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.040815968
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -43,20 +43,20 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 8
-      inSlope: 0
-      outSlope: 0
+      inSlope: -174.92662
+      outSlope: -174.92662
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.031936955
     - serializedVersion: 3
-      time: 0.3
+      time: 0.15
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: -14.546427
+      outSlope: -14.546427
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.049669344
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -66,4 +66,4 @@ MonoBehaviour:
   maxJumpHeight: 3
   jumpHeightForDecel: 2
   rotateSpeed: 20
-  currentVelocity: {x: 0, y: -0.42654863}
+  currentVelocity: {x: 0.000008308431, y: -0.67212045}
