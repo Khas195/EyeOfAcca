@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 745ccf2c8309d18499877da1fa42dda8, type: 3}
-  m_Name: TestLevel-ABE-ACF-G-Door
+  m_Name: TestLevel-A-Door-Begin
   m_EditorClassIdentifier: 
-  doorHome: TestLevel-ABE-ACF-G
-  doorLocation: {x: 70.9, y: 90.1, z: 0}
+  doorHome: 
+  doorLocation: {x: 1, y: 1, z: 1}
   landingPlace: {fileID: 0}

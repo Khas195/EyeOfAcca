@@ -564,7 +564,10 @@ Editor:
     Streamline the door creation process.
         No longer need to remember the index of the door.
         Level no longer need to know about the doors.
-    Move Game Master Settings into ScriptableObject Folder.
+    Move Game Master Settings into GameSettings Folder.
+
+    Movement now use Animation Curve.
+    Axe Recall now use Animation Curve.
 
 Level:
 

@@ -16,8 +16,8 @@ public class LevelTransitionDoor : MonoBehaviour
     {
         var newProfile = ScriptableObject.CreateInstance<TransitionDoorProfile>();
         var sceneName = this.gameObject.scene.name;
-        System.IO.Directory.CreateDirectory("Assets/Resources/Datas/LevelDoor/" + sceneName);
-        UnityEditor.AssetDatabase.CreateAsset(newProfile, "Assets/Resources/Datas/LevelDoor/" + sceneName + "/" + sceneName + "-" + this.gameObject.name + ".asset");
+        System.IO.Directory.CreateDirectory("Assets/Resources/GameSettings/LevelDoor/" + sceneName);
+        UnityEditor.AssetDatabase.CreateAsset(newProfile, "Assets/Resources/GameSettings/LevelDoor/" + sceneName + "/" + sceneName + "-" + this.gameObject.name + ".asset");
         UnityEditor.AssetDatabase.SaveAssets();
         UnityEditor.EditorUtility.FocusProjectWindow();
         newProfile.doorHome = this.gameObject.scene.name;
