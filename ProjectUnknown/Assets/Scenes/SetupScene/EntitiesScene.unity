@@ -1816,7 +1816,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rippleMat: {fileID: 2100000, guid: 721ff1977effc2545aee7f0e77493ba3, type: 2}
   MaxAmount: 10
-  Friction: 0.5
+  Friction: 0.9
 --- !u!61 &7188433440261101929
 BoxCollider2D:
   m_ObjectHideFlags: 0
