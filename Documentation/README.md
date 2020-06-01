@@ -518,4 +518,54 @@ Builds:
 
     Added a build version for mac but haven't tested it yet.
 
-#### _**Version 0.2.0 (May 27th, 2020 - June 3rd, 2020)**_
+#### _**Version 0.2.0, Version 0.2.1 (May 27th, 2020 - June 3rd, 2020)**_
+
+#### Version 0.2.0:
+
+Juice:
+
+    Added ripple effects for axe's impact.
+    Added screen transitions for dead and level loading.
+
+UI:
+
+    Added OffScreen Indicator.
+    Added Aim Indicator.
+
+#### Version 0.2.1:
+
+Bug Fixes:
+
+    Fixed Douple jump.
+    Fixed Pots sound not playing probably.
+    Fixed an issue where the character keep missing the axe.
+    Fixed an issue where the character keep flipping constantly when walking into walls.
+
+Art:
+
+    Introduce new character sprites and animation.
+
+Juice:
+
+    Reduce axe's impact ripple effect.
+        Amount : 20 -> 10.
+        Friction: 0.9 -> 0.7.
+    Added ripple effect for when axe passes through Gem.
+        Amount: 15.
+        Friction: 0.9.
+    Added slight screen freeze when axe passes through Gem.
+        Time Scale: 0.2.
+        Time: 0.009s.
+    Added Spatial sounds in 2D world for RailBlocks, Pots, Axe's impact, axe spinning. 
+        Linear dropoff - Dropoff distance: 10.
+
+Editor:
+
+    Streamline the door creation process.
+        No longer need to remember the index of the door.
+        Level no longer need to know about the doors.
+    Move Game Master Settings into ScriptableObject Folder.
+
+Level:
+
+    Replaced old tilesets with new tile sets.
