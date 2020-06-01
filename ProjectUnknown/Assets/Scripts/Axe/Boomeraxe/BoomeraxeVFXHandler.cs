@@ -22,7 +22,7 @@ public class BoomeraxeVFXHandler : MonoBehaviour
         effect.transform.position = gemPosition.position;
         effect.transform.parent = axe.GetAxeTransform();
         effect.GetComponent<Animator>().SetBool(ability.GetAbilityPower(), true);
-        rippleEffect.RippleAt(axe.GetAxePosition());
+        rippleEffect.RippleAt(axe.GetAxePosition(), 0.7f, 10);
     }
     public void OnAbilityActivate(AxeAbility ability)
     {

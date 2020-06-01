@@ -48,11 +48,6 @@ public class Movement2DPlatform : IMovement
     [BoxGroup("Current Status")]
     [SerializeField]
     [ReadOnly]
-    float accelrationTimeCounter = 0.0f;
-
-    [BoxGroup("Current Status")]
-    [SerializeField]
-    [ReadOnly]
     float cachedSide = 0;
 
     [BoxGroup("Current Status")]
@@ -81,8 +76,6 @@ public class Movement2DPlatform : IMovement
     void Start()
     {
 
-        maxHeightPos = body2D.transform.position + new Vector3(0, data.maxJumpHeight, 0);
-        decelHeight = body2D.transform.position + new Vector3(0, data.jumpHeightForDecel, 0);
     }
     void OnDrawGizmos()
     {
@@ -149,10 +142,7 @@ public class Movement2DPlatform : IMovement
     }
     void Update()
     {
-        if (Physics2D.OverlapBoxAll(body2D.transform.position + headColOffset, headColSize, 0, jumpableLayer).Length > 0)
-        {
-            isAccelUp = false;
-        }
+
         if (isAccelUp == false)
         {
             if (this.IsTouchingGround() == false)
@@ -174,25 +164,15 @@ public class Movement2DPlatform : IMovement
 
         if (isAccelUp)
         {
-            var vel = body2D.velocity;
-            var curPosVertical = maxHeightPos.y - body2D.transform.position.y;
-            if (curPosVertical <= decelHeight.y)
-            {
-                vel.y = Tweener.EaseOutQuad(curPosVertical, 0, data.maxVelUp, data.jumpHeightForDecel);
-            }
-            else
-            {
-                vel.y = Tweener.EaseOutQuad(curPosVertical, data.maxVelUp, 0, data.maxJumpHeight);
-            }
-            body2D.velocity = vel;
-            if (Mathf.Abs(maxHeightPos.y - body2D.transform.position.y) <= 1)
+            body2D.velocity += Vector2.up * data.jumpGravity * Time.deltaTime;
+            if (body2D.velocity.y <= 0)
             {
                 isAccelUp = false;
             }
         }
         if (isAccelUp == false)
         {
-            body2D.velocity += Vector2.up * Physics2D.gravity.y * (data.fallMultiplier) * Time.deltaTime;
+            body2D.velocity += Vector2.up * data.fallGravity * Time.deltaTime;
         }
         body2D.velocity *= timeScale;
         data.currentVelocity = body2D.velocity;
@@ -203,9 +183,10 @@ public class Movement2DPlatform : IMovement
         jumpEvent.Invoke();
         jumpTriggered = true;
         currentJumpBufferTime = data.bufferTimeForJump + 1;
+        var vel = this.body2D.velocity;
+        vel.y = data.initialJumpVelocity;
+        this.body2D.velocity = vel;
         isAccelUp = true;
-        maxHeightPos = body2D.transform.position + new Vector3(0, data.maxJumpHeight, 0);
-        decelHeight = body2D.transform.position + new Vector3(0, data.jumpHeightForDecel, 0);
     }
 
     public void SetTimeScale(float scale)
@@ -275,4 +256,12 @@ public class Movement2DPlatform : IMovement
     {
         base.RotateToward(direction, rotateY);
     }
+
+
+    public override float GetCurrentSpeed()
+    {
+        return this.moveDirHorizontal;
+    }
+
+
 }

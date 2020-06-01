@@ -130,8 +130,8 @@ MonoBehaviour:
   onPotBreak:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5592648138923092782}
-        m_MethodName: Play
+      - m_Target: {fileID: 2144509472381586883}
+        m_MethodName: PlaySound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -156,8 +156,8 @@ public class Boomeraxe : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(holderBody2d.transform.position, datas.maxRecallVelScaleUpDistance);
-        Gizmos.DrawWireSphere(holderBody2d.transform.position, datas.minRecallVelFallOffDistance);
+        Gizmos.DrawWireSphere(holderBody2d.transform.position, datas.recallTimeBaseOnDistance[0].time);
+        Gizmos.DrawWireSphere(holderBody2d.transform.position, datas.recallTimeBaseOnDistance[datas.recallTimeBaseOnDistance.length - 1].time);
     }
     void FixedUpdate()
     {
@@ -168,11 +168,7 @@ public class Boomeraxe : MonoBehaviour
         {
             if (returning)
             {
-                if (currentRecallTime >= currentRecallDuration)
-                {
-                    OnCollideWithHolder();
-                }
-                body2d.transform.position = Tweener.EaseInQuad(currentRecallTime, stuckPos, holderBody2d.transform.position, currentRecallDuration);
+                body2d.transform.position = Vector3.Lerp(stuckPos, holderBody2d.transform.position, datas.recallCurve.Evaluate(currentRecallTime));
                 currentRecallTime += Time.deltaTime;
             }
             else
@@ -234,6 +230,7 @@ public class Boomeraxe : MonoBehaviour
         SetFlyTrigger(false);
         isStuck = false;
         stuckObject = null;
+        this.currentRecallTime = 0.0f;
         body2d.GetComponent<Collider2D>().isTrigger = false;
     }
 
@@ -333,20 +330,9 @@ public class Boomeraxe : MonoBehaviour
     private void CalculateRecallDistance()
     {
         var axeToHolderDistance = Vector2.Distance(body2d.transform.position, holderBody2d.transform.position);
-        if (axeToHolderDistance >= datas.maxRecallVelScaleUpDistance)
-        {
-            currentRecallDuration = datas.recallDuration;
-        }
-        else if (axeToHolderDistance <= datas.minRecallVelFallOffDistance)
-        {
-            currentRecallDuration = datas.minRecallDuration;
-        }
-        else
-        {
-            // scalre recall duration with distance at the point of recall.
-            var durationScalePercentage = (axeToHolderDistance - datas.minRecallVelFallOffDistance) / (datas.maxRecallVelScaleUpDistance - datas.minRecallVelFallOffDistance);
-            currentRecallDuration = durationScalePercentage * datas.recallDuration;
-        }
+        var newKey = new Keyframe(datas.recallTimeBaseOnDistance.Evaluate(axeToHolderDistance), 1);
+        newKey.inTangent += 10;
+        datas.recallCurve.MoveKey(datas.recallCurve.length - 1, newKey);
     }
 
     public void OnCollideWithHolder()
