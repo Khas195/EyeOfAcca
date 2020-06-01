@@ -330,7 +330,9 @@ public class Boomeraxe : MonoBehaviour
     private void CalculateRecallDistance()
     {
         var axeToHolderDistance = Vector2.Distance(body2d.transform.position, holderBody2d.transform.position);
-        datas.recallCurve.MoveKey(datas.recallCurve.length - 1, new Keyframe(datas.recallTimeBaseOnDistance.Evaluate(axeToHolderDistance), 1));
+        var newKey = new Keyframe(datas.recallTimeBaseOnDistance.Evaluate(axeToHolderDistance), 1);
+        newKey.inTangent += 10;
+        datas.recallCurve.MoveKey(datas.recallCurve.length - 1, newKey);
     }
 
     public void OnCollideWithHolder()
