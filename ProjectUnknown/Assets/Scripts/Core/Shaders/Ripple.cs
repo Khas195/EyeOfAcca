@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
 
-public class Ripple : MonoBehaviour
+public class Ripple : SingletonMonobehavior<Ripple>
 {
     [SerializeField]
     [Required]
@@ -29,11 +29,13 @@ public class Ripple : MonoBehaviour
         this.Amount *= this.Friction;
     }
 
-    public void RippleAt(float x, float y)
+    public void RippleAt(float x, float y, float friction = 0.9f, float amount = 10)
     {
         this.Amount = this.MaxAmount;
         this.rippleMat.SetFloat("_CenterX", x);
         this.rippleMat.SetFloat("_CenterY", y);
+        this.Amount = amount;
+        this.Friction = friction;
     }
 
     void OnRenderImage(RenderTexture src, RenderTexture dest)
@@ -41,9 +43,9 @@ public class Ripple : MonoBehaviour
         Graphics.Blit(src, dest, rippleMat);
     }
 
-    public void RippleAt(Vector2 location)
+    public void RippleAt(Vector2 location, float friction = 0.9f, float amount = 10f)
     {
-        var axeScreenPos = this.GetComponent<Camera>().WorldToScreenPoint(location);
-        RippleAt(axeScreenPos.x, axeScreenPos.y);
+        RippleAt(location.x, location.y, friction, amount);
     }
+
 }

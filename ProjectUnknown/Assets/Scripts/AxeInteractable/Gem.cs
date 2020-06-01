@@ -39,7 +39,20 @@ public class Gem : AxeInteractable
             {
                 gemParticles.SetActive(false);
             }
+            var ripple = Ripple.GetInstance(false);
+            if (ripple)
+            {
+                ripple.RippleAt(this.transform.position.x, this.transform.position.y, 0.9f, 15f);
+            }
+            Time.timeScale = 0.2f;
+            StartCoroutine(ResetTimeScaleAfter(0.009f));
+
         }
+    }
+    public IEnumerator ResetTimeScaleAfter(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        Time.timeScale = 1.0f;
     }
 
     public override void OnAxeAbilityTriggered(AxeAbility triggeredAbility)
