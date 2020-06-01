@@ -15,9 +15,32 @@ MonoBehaviour:
   flyVelocity: 45
   maxRecallVelScaleUpDistance: 12
   minRecallVelFallOffDistance: 4
-  recallDuration: 0.4
+  recallCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.5
+      value: 0
+      inSlope: 0.17279881
+      outSlope: 0.17279881
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.045470834
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  recallDuration: 0.5
   minRecallDuration: 0.2
-  catchDistance: 0.5
   maxTeleport: 0
   lulTimeAfterTeleport: 0.5
   timeScaleAfterTeleport: 0.5
@@ -25,5 +48,4 @@ MonoBehaviour:
   lulPeriodAfterAirborneThrow: 0
   timeScaleAfterThrow: 0
   timeTilAxeCatchable: 0.2
-  timeTilAxeReturnAfterExitCameraView: 0.5
   teleportDistanceAwayFromDestination: 1

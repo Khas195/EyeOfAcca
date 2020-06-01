@@ -7,11 +7,8 @@ using UnityEngine;
 public class BoomeraxeParams : ScriptableObject
 {
     public float flyVelocity = 2f;
-    public float maxRecallVelScaleUpDistance = 5f;
-    public float minRecallVelFallOffDistance = 1f;
-    public float recallDuration = 0.5f;
-    public float minRecallDuration = 0.1f;
-    public float catchDistance = 0.5f;
+    public AnimationCurve recallCurve = null;
+    public AnimationCurve recallTimeBaseOnDistance = null;
     public int maxTeleport = 2;
     public float lulTimeAfterTeleport = 0.2f;
     public float timeScaleAfterTeleport = 0.2f;
@@ -21,7 +18,6 @@ public class BoomeraxeParams : ScriptableObject
     public float lulPeriodAfterAirborneThrow = 0.2f;
     public float timeScaleAfterThrow = 0.2f;
     public float timeTilAxeCatchable = 0.2f;
-    public float timeTilAxeReturnAfterExitCameraView = 0.5f;
 
     public float teleportDistanceAwayFromDestination = 0.2f;
 
