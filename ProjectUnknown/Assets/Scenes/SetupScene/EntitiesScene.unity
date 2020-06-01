@@ -1384,6 +1384,21 @@ PrefabInstance:
       propertyPath: OnStuck.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 4475797550433327940, guid: 54031a8a3e953e64b814111327a4b252,
+        type: 3}
+      propertyPath: OnStuck.m_PersistentCalls.m_Calls.Array.data[5].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4475797550433327940, guid: 54031a8a3e953e64b814111327a4b252,
+        type: 3}
+      propertyPath: OnStuck.m_PersistentCalls.m_Calls.Array.data[5].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4475797550433327940, guid: 54031a8a3e953e64b814111327a4b252,
+        type: 3}
+      propertyPath: OnStuck.m_PersistentCalls.m_Calls.Array.data[5].m_Target
+      value: 
+      objectReference: {fileID: 7188433440261101924}
     - target: {fileID: 4475797550795852430, guid: 54031a8a3e953e64b814111327a4b252,
         type: 3}
       propertyPath: characterBody
@@ -1801,7 +1816,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rippleMat: {fileID: 2100000, guid: 721ff1977effc2545aee7f0e77493ba3, type: 2}
   MaxAmount: 10
-  Friction: 0.9
+  Friction: 0.5
 --- !u!61 &7188433440261101929
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2080,6 +2095,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8558128282734045228, guid: 2b03fc41f04525f469eccd660ed2db23,
+        type: 3}
+      propertyPath: useVelocity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8558128282734045228, guid: 2b03fc41f04525f469eccd660ed2db23,
+        type: 3}
+      propertyPath: movement
+      value: 
+      objectReference: {fileID: 270376798}
     - target: {fileID: 8558128283662357634, guid: 2b03fc41f04525f469eccd660ed2db23,
         type: 3}
       propertyPath: grip

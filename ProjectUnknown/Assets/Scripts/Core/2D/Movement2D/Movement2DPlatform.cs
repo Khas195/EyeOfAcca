@@ -275,4 +275,12 @@ public class Movement2DPlatform : IMovement
     {
         base.RotateToward(direction, rotateY);
     }
+
+
+    public override float GetCurrentSpeed()
+    {
+        return this.moveDirHorizontal;
+    }
+
+
 }

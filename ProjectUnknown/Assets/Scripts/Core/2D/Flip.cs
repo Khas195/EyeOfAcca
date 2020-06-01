@@ -9,7 +9,19 @@ public class Flip : MonoBehaviour
     [BoxGroup("Requirements")]
     [SerializeField]
     [Required]
+    bool useVelocity = true;
+
+    [BoxGroup("Requirements")]
+    [SerializeField]
+    [Required]
+    [ShowIf("useVelocity")]
     Rigidbody2D body = null;
+    [BoxGroup("Requirements")]
+    [SerializeField]
+    [Required]
+    [HideIf("useVelocity")]
+    IMovement movement = null;
+
     [BoxGroup("Current Status")]
     [SerializeField]
     bool isFacingRight = true;
@@ -22,8 +34,17 @@ public class Flip : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var value = body.velocity.x;
-        CheckFacing(value);
+        if (useVelocity)
+        {
+            var value = body.velocity.x;
+            CheckFacing(value);
+        }
+        else
+        {
+            var value = movement.GetCurrentSpeed();
+            CheckFacing(value);
+
+        }
     }
 
     public void CheckFacing(float value)
