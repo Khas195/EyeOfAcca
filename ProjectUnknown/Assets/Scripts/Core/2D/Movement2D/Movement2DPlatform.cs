@@ -142,10 +142,7 @@ public class Movement2DPlatform : IMovement
     }
     void Update()
     {
-        if (Physics2D.OverlapBoxAll(body2D.transform.position + headColOffset, headColSize, 0, jumpableLayer).Length > 0)
-        {
-            isAccelUp = false;
-        }
+
         if (isAccelUp == false)
         {
             if (this.IsTouchingGround() == false)
