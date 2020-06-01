@@ -151,3 +151,10 @@ Chris made some amazing tileset art but it is so time consuming to add them into
 Ousama also made some pretty good puzzles. Though we talked about what we want from our puzzles. Just because our game are inspired by celeste, that doesn't mean we need to make out level the way they make it. Celeste has an emphasis on their movement, jumping and dashing as their core mechanic. Ours, however, focus more in the the throwing and recalling of the axe. Hence, the level he made so far missed the point but after we talked about it. The levels place a heavier emphasis on the axe which leads to some very interesting results. 
 
 However, his levels are still too convoluted with unncessary elements. Though, I think I can work with his levels to balance it out. Remove unncessary elements and introducing the level's idea slowly to the player.
+
+
+### __**Bugs fixing and Polishing - Focus on Narrative. (May 27th, 2020 - June 1st, 2020)**__
+
+Nothing much happened this week, just a lot of bug fixing and polishing.
+
+Most of our meetings are about narrative aspect of the game as that is the goal of this week.
