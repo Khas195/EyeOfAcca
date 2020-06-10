@@ -11,16 +11,21 @@ public class GameStateSnapShot : ScriptableObject
     Vector3 axePosition = Vector3.one;
     [SerializeField]
     Color currentGemColor = Color.black;
+    [SerializeField]
+    private bool isHoldingAxe;
 
     public Camera PlayerCamera { get => playerCam; }
     public Vector3 CharacterPosition { get => characterPosition; }
     public Vector3 AxePosition { get => axePosition; }
     public Color GemColor { get => currentGemColor; }
+    public bool IsHoldingAxe { get => isHoldingAxe; }
+
     public void UpdateData(GameStateSnapUpdator updator)
     {
         playerCam = updator.playerCam;
         characterPosition = updator.characterTran.position;
         axePosition = updator.axe.GetAxePosition();
         currentGemColor = updator.axe.GetCurrentAbility().GetGemColor();
+        this.isHoldingAxe = updator.grip.IsHoldingAxe();
     }
 }

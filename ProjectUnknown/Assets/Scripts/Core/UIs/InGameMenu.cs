@@ -34,6 +34,7 @@ public class InGameMenu : SingletonMonobehavior<InGameMenu>
     /// </summary>
     void Start()
     {
+        rotateScript.SetPivot(axeIndicatorPivot);
     }
     public void HideInGameMenu()
     {
@@ -58,7 +59,6 @@ public class InGameMenu : SingletonMonobehavior<InGameMenu>
     void LateUpdate()
     {
         if (snapShot.PlayerCamera == null) return;
-        rotateScript.SetPivot(axeIndicatorPivot);
 
         Vector3 axePos = snapShot.AxePosition;
         var axeScreenPos = snapShot.PlayerCamera.WorldToScreenPoint(axePos);
