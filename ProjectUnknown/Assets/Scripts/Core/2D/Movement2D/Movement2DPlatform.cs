@@ -67,6 +67,30 @@ public class Movement2DPlatform : IMovement
     [SerializeField]
     [ReadOnly]
     bool isAccelUp = false;
+    [BoxGroup("Current Status")]
+    [SerializeField]
+    [ReadOnly]
+
+    int moveDirHorizontal = 0;
+    [BoxGroup("Current Status")]
+    [SerializeField]
+    [ReadOnly]
+
+    float previousSide = 0;
+    [BoxGroup("Current Status")]
+    [SerializeField]
+    [ReadOnly]
+
+    float curVelTime = 0.0f;
+    [BoxGroup("Current Status")]
+    [SerializeField]
+    [ReadOnly]
+
+    AnimationCurve currentVelCurve = null;
+    [BoxGroup("Current Status")]
+    [SerializeField]
+    [ReadOnly]
+
     float currentJumpBufferTime = 0.0f;
 
     /// <summary>
@@ -91,10 +115,7 @@ public class Movement2DPlatform : IMovement
         Gizmos.DrawWireCube(headColOffset + body2D.transform.position, headColSize);
 
     }
-    int moveDirHorizontal = 0;
-    float previousSide = 0;
-    float curVelTime = 0.0f;
-    AnimationCurve currentVelCurve = null;
+
     public override void Move(float forward, float side)
     {
         previousSide = cachedSide;
