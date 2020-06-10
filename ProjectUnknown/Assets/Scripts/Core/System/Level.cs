@@ -5,12 +5,24 @@ using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class Level : SingletonMonobehavior<Level>
+public class Level : MonoBehaviour
 {
     [SerializeField]
     [Required]
     Tilemap groundTileMap = null;
 
+    /// <summary>
+    /// Start is called on the frame when a script is enabled just before
+    /// any of the Update methods is called the first time.
+    /// </summary>
+    void Start()
+    {
+        var gameMaster = GameMaster.GetInstance();
+        if (gameMaster)
+        {
+            gameMaster.UpdateLevelSettingsBounds(this.GetGroundMapPosition(), this.GetGroundMapBounds());
+        }
+    }
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

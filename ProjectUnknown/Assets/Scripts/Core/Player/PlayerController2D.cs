@@ -5,7 +5,7 @@ using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerController2D : SingletonMonobehavior<PlayerController2D>
+public class PlayerController2D : MonoBehaviour
 {
     [BoxGroup("Settings")]
     [SerializeField]
@@ -38,6 +38,18 @@ public class PlayerController2D : SingletonMonobehavior<PlayerController2D>
     [SerializeField]
     [ReadOnly]
     float currentAxeUseBufferTime = 0.0f;
+    /// <summary>
+    /// Start is called on the frame when a script is enabled just before
+    /// any of the Update methods is called the first time.
+    /// </summary>
+    void Start()
+    {
+        var gameMaster = GameMaster.GetInstance(false);
+        if (gameMaster)
+        {
+            this.SetLandingPosition(gameMaster.GetSpawnLocation());
+        }
+    }
     public Character2D GetCharacter()
     {
         return this.character;

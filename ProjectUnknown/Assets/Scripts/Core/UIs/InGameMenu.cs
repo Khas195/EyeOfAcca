@@ -1,11 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class InGameMenu : SingletonMonobehavior<InGameMenu>
 {
+    [SerializeField]
+    [Required]
+    GameStateSnapShot snapShot;
     [SerializeField]
     [Required]
     Animator animator = null;
@@ -52,19 +55,13 @@ public class InGameMenu : SingletonMonobehavior<InGameMenu>
     {
         GameMaster.GetInstance().GoToMainMenu();
     }
-    /// <summary>
-    /// Update is called every frame, if the MonoBehaviour is enabled.
-    /// </summary>
     void LateUpdate()
     {
-        var axe = BoomeraxeGrip.GetInstance(false);
-        var playerCam = CameraFollow.GetInstance(false);
-        var playerControl = PlayerController2D.GetInstance(false);
+        if (snapShot.PlayerCamera == null) return;
         rotateScript.SetPivot(axeIndicatorPivot);
-        if (axe == null || playerCam == null || playerControl == null) return;
 
-        Vector3 axePos = axe.GetAxePosition();
-        var axeScreenPos = playerCam.GetCamera().WorldToScreenPoint(axePos);
+        Vector3 axePos = snapShot.AxePosition;
+        var axeScreenPos = snapShot.PlayerCamera.WorldToScreenPoint(axePos);
 
         if (IsPosOffCameraView(axeScreenPos))
         {
@@ -74,7 +71,7 @@ public class InGameMenu : SingletonMonobehavior<InGameMenu>
                 fadeTrans.TransitionIn();
                 scaleTrans.TransitionIn();
             }
-            UpdateIndicatorPosition(playerCam, playerControl, axePos);
+            UpdateIndicatorPosition(snapShot.PlayerCamera, snapShot.CharacterPosition, snapShot.AxePosition);
 
         }
         else
@@ -86,7 +83,12 @@ public class InGameMenu : SingletonMonobehavior<InGameMenu>
                 showIndicator = false;
             }
         }
-        ProcessTransition(axe);
+        ProcessTransition(snapShot.GemColor);
+    }
+
+    private void ProcessTransition(object gemColor)
+    {
+        throw new NotImplementedException();
     }
 
     private static bool IsPosOffCameraView(Vector3 posToCheck)
@@ -94,18 +96,17 @@ public class InGameMenu : SingletonMonobehavior<InGameMenu>
         return posToCheck.x <= 0 || posToCheck.x >= Screen.width || posToCheck.y <= 0 || posToCheck.y >= Screen.height;
     }
 
-    private void UpdateIndicatorPosition(CameraFollow playerCam, PlayerController2D playerControl, Vector3 axePos)
+    private void UpdateIndicatorPosition(Camera playerCam, Vector3 characterPos, Vector3 axePos)
     {
-        var characterTrans = playerControl.GetCharacter().GetHost();
 
-        Vector3 borderPos = GetIntersectPositionBetweenABAndCamera(axePos, characterTrans.transform.position);
+        Vector3 borderPos = GetIntersectPositionBetweenABAndCamera(axePos, characterPos);
 
-        var indicatorPos = playerCam.GetCamera().WorldToScreenPoint(borderPos);
+        var indicatorPos = playerCam.WorldToScreenPoint(borderPos);
 
         indicatorPos.x = Mathf.Clamp(indicatorPos.x, axeIndicator.rectTransform.sizeDelta.x * 2f, Screen.width - axeIndicator.rectTransform.sizeDelta.x * 2f);
         indicatorPos.y = Mathf.Clamp(indicatorPos.y, axeIndicator.rectTransform.sizeDelta.y * 2f, Screen.height - axeIndicator.rectTransform.sizeDelta.y * 2f);
 
-        rotateScript.RotateXAxisToward(playerCam.GetCamera().WorldToScreenPoint(axePos));
+        rotateScript.RotateXAxisToward(playerCam.WorldToScreenPoint(axePos));
 
         targetPos = indicatorPos;
         axeIndicatorPivot.transform.position = Vector3.Lerp(axeIndicatorPivot.transform.position, targetPos, Time.deltaTime * moveSpeed);
@@ -128,9 +129,9 @@ public class InGameMenu : SingletonMonobehavior<InGameMenu>
         return borderPos;
     }
 
-    private void ProcessTransition(BoomeraxeGrip axe)
+    private void ProcessTransition(Color gemColor)
     {
-        axeIndicator.color = axe.GetAxeFlying().GetCurrentAbility().GetGemColor();
+        axeIndicator.color = gemColor;
         var indicatorColor = axeIndicator.color;
         indicatorColor.a = fadeTrans.GetCurrentValue();
         axeIndicator.color = indicatorColor;

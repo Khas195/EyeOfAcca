@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConstraintCamera : SingletonMonobehavior<ConstraintCamera>
+public class ConstraintCamera : MonoBehaviour
 {
     [SerializeField]
     Transform host = null;
@@ -14,10 +14,17 @@ public class ConstraintCamera : SingletonMonobehavior<ConstraintCamera>
 
     [SerializeField]
     Camera cam = null;
-    // Start is called before the first frame update
+    /// <summary>
+    /// Start is called on the frame when a script is enabled just before
+    /// any of the Update methods is called the first time.
+    /// </summary>
     void Start()
     {
-
+        var master = GameMaster.GetInstance(false);
+        if (master)
+        {
+            var levelSettings = master.GetCurrentLevelSettings();
+        }
     }
     void OnDrawGizmos()
     {
