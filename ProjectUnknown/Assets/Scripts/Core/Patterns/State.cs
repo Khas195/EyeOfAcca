@@ -14,7 +14,7 @@ public abstract class State : MonoBehaviour
         LogHelper.GetInstance().Log(this + " checking transition to  " + stateEnum);
         for (int i = 0; i < possibleTransitions.Count; i++)
         {
-            if (possibleTransitions[i].GetEnum().Equals(stateEnum))
+            if (possibleTransitions[i].IsState(stateEnum))
             {
                 LogHelper.GetInstance().Log(this + " found possible transition to " + stateEnum);
                 return true;
@@ -23,6 +23,14 @@ public abstract class State : MonoBehaviour
         LogHelper.GetInstance().LogWarning(this + " CANNOT found possible transition to " + stateEnum);
         return false;
     }
+    public virtual bool CanTransitionTo(State state)
+    {
+        return this.CanTransitionTo(state.GetEnum());
+    }
 
     public abstract Enum GetEnum();
+    public virtual bool IsState(Enum stateEnum)
+    {
+        return this.GetEnum().Equals(stateEnum);
+    }
 }

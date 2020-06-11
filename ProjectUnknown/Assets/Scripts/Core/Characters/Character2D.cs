@@ -76,7 +76,7 @@ public class Character2D : MonoBehaviour
             movement.SetMovementData(movementWithouAxe);
         }
     }
-    public bool Jump()
+    public bool TryJump()
     {
         if (movement.CanJump())
         {

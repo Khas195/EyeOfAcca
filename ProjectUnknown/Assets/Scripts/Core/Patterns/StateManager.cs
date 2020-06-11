@@ -54,7 +54,7 @@ public class StateManager : MonoBehaviour
         }
         else
         {
-            if (currentState.CanTransitionTo(requestedState.GetEnum()))
+            if (currentState.CanTransitionTo(requestedState))
             {
                 CompleteTransition(ref currentState, requestedState);
                 return true;
@@ -73,8 +73,7 @@ public class StateManager : MonoBehaviour
         State result = null;
         for (int i = 0; i < availableStates.Count; i++)
         {
-            var curEnum = availableStates[i].GetEnum();
-            if (curEnum.Equals(requestedStateEnum))
+            if (availableStates[i].IsState(requestedStateEnum))
             {
                 result = availableStates[i];
                 break;

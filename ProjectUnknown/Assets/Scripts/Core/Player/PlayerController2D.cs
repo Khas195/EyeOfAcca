@@ -93,7 +93,7 @@ public class PlayerController2D : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.S) == false)
             {
-                if (character.Jump())
+                if (character.TryJump())
                 {
                     currentJumpBufferTime = -1;
                 }
