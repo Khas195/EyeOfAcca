@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2e2206c7e5f2aa43923778b69544a2e, type: 3}
-  m_Name: GameMasterSetting
+  m_Script: {fileID: 11500000, guid: 54bad2323d8898949bb8da51f761c7cd, type: 3}
+  m_Name: GameStateSnap
   m_EditorClassIdentifier: 
-  skipMainMenu: 1
-  startDoor: {fileID: 11400000, guid: 8fc462a99e4b7f64aacfb65eaad8f32e, type: 2}
+  playerCam: {fileID: 0}
+  characterPosition: {x: 1, y: 1, z: 1}
+  axePosition: {x: 1, y: 1, z: 1}
+  currentGemColor: {r: 0, g: 0, b: 0, a: 1}

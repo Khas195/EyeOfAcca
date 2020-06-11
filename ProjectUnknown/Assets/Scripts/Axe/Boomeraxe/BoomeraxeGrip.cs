@@ -115,7 +115,7 @@ public class BoomeraxeGrip : SingletonMonobehavior<BoomeraxeGrip>
         axeCatchable = false;
 
         boomeraxeFlying.Fly(at);
-        adjustor.SetGravityScaleFor(datas.timeScaleAfterThrow, datas.lulPeriodAfterAirborneThrow);
+        //adjustor.SetGravityScaleFor(datas.timeScaleAfterThrow, datas.lulPeriodAfterAirborneThrow);
 
         StopCoroutine(TurnOnAxeCatchable(datas.timeTilAxeCatchable));
         StartCoroutine(TurnOnAxeCatchable(datas.timeTilAxeCatchable));

@@ -606,7 +606,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1335997348}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7561047, w: -0.6544507}
+  m_LocalRotation: {x: 0, y: 0, z: 0.9343059, w: -0.35647222}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1503,7 +1503,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameStateManager: {fileID: 1867409778}
-  settings: {fileID: 11400000, guid: ec07c30a6fa72d0489a07bc455aec572, type: 2}
+  masterSettings: {fileID: 11400000, guid: ec07c30a6fa72d0489a07bc455aec572, type: 2}
+  levelSettings: {fileID: 11400000, guid: f97c0e15c793fe54e9cf2fc25b928509, type: 2}
   loadingControl: {fileID: 1899728967}
-  doorIndex: 0
-  currentLevel: 

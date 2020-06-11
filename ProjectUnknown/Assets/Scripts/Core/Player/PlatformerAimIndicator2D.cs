@@ -46,7 +46,7 @@ public class PlatformerAimIndicator2D : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameMaster.GetInstance().GetStateManager().GetCurrentState().GetEnum().Equals(GameState.GameStateEnum.InGame) == false)
+        if (GameMaster.GetInstance().IsInState(GameState.GameStateEnum.InGame) == false)
         {
             return;
         }

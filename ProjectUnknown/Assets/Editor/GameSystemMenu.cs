@@ -16,12 +16,6 @@ public static class GameSystemMenu
     [MenuItem("GameObject/2D Object/Game System/Level Door")]
     public static void CreateLevelDoor()
     {
-        var level = Level.GetInstance(false);
-        if (level == null)
-        {
-            LogHelper.GetInstance().LogError("Cannot create a level door without the level.");
-            return;
-        }
         GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(Resources.Load<GameObject>("Prefabs/EnvirontmenInteractable/PlayerInteractables/Door"));
         obj.transform.SetParent(Selection.activeGameObject.transform);
         obj.transform.position = GetScenePosition();

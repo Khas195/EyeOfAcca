@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
 
-public class CameraFollow : SingletonMonobehavior<CameraFollow>
+public class CameraFollow : MonoBehaviour
 {
     [BoxGroup("Requirements")]
     [SerializeField]
@@ -37,8 +37,15 @@ public class CameraFollow : SingletonMonobehavior<CameraFollow>
     // Start is called before the first frame update
     void Start()
     {
-        encapsolatedTarget.Add(character);
-
+        if (character != null)
+        {
+            encapsolatedTarget.Add(character);
+        }
+        var master = GameMaster.GetInstance(false);
+        if (master)
+        {
+            this.SetPosition(master.GetSpawnLocation());
+        }
     }
     /// <summary>
     /// Callback to draw gizmos that are pickable and always drawn.

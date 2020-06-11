@@ -23,6 +23,7 @@ public class LevelTransitionDoor : MonoBehaviour
         newProfile.doorHome = this.gameObject.scene.name;
         newProfile.doorLocation = this.transform.position;
         this.profile = newProfile;
+        UnityEditor.EditorUtility.SetDirty(this.profile);
 
     }
 #endif

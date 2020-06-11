@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
-
 public class GameMaster : SingletonMonobehavior<GameMaster>
 {
     [SerializeField]
@@ -13,22 +13,15 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
 
     [SerializeField]
     [Required]
-    GameMasterSettings settings = null;
+    GameMasterSettings masterSettings = null;
+    [SerializeField]
+    LevelSettings levelSettings = null;
 
     [SerializeField]
     [Required]
     LoadingControl loadingControl = null;
 
-
-
-    [SerializeField]
-    int doorIndex = 0;
-    [SerializeField]
-    [ReadOnly]
-    string currentLevel = "";
     List<AsyncOperation> scenesLoading = new List<AsyncOperation>();
-    private TransitionDoorProfile currentSpawn;
-
 
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
@@ -38,10 +31,10 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     {
 
         UnloadAllScenesExcept("MasterScene");
-
-        if (settings.skipMainMenu)
+        if (masterSettings.skipMainMenu)
         {
-            this.InitiateLoadLevelSequence(settings.startDoor);
+            this.levelSettings.currentSpawn = this.levelSettings.startSpawn;
+            this.InitiateLoadLevelSequence(levelSettings.currentSpawn);
         }
         else
         {
@@ -51,7 +44,12 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
 
     public void ReloadCurrentLevel()
     {
-        InitiateLoadLevelSequence(this.currentSpawn);
+        InitiateLoadLevelSequence(this.levelSettings.currentSpawn);
+    }
+
+    public Vector3 GetSpawnLocation()
+    {
+        return this.levelSettings.currentSpawn.doorLocation;
     }
 
     /// <summary>
@@ -125,14 +123,14 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
 
     public TransitionDoorProfile GetStartLevel()
     {
-        return settings.startDoor;
+        return levelSettings.startSpawn;
     }
 
     public void InitiateLoadLevelSequence(TransitionDoorProfile profileToland)
     {
         if (gameStateManager.RequestState(GameState.GameStateEnum.Loading) == false) return;
         SFXSystem.GetInstance().StopAllSounds();
-        this.currentSpawn = profileToland;
+        this.levelSettings.currentSpawn = profileToland;
         loadingControl.FadeIn(() =>
         {
             LoadLevel(profileToland.doorHome);
@@ -144,10 +142,11 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     {
         UnloadAllScenesExcept("MasterScene");
 
+
         SFXSystem.GetInstance().StopAllSounds();
         SaveLoadManager.LoadAllData();
         LoadSceneAdditively(levelName);
-        currentLevel = levelName;
+        this.levelSettings.currentLevel = levelName;
 
         LoadSceneAdditively("EntitiesScene");
         LoadSceneAdditively("InGameMenu");
@@ -162,10 +161,6 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
                 yield return null;
             }
         }
-        if (gamestateAfterLoad.Equals(GameState.GameStateEnum.InGame))
-        {
-            StageLevel();
-        }
 
 
         loadingControl.FadeOut(() =>
@@ -175,43 +170,6 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
         yield return null;
     }
 
-    public void StageLevel()
-    {
-        var player = PlayerController2D.GetInstance(false);
-        if (player == null)
-        {
-            LogHelper.GetInstance().LogError("Loading Level without Entities Scene");
-            return;
-        }
-        var level = Level.GetInstance(false);
-        if (level == null)
-        {
-            LogHelper.GetInstance().LogError("Loading Level without Level Script");
-            return;
-
-        }
-        var camera = CameraFollow.GetInstance(false);
-        if (camera == null)
-        {
-            LogHelper.GetInstance().LogError("Loading Level without Camera Follow");
-            return;
-
-        }
-        var cameraConstaint = ConstraintCamera.GetInstance(false);
-        if (cameraConstaint == null)
-        {
-            LogHelper.GetInstance().LogError("Loading Level without Camera Constraint");
-            return;
-
-        }
-
-        var landingPosition = this.currentSpawn.doorLocation;
-        player.SetLandingPosition(landingPosition);
-        camera.SetPosition(landingPosition);
-        Vector2 position = level.GetGroundMapPosition();
-        Vector2 size = level.GetGroundMapBounds();
-        cameraConstaint.SetConstraint(position, size);
-    }
 
     private void UnloadCurrentLevel()
     {
@@ -277,11 +235,20 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     public void RestartLevel()
     {
         LogHelper.GetInstance().Log(("Restarting Level: " + SceneManager.GetActiveScene().name).Bolden(), true);
-        this.InitiateLoadLevelSequence(this.currentSpawn);
+        this.InitiateLoadLevelSequence(this.levelSettings.currentSpawn);
     }
 
     public void SetGameTimeScale(float newTimeScale)
     {
         Time.timeScale = newTimeScale;
+    }
+    public LevelSettings GetCurrentLevelSettings()
+    {
+        return this.levelSettings;
+    }
+    public void UpdateLevelSettingsBounds(Vector2 origin, Vector3 bounds)
+    {
+        this.levelSettings.levelCenter = origin;
+        this.levelSettings.levelBounds = bounds;
     }
 }
