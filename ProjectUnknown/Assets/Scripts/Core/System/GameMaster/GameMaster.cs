@@ -27,10 +27,6 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     [SerializeField]
     UnityEvent levelLoadEvent = new UnityEvent();
 
-    /// <summary>
-    /// Start is called on the frame when a script is enabled just before
-    /// any of the Update methods is called the first time.
-    /// </summary>
     void Start()
     {
         UnloadAllScenesExcept("MasterScene");
@@ -43,6 +39,18 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
         {
             this.GoToMainMenu();
         }
+    }
+
+    public void StartNewGame()
+    {
+
+        GameMaster.GetInstance().InitiateLoadLevelSequence(GameMaster.GetInstance().GetStartLevel(), newSave: true);
+    }
+
+    public void RefreshSave()
+    {
+        masterSettings.Reset();
+        savedSettings.Reset();
     }
 
     public void LoadLevelAtSpawn(TransitionDoorProfile spawn)
@@ -61,9 +69,6 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
         return this.levelSettings.currentSpawn.doorLocation;
     }
 
-    /// <summary>
-    /// Update is called every frame, if the MonoBehaviour is enabled.
-    /// </summary>
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -137,25 +142,39 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
         return levelSettings.startSpawn;
     }
 
-    public void InitiateLoadLevelSequence(TransitionDoorProfile profileToland)
+    public void InitiateLoadLevelSequence(TransitionDoorProfile profileToland, bool newSave = false)
     {
         if (gameStateManager.RequestState(GameState.GameStateEnum.Loading) == false) return;
+
         this.levelLoadEvent.Invoke();
-        this.levelSettings.currentSpawn = profileToland;
         loadingControl.FadeIn(() =>
         {
-            LoadLevel(profileToland.doorHome);
-            StartCoroutine(GetLevelLoadProcess(GameState.GameStateEnum.InGame));
+            this.levelSettings.currentSpawn = profileToland;
+            StartCoroutine(SaveLoadCoroutine(newSave, () =>
+            {
+                LoadLevel(profileToland.doorHome);
+                StartCoroutine(GetLevelLoadProcess(GameState.GameStateEnum.InGame));
+            }));
         });
+    }
+    public IEnumerator SaveLoadCoroutine(bool newSave, Action callback)
+    {
+        if (newSave)
+        {
+            RefreshSave();
+            SaveLoadManager.SaveAllData();
+        }
+
+        SaveLoadManager.LoadAllData();
+        yield return null;
+        callback();
     }
 
     public void LoadLevel(string levelName)
     {
         UnloadAllScenesExcept("MasterScene");
 
-
         SFXSystem.GetInstance().StopAllSounds();
-        SaveLoadManager.LoadAllData();
         LoadSceneAdditively(levelName);
         this.levelSettings.currentLevel = levelName;
 

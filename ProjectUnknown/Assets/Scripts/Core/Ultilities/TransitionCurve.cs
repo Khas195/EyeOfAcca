@@ -22,8 +22,22 @@ public class TransitionCurve : MonoBehaviour
     [BoxGroup("Status")]
     [SerializeField]
     [ReadOnly]
-
     float curTime = 0;
+    [BoxGroup("Status")]
+    [SerializeField]
+    [ReadOnly]
+    float transInLastKeyTime = 0.0f;
+    [BoxGroup("Status")]
+    [SerializeField]
+    [ReadOnly]
+    float transOutLastKeyTime = 0.0f;
+
+    void Start()
+    {
+
+        transInLastKeyTime = transInCurve.keys[transInCurve.length - 1].time;
+        transOutLastKeyTime = transOutCurve.keys[transOutCurve.length - 1].time;
+    }
 
     public float GetCurrentValue()
     {
@@ -61,13 +75,18 @@ public class TransitionCurve : MonoBehaviour
 
     public bool IsCurrentTimeInGraph()
     {
-        if (curCurve.keys.Length < 1)
-        {
-            return false;
-        }
-        float lastKeyTime = curCurve.keys[curCurve.length - 1].time;
+        if (curCurve.keys.Length <= 0) return false;
 
-        return curTime <= lastKeyTime && curTime >= 0;
+        if (curCurve == transInCurve)
+        {
+            return curTime <= transInLastKeyTime && curTime >= 0;
+        }
+        else
+        {
+
+            return curTime <= transOutLastKeyTime && curTime >= 0;
+        }
+
     }
 
     public bool IsTransIn()

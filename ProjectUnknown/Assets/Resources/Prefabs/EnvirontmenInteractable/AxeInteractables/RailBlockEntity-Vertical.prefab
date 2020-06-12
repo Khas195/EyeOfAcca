@@ -571,6 +571,7 @@ MonoBehaviour:
   box: {fileID: 9010433610554456186}
   moveHorizontal: 0
   moveAb: {fileID: 6707593047674901979}
+  settings: {fileID: 11400000, guid: ec07c30a6fa72d0489a07bc455aec572, type: 2}
   OnBlockMove:
     m_PersistentCalls:
       m_Calls:

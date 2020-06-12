@@ -19,10 +19,6 @@ public class SavePoint : AxeInteractable
     TransitionCurve colorCurve = null;
     bool activate = false;
 
-    /// <summary>
-    /// Start is called on the frame when a script is enabled just before
-    /// any of the Update methods is called the first time.
-    /// </summary>
     void Start()
     {
         if (savedSettings.startSpawn == linkedDoor.GetProfile())
@@ -33,10 +29,6 @@ public class SavePoint : AxeInteractable
             spriteRenderer.color = color;
             activate = true;
         }
-    }
-    public override void OnAxeAbilityTriggered(AxeAbility triggeredAbility)
-    {
-        base.OnAxeAbilityTriggered(triggeredAbility);
     }
 
     public override void OnAxeHit(Boomeraxe axe)
@@ -55,13 +47,6 @@ public class SavePoint : AxeInteractable
         SaveLoadManager.SaveAllData();
     }
 
-    protected override void OnCollisionEnter2D(Collision2D collisionInfo)
-    {
-        base.OnCollisionEnter2D(collisionInfo);
-    }
-    /// <summary>
-    /// Update is called every frame, if the MonoBehaviour is enabled.
-    /// </summary>
     void Update()
     {
         if (activate)

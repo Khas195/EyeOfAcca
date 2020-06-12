@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CurrentLevelSettings
   m_EditorClassIdentifier: 
   startSpawn: {fileID: 11400000, guid: a55b624d474d5fb43ad2a5607f3bf675, type: 2}
-  currentSpawn: {fileID: 11400000, guid: a55b624d474d5fb43ad2a5607f3bf675, type: 2}
+  currentSpawn: {fileID: 11400000, guid: da62405f6ca644645a362609b26bf98e, type: 2}
   currentLevel: TestLevel-SaveRoom
-  levelCenter: {x: 118.6, y: 23.3, z: 0}
-  levelBounds: {x: 43, y: 20, z: 1}
+  levelCenter: {x: 119, y: 23.3, z: 0}
+  levelBounds: {x: 44, y: 20, z: 1}

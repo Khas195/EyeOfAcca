@@ -339,7 +339,7 @@ GameObject:
   - component: {fileID: 138252165}
   - component: {fileID: 138252164}
   m_Layer: 5
-  m_Name: txtPlay
+  m_Name: txtContinue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -416,7 +416,7 @@ GameObject:
   - component: {fileID: 522023850}
   - component: {fileID: 522023849}
   m_Layer: 5
-  m_Name: txtPlay
+  m_Name: txtNewGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -472,7 +472,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: PLAY
+  m_Text: New Game
 --- !u!222 &522023850
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1159,7 +1159,7 @@ GameObject:
   - component: {fileID: 1807938261}
   - component: {fileID: 1807938260}
   m_Layer: 5
-  m_Name: btnPlay
+  m_Name: btnNewGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1343,7 +1343,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: QUIT
+  m_Text: Quit
 --- !u!222 &1821306439
 CanvasRenderer:
   m_ObjectHideFlags: 0

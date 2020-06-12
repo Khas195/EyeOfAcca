@@ -35,6 +35,7 @@ public class MainMenu : MonoBehaviour
     }
     public void LoadFistLevel()
     {
-        GameMaster.GetInstance().InitiateLoadLevelSequence(GameMaster.GetInstance().GetStartLevel());
+        GameMaster.GetInstance().StartNewGame();
+        GameMaster.GetInstance().InitiateLoadLevelSequence(GameMaster.GetInstance().GetStartLevel(), newSave: true);
     }
 }

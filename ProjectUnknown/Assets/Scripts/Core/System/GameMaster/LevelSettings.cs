@@ -18,4 +18,12 @@ public class LevelSettings : ScriptableObject
     [ReadOnly]
     public Vector3 levelBounds = Vector3.zero;
 
+    public void Reset()
+    {
+        startSpawn = null;
+        currentSpawn = null;
+        currentLevel = "";
+        levelCenter = Vector3.zero;
+        levelBounds = Vector3.zero;
+    }
 }

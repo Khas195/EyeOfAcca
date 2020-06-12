@@ -50,15 +50,7 @@ public class Movement2DPlatform : IMovement
     [ReadOnly]
     float cachedSide = 0;
 
-    [BoxGroup("Current Status")]
-    [SerializeField]
-    [ReadOnly]
-    Vector3 maxHeightPos = Vector3.one;
 
-    [BoxGroup("Current Status")]
-    [SerializeField]
-    [ReadOnly]
-    Vector3 decelHeight = Vector3.one;
     [BoxGroup("Current Status")]
     [SerializeField]
     [ReadOnly]
@@ -93,24 +85,11 @@ public class Movement2DPlatform : IMovement
 
     float currentJumpBufferTime = 0.0f;
 
-    /// <summary>
-    /// Start is called on the frame when a script is enabled just before
-    /// any of the Update methods is called the first time.
-    /// </summary>
-    void Start()
-    {
-
-    }
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(body2D.transform.position + checkGroundBoxOffset, checkGroundBoxSize);
-        Gizmos.color = Color.green;
 
-        Gizmos.DrawLine(body2D.transform.position, maxHeightPos);
-        Gizmos.DrawWireCube(maxHeightPos, Vector3.one);
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(decelHeight, Vector3.one);
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(headColOffset + body2D.transform.position, headColSize);
 

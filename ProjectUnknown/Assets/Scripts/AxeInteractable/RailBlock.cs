@@ -27,6 +27,11 @@ public class RailBlock : AxeInteractable
     [Required]
     MoveAB moveAb = null;
 
+    [BoxGroup("Requirements")]
+    [SerializeField]
+    [Required]
+    GameMasterSettings settings = null;
+
     [BoxGroup("Settings")]
     [SerializeField]
     UnityEvent OnBlockMove = new UnityEvent();
@@ -51,8 +56,11 @@ public class RailBlock : AxeInteractable
     [ReadOnly]
     Boomeraxe axe = null;
 
+
     public override void OnAxeHit(Boomeraxe axe)
     {
+        if (settings.RailUnlocked == false) return;
+
         base.OnAxeHit(axe);
         holderTrans = axe.GetHolder();
         var axePos = axe.GetAxePosition();
@@ -61,6 +69,8 @@ public class RailBlock : AxeInteractable
 
     public override void OnAxeAbilityTriggered(AxeAbility triggeredAbility)
     {
+        if (settings.RailUnlocked == false) return;
+
         base.OnAxeAbilityTriggered(triggeredAbility);
         bool moveA = true;
         if (abilityToInteract.Equals(triggeredAbility) && axe.GetStuckCollider() == box)

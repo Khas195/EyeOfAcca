@@ -14,26 +14,35 @@ public class Gem : AxeInteractable
     [SerializeField]
     [Required]
     Animator anim = null;
+    [BoxGroup("Requirements")]
+    [SerializeField]
+    [Required]
+    GameMasterSettings settings = null;
 
     [BoxGroup("Optional")]
     [SerializeField]
     GameObject gemParticles = null;
 
 
-
-    /// <summary>
-    /// Update is called every frame, if the MonoBehaviour is enabled.
-    /// </summary>
-    void Update()
+    private void Start()
     {
+        if (settings.GemUnlocked == false)
+        {
+            DeactiveGem();
+        }
+        settings.OnGemUnlocked.AddListener(ActivateGem);
     }
+
+
     public override void OnAxeHit(Boomeraxe axe)
     {
+        if (settings.GemUnlocked == false) return;
+
         base.OnAxeHit(axe);
         if (axe.SetActiveAbility(ability))
         {
             LogHelper.GetInstance().Log(("Absorbed Power - Teleportation!").Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
-            anim.SetBool("HasPower", false);
+            DeactiveGem();
             VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.OnTeleGemHit, this.transform.position, Quaternion.identity);
             if (gemParticles != null)
             {
@@ -57,13 +66,23 @@ public class Gem : AxeInteractable
 
     public override void OnAxeAbilityTriggered(AxeAbility triggeredAbility)
     {
+        if (settings.GemUnlocked == false) return;
+
         base.OnAxeAbilityTriggered(triggeredAbility);
         LogHelper.GetInstance().Log(("Gem recharging power - Teleportation!").Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
         VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.AxeHasPowerFlash, this.transform.position, Quaternion.identity);
-        anim.SetBool("HasPower", true);
+        ActivateGem();
         if (gemParticles != null)
         {
             gemParticles.SetActive(true);
         }
+    }
+    public void ActivateGem()
+    {
+        anim.SetBool("HasPower", true);
+    }
+    public void DeactiveGem()
+    {
+        anim.SetBool("HasPower", false);
     }
 }
