@@ -27,14 +27,31 @@ public class BoomerAxeFollow : MonoBehaviour
     {
         var cameraSizeY = 2 * playerCamera.orthographicSize;
         var cameraSizeX = cameraSizeY * playerCamera.aspect;
-        if (Mathf.Abs(axeBody.transform.position.x - characterBody.transform.position.x) > cameraSizeX / 1.5f || Mathf.Abs(axeBody.transform.position.y - characterBody.transform.position.y) > cameraSizeY / 2.0f)
+        if (IsAxeOutsideCameraBound(cameraSizeY, cameraSizeX))
         {
-            follow.RemoveEncapsolate(axeBody.transform);
+            StopFollowAxe();
         }
         else
         {
-            follow.AddEncapsolateObject(axeBody.transform);
+            FollowAxe();
         }
     }
 
+    private bool IsAxeOutsideCameraBound(float cameraSizeY, float cameraSizeX)
+    {
+        float horizontalDistance = axeBody.transform.position.x - characterBody.transform.position.x;
+        float verticalDistance = axeBody.transform.position.y - characterBody.transform.position.y;
+
+        return Mathf.Abs(horizontalDistance) > cameraSizeX / 1.5f || Mathf.Abs(verticalDistance) > cameraSizeY / 2.0f;
+    }
+
+    public void FollowAxe()
+    {
+        follow.AddEncapsolateObject(axeBody.transform);
+    }
+
+    public void StopFollowAxe()
+    {
+        follow.RemoveEncapsolate(axeBody.transform);
+    }
 }

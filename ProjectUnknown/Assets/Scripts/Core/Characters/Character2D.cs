@@ -10,6 +10,9 @@ public class Character2D : MonoBehaviour
     [BoxGroup("Requirements")]
     [Required]
     Rigidbody2D body = null;
+
+
+
     [SerializeField]
     [BoxGroup("Requirements")]
     [Required]

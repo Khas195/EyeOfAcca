@@ -22,6 +22,8 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     LoadingControl loadingControl = null;
 
     List<AsyncOperation> scenesLoading = new List<AsyncOperation>();
+    [SerializeField]
+    UnityEvent levelLoadEvent = new UnityEvent();
 
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
@@ -129,7 +131,7 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     public void InitiateLoadLevelSequence(TransitionDoorProfile profileToland)
     {
         if (gameStateManager.RequestState(GameState.GameStateEnum.Loading) == false) return;
-        SFXSystem.GetInstance().StopAllSounds();
+        this.levelLoadEvent.Invoke();
         this.levelSettings.currentSpawn = profileToland;
         loadingControl.FadeIn(() =>
         {

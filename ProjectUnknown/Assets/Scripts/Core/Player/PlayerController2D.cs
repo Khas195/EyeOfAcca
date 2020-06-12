@@ -88,7 +88,7 @@ public class PlayerController2D : MonoBehaviour
                 StartJumpBufferTime();
             }
         }
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) == false)
         {
             character.StartFalling();
         }
