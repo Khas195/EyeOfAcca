@@ -101,4 +101,9 @@ public class Character2D : MonoBehaviour
     {
         this.body.transform.position = landingPosition;
     }
+
+    public void StartFalling()
+    {
+        movement.StartFalling();
+    }
 }

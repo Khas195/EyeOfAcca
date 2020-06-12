@@ -188,7 +188,7 @@ public class Movement2DPlatform : IMovement
             body2D.velocity += Vector2.up * data.jumpGravity * Time.deltaTime;
             if (body2D.velocity.y <= 0)
             {
-                isAccelUp = false;
+                StartFalling();
             }
         }
         if (isAccelUp == false)
@@ -198,7 +198,10 @@ public class Movement2DPlatform : IMovement
         body2D.velocity *= timeScale;
         data.currentVelocity = body2D.velocity;
     }
-
+    public override void StartFalling()
+    {
+        isAccelUp = false;
+    }
     private void Jump()
     {
         jumpEvent.Invoke();
