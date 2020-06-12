@@ -8,6 +8,8 @@ public class GameStateSnapShot : ScriptableObject
     [SerializeField]
     Vector3 characterPosition = Vector3.one;
     [SerializeField]
+    Vector3 characterVelocity = Vector3.one;
+    [SerializeField]
     Vector3 axePosition = Vector3.one;
     [SerializeField]
     Color currentGemColor = Color.black;
@@ -19,6 +21,7 @@ public class GameStateSnapShot : ScriptableObject
     public Vector3 AxePosition { get => axePosition; }
     public Color GemColor { get => currentGemColor; }
     public bool IsHoldingAxe { get => isHoldingAxe; }
+    public Vector3 CharacterVelocity { get => characterVelocity; }
 
     public void UpdateData(GameStateSnapUpdator updator)
     {
@@ -27,5 +30,6 @@ public class GameStateSnapShot : ScriptableObject
         axePosition = updator.axe.GetAxePosition();
         currentGemColor = updator.axe.GetCurrentAbility().GetGemColor();
         this.isHoldingAxe = updator.grip.IsHoldingAxe();
+        this.characterVelocity = updator.characterBody.velocity;
     }
 }

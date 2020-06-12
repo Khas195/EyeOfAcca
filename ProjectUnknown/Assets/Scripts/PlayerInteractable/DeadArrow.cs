@@ -40,13 +40,13 @@ public class DeadArrow : MonoBehaviour
     {
         this.flyDirection = newDirection;
     }
+
     /// <summary>
-    /// Update is called every frame, if the MonoBehaviour is enabled.
+    /// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
     /// </summary>
-    void Update()
+    void FixedUpdate()
     {
-        Vector2 currentPos = body.transform.position;
-        body.MovePosition(currentPos + flyDirection * this.speed * Time.deltaTime);
+        body.velocity = flyDirection * this.speed;
     }
 
     public void SetPosition(Vector3 position)
@@ -69,9 +69,12 @@ public class DeadArrow : MonoBehaviour
         this.onHit(body.gameObject);
         if (collisionInfo.collider.tag.Equals("Player"))
         {
-            SFXSystem.GetInstance().StopAllSounds();
             LogHelper.GetInstance().Log(("Player hit Player").Bolden(), true, LogHelper.LogLayer.PlayerFriendly);
-            GameMaster.GetInstance().ReloadCurrentLevel();
+            var chip = collisionInfo.collider.GetComponent<Chip>();
+            if (chip)
+            {
+                chip.InitiateDeadSequence();
+            }
         }
     }
 

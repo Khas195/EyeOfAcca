@@ -74,7 +74,7 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.0438598
     - serializedVersion: 3
-      time: 0.7
+      time: 0.9
       value: 8
       inSlope: 0
       outSlope: 0
@@ -94,8 +94,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  initialJumpVelocity: 22.857143
-  jumpGravity: -32.65306
-  fallGravity: -19.753084
+  initialJumpVelocity: 17.777779
+  jumpGravity: -19.753088
+  fallGravity: -32.653057
   rotateSpeed: 20
-  currentVelocity: {x: 7.8431373, y: -0.337197}
+  currentVelocity: {x: 6.8875837, y: -0.714091}

@@ -61,7 +61,11 @@ public class PlayerController2D : MonoBehaviour
         {
             return;
         }
-        var side = 0;
+
+        var side = Input.GetAxisRaw("Horizontal");
+        var forward = Input.GetAxisRaw("Vertical");
+        character.Move(side, forward);
+
         if (Input.GetKey(KeyCode.W))
         {
             var door = ScanForDoor();
@@ -70,40 +74,36 @@ public class PlayerController2D : MonoBehaviour
                 InteractWithDoor(door);
             }
         }
-        if (Input.GetKey(KeyCode.A))
-        {
-            side = -1;
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            side = 1;
-        }
-        var forward = Input.GetAxisRaw("Vertical");
-        character.Move(side, forward);
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            currentJumpBufferTime = jumpInputBufferTime;
-        }
-        if (Input.GetMouseButtonDown(0))
-        {
-            currentAxeUseBufferTime = useAxeInputBuferTime;
-        }
-
-        if (currentJumpBufferTime > 0)
-        {
-            if (Input.GetKey(KeyCode.S) == false)
+            if (Input.GetKey(KeyCode.S))
             {
-                if (character.TryJump())
+                if (character.TryDropDown() == false)
                 {
-                    currentJumpBufferTime = -1;
+                    StartJumpBufferTime();
                 }
             }
             else
             {
-                if (character.TryDropDown())
-                {
-                    currentJumpBufferTime = -1;
-                }
+                StartJumpBufferTime();
+            }
+        }
+        if (Input.GetKey(KeyCode.Space) == false)
+        {
+            character.StartFalling();
+        }
+
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            StartDropdownBufferTime();
+        }
+
+        if (currentJumpBufferTime > 0)
+        {
+            if (character.TryJump())
+            {
+                currentJumpBufferTime = -1;
             }
             currentJumpBufferTime -= Time.deltaTime;
         }
@@ -128,6 +128,16 @@ public class PlayerController2D : MonoBehaviour
         }
 
 
+    }
+
+    private void StartDropdownBufferTime()
+    {
+        currentAxeUseBufferTime = useAxeInputBuferTime;
+    }
+
+    private void StartJumpBufferTime()
+    {
+        currentJumpBufferTime = jumpInputBufferTime;
     }
 
     private void InteractWithDoor(LevelTransitionDoor door)

@@ -8,13 +8,15 @@ public class GameStateSnapUpdator : MonoBehaviour
     [SerializeField]
     [Required]
     GameStateSnapShot snapShot = null;
-    [SerializeField]
+    [Required]
     public Camera playerCam = null;
-    [SerializeField]
+    [Required]
     public Transform characterTran = null;
-    [SerializeField]
+    [Required]
+    public Rigidbody2D characterBody = null;
+    [Required]
     public Boomeraxe axe = null;
-    [SerializeField]
+    [Required]
     public BoomeraxeGrip grip = null;
     // Update is called once per frame
     void Update()

@@ -7,9 +7,11 @@ using UnityEngine;
 public class TransitionDoorProfile : ScriptableObject
 {
     [Scene]
+    [SerializeField]
     public string doorHome = "";
 
     [ReadOnly]
+    [SerializeField]
     public Vector3 doorLocation = Vector3.one;
 
     [OnValueChanged("LinkDoor")]

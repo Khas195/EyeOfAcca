@@ -19,20 +19,20 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 9.942287
-      outSlope: 9.942287
+      inSlope: 35.82806
+      outSlope: 35.82806
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.040032025
+      outWeight: 0.0296237
     - serializedVersion: 3
       time: 0.3
       value: 8
-      inSlope: 36.5522
-      outSlope: 36.5522
+      inSlope: 1.6246208
+      outSlope: 1.6246208
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.027221737
+      inWeight: 0.040832657
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -43,20 +43,20 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 8
-      inSlope: -181.4865
-      outSlope: -181.4865
+      inSlope: -11.507322
+      outSlope: -11.507322
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.016813451
+      outWeight: 0.08646918
     - serializedVersion: 3
       time: 0.15
       value: 0
-      inSlope: -19.884604
-      outSlope: -19.884604
+      inSlope: -64.2107
+      outSlope: -64.2107
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.04003197
+      inWeight: 0.032025576
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -74,8 +74,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.0438598
     - serializedVersion: 3
-      time: 0.9
-      value: 8
+      time: 1
+      value: 9
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -94,8 +94,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  initialJumpVelocity: 17.777779
-  jumpGravity: -19.753088
-  fallGravity: -32.653057
+  initialJumpVelocity: 18
+  jumpGravity: -18
+  fallGravity: -49.999996
   rotateSpeed: 20
-  currentVelocity: {x: 0.0000032858466, y: -0.763386}
+  currentVelocity: {x: 0.0000023769737, y: -1.4019848}

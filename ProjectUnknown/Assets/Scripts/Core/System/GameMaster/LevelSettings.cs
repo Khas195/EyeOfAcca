@@ -1,6 +1,8 @@
+using System;
 using NaughtyAttributes;
 using UnityEngine;
 
+[Serializable]
 [CreateAssetMenu(fileName = "LevelSettings", menuName = "Data/LevelSettings", order = 1)]
 public class LevelSettings : ScriptableObject
 {
@@ -16,4 +18,12 @@ public class LevelSettings : ScriptableObject
     [ReadOnly]
     public Vector3 levelBounds = Vector3.zero;
 
+    public void Reset()
+    {
+        startSpawn = null;
+        currentSpawn = null;
+        currentLevel = "";
+        levelCenter = Vector3.zero;
+        levelBounds = Vector3.zero;
+    }
 }

@@ -105,6 +105,11 @@ public class IMovement : MonoBehaviour
         return this.data;
     }
 
+    public virtual void StartFalling()
+    {
+        return;
+    }
+
     public virtual void RotateToward(Vector3 direction, bool rotateY)
     {
     }
