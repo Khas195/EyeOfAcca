@@ -26,7 +26,12 @@ public class LevelTransitionDoor : MonoBehaviour
         UnityEditor.EditorUtility.SetDirty(this.profile);
 
     }
+
 #endif
+    public TransitionDoorProfile GetProfile()
+    {
+        return profile;
+    }
     public bool IsUsuable()
     {
         return profile.landingPlace != null;

@@ -7,17 +7,27 @@ using UnityEngine;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField]
-    Animator animator = null;
+    LevelSettings savedLevelData = null;
     [SerializeField]
-    ChooseLevelManager chooseLevelManager = null;
-    public void GoToMainMenu()
+    GameObject continueBtn = null;
+    /// <summary>
+    /// Start is called on the frame when a script is enabled just before
+    /// any of the Update methods is called the first time.
+    /// </summary>
+    void Start()
     {
-        animator.SetTrigger("TriggerMainMenu");
+        if (savedLevelData.startSpawn == true)
+        {
+            continueBtn.SetActive(true);
+        }
+        else
+        {
+            continueBtn.SetActive(false);
+        }
     }
-    public void GoToChooseLevel()
+    public void Continue()
     {
-        chooseLevelManager.RefreshLevelView();
-        animator.SetTrigger("TriggerChooseLevel");
+        GameMaster.GetInstance().LoadLevelAtSpawn(savedLevelData.startSpawn);
     }
     public void Exit()
     {

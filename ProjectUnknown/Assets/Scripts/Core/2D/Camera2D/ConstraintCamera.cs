@@ -24,6 +24,7 @@ public class ConstraintCamera : MonoBehaviour
         if (master)
         {
             var levelSettings = master.GetCurrentLevelSettings();
+            this.SetConstraint(levelSettings.levelCenter, levelSettings.levelBounds);
         }
     }
     void OnDrawGizmos()

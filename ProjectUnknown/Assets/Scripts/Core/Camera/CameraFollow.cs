@@ -66,7 +66,7 @@ public class CameraFollow : MonoBehaviour
         return this.host.GetComponentInChildren<Camera>();
     }
 
-    void FixedUpdate()
+    void LateUpdate()
     {
         var targetPos = GetCenterPosition(encapsolatedTarget);
         var hostPos = host.position;
@@ -88,16 +88,16 @@ public class CameraFollow : MonoBehaviour
         {
             if (followX)
             {
-                hostPos.x = Mathf.Lerp(hostPos.x, targetPos.x, settings.cameraSpeed * Time.fixedDeltaTime);
+                hostPos.x = Mathf.Lerp(hostPos.x, targetPos.x, settings.cameraSpeed * Time.deltaTime);
             }
             if (followY)
             {
-                hostPos.y = Mathf.Lerp(hostPos.y, targetPos.y, settings.cameraSpeed * Time.fixedDeltaTime);
+                hostPos.y = Mathf.Lerp(hostPos.y, targetPos.y, settings.cameraSpeed * Time.deltaTime);
             }
 
             if (followZ)
             {
-                hostPos.z = Mathf.Lerp(hostPos.z, targetPos.z, settings.cameraSpeed * Time.fixedDeltaTime);
+                hostPos.z = Mathf.Lerp(hostPos.z, targetPos.z, settings.cameraSpeed * Time.deltaTime);
             }
         }
 

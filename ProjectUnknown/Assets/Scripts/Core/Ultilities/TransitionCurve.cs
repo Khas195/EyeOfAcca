@@ -33,6 +33,12 @@ public class TransitionCurve : MonoBehaviour
     {
         curTime += deltaTime;
     }
+
+    public Keyframe GetTransitionInKey(int i)
+    {
+        return transInCurve.keys[i];
+    }
+
     public float GetCurrentTime()
     {
         return curTime;
@@ -40,7 +46,11 @@ public class TransitionCurve : MonoBehaviour
 
     public void TransitionIn()
     {
-        curTime = 0;
+        this.TransitionIn(0);
+    }
+    public void TransitionIn(float atTime)
+    {
+        curTime = atTime;
         curCurve = transInCurve;
     }
     public void TransitionOut()

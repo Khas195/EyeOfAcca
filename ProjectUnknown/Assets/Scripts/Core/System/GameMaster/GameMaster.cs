@@ -16,6 +16,8 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     GameMasterSettings masterSettings = null;
     [SerializeField]
     LevelSettings levelSettings = null;
+    [SerializeField]
+    LevelSettings savedSettings = null;
 
     [SerializeField]
     [Required]
@@ -31,17 +33,22 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     /// </summary>
     void Start()
     {
-
         UnloadAllScenesExcept("MasterScene");
+        SaveLoadManager.LoadAllData();
         if (masterSettings.skipMainMenu)
         {
-            this.levelSettings.currentSpawn = this.levelSettings.startSpawn;
-            this.InitiateLoadLevelSequence(levelSettings.currentSpawn);
+            LoadLevelAtSpawn(levelSettings.startSpawn);
         }
         else
         {
             this.GoToMainMenu();
         }
+    }
+
+    public void LoadLevelAtSpawn(TransitionDoorProfile spawn)
+    {
+        this.levelSettings.currentSpawn = spawn;
+        this.InitiateLoadLevelSequence(levelSettings.currentSpawn);
     }
 
     public void ReloadCurrentLevel()
@@ -83,6 +90,8 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     public void GoToMainMenu()
     {
         if (gameStateManager.RequestState(GameState.GameStateEnum.Loading) == false) return;
+
+        SaveLoadManager.LoadAllData();
 
         loadingControl.FadeIn(() =>
         {
@@ -206,6 +215,7 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
 
     public void ExitGame()
     {
+        SaveLoadManager.SaveAllData();
         // save any game data here
 #if UNITY_EDITOR
         // Application.Quit() does not work in the editor so
