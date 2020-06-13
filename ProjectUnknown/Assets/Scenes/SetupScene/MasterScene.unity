@@ -606,7 +606,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1335997348}
-  m_LocalRotation: {x: 0, y: 0, z: -0.8309596, w: -0.55633277}
+  m_LocalRotation: {x: 0, y: 0, z: 0.45628685, w: 0.8898328}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1219,6 +1219,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   curTime: 0
+  transInLastKeyTime: 0
+  transOutLastKeyTime: 0
 --- !u!114 &1899728967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1235,10 +1237,6 @@ MonoBehaviour:
   transInTexture: {fileID: 2800000, guid: 2569b2b0d8423df4fb0e7daf82a5366f, type: 3}
   transOutTexture: {fileID: 2800000, guid: a30ffd55ed4907c45b3b8d1fb7e3e9b4, type: 3}
   transCurve: {fileID: 1899728966}
-  loadingText: {fileID: 0}
-  dotBehindText: 3
-  dotTime: 0.3
-  curDot: 0
   curtime: 0
 --- !u!222 &1899728968
 CanvasRenderer:
