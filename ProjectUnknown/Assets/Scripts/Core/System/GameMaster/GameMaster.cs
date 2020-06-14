@@ -31,6 +31,7 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     {
         UnloadAllScenesExcept("MasterScene");
         SaveLoadManager.LoadAllData();
+        Screen.fullScreenMode = masterSettings.mode;
         if (masterSettings.skipMainMenu)
         {
             LoadLevelAtSpawn(levelSettings.startSpawn);

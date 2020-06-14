@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 [Serializable]
 public class GameMasterSettings : ScriptableObject
 {
+    public FullScreenMode mode = FullScreenMode.ExclusiveFullScreen;
     public bool skipMainMenu = false;
     [SerializeField]
     private bool gemUnlocked = false;
