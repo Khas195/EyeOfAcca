@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dfdbea363adc2d4db0b14308a6ad8d6, type: 3}
   m_Name: CurrentLevelSettings
   m_EditorClassIdentifier: 
-  startSpawn: {fileID: 11400000, guid: 8fc462a99e4b7f64aacfb65eaad8f32e, type: 2}
-  currentSpawn: {fileID: 11400000, guid: 8fc462a99e4b7f64aacfb65eaad8f32e, type: 2}
-  currentLevel: TestLevel-A
-  levelCenter: {x: 34.5, y: 16.5, z: 0}
-  levelBounds: {x: 81, y: 49, z: 1}
+  startSpawn: {fileID: 11400000, guid: 6a9bdd23992638a4b87ccb41f24fa685, type: 2}
+  currentSpawn: {fileID: 11400000, guid: 6a9bdd23992638a4b87ccb41f24fa685, type: 2}
+  currentLevel: Level 1A
+  levelCenter: {x: 23, y: 72.5, z: 0}
+  levelBounds: {x: 162, y: 63, z: 1}
