@@ -26,4 +26,22 @@ public class LevelSettings : ScriptableObject
         levelCenter = Vector3.zero;
         levelBounds = Vector3.zero;
     }
+    public void SaveDoorAsStartSpawn(TransitionDoorProfile doorToSave)
+    {
+        this.startSpawn = doorToSave;
+    }
+    public bool IsSameStartSpawn(TransitionDoorProfile doorToCompare)
+    {
+        return startSpawn == doorToCompare;
+    }
+    public bool DoesStartDoorExist()
+    {
+        return startSpawn != null;
+    }
+    [Button]
+    public void ClearSave()
+    {
+        Reset();
+        SaveLoadManager.SaveAllData();
+    }
 }

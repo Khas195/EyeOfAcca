@@ -7,6 +7,10 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 public class GameMaster : SingletonMonobehavior<GameMaster>
 {
+    private const string MASTER_SCENE = "MasterScene";
+    private const string ENTITIES_SCENE = "EntitiesScene";
+    private const string IN_GAME_MENU_SCENE = "InGameMenu";
+    private const string MAIN_MENU_SCENE = "MainMenu";
     [SerializeField]
     [Required]
     StateManager gameStateManager = null;
@@ -29,7 +33,7 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
 
     void Start()
     {
-        UnloadAllScenesExcept("MasterScene");
+        UnloadAllScenesExcept(MASTER_SCENE);
         SaveLoadManager.LoadAllData();
         Screen.fullScreenMode = masterSettings.mode;
         if (masterSettings.skipMainMenu)
@@ -97,12 +101,12 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     {
         if (gameStateManager.RequestState(GameState.GameStateEnum.Loading) == false) return;
 
-        SaveLoadManager.LoadAllData();
+        SaveLoadManager.SaveAllData();
 
         loadingControl.FadeIn(() =>
         {
-            UnloadAllScenesExcept("MasterScene");
-            LoadSceneAdditively("MainMenu");
+            UnloadAllScenesExcept(MASTER_SCENE);
+            LoadSceneAdditively(MAIN_MENU_SCENE);
             StartCoroutine(GetLevelLoadProcess(GameState.GameStateEnum.MainMenu));
         });
     }
@@ -110,13 +114,13 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     private void UnloadAllScenesExcept(string sceneNotToUnloadName)
     {
         int numOfScene = SceneManager.sceneCount;
-        LogHelper.GetInstance().Log("Game Master".Bolden().Colorize(Color.green) + " counts " + numOfScene + " at start", true);
+        LogHelper.GetInstance().Log(MASTER_SCENE.Bolden().Colorize(Color.green) + " counts " + numOfScene + " at start", true);
         for (int i = 0; i < numOfScene; i++)
         {
             Scene scene = SceneManager.GetSceneAt(i);
             if (scene.name != sceneNotToUnloadName)
             {
-                LogHelper.GetInstance().Log("Game Master".Bolden().Colorize(Color.green) + " unloading " + scene.name, true);
+                LogHelper.GetInstance().Log(MASTER_SCENE.Bolden().Colorize(Color.green) + " unloading " + scene.name, true);
                 UnloadScene(scene.name);
             }
         }
@@ -126,9 +130,9 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     {
         LogHelper.GetInstance().Log(" Loading Additively " + sceneName.Bolden() + "", true);
         this.scenesLoading.Add(SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive));
-        if (SceneManager.GetActiveScene().name.Equals("MasterScene") == false)
+        if (SceneManager.GetActiveScene().name.Equals(MASTER_SCENE) == false)
         {
-            SceneManager.SetActiveScene(SceneManager.GetSceneByName("MasterScene"));
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName(MASTER_SCENE));
         }
 
     }
@@ -143,7 +147,7 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
         return levelSettings.startSpawn;
     }
 
-    public void InitiateLoadLevelSequence(TransitionDoorProfile profileToland, bool newSave = false)
+    public void InitiateLoadLevelSequence(TransitionDoorProfile profileToland, bool newSave = false, bool saveWhenEnter = true)
     {
         if (gameStateManager.RequestState(GameState.GameStateEnum.Loading) == false) return;
 
@@ -153,7 +157,14 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
             this.levelSettings.currentSpawn = profileToland;
             StartCoroutine(SaveLoadCoroutine(newSave, () =>
             {
+
                 LoadLevel(profileToland.doorHome);
+
+                if (saveWhenEnter && newSave == false)
+                {
+                    savedSettings.SaveDoorAsStartSpawn(profileToland);
+                }
+
                 StartCoroutine(GetLevelLoadProcess(GameState.GameStateEnum.InGame));
             }));
         });
@@ -165,22 +176,24 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
             RefreshSave();
             SaveLoadManager.SaveAllData();
         }
-
-        SaveLoadManager.LoadAllData();
+        else
+        {
+            SaveLoadManager.LoadAllData();
+        }
         yield return null;
         callback();
     }
 
     public void LoadLevel(string levelName)
     {
-        UnloadAllScenesExcept("MasterScene");
+        UnloadAllScenesExcept(MASTER_SCENE);
 
         SFXSystem.GetInstance().StopAllSounds();
         LoadSceneAdditively(levelName);
         this.levelSettings.currentLevel = levelName;
 
-        LoadSceneAdditively("EntitiesScene");
-        LoadSceneAdditively("InGameMenu");
+        LoadSceneAdditively(ENTITIES_SCENE);
+        LoadSceneAdditively(IN_GAME_MENU_SCENE);
     }
 
     public IEnumerator GetLevelLoadProcess(GameState.GameStateEnum gamestateAfterLoad)
