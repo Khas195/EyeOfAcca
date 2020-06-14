@@ -34,8 +34,8 @@ public class GameMasterSettings : ScriptableObject
 
     public void Reset()
     {
-        LockGem();
-        LockRail();
+        UnlockGem();
+        UnlockRail();
     }
     public void UnlockGem()
     {
