@@ -219,6 +219,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   curTime: 0
+  transInLastKeyTime: 0
+  transOutLastKeyTime: 0
 --- !u!1 &333769780
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,7 +293,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 99ae1c1a494fb144688bbb4057043d7e, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
@@ -384,7 +386,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 99ae1c1a494fb144688bbb4057043d7e, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
@@ -522,7 +524,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 99ae1c1a494fb144688bbb4057043d7e, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
@@ -694,6 +696,8 @@ GameObject:
   - component: {fileID: 1296122915}
   - component: {fileID: 1296122914}
   - component: {fileID: 1296122913}
+  - component: {fileID: 1296122917}
+  - component: {fileID: 1296122916}
   m_Layer: 5
   m_Name: ResumeButton
   m_TagString: Untagged
@@ -811,6 +815,152 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1296122911}
   m_CullTransparentMesh: 0
+--- !u!114 &1296122916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296122911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b4b3952879759d4183e89f7937447eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transInCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1.3474238
+      outSlope: 1.3474238
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.027221777
+    - serializedVersion: 3
+      time: 0.3
+      value: 1
+      inSlope: 0.25941843
+      outSlope: 0.25941843
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.044835865
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transOutCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1.3
+      inSlope: -0.33477566
+      outSlope: -0.33477566
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.15769792
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: -0.18201157
+      outSlope: -0.18201157
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.03653729
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  curCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  curTime: -1
+  transInLastKeyTime: 0
+  transOutLastKeyTime: 0
+  scaleTarget: {fileID: 1296122912}
+  highlightScale: 1.3
+  normalScale: 1
+  pressScale: 1.2
+--- !u!114 &1296122917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296122911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1296122916}
+          m_MethodName: Highlight
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1296122916}
+          m_MethodName: UnHighlight
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1296122916}
+          m_MethodName: OnPress
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1296122916}
+          m_MethodName: OnRelease
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1342635558
 GameObject:
   m_ObjectHideFlags: 0
@@ -1142,6 +1292,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   curTime: 0
+  transInLastKeyTime: 0
+  transOutLastKeyTime: 0
 --- !u!1 &1895566461
 GameObject:
   m_ObjectHideFlags: 0
@@ -1154,6 +1306,8 @@ GameObject:
   - component: {fileID: 1895566465}
   - component: {fileID: 1895566464}
   - component: {fileID: 1895566463}
+  - component: {fileID: 1895566467}
+  - component: {fileID: 1895566466}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -1271,6 +1425,152 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1895566461}
   m_CullTransparentMesh: 0
+--- !u!114 &1895566466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895566461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b4b3952879759d4183e89f7937447eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transInCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1.3474238
+      outSlope: 1.3474238
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.027221777
+    - serializedVersion: 3
+      time: 0.3
+      value: 1
+      inSlope: 0.25941843
+      outSlope: 0.25941843
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.044835865
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transOutCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1.3
+      inSlope: -0.33477566
+      outSlope: -0.33477566
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.15769792
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: -0.18201157
+      outSlope: -0.18201157
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.03653729
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  curCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  curTime: -1
+  transInLastKeyTime: 0
+  transOutLastKeyTime: 0
+  scaleTarget: {fileID: 1895566462}
+  highlightScale: 1.3
+  normalScale: 1
+  pressScale: 1.2
+--- !u!114 &1895566467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895566461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1895566466}
+          m_MethodName: Highlight
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1895566466}
+          m_MethodName: UnHighlight
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1895566466}
+          m_MethodName: OnPress
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1895566466}
+          m_MethodName: OnRelease
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1967831542
 GameObject:
   m_ObjectHideFlags: 0
@@ -1283,6 +1583,8 @@ GameObject:
   - component: {fileID: 1967831546}
   - component: {fileID: 1967831545}
   - component: {fileID: 1967831544}
+  - component: {fileID: 1967831548}
+  - component: {fileID: 1967831547}
   m_Layer: 5
   m_Name: MainMenuButton
   m_TagString: Untagged
@@ -1400,6 +1702,152 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1967831542}
   m_CullTransparentMesh: 0
+--- !u!114 &1967831547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967831542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1967831548}
+          m_MethodName: Highlight
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1967831548}
+          m_MethodName: OnRelease
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1967831548}
+          m_MethodName: OnPress
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1967831548}
+          m_MethodName: OnRelease
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &1967831548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967831542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b4b3952879759d4183e89f7937447eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transInCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1.3474238
+      outSlope: 1.3474238
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.027221777
+    - serializedVersion: 3
+      time: 0.3
+      value: 1
+      inSlope: 0.25941843
+      outSlope: 0.25941843
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.044835865
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transOutCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1.3
+      inSlope: -0.33477566
+      outSlope: -0.33477566
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.15769792
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: -0.18201157
+      outSlope: -0.18201157
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.03653729
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  curCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  curTime: -1
+  transInLastKeyTime: 0
+  transOutLastKeyTime: 0
+  scaleTarget: {fileID: 1967831543}
+  highlightScale: 1.3
+  normalScale: 1
+  pressScale: 1.2
 --- !u!1 &1997733892
 GameObject:
   m_ObjectHideFlags: 0
