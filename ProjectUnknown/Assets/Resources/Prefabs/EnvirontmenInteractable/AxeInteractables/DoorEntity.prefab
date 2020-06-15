@@ -681,6 +681,7 @@ GameObject:
   - component: {fileID: 7424826671877307282}
   - component: {fileID: 430368207}
   - component: {fileID: 430368206}
+  - component: {fileID: 2194897336317384883}
   m_Layer: 0
   m_Name: DoorBehavior
   m_TagString: Untagged
@@ -714,6 +715,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fff8a66a6dd38b046be91db1ff03def1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  body2d: {fileID: 2194897336317384883}
   aPosition: {fileID: 7424826672315308076}
   bPosition: {fileID: 7424826673178417476}
   box: {fileID: 7424826671856768052}
@@ -809,6 +811,27 @@ MonoBehaviour:
   OpenPos: 0
   particleSpawnPoint: {fileID: 1485166943}
   isOpen: 0
+--- !u!50 &2194897336317384883
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7424826671877307281}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!1 &7424826672315308083
 GameObject:
   m_ObjectHideFlags: 0

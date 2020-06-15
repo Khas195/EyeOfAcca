@@ -20,7 +20,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     void Start()
     {
-        if (savedLevelData.startLevelDoor != null && savedLevelData.startLevelDoor != startLevelData.startLevelDoor)
+        if (savedLevelData.startLevelDoor != null)
         {
             continueBtn.SetActive(true);
         }
