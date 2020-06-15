@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 745ccf2c8309d18499877da1fa42dda8, type: 3}
   m_Name: TestLevel-AB-E-Door (1)
   m_EditorClassIdentifier: 
-  doorHome: TestLevel-AB-E
+  doorHome: MasterScene
   doorLocation: {x: 111, y: 103.5, z: 0}
   landingPlace: {fileID: 11400000, guid: df9240ae2efbad345b3875c12b36af00, type: 2}

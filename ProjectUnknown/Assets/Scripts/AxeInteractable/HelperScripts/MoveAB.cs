@@ -64,15 +64,18 @@ public class MoveAB : MonoBehaviour
 
     [BoxGroup("Settings")]
     [SerializeField]
-    UnityEvent OnReachA = new UnityEvent();
+    public UnityEvent OnReachA = new UnityEvent();
 
     [BoxGroup("Settings")]
     [SerializeField]
-    UnityEvent OnReachB = new UnityEvent();
+    public UnityEvent OnReachB = new UnityEvent();
+    [BoxGroup("Settings")]
+    [SerializeField]
+    public UnityEvent OnReached = new UnityEvent();
 
     [BoxGroup("Settings")]
     [SerializeField]
-    UnityEvent OnReturn = new UnityEvent();
+    public UnityEvent OnReturn = new UnityEvent();
 
 
     [BoxGroup("Current Status")]
@@ -170,10 +173,12 @@ public class MoveAB : MonoBehaviour
                 Vector2 posB = bPosition.position;
                 if (IsAt(MoveABEnum.A))
                 {
+                    OnReached.Invoke();
                     OnReachA.Invoke();
                 }
                 else if (IsAt(MoveABEnum.B))
                 {
+                    OnReached.Invoke();
                     OnReachB.Invoke();
                 }
 
