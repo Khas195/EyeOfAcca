@@ -277,7 +277,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 564362936054951507}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: ParticleSpawnPlace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -454,7 +454,7 @@ GameObject:
   - component: {fileID: 9010433610554456186}
   - component: {fileID: 4821933393722173657}
   - component: {fileID: 6707593047674901979}
-  m_Layer: 10
+  m_Layer: 14
   m_Name: RailBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}

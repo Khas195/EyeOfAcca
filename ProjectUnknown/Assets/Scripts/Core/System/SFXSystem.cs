@@ -50,10 +50,6 @@ public partial class SFXSystem : SingletonMonobehavior<SFXSystem>
     {
         var sourceObj = audioPool.RequestInstance();
         var source = sourceObj.GetComponent<AudioSource>();
-        if (soundsEnum.Equals(SFXResources.SFXList.axeHit))
-        {
-            Debug.LogError("test");
-        }
         activeSources.Add(source);
         PlaySound(soundsEnum, source);
 
@@ -93,7 +89,7 @@ public partial class SFXSystem : SingletonMonobehavior<SFXSystem>
         {
             if (activeSources[i].isPlaying == false)
             {
-                LogHelper.GetInstance().Log(("Audio " + activeSources[i].clip + " has stop playing").Bolden(), true);
+                LogHelper.GetInstance().Log(("Audio " + activeSources[i].clip + " has stop playing").Bolden(), true, LogHelper.LogLayer.Console);
                 activeSources[i].clip = null;
                 audioPool.ReturnInstance(activeSources[i].gameObject);
                 activeSources.RemoveAt(i);

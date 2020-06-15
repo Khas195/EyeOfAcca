@@ -11,6 +11,8 @@ public class LevelTransitionDoor : MonoBehaviour
     TransitionDoorProfile profile = null;
 
 #if UNITY_EDITOR
+
+
     [Button]
     public void CreateProfile()
     {
@@ -27,7 +29,20 @@ public class LevelTransitionDoor : MonoBehaviour
 
     }
 
+    Transform cachedTranformed = null;
+    [Button]
+    public void UpdateProfilePosition()
+    {
+        LogHelper.GetInstance().Log("Update Position of ".Bolden() + this.profile.ToString().Bolden().Colorize(Color.green), true);
+        if (cachedTranformed == null)
+        {
+            cachedTranformed = this.GetComponent<Transform>();
+        }
+        profile.doorLocation = cachedTranformed.position;
+        UnityEditor.EditorUtility.SetDirty(this.profile);
+    }
 #endif
+
     public TransitionDoorProfile GetProfile()
     {
         return profile;
