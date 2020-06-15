@@ -21,7 +21,7 @@ public class SavePoint : AxeInteractable
 
     void Start()
     {
-        if (savedSettings.startSpawn == linkedDoor.GetProfile())
+        if (savedSettings.IsSameStartSpawn(linkedDoor.GetProfile()))
         {
             var lightValue = colorCurve.GetTransitionInKey(1).value;
             var color = spriteRenderer.color;
@@ -34,7 +34,7 @@ public class SavePoint : AxeInteractable
     public override void OnAxeHit(Boomeraxe axe)
     {
         base.OnAxeHit(axe);
-        savedSettings.startSpawn = linkedDoor.GetProfile();
+        this.savedSettings.SaveDoorAsStartSpawn(linkedDoor.GetProfile());
         if (activate)
         {
             colorCurve.TransitionIn(colorCurve.GetTransitionInKey(1).time);

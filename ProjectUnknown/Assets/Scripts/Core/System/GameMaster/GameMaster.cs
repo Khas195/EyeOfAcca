@@ -7,6 +7,13 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 public class GameMaster : SingletonMonobehavior<GameMaster>
 {
+    private const string MASTER_SCENE = "MasterScene";
+    private const string ENTITIES_SCENE = "EntitiesScene";
+    private const string IN_GAME_MENU_SCENE = "InGameMenu";
+
+
+
+    private const string MAIN_MENU_SCENE = "MainMenu";
     [SerializeField]
     [Required]
     StateManager gameStateManager = null;
@@ -15,7 +22,10 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     [Required]
     GameMasterSettings masterSettings = null;
     [SerializeField]
-    LevelSettings levelSettings = null;
+    LevelSettings currentSettings = null;
+    [SerializeField]
+    LevelSettings startLevelSettings = null;
+
     [SerializeField]
     LevelSettings savedSettings = null;
 
@@ -29,11 +39,12 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
 
     void Start()
     {
-        UnloadAllScenesExcept("MasterScene");
+        UnloadAllScenesExcept(MASTER_SCENE);
         SaveLoadManager.LoadAllData();
+        Screen.fullScreenMode = masterSettings.mode;
         if (masterSettings.skipMainMenu)
         {
-            LoadLevelAtSpawn(levelSettings.startSpawn);
+            this.StartNewGame();
         }
         else
         {
@@ -43,8 +54,10 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
 
     public void StartNewGame()
     {
-
-        GameMaster.GetInstance().InitiateLoadLevelSequence(GameMaster.GetInstance().GetStartLevel(), newSave: true);
+        RefreshSave();
+        SaveLoadManager.SaveAllData();
+        var startLevel = GetStartLevel();
+        InitiateLoadLevelSequence(startLevel);
     }
 
     public void RefreshSave()
@@ -55,18 +68,14 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
 
     public void LoadLevelAtSpawn(TransitionDoorProfile spawn)
     {
-        this.levelSettings.currentSpawn = spawn;
-        this.InitiateLoadLevelSequence(levelSettings.currentSpawn);
+        this.currentSettings.startLevelDoor = spawn;
+        this.InitiateLoadLevelSequence(currentSettings.startLevelDoor);
     }
 
-    public void ReloadCurrentLevel()
-    {
-        InitiateLoadLevelSequence(this.levelSettings.currentSpawn);
-    }
 
     public Vector3 GetSpawnLocation()
     {
-        return this.levelSettings.currentSpawn.doorLocation;
+        return this.currentSettings.startLevelDoor.doorLocation;
     }
 
     void Update()
@@ -96,12 +105,12 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     {
         if (gameStateManager.RequestState(GameState.GameStateEnum.Loading) == false) return;
 
-        SaveLoadManager.LoadAllData();
+        SaveLoadManager.SaveAllData();
 
         loadingControl.FadeIn(() =>
         {
-            UnloadAllScenesExcept("MasterScene");
-            LoadSceneAdditively("MainMenu");
+            UnloadAllScenesExcept(MASTER_SCENE);
+            LoadSceneAdditively(MAIN_MENU_SCENE);
             StartCoroutine(GetLevelLoadProcess(GameState.GameStateEnum.MainMenu));
         });
     }
@@ -109,13 +118,13 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     private void UnloadAllScenesExcept(string sceneNotToUnloadName)
     {
         int numOfScene = SceneManager.sceneCount;
-        LogHelper.GetInstance().Log("Game Master".Bolden().Colorize(Color.green) + " counts " + numOfScene + " at start", true);
+        LogHelper.GetInstance().Log(MASTER_SCENE.Bolden().Colorize(Color.green) + " counts " + numOfScene + " at start", true);
         for (int i = 0; i < numOfScene; i++)
         {
             Scene scene = SceneManager.GetSceneAt(i);
             if (scene.name != sceneNotToUnloadName)
             {
-                LogHelper.GetInstance().Log("Game Master".Bolden().Colorize(Color.green) + " unloading " + scene.name, true);
+                LogHelper.GetInstance().Log(MASTER_SCENE.Bolden().Colorize(Color.green) + " unloading " + scene.name, true);
                 UnloadScene(scene.name);
             }
         }
@@ -125,46 +134,46 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     {
         LogHelper.GetInstance().Log(" Loading Additively " + sceneName.Bolden() + "", true);
         this.scenesLoading.Add(SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive));
-        if (SceneManager.GetActiveScene().name.Equals("MasterScene") == false)
+        if (SceneManager.GetActiveScene().name.Equals(MASTER_SCENE) == false)
         {
-            SceneManager.SetActiveScene(SceneManager.GetSceneByName("MasterScene"));
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName(MASTER_SCENE));
         }
 
     }
 
     public void LoadLevelWithLandingDoor(TransitionDoorProfile profileToland)
     {
-        InitiateLoadLevelSequence(profileToland);
+        InitiateLoadLevelSequence(profileToland, true);
     }
 
     public TransitionDoorProfile GetStartLevel()
     {
-        return levelSettings.startSpawn;
+        return startLevelSettings.startLevelDoor;
     }
 
-    public void InitiateLoadLevelSequence(TransitionDoorProfile profileToland, bool newSave = false)
+    public void InitiateLoadLevelSequence(TransitionDoorProfile profileToland, bool saveWhenEnter = true)
     {
         if (gameStateManager.RequestState(GameState.GameStateEnum.Loading) == false) return;
+
+        this.currentSettings.startLevelDoor = profileToland;
+        if (saveWhenEnter)
+        {
+            savedSettings.SaveDoorAsStartSpawn(profileToland);
+            SaveLoadManager.SaveAllData();
+        }
 
         this.levelLoadEvent.Invoke();
         loadingControl.FadeIn(() =>
         {
-            this.levelSettings.currentSpawn = profileToland;
-            StartCoroutine(SaveLoadCoroutine(newSave, () =>
+            StartCoroutine(SaveLoadCoroutine(() =>
             {
                 LoadLevel(profileToland.doorHome);
                 StartCoroutine(GetLevelLoadProcess(GameState.GameStateEnum.InGame));
             }));
         });
     }
-    public IEnumerator SaveLoadCoroutine(bool newSave, Action callback)
+    public IEnumerator SaveLoadCoroutine(Action callback)
     {
-        if (newSave)
-        {
-            RefreshSave();
-            SaveLoadManager.SaveAllData();
-        }
-
         SaveLoadManager.LoadAllData();
         yield return null;
         callback();
@@ -172,14 +181,14 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
 
     public void LoadLevel(string levelName)
     {
-        UnloadAllScenesExcept("MasterScene");
+        UnloadAllScenesExcept(MASTER_SCENE);
 
         SFXSystem.GetInstance().StopAllSounds();
         LoadSceneAdditively(levelName);
-        this.levelSettings.currentLevel = levelName;
+        this.currentSettings.currentLevel = levelName;
 
-        LoadSceneAdditively("EntitiesScene");
-        LoadSceneAdditively("InGameMenu");
+        LoadSceneAdditively(ENTITIES_SCENE);
+        LoadSceneAdditively(IN_GAME_MENU_SCENE);
     }
 
     public IEnumerator GetLevelLoadProcess(GameState.GameStateEnum gamestateAfterLoad)
@@ -266,7 +275,7 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     public void RestartLevel()
     {
         LogHelper.GetInstance().Log(("Restarting Level: " + SceneManager.GetActiveScene().name).Bolden(), true);
-        this.InitiateLoadLevelSequence(this.levelSettings.currentSpawn);
+        this.InitiateLoadLevelSequence(this.currentSettings.startLevelDoor, false);
     }
 
     public void SetGameTimeScale(float newTimeScale)
@@ -275,11 +284,15 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     }
     public LevelSettings GetCurrentLevelSettings()
     {
-        return this.levelSettings;
+        return this.currentSettings;
     }
     public void UpdateLevelSettingsBounds(Vector2 origin, Vector3 bounds)
     {
-        this.levelSettings.levelCenter = origin;
-        this.levelSettings.levelBounds = bounds;
+        this.currentSettings.levelCenter = origin;
+        this.currentSettings.levelBounds = bounds;
+    }
+    public void UpdateCurrentLevelSettings(TransitionDoorProfile transitionDoorProfile)
+    {
+        this.currentSettings.startLevelDoor = transitionDoorProfile;
     }
 }

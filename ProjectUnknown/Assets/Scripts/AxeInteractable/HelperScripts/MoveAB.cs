@@ -17,6 +17,11 @@ public class MoveAB : MonoBehaviour
     [BoxGroup("Requirements")]
     [SerializeField]
     [Required]
+    Rigidbody2D body2d = null;
+
+    [BoxGroup("Requirements")]
+    [SerializeField]
+    [Required]
     Transform aPosition = null;
     [BoxGroup("Requirements")]
     [SerializeField]
@@ -59,15 +64,18 @@ public class MoveAB : MonoBehaviour
 
     [BoxGroup("Settings")]
     [SerializeField]
-    UnityEvent OnReachA = new UnityEvent();
+    public UnityEvent OnReachA = new UnityEvent();
 
     [BoxGroup("Settings")]
     [SerializeField]
-    UnityEvent OnReachB = new UnityEvent();
+    public UnityEvent OnReachB = new UnityEvent();
+    [BoxGroup("Settings")]
+    [SerializeField]
+    public UnityEvent OnReached = new UnityEvent();
 
     [BoxGroup("Settings")]
     [SerializeField]
-    UnityEvent OnReturn = new UnityEvent();
+    public UnityEvent OnReturn = new UnityEvent();
 
 
     [BoxGroup("Current Status")]
@@ -153,22 +161,24 @@ public class MoveAB : MonoBehaviour
 
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (inMotion)
         {
-            this.box.transform.position = Tweener.Tween(moveType, curTime, originPos, destination, currentTimeTillDestinationReaded);
-            curTime += Time.deltaTime;
+            body2d.MovePosition(Tweener.Tween(moveType, curTime, originPos, destination, currentTimeTillDestinationReaded));
+            curTime += Time.fixedDeltaTime;
             if (HasReachedDestination())
             {
                 Vector2 posA = aPosition.position;
                 Vector2 posB = bPosition.position;
                 if (IsAt(MoveABEnum.A))
                 {
+                    OnReached.Invoke();
                     OnReachA.Invoke();
                 }
                 else if (IsAt(MoveABEnum.B))
                 {
+                    OnReached.Invoke();
                     OnReachB.Invoke();
                 }
 

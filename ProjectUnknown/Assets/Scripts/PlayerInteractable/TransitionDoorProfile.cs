@@ -18,7 +18,15 @@ public class TransitionDoorProfile : ScriptableObject
     public TransitionDoorProfile landingPlace = null;
     public void LinkDoor(TransitionDoorProfile oldValue, TransitionDoorProfile newValue)
     {
-        if (newValue == null) return;
+        if (newValue == null)
+        {
+            if (oldValue)
+            {
+                oldValue.landingPlace = null;
+            }
+            return;
+        }
+
         LogHelper.GetInstance().Log("Linking Door".Bolden() + (this.name.Colorize(Color.green) + " and " + newValue.name.Colorize(Color.green)).Bolden(), false, LogHelper.LogLayer.Developer);
         if (newValue.landingPlace != null && newValue.landingPlace != this)
         {

@@ -570,6 +570,7 @@ GameObject:
   - component: {fileID: 7424826671856768058}
   - component: {fileID: 7424826671856768053}
   - component: {fileID: 7424826671856768052}
+  - component: {fileID: 1935938479470817267}
   m_Layer: 10
   m_Name: Door
   m_TagString: Untagged
@@ -632,7 +633,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1111978393
   m_SortingLayer: 4
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: d1c24c4a072a1904f9cd4d645d624357, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -670,6 +671,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 4}
   m_EdgeRadius: 0
+--- !u!50 &1935938479470817267
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7424826671856768057}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!1 &7424826671877307281
 GameObject:
   m_ObjectHideFlags: 0
@@ -714,10 +736,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fff8a66a6dd38b046be91db1ff03def1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  body2d: {fileID: 1935938479470817267}
   aPosition: {fileID: 7424826672315308076}
   bPosition: {fileID: 7424826673178417476}
   box: {fileID: 7424826671856768052}
-  automaticallyMoveBackToStart: 0
+  automaticallyMoveBackToStart: 1
   moveType: 2
   allowInteractionDuringMoveBack: 0
   timeTillDestinationReached: 2

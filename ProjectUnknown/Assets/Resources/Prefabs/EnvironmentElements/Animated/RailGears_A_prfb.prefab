@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8888588567762470256}
   - component: {fileID: 8888588567762470262}
   - component: {fileID: 8888588567762470257}
+  - component: {fileID: 4234246590199557781}
   m_Layer: 0
   m_Name: RailGears_A_prfb
   m_TagString: Untagged
@@ -102,3 +103,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4234246590199557781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8888588567762470259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19f193a44a095441b30beb354b64a07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  railAnim: {fileID: 8888588567762470257}

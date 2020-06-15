@@ -22,7 +22,7 @@ public class TransitionCurve : MonoBehaviour
     [BoxGroup("Status")]
     [SerializeField]
     [ReadOnly]
-    float curTime = 0;
+    float curTime = -1;
     [BoxGroup("Status")]
     [SerializeField]
     [ReadOnly]
@@ -32,9 +32,8 @@ public class TransitionCurve : MonoBehaviour
     [ReadOnly]
     float transOutLastKeyTime = 0.0f;
 
-    void Start()
+    virtual protected void Start()
     {
-
         transInLastKeyTime = transInCurve.keys[transInCurve.length - 1].time;
         transOutLastKeyTime = transOutCurve.keys[transOutCurve.length - 1].time;
     }
@@ -81,10 +80,14 @@ public class TransitionCurve : MonoBehaviour
         {
             return curTime <= transInLastKeyTime && curTime >= 0;
         }
-        else
+        else if (curCurve == transOutCurve)
         {
 
             return curTime <= transOutLastKeyTime && curTime >= 0;
+        }
+        else
+        {
+            return false;
         }
 
     }

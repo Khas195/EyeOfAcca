@@ -105,6 +105,20 @@ public static class GameSystemMenu
         obj.transform.SetParent(Selection.activeGameObject.transform);
         obj.transform.position = GetScenePosition();
     }
+    [MenuItem("GameObject/2D Object/Game System/Decoration/GearRailA")]
+    public static void RailGearA()
+    {
+        GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(Resources.Load<GameObject>("Prefabs/EnvironmentElements/Animated/RailGears_A_prfb"));
+        obj.transform.SetParent(Selection.activeGameObject.transform);
+        obj.transform.position = GetScenePosition();
+    }
+    [MenuItem("GameObject/2D Object/Game System/Decoration/GearRailB")]
+    public static void RailGearB()
+    {
+        GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(Resources.Load<GameObject>("Prefabs/EnvironmentElements/Animated/RailGears_B_prfb"));
+        obj.transform.SetParent(Selection.activeGameObject.transform);
+        obj.transform.position = GetScenePosition();
+    }
     [MenuItem("Game Master/Play-Stop, But From Master Scene %`")]
     public static void PlayFromPrelaunchScene()
     {

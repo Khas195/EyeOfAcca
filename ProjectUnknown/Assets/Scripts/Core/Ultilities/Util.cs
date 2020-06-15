@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public static class Util
 {
@@ -107,6 +108,17 @@ public static class Util
     public static String Italician(this String text)
     {
         return "<i>" + text + "</i>";
+    }
+    public static void AddListener(this EventTrigger trigger, Action callback, EventTriggerType type)
+    {
+        var entry = new EventTrigger.Entry();
+        entry.eventID = type;
+        entry.callback.AddListener((eventData) =>
+        {
+            callback();
+        });
+        trigger.triggers.Add(entry);
+
     }
     [Button("Save")]
     public static void SaveData(this ScriptableObject data)

@@ -9,6 +9,10 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     LevelSettings savedLevelData = null;
     [SerializeField]
+    LevelSettings startLevelData = null;
+    [SerializeField]
+    GameMasterSettings settings = null;
+    [SerializeField]
     GameObject continueBtn = null;
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
@@ -16,7 +20,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     void Start()
     {
-        if (savedLevelData.startSpawn == true)
+        if (savedLevelData.startLevelDoor != null)
         {
             continueBtn.SetActive(true);
         }
@@ -27,7 +31,7 @@ public class MainMenu : MonoBehaviour
     }
     public void Continue()
     {
-        GameMaster.GetInstance().LoadLevelAtSpawn(savedLevelData.startSpawn);
+        GameMaster.GetInstance().LoadLevelAtSpawn(savedLevelData.startLevelDoor);
     }
     public void Exit()
     {
@@ -36,6 +40,13 @@ public class MainMenu : MonoBehaviour
     public void LoadFistLevel()
     {
         GameMaster.GetInstance().StartNewGame();
-        GameMaster.GetInstance().InitiateLoadLevelSequence(GameMaster.GetInstance().GetStartLevel(), newSave: true);
+    }
+    public void SwitchScreenMode()
+    {
+        settings.mode = settings.mode == FullScreenMode.ExclusiveFullScreen ? FullScreenMode.Windowed : FullScreenMode.ExclusiveFullScreen;
+        if (Screen.fullScreenMode != settings.mode)
+        {
+            Screen.fullScreenMode = settings.mode;
+        }
     }
 }

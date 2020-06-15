@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 [Serializable]
 public class GameMasterSettings : ScriptableObject
 {
+    public FullScreenMode mode = FullScreenMode.ExclusiveFullScreen;
     public bool skipMainMenu = false;
     [SerializeField]
     private bool gemUnlocked = false;
@@ -33,8 +34,8 @@ public class GameMasterSettings : ScriptableObject
 
     public void Reset()
     {
-        LockGem();
-        LockRail();
+        UnlockGem();
+        UnlockRail();
     }
     public void UnlockGem()
     {

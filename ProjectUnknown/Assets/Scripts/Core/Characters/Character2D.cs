@@ -48,12 +48,13 @@ public class Character2D : MonoBehaviour
 
     public bool TryDropDown()
     {
+        LogHelper.GetInstance().Log("Try drop down".Bolden(), true, LogHelper.LogLayer.PlayerFriendly);
         var col = movement.GetGroundCollider2D();
         if (col == null) return false;
         if (col.tag.Equals("Oneway-Platform"))
         {
             Physics2D.IgnoreCollision(col, body.GetComponent<Collider2D>());
-            StartCoroutine(EnableCollision(0.5f, col));
+            StartCoroutine(EnableCollision(0.3f, col));
             return true;
         }
         return false;

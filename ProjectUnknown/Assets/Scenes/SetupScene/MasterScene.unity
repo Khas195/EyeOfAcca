@@ -565,7 +565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fd158b5fa4458f44be65d78f3c2ec9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentMode: 2
+  currentMode: 1
 --- !u!4 &1286487664
 Transform:
   m_ObjectHideFlags: 0
@@ -606,7 +606,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1335997348}
-  m_LocalRotation: {x: 0, y: 0, z: -0.8309596, w: -0.55633277}
+  m_LocalRotation: {x: 0, y: 0, z: -0.42249447, w: 0.9063656}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1219,6 +1219,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   curTime: 0
+  transInLastKeyTime: 0
+  transOutLastKeyTime: 0
 --- !u!114 &1899728967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1235,10 +1237,6 @@ MonoBehaviour:
   transInTexture: {fileID: 2800000, guid: 2569b2b0d8423df4fb0e7daf82a5366f, type: 3}
   transOutTexture: {fileID: 2800000, guid: a30ffd55ed4907c45b3b8d1fb7e3e9b4, type: 3}
   transCurve: {fileID: 1899728966}
-  loadingText: {fileID: 0}
-  dotBehindText: 3
-  dotTime: 0.3
-  curDot: 0
   curtime: 0
 --- !u!222 &1899728968
 CanvasRenderer:
@@ -1426,7 +1424,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameStateManager: {fileID: 1867409778}
   masterSettings: {fileID: 11400000, guid: ec07c30a6fa72d0489a07bc455aec572, type: 2}
-  levelSettings: {fileID: 11400000, guid: f97c0e15c793fe54e9cf2fc25b928509, type: 2}
+  currentSettings: {fileID: 11400000, guid: f97c0e15c793fe54e9cf2fc25b928509, type: 2}
+  startLevelSettings: {fileID: 11400000, guid: f4dd97dbbc4d9244e9e4dc6a442b6918, type: 2}
   savedSettings: {fileID: 11400000, guid: 7c4a4bc2bf316824a916f3923ff8ee6f, type: 2}
   loadingControl: {fileID: 1899728967}
   levelLoadEvent:

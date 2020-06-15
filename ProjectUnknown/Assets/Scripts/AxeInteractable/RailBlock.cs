@@ -34,14 +34,14 @@ public class RailBlock : AxeInteractable
 
     [BoxGroup("Settings")]
     [SerializeField]
-    UnityEvent OnBlockMove = new UnityEvent();
+    public UnityEvent OnBlockMove = new UnityEvent();
 
     [BoxGroup("Settings")]
     [SerializeField]
-    UnityEvent OnBlockMoveA = new UnityEvent();
+    public UnityEvent OnBlockMoveA = new UnityEvent();
     [BoxGroup("Settings")]
     [SerializeField]
-    UnityEvent OnBlockMoveB = new UnityEvent();
+    public UnityEvent OnBlockMoveB = new UnityEvent();
 
 
 
