@@ -606,7 +606,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1335997348}
-  m_LocalRotation: {x: 0, y: 0, z: 0.4431559, w: -0.8964446}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7124395, w: -0.7017336}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1424,7 +1424,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameStateManager: {fileID: 1867409778}
   masterSettings: {fileID: 11400000, guid: ec07c30a6fa72d0489a07bc455aec572, type: 2}
-  levelSettings: {fileID: 11400000, guid: f97c0e15c793fe54e9cf2fc25b928509, type: 2}
+  currentSettings: {fileID: 11400000, guid: f97c0e15c793fe54e9cf2fc25b928509, type: 2}
+  startLevelSettings: {fileID: 11400000, guid: f4dd97dbbc4d9244e9e4dc6a442b6918, type: 2}
   savedSettings: {fileID: 11400000, guid: 7c4a4bc2bf316824a916f3923ff8ee6f, type: 2}
   loadingControl: {fileID: 1899728967}
   levelLoadEvent:

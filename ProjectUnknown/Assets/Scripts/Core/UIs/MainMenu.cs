@@ -9,6 +9,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     LevelSettings savedLevelData = null;
     [SerializeField]
+    LevelSettings startLevelData = null;
+    [SerializeField]
     GameMasterSettings settings = null;
     [SerializeField]
     GameObject continueBtn = null;
@@ -18,7 +20,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     void Start()
     {
-        if (savedLevelData.startSpawn == true)
+        if (savedLevelData.startLevelDoor != null && savedLevelData.startLevelDoor != startLevelData.startLevelDoor)
         {
             continueBtn.SetActive(true);
         }
@@ -29,7 +31,7 @@ public class MainMenu : MonoBehaviour
     }
     public void Continue()
     {
-        GameMaster.GetInstance().LoadLevelAtSpawn(savedLevelData.startSpawn);
+        GameMaster.GetInstance().LoadLevelAtSpawn(savedLevelData.startLevelDoor);
     }
     public void Exit()
     {

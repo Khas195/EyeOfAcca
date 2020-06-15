@@ -7,9 +7,7 @@ using UnityEngine;
 public class LevelSettings : ScriptableObject
 {
     [SerializeField]
-    public TransitionDoorProfile startSpawn = null;
-    [SerializeField]
-    public TransitionDoorProfile currentSpawn = null;
+    public TransitionDoorProfile startLevelDoor = null;
     [ReadOnly]
     public string currentLevel = "";
 
@@ -20,23 +18,22 @@ public class LevelSettings : ScriptableObject
 
     public void Reset()
     {
-        startSpawn = null;
-        currentSpawn = null;
+        startLevelDoor = null;
         currentLevel = "";
         levelCenter = Vector3.zero;
         levelBounds = Vector3.zero;
     }
     public void SaveDoorAsStartSpawn(TransitionDoorProfile doorToSave)
     {
-        this.startSpawn = doorToSave;
+        this.startLevelDoor = doorToSave;
     }
     public bool IsSameStartSpawn(TransitionDoorProfile doorToCompare)
     {
-        return startSpawn == doorToCompare;
+        return startLevelDoor == doorToCompare;
     }
     public bool DoesStartDoorExist()
     {
-        return startSpawn != null;
+        return startLevelDoor != null;
     }
     [Button]
     public void ClearSave()
