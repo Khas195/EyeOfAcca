@@ -17,6 +17,8 @@ public class Chip : MonoBehaviour
 
     [SerializeField]
     UnityEvent OnCharacterDeath = new UnityEvent();
+    [SerializeField]
+    Animator anim = null;
 
     [SerializeField]
     [Required]
@@ -46,7 +48,7 @@ public class Chip : MonoBehaviour
             Time.timeScale = deadTimeFreezeAmount;
 
         }
-
+        anim.SetBool("Dead", true);
         OnCharacterDeath.Invoke();
         StartCoroutine(TriggerSceneReloadCoroutine(timeUntilLevelReload));
     }
