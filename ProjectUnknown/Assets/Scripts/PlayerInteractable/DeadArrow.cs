@@ -47,6 +47,8 @@ public class DeadArrow : MonoBehaviour
     void FixedUpdate()
     {
         body.velocity = flyDirection * this.speed;
+        var lookRot = Quaternion.LookRotation(Vector3.forward, body.velocity.normalized);
+        body.transform.localRotation = lookRot;
     }
 
     public void SetPosition(Vector3 position)
