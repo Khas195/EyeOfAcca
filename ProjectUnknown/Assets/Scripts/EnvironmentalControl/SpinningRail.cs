@@ -10,18 +10,37 @@ public class SpinningRail : MonoBehaviour
     List<RailBlock> railblocks = new List<RailBlock>();
     int numOfActive = 0;
 
+    /// <summary>
+    /// Callback to draw gizmos that are pickable and always drawn.
+    /// </summary>
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(this.transform.position, 0.3f);
+        foreach (var item in railblocks)
+        {
+            Gizmos.DrawLine(this.transform.position, item.transform.position);
+            Gizmos.DrawWireSphere(item.transform.position, 0.3f);
+        }
+    }
+
     void Start()
     {
-        for (int i = 0; i < railblocks.Count; i++)
-        {
-            var moveAB = railblocks[i].GetComponent<MoveAB>();
-            moveAB.OnReached.AddListener(DecreaseActiveRail);
-            railblocks[i].OnBlockMove.AddListener(IncreaseActiveRail);
-        }
+
     }
     void FixedUpdate()
     {
-        if (numOfActive > 0)
+        bool shouldSpin = false;
+        for (int i = 0; i < railblocks.Count; i++)
+        {
+            var moveAB = railblocks[i].GetComponent<MoveAB>();
+            if (moveAB.IsInMotion())
+            {
+                shouldSpin = true;
+                break;
+            }
+        }
+        if (shouldSpin)
         {
             Spin();
         }
@@ -29,6 +48,7 @@ public class SpinningRail : MonoBehaviour
         {
             StopSpin();
         }
+
     }
     public void Spin()
     {

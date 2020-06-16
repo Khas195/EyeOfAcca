@@ -587,6 +587,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnStartedMoving:
+    m_PersistentCalls:
+      m_Calls: []
   OnBlockMoveA:
     m_PersistentCalls:
       m_Calls: []
@@ -645,6 +648,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnReached:
+    m_PersistentCalls:
+      m_Calls: []
   OnReturn:
     m_PersistentCalls:
       m_Calls: []
@@ -682,6 +688,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7842054327479239718}
     m_Modifications:
+    - target: {fileID: 1293650000382719808, guid: 783b3d81cec1b164587ecfb10c2f5118,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1293650000382719810, guid: 783b3d81cec1b164587ecfb10c2f5118,
         type: 3}
       propertyPath: m_Name

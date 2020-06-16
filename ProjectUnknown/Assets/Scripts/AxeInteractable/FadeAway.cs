@@ -11,7 +11,7 @@ public class FadeAway : AxeInteractable
 
     [SerializeField]
     [Required]
-    SpriteRenderer render = null;
+    List<SpriteRenderer> renders = new List<SpriteRenderer>();
 
     [SerializeField]
     bool doOnce = true;
@@ -21,15 +21,28 @@ public class FadeAway : AxeInteractable
         if (fadeCurve.IsCurrentTimeInGraph())
         {
             fadeCurve.AdvanceTime(Time.fixedDeltaTime);
-            var color = render.color;
-            color.a = fadeCurve.GetCurrentValue();
-            render.color = color;
+            for (int i = 0; i < renders.Count; i++)
+            {
+                var render = renders[i];
+                var color = render.color;
+                color.a = fadeCurve.GetCurrentValue();
+                render.color = color;
+            }
         }
     }
     public override void OnAxeHit(Boomeraxe axe)
     {
         base.OnAxeHit(axe);
         if (doOnce)
+        {
+            fadeCurve.TransitionIn();
+            doOnce = false;
+        }
+    }
+    protected override void OnTriggerEnter2D(Collider2D other)
+    {
+        base.OnTriggerEnter2D(other);
+        if (doOnce && other.tag == "Player")
         {
             fadeCurve.TransitionIn();
             doOnce = false;
