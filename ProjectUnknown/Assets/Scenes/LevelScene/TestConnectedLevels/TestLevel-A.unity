@@ -27401,7 +27401,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 922671503}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &402904171
 PrefabInstance:
@@ -31020,9 +31020,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 759775169}
+  - {fileID: 393634965}
   - {fileID: 1140209090}
   - {fileID: 584023249}
-  - {fileID: 393634965}
   m_Father: {fileID: 423510236}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -31563,7 +31563,7 @@ PrefabInstance:
         type: 3}
       propertyPath: railblocks.Array.data[0]
       value: 
-      objectReference: {fileID: 1044890910}
+      objectReference: {fileID: 1140209091}
     - target: {fileID: 8888588567762470256, guid: 0654969f4f4715c45b5e6c7d6644d11c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -32169,6 +32169,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1140209089}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1140209091 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4821933393722173657, guid: 09bfce14e0da18842ac856fb70071aee,
+    type: 3}
+  m_PrefabInstance: {fileID: 1140209089}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a87de8e70030fe4f8bcfbde94b7a45b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1186265357
 PrefabInstance:
   m_ObjectHideFlags: 0
