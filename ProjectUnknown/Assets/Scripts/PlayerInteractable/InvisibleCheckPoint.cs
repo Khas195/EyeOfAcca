@@ -19,6 +19,7 @@ public class InvisibleCheckPoint : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("Player"))
         {
+            LogHelper.GetInstance().Log("Check Point Reached".Bolden().Colorize(Color.cyan), true, LogHelper.LogLayer.PlayerFriendly);
             GameMaster.GetInstance().UpdateCurrentLevelSettings(door.GetProfile());
         }
     }

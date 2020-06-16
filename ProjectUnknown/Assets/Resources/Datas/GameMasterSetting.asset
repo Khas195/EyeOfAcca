@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2e2206c7e5f2aa43923778b69544a2e, type: 3}
   m_Name: GameMasterSetting
   m_EditorClassIdentifier: 
-  skipMainMenu: 0
-  gemUnlocked: 0
-  railUnlocked: 0
+  mode: 3
+  skipMainMenu: 1
+  gemUnlocked: 1
+  railUnlocked: 1
   OnGemUnlocked:
     m_PersistentCalls:
       m_Calls: []

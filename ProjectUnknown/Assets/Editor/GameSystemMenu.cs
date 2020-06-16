@@ -6,118 +6,112 @@ using UnityEngine;
 
 public static class GameSystemMenu
 {
+    const string PLAYER_INTERACTABLE_PATH = "Prefabs/EnvirontmenInteractable/PlayerInteractables/";
+    const string AXE_INTERACTABLE_PATH = "Prefabs/EnvirontmenInteractable/AxeInteractables/";
+    const string ENVIRONMENT_PATH = "Prefabs/EnvironmentElements/Animated/";
+    public static void SpawnInstanceInScene(string path)
+    {
+        GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(Resources.Load<GameObject>(path));
+        obj.transform.SetParent(Selection.activeGameObject.transform);
+        obj.transform.position = GetScenePosition();
+        Selection.activeGameObject = obj;
+
+    }
     [MenuItem("GameObject/2D Object/Game System/Arrow Spawner")]
     public static void CreateArrowSpawner()
     {
-        GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(Resources.Load<GameObject>("Prefabs/EnvirontmenInteractable/PlayerInteractables/ArrowSpawner"));
-        obj.transform.SetParent(Selection.activeGameObject.transform);
-        obj.transform.position = GetScenePosition();
+        SpawnInstanceInScene(PLAYER_INTERACTABLE_PATH + "ArrowSpawner");
     }
     [MenuItem("GameObject/2D Object/Game System/Level Door")]
     public static void CreateLevelDoor()
     {
-        GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(Resources.Load<GameObject>("Prefabs/EnvirontmenInteractable/PlayerInteractables/Door"));
-        obj.transform.SetParent(Selection.activeGameObject.transform);
-        obj.transform.position = GetScenePosition();
+        SpawnInstanceInScene(PLAYER_INTERACTABLE_PATH + "Door");
     }
 
     [MenuItem("GameObject/2D Object/Game System/Timed Door")]
     public static void CreateDoor()
     {
-        GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(Resources.Load<GameObject>("Prefabs/EnvirontmenInteractable/AxeInteractables/DoorEntity"));
-        obj.transform.SetParent(Selection.activeGameObject.transform);
-        obj.transform.position = GetScenePosition();
+        SpawnInstanceInScene(AXE_INTERACTABLE_PATH + "DoorEntity");
     }
     [MenuItem("GameObject/2D Object/Game System/DoorLevel")]
     public static void CreateDoorLever()
     {
-        GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(Resources.Load<GameObject>("Prefabs/EnvirontmenInteractable/AxeInteractables/DoorLever"));
-        obj.transform.SetParent(Selection.activeGameObject.transform);
-        obj.transform.position = GetScenePosition();
+        SpawnInstanceInScene(AXE_INTERACTABLE_PATH + "DoorLever");
     }
     [MenuItem("GameObject/2D Object/Game System/RailBlock-Horitzontal")]
     public static void CreateRailBlock()
     {
-        GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(Resources.Load<GameObject>("Prefabs/EnvirontmenInteractable/AxeInteractables/RailBlockEntity-Horizontal"));
-        obj.transform.SetParent(Selection.activeGameObject.transform);
-        obj.transform.position = GetScenePosition();
+        SpawnInstanceInScene(AXE_INTERACTABLE_PATH + "RailBlockEntity-Horizontal");
     }
     [MenuItem("GameObject/2D Object/Game System/RailBlock-Vertical")]
     public static void CreateRailBlockVertical()
     {
-        GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(Resources.Load<GameObject>("Prefabs/EnvirontmenInteractable/AxeInteractables/RailBlockEntity-Vertical"));
-        obj.transform.SetParent(Selection.activeGameObject.transform);
-        obj.transform.position = GetScenePosition();
+        SpawnInstanceInScene(AXE_INTERACTABLE_PATH + "RailBlockEntity-Vertical");
     }
     [MenuItem("GameObject/2D Object/Game System/TeleGem")]
     public static void CreateTeleGem()
     {
-        GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(Resources.Load<GameObject>("Prefabs/EnvirontmenInteractable/AxeInteractables/TeleGem_prfb"));
-        obj.transform.SetParent(Selection.activeGameObject.transform);
-        obj.transform.position = GetScenePosition();
+        SpawnInstanceInScene(AXE_INTERACTABLE_PATH + "TeleGem_prfb");
     }
     [MenuItem("GameObject/2D Object/Game System/Pot/PotA")]
     public static void CreatePotA()
     {
-        GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(Resources.Load<GameObject>("Prefabs/EnvirontmenInteractable/AxeInteractables/PotA_prfb"));
-        obj.transform.SetParent(Selection.activeGameObject.transform);
-        obj.transform.position = GetScenePosition();
+        SpawnInstanceInScene(AXE_INTERACTABLE_PATH + "PotA_prfb");
     }
     [MenuItem("GameObject/2D Object/Game System/Pot/PotB")]
     public static void CreatePotB()
     {
-        GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(Resources.Load<GameObject>("Prefabs/EnvirontmenInteractable/AxeInteractables/PotB_prfb"));
-        obj.transform.SetParent(Selection.activeGameObject.transform);
-        obj.transform.position = GetScenePosition();
+        SpawnInstanceInScene(AXE_INTERACTABLE_PATH + "PotB_prfb");
     }
     [MenuItem("GameObject/2D Object/Game System/Pot/PotC")]
     public static void CreatePotC()
     {
-        GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(Resources.Load<GameObject>("Prefabs/EnvirontmenInteractable/AxeInteractables/PotC_prfb"));
-        obj.transform.SetParent(Selection.activeGameObject.transform);
-        obj.transform.position = GetScenePosition();
+        SpawnInstanceInScene(AXE_INTERACTABLE_PATH + "PotC_prfb");
     }
     [MenuItem("GameObject/2D Object/Game System/Pot/PotD")]
     public static void CreatePotD()
     {
-        GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(Resources.Load<GameObject>("Prefabs/EnvirontmenInteractable/AxeInteractables/PotD_prfb"));
-        obj.transform.SetParent(Selection.activeGameObject.transform);
-        obj.transform.position = GetScenePosition();
+        SpawnInstanceInScene(AXE_INTERACTABLE_PATH + "PotD_prfb");
     }
     [MenuItem("GameObject/2D Object/Game System/Pot/PotE")]
     public static void CreatePotE()
     {
-        GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(Resources.Load<GameObject>("Prefabs/EnvirontmenInteractable/AxeInteractables/PotE_prfb"));
-        obj.transform.SetParent(Selection.activeGameObject.transform);
-        obj.transform.position = GetScenePosition();
+        SpawnInstanceInScene(AXE_INTERACTABLE_PATH + "PotE_prfb");
     }
     [MenuItem("GameObject/2D Object/Game System/Decoration/Vine")]
     public static void CreateVine()
     {
-        GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(Resources.Load<GameObject>("Prefabs/EnvirontmenInteractable/AxeInteractables/Vine"));
-        obj.transform.SetParent(Selection.activeGameObject.transform);
-        obj.transform.position = GetScenePosition();
+        SpawnInstanceInScene(AXE_INTERACTABLE_PATH + "Vine");
     }
     [MenuItem("GameObject/2D Object/Game System/Decoration/Grass")]
     public static void Grass()
     {
-        GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(Resources.Load<GameObject>("Prefabs/EnvirontmenInteractable/AxeInteractables/GrassClump"));
-        obj.transform.SetParent(Selection.activeGameObject.transform);
-        obj.transform.position = GetScenePosition();
+        SpawnInstanceInScene(AXE_INTERACTABLE_PATH + "GrassClump");
     }
     [MenuItem("GameObject/2D Object/Game System/Decoration/GearRailA")]
     public static void RailGearA()
     {
-        GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(Resources.Load<GameObject>("Prefabs/EnvironmentElements/Animated/RailGears_A_prfb"));
-        obj.transform.SetParent(Selection.activeGameObject.transform);
-        obj.transform.position = GetScenePosition();
+        SpawnInstanceInScene(ENVIRONMENT_PATH + "RailGears_A_prfb");
     }
     [MenuItem("GameObject/2D Object/Game System/Decoration/GearRailB")]
     public static void RailGearB()
     {
-        GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(Resources.Load<GameObject>("Prefabs/EnvironmentElements/Animated/RailGears_B_prfb"));
-        obj.transform.SetParent(Selection.activeGameObject.transform);
-        obj.transform.position = GetScenePosition();
+        SpawnInstanceInScene(ENVIRONMENT_PATH + "RailGears_B_prfb");
+    }
+    [MenuItem("GameObject/2D Object/Game System/Decoration/FirePlace")]
+    public static void FirePlace()
+    {
+        SpawnInstanceInScene(ENVIRONMENT_PATH + "LightFire_prfb");
+    }
+    [MenuItem("GameObject/2D Object/Game System/Decoration/Waterfall")]
+    public static void WaterFall()
+    {
+        SpawnInstanceInScene(ENVIRONMENT_PATH + "WallWater_prfb");
+    }
+    [MenuItem("GameObject/2D Object/Game System/Invisible-CheckPoint")]
+    public static void CheckPoint()
+    {
+        SpawnInstanceInScene(PLAYER_INTERACTABLE_PATH + "Door-Invisible-CheckPoint");
     }
     [MenuItem("Game Master/Play-Stop, But From Master Scene %`")]
     public static void PlayFromPrelaunchScene()

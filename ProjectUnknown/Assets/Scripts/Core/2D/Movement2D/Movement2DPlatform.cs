@@ -233,15 +233,18 @@ public class Movement2DPlatform : IMovement
     {
         return cachedSide;
     }
-    public override Collider2D GetGroundCollider2D()
+    public override Collider2D[] GetGroundCollider2D()
     {
 
         var cols = Physics2D.OverlapBoxAll(this.body2D.transform.position + checkGroundBoxOffset, checkGroundBoxSize, 0, jumpableLayer);
         if (cols.Length > 0)
         {
-            return cols[0];
+            return cols;
         }
-        return null;
+        else
+        {
+            return null;
+        }
     }
 
 

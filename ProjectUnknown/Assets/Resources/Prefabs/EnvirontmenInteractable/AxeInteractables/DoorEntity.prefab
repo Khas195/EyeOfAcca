@@ -571,7 +571,7 @@ GameObject:
   - component: {fileID: 7424826671856768053}
   - component: {fileID: 7424826671856768052}
   - component: {fileID: 1935938479470817267}
-  m_Layer: 10
+  m_Layer: 14
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -796,6 +796,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnReached:
+    m_PersistentCalls:
+      m_Calls: []
   OnReturn:
     m_PersistentCalls:
       m_Calls:

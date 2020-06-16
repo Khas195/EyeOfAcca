@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1573728340}
   - component: {fileID: 1573728341}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Ropes (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 4463628741195651387}
   - component: {fileID: 4463628741195651384}
   - component: {fileID: 6643781614377896530}
-  m_Layer: 10
+  m_Layer: 14
   m_Name: Lever
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,6 +285,9 @@ MonoBehaviour:
   OnReachB:
     m_PersistentCalls:
       m_Calls: []
+  OnReached:
+    m_PersistentCalls:
+      m_Calls: []
   OnReturn:
     m_PersistentCalls:
       m_Calls: []
@@ -312,6 +315,9 @@ MonoBehaviour:
   moveAb: {fileID: 4463628741195651387}
   settings: {fileID: 11400000, guid: ec07c30a6fa72d0489a07bc455aec572, type: 2}
   OnBlockMove:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStartedMoving:
     m_PersistentCalls:
       m_Calls: []
   OnBlockMoveA:
@@ -405,7 +411,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4463628741797695341}
   - component: {fileID: 4463628741797695340}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Ropes (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
