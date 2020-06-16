@@ -38,6 +38,12 @@ public class RailBlock : AxeInteractable
 
     [BoxGroup("Settings")]
     [SerializeField]
+    public UnityEvent OnStartedMoving = new UnityEvent();
+
+
+
+    [BoxGroup("Settings")]
+    [SerializeField]
     public UnityEvent OnBlockMoveA = new UnityEvent();
     [BoxGroup("Settings")]
     [SerializeField]
@@ -113,6 +119,7 @@ public class RailBlock : AxeInteractable
 
                 OnBlockMove.Invoke();
             }
+
         }
     }
 }

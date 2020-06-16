@@ -47,6 +47,7 @@ public class MoveAB : MonoBehaviour
     bool allowInteractionDuringMoveBack = false;
 
 
+
     [BoxGroup("Settings")]
     [SerializeField]
     float timeTillDestinationReached = 1;
@@ -245,5 +246,9 @@ public class MoveAB : MonoBehaviour
     public MoveABEnum GetStartPos()
     {
         return startPos;
+    }
+    public bool IsInMotion()
+    {
+        return inMotion;
     }
 }
