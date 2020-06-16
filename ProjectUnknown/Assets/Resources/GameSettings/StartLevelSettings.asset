@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dfdbea363adc2d4db0b14308a6ad8d6, type: 3}
   m_Name: StartLevelSettings
   m_EditorClassIdentifier: 
-  startLevelDoor: {fileID: 11400000, guid: b1ac501c20794b444b7b55401130188d, type: 2}
+  startLevelDoor: {fileID: 11400000, guid: 6a9bdd23992638a4b87ccb41f24fa685, type: 2}
   currentLevel: 
   levelCenter: {x: 0, y: 0, z: 0}
   levelBounds: {x: 0, y: 0, z: 0}
