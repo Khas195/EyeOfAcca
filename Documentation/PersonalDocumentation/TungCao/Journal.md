@@ -158,3 +158,22 @@ However, his levels are still too convoluted with unncessary elements. Though, I
 Nothing much happened this week, just a lot of bug fixing and polishing.
 
 Most of our meetings are about narrative aspect of the game as that is the goal of this week.
+
+### __**Life of Cholas (June 1st, 2020 - June 8th, 2020)**__
+
+Working on life of cholas this week. Got a lot of ideas on how to make it better but don't really have that much time. I had to remake a lot of Hari's code. I hope he will find a use for them.
+
+I thought the controlling of the 3 characters to solve puzzles and opening up paths for each other are very cool. It is like the 3 vikings game back in the day. 
+
+I tried multiplayer with the 3 characters but it didn't work out. Too much synchronizing problem with the networking.
+
+### __**Back to Eye of Acca (June 8th, 2020 - June 16th, 2020)**__
+
+Sam's internet is getting worst and worst. Also, starting to work on new levels.
+
+I heard there is a storm coming over to Sam's region. Hope he is ok with his own ineternet since we wasn't able to plan meetings.
+
+Still not heard from Sam. I think we should just do the meetings without him and make our own decisions.
+
+Decided to add invisible checkpoints and increase the size of the level to a meium big size.
+
