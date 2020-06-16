@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class FadeAway : AxeInteractable
 {
@@ -10,10 +11,11 @@ public class FadeAway : AxeInteractable
     TransitionCurve fadeCurve = null;
 
     [SerializeField]
-    [Required]
     List<SpriteRenderer> renders = new List<SpriteRenderer>();
 
+
     [SerializeField]
+    Tilemap tilemap = null;
     bool doOnce = true;
 
     void FixedUpdate()
@@ -27,6 +29,12 @@ public class FadeAway : AxeInteractable
                 var color = render.color;
                 color.a = fadeCurve.GetCurrentValue();
                 render.color = color;
+            }
+            if (tilemap)
+            {
+                var tempColor = tilemap.color;
+                tempColor.a = fadeCurve.GetCurrentValue();
+                tilemap.color = tempColor;
             }
         }
     }
