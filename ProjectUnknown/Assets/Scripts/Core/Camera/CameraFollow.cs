@@ -47,6 +47,12 @@ public class CameraFollow : MonoBehaviour
             this.SetPosition(master.GetSpawnLocation());
         }
     }
+
+    public bool IsHoning()
+    {
+        return honeIn;
+    }
+
     /// <summary>
     /// Callback to draw gizmos that are pickable and always drawn.
     /// </summary>
