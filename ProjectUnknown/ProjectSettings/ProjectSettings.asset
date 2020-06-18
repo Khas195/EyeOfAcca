@@ -15,7 +15,7 @@ PlayerSettings:
   companyName: Rang Gang
   productName: Acca's Eye
   defaultCursor: {fileID: 2800000, guid: adcd90458ec29944fbc44723729fb607, type: 3}
-  cursorHotspot: {x: 12, y: 12}
+  cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.047058824, g: 0.0627451, b: 0.14901961, a: 1}
   m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 1
@@ -282,7 +282,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: df4ac19d26c452b4c8ccae09690db2b0, type: 3}
+      m_Icon: {fileID: 2800000, guid: 102161ad22f41b645a6da1129b03494c, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0

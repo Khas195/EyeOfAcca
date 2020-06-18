@@ -138,11 +138,11 @@ public class Movement2DPlatform : IMovement
     }
     void FixedUpdate()
     {
-        ProcessMovement();
     }
     void Update()
     {
 
+        ProcessMovement();
         if (isAccelUp == false)
         {
             if (this.IsTouchingGround() == false)
