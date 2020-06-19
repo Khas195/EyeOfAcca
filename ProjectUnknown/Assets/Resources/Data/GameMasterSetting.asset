@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GameMasterSetting
   m_EditorClassIdentifier: 
   mode: 0
-  skipMainMenu: 1
+  skipMainMenu: 0
   gemUnlocked: 1
   railUnlocked: 1
   OnGemUnlocked:

@@ -7,10 +7,6 @@ using UnityEngine;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField]
-    LevelSettings savedLevelData = null;
-    [SerializeField]
-    LevelSettings startLevelData = null;
-    [SerializeField]
     GameMasterSettings settings = null;
     [SerializeField]
     GameObject continueBtn = null;
@@ -20,7 +16,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     void Start()
     {
-        if (savedLevelData.startLevelDoor != null)
+        if (GameMaster.GetInstance().HasSave())
         {
             continueBtn.SetActive(true);
         }
@@ -31,7 +27,7 @@ public class MainMenu : MonoBehaviour
     }
     public void Continue()
     {
-        GameMaster.GetInstance().LoadLevelAtSpawn(savedLevelData.startLevelDoor);
+        GameMaster.GetInstance().ContinueSaved();
     }
     public void Exit()
     {

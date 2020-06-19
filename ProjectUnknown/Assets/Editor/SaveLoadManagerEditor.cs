@@ -15,4 +15,9 @@ public static class SaveLoadManagerEditor
     {
         SaveLoadManager.LoadAllData();
     }
+    [MenuItem("SaveLoad/NewSave")]
+    public static void NewSave()
+    {
+        SaveLoadManager.ResetSaves();
+    }
 }

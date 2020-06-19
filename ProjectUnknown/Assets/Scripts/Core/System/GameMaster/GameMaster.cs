@@ -29,9 +29,13 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     [SerializeField]
     LevelSettings savedSettings = null;
 
+
+
     [SerializeField]
     [Required]
     LoadingControl loadingControl = null;
+
+
 
     List<AsyncOperation> scenesLoading = new List<AsyncOperation>();
     [SerializeField]
@@ -55,15 +59,16 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     public void StartNewGame()
     {
         RefreshSave();
-        SaveLoadManager.SaveAllData();
+        SaveLoadManager.LoadAllData();
         var startLevel = GetStartLevel();
         InitiateLoadLevelSequence(startLevel);
     }
 
     public void RefreshSave()
     {
-        masterSettings.Reset();
-        savedSettings.Reset();
+        LogHelper.GetInstance().Log("Creating New Save".Bolden(), true);
+        SaveLoadManager.ResetSaves();
+
     }
 
     public void LoadLevelAtSpawn(TransitionDoorProfile spawn)
@@ -104,8 +109,6 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     public void GoToMainMenu()
     {
         if (gameStateManager.RequestState(GameState.GameStateEnum.Loading) == false) return;
-
-        SaveLoadManager.SaveAllData();
 
         loadingControl.FadeIn(() =>
         {
@@ -275,6 +278,7 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     public void RestartLevel()
     {
         LogHelper.GetInstance().Log(("Restarting Level: " + SceneManager.GetActiveScene().name).Bolden(), true);
+        SaveLoadManager.LoadAllData();
         this.InitiateLoadLevelSequence(this.currentSettings.startLevelDoor, false);
     }
 
@@ -294,5 +298,18 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     public void UpdateCurrentLevelSettings(TransitionDoorProfile transitionDoorProfile)
     {
         this.currentSettings.startLevelDoor = transitionDoorProfile;
+    }
+    public void UpdateLevelCurrentCollectables(LevelCollectablesData collectableData)
+    {
+        this.currentSettings.currentCollectableData = collectableData;
+    }
+    public bool HasSave()
+    {
+        return this.savedSettings.startLevelDoor != startLevelSettings.startLevelDoor;
+    }
+    public void ContinueSaved()
+    {
+        SaveLoadManager.LoadAllData();
+        LoadLevelAtSpawn(currentSettings.startLevelDoor);
     }
 }

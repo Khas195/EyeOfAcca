@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
-using UnityEditor;
 using UnityEngine;
 
 public static class SaveLoadManager
@@ -10,25 +9,18 @@ public static class SaveLoadManager
     public static void SaveAllData()
     {
         LogHelper.GetInstance().Log("Saving datas from json".Bolden(), true);
-        foreach (var obj in Resources.FindObjectsOfTypeAll(typeof(ScriptableObject)) as ScriptableObject[])
+
+        foreach (var obj in Resources.LoadAll("Data", typeof(ScriptableObject)))
         {
-            var savedObj = Resources.Load("Datas/" + obj.name);
-            if (savedObj != null)
-            {
-                SaveLoadManager.Save<object>(obj, obj.name);
-            }
+            SaveLoadManager.Save<object>(obj, obj.name);
         }
     }
     public static void LoadAllData()
     {
         LogHelper.GetInstance().Log("Loading datas from json".Bolden(), true);
-        foreach (var obj in Resources.FindObjectsOfTypeAll(typeof(ScriptableObject)) as ScriptableObject[])
+        foreach (var obj in Resources.LoadAll("Data", typeof(ScriptableObject)))
         {
-            var loadedObj = Resources.Load("Datas/" + obj.name);
-            if (loadedObj != null)
-            {
-                SaveLoadManager.Load<object>(obj, obj.name);
-            }
+            SaveLoadManager.Load<object>(obj, obj.name);
         }
     }
 
@@ -57,5 +49,15 @@ public static class SaveLoadManager
 #endif
         string jsonLoad = File.ReadAllText(dataPath);
         JsonUtility.FromJsonOverwrite(jsonLoad, objectToLoad);
+    }
+
+    public static void ResetSaves()
+    {
+        LogHelper.GetInstance().Log("Resetting Saves".Bolden(), true);
+        foreach (var obj in Resources.LoadAll("Data", typeof(ISaveRestable)))
+        {
+            ((ISaveRestable)obj).ResetSave();
+            SaveLoadManager.Save<object>(obj, obj.name);
+        }
     }
 }
