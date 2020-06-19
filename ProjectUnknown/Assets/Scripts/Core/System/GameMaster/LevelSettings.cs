@@ -4,7 +4,7 @@ using UnityEngine;
 
 [Serializable]
 [CreateAssetMenu(fileName = "LevelSettings", menuName = "Data/LevelSettings", order = 1)]
-public class LevelSettings : ScriptableObject
+public class LevelSettings : ScriptableObject, ISaveRestable
 {
     [SerializeField]
     public TransitionDoorProfile startLevelDoor = null;
@@ -15,6 +15,8 @@ public class LevelSettings : ScriptableObject
     public Vector3 levelCenter = Vector3.zero;
     [ReadOnly]
     public Vector3 levelBounds = Vector3.zero;
+    [SerializeField]
+    public LevelCollectablesData currentCollectableData = null;
 
     public void Reset()
     {
@@ -40,5 +42,12 @@ public class LevelSettings : ScriptableObject
     {
         Reset();
         SaveLoadManager.SaveAllData();
+    }
+
+    public void ResetSave()
+    {
+
+        LogHelper.GetInstance().Log(("Reset Saved Level Data").Bolden(), true);
+        this.Reset();
     }
 }

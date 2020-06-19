@@ -10,12 +10,13 @@ public static class GameSystemMenu
     const string COLLECTABLES_PATH = "Prefabs/Collectables/";
     const string AXE_INTERACTABLE_PATH = "Prefabs/EnvirontmenInteractable/AxeInteractables/";
     const string ENVIRONMENT_PATH = "Prefabs/EnvironmentElements/Animated/";
-    public static void SpawnInstanceInScene(string path)
+    public static GameObject SpawnInstanceInScene(string path)
     {
         GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(Resources.Load<GameObject>(path));
         obj.transform.SetParent(Selection.activeGameObject.transform);
         obj.transform.position = GetScenePosition();
         Selection.activeGameObject = obj;
+        return obj;
 
     }
     [MenuItem("GameObject/2D Object/Game System/Arrow Spawner")]

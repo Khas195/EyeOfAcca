@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 [CreateAssetMenu(fileName = "MovementData", menuName = "Data/GameMasterSettings", order = 1)]
 [Serializable]
-public class GameMasterSettings : ScriptableObject
+public class GameMasterSettings : ScriptableObject, ISaveRestable
 {
     public FullScreenMode mode = FullScreenMode.ExclusiveFullScreen;
     public bool skipMainMenu = false;
@@ -54,5 +54,11 @@ public class GameMasterSettings : ScriptableObject
     public void LockRail()
     {
         railUnlocked = false;
+    }
+
+    public void ResetSave()
+    {
+        LogHelper.GetInstance().Log(("Reset Game Master Settings").Bolden(), true);
+        this.Reset();
     }
 }
