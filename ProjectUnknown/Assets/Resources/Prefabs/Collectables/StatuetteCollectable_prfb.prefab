@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6626061989047105639}
   - component: {fileID: 1296001588232385599}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3392594065528540447}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: StatuetteCollectable_prfb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4451310931554463786}
   - component: {fileID: 4854478640844976108}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Floater
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3394831199038732724}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Scaler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +201,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8934790509979018159}
   - component: {fileID: 2740348225788265059}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Rotator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -304,6 +304,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Statuette_Model
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 9df75d153564c8e41ab24f8ecc435d09,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 2693055581561565694, guid: 9df75d153564c8e41ab24f8ecc435d09,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5133913965574556032, guid: 9df75d153564c8e41ab24f8ecc435d09,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5563636170511573486, guid: 9df75d153564c8e41ab24f8ecc435d09,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 9111962883125049612, guid: 9df75d153564c8e41ab24f8ecc435d09,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9df75d153564c8e41ab24f8ecc435d09, type: 3}
