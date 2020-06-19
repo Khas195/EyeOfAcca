@@ -7,6 +7,7 @@ using UnityEngine;
 public static class GameSystemMenu
 {
     const string PLAYER_INTERACTABLE_PATH = "Prefabs/EnvirontmenInteractable/PlayerInteractables/";
+    const string COLLECTABLES_PATH = "Prefabs/Collectables/";
     const string AXE_INTERACTABLE_PATH = "Prefabs/EnvirontmenInteractable/AxeInteractables/";
     const string ENVIRONMENT_PATH = "Prefabs/EnvironmentElements/Animated/";
     public static void SpawnInstanceInScene(string path)
@@ -108,6 +109,11 @@ public static class GameSystemMenu
     {
         SpawnInstanceInScene(ENVIRONMENT_PATH + "WallWater_prfb");
     }
+    [MenuItem("GameObject/2D Object/Game System/Collectables/Statuette")]
+    public static void Statuette()
+    {
+        SpawnInstanceInScene(COLLECTABLES_PATH + "StatuetteCollectable_prfb");
+    }
     [MenuItem("GameObject/2D Object/Game System/Invisible-CheckPoint")]
     public static void CheckPoint()
     {
@@ -130,6 +136,18 @@ public static class GameSystemMenu
     public static void AddEntitiesScene()
     {
         EditorSceneManager.OpenScene("Assets/Scenes/SetupScene/EntitiesScene.unity", OpenSceneMode.Additive);
+    }
+
+    [MenuItem("Game Master/Add Master Scene")]
+    public static void AddMasterScene()
+    {
+        EditorSceneManager.OpenScene("Assets/Scenes/SetupScene/MasterScene.unity", OpenSceneMode.Additive);
+    }
+
+    [MenuItem("Game Master/Add In Game Menu")]
+    public static void AddInGameMenu()
+    {
+        EditorSceneManager.OpenScene("Assets/Scenes/UIScenes/InGameMenu.unity", OpenSceneMode.Additive);
     }
     private static Vector3 GetScenePosition()
     {
