@@ -38,7 +38,7 @@ public class ConstraintCamera : MonoBehaviour
         Gizmos.DrawWireCube(host.position, new Vector3(cameraSizeX, cameraSizeY, 0));
         Gizmos.DrawWireCube(boundPos, boundBoxSize);
     }
-    private void LateUpdate()
+    public void LockCameraToLevel()
     {
         var hostPos = host.position;
 

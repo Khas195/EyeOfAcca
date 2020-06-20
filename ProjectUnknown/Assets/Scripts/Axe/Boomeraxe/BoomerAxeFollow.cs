@@ -23,7 +23,7 @@ public class BoomerAxeFollow : MonoBehaviour
     [Required]
     Camera playerCamera = null;
 
-    void Update()
+    void Follow()
     {
         var cameraSizeY = 2 * playerCamera.orthographicSize;
         var cameraSizeX = cameraSizeY * playerCamera.aspect;
