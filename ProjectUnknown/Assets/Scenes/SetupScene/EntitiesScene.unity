@@ -199,6 +199,64 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ef793efd290da94aaa4f112b59f8c54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &698355117
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 698355118}
+  - component: {fileID: 698355119}
+  m_Layer: 0
+  m_Name: CameraControl
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &698355118
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698355117}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1016982550}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &698355119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698355117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 234ab28fddf72284880a272b831c686b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  follow: {fileID: 1080578821}
+  constraint: {fileID: 700072372}
+  axeFollow: {fileID: 1590777604}
+--- !u!114 &700072372 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2065472232, guid: 19c4c104f02ffa34ead48f24ad97343b,
+    type: 3}
+  m_PrefabInstance: {fileID: 7188433440261101922}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff444c4af20091d4e9011d1127693021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &830633389
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,6 +356,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1016982550 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7188433441040717998, guid: 19c4c104f02ffa34ead48f24ad97343b,
+    type: 3}
+  m_PrefabInstance: {fileID: 7188433440261101922}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1080578821 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7188433439587899957, guid: 19c4c104f02ffa34ead48f24ad97343b,
