@@ -8,48 +8,61 @@ public class CollectableCounter : MonoBehaviour
 {
     [SerializeField]
     [ReadOnly]
-    LevelCollectablesData currentData = null;
+    List<LevelCollectablesData> collectablesList = new List<LevelCollectablesData>();
     [SerializeField]
     Text counterText = null;
+    [SerializeField]
+    Image statueImage = null;
+    int totalCollectables = 0;
+    [SerializeField]
+    TransitionCurve fadeCurve = null;
     // Start is called before the first frame update
     void Start()
     {
-        TryGetData();
-    }
-
-    private bool TryGetData()
-    {
-        var gameMaster = GameMaster.GetInstance();
-        if (gameMaster != null)
+        foreach (var obj in Resources.LoadAll("Data", typeof(LevelCollectablesData)))
         {
-            currentData = gameMaster.GetCurrentLevelSettings().currentCollectableData;
-            return true;
+            var collectable = (LevelCollectablesData)obj;
+            collectablesList.Add(collectable);
+            totalCollectables += collectable.datas.Count;
         }
-        return false;
+        Collectable.OnCollect.AddListener(this.UpdateCurrentCollectableCount);
     }
 
+
+    /// <summary>
+    /// Update is called every frame, if the MonoBehaviour is enabled.
+    /// </summary>
+    void UpdateCurrentCollectableCount(Collectable collectedItem)
+    {
+        var count = 0;
+        for (int i = 0; i < collectablesList.Count; i++)
+        {
+            for (int j = 0; j < collectablesList[i].datas.Count; j++)
+            {
+                if (collectablesList[i].datas[j].IsCollected)
+                {
+                    count += 1;
+                }
+            }
+        }
+        counterText.text = (count + "/" + totalCollectables).Bolden();
+        fadeCurve.TransitionIn();
+    }
     /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.
     /// </summary>
     void Update()
     {
-        if (currentData == null)
+        if (fadeCurve.IsCurrentTimeInGraph())
         {
-            if (TryGetData() == false)
-            {
-                return;
-            }
-
+            fadeCurve.AdvanceTime(Time.deltaTime);
+            var alphaValue = fadeCurve.GetCurrentValue();
+            var counterColor = this.counterText.color;
+            counterColor.a = alphaValue;
+            this.counterText.color = counterColor;
+            var spriteColor = this.statueImage.color;
+            spriteColor.a = alphaValue;
+            this.statueImage.color = spriteColor;
         }
-
-        var count = 0;
-        for (int i = 0; i < currentData.datas.Count; i++)
-        {
-            if (currentData.datas[i].IsCollected)
-            {
-                count++;
-            }
-        }
-        counterText.text = (count + "/" + currentData.datas.Count).Bolden();
     }
 }

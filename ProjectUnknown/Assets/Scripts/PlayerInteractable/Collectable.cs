@@ -11,7 +11,7 @@ public class OnCollectEvent : UnityEvent<Collectable>
 }
 public class Collectable : MonoBehaviour
 {
-    public OnCollectEvent OnCollect = new OnCollectEvent();
+    public static OnCollectEvent OnCollect = new OnCollectEvent();
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
