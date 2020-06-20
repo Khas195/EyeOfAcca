@@ -28,15 +28,13 @@ public class Level : MonoBehaviour
             gameMaster.UpdateLevelSettingsBounds(this.GetGroundMapPosition(), this.GetGroundMapBounds());
             gameMaster.UpdateLevelCurrentCollectables(this.collectableData);
         }
+
+        Collectable.OnCollect.AddListener(this.OnCollectCollectable);
         for (int i = 0; i < collectableData.datas.Count; i++)
         {
             if (collectableData.datas[i].IsCollected)
             {
                 collectables[i].SetActive(false);
-            }
-            else
-            {
-                collectables[i].GetComponent<Collectable>().OnCollect.AddListener(this.OnCollectCollectable);
             }
         }
 

@@ -72,7 +72,7 @@ public class CameraFollow : MonoBehaviour
         return this.host.GetComponentInChildren<Camera>();
     }
 
-    void LateUpdate()
+    public void Follow()
     {
         var targetPos = GetCenterPosition(encapsolatedTarget);
         var hostPos = host.position;

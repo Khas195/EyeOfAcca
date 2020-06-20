@@ -173,14 +173,14 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
+    y: 0.00010702014
     width: 1
-    height: 1
+    height: 0.99978596
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.625
+  orthographic size: 5.6262045
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -813,11 +813,11 @@ RectTransform:
   m_Father: {fileID: 1453350258}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -50, y: -175}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 143.38, y: 150}
   m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0.50000024}
 --- !u!114 &1216143801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -831,7 +831,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: 064db3ab3dc6d9447bdfe0505254d48f, type: 2}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -886,10 +886,10 @@ RectTransform:
   m_Father: {fileID: 1453350258}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 242.79, y: -175.49}
-  m_SizeDelta: {x: 115.36, y: 56.13}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 46.69, y: 150}
+  m_SizeDelta: {x: 93.37, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1241433173
 MonoBehaviour:
@@ -904,7 +904,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.68235296, g: 0.8470589, b: 0.9215687, a: 1}
+  m_Color: {r: 0.68235296, g: 0.8470589, b: 0.9215687, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1446,6 +1446,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1453350258}
   - component: {fileID: 1453350259}
+  - component: {fileID: 1453350260}
   m_Layer: 5
   m_Name: CollectablesCounter
   m_TagString: Untagged
@@ -1486,8 +1487,88 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc5fec165aef6c34a875aa5fb07d34ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentData: {fileID: 0}
+  collectablesList: []
   counterText: {fileID: 1241433173}
+  statueImage: {fileID: 1216143801}
+  fadeCurve: {fileID: 1453350260}
+--- !u!114 &1453350260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1453350257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc7dce46879f20648931be4ca4ee4341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transInCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1.5689545
+      outSlope: 1.5689545
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.031387236
+    - serializedVersion: 3
+      time: 2
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 4
+      value: 0
+      inSlope: -1.6348935
+      outSlope: -1.6348935
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.035778165
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  transOutCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  curCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  curTime: -1
+  transInLastKeyTime: 0
+  transOutLastKeyTime: 0
 --- !u!1 &1588762159
 GameObject:
   m_ObjectHideFlags: 0
