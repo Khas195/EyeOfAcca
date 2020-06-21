@@ -16,7 +16,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     void Start()
     {
-        if (GameMaster.GetInstance().HasSave())
+        if (settings.isNewGame == false)
         {
             continueBtn.SetActive(true);
         }

@@ -22,7 +22,8 @@ public class VFXResources : ScriptableObject
         AxeRecalling,
         PotBreak,
         TrapFireSmoke,
-        ArrowBreaks
+        ArrowBreaks,
+        CharacterStoneBreaks
     }
     [Serializable]
     public struct VFX
