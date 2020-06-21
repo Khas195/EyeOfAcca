@@ -38,6 +38,10 @@ public class PlayerController2D : MonoBehaviour
     [SerializeField]
     [ReadOnly]
     float currentAxeUseBufferTime = 0.0f;
+    [BoxGroup("Current Status")]
+    [SerializeField]
+    [ReadOnly]
+    bool cutJumpVel = false;
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
     /// any of the Update methods is called the first time.
@@ -88,7 +92,7 @@ public class PlayerController2D : MonoBehaviour
                 StartJumpBufferTime();
             }
         }
-        if (Input.GetKey(KeyCode.Space) == false)
+        if (Input.GetKey(KeyCode.Space) == false && cutJumpVel)
         {
             character.StartFalling();
         }
@@ -135,9 +139,10 @@ public class PlayerController2D : MonoBehaviour
         currentAxeUseBufferTime = useAxeInputBuferTime;
     }
 
-    private void StartJumpBufferTime()
+    public void StartJumpBufferTime(bool cutJumpVelOnRelease = true)
     {
         currentJumpBufferTime = jumpInputBufferTime;
+        this.cutJumpVel = cutJumpVelOnRelease;
     }
 
     private void InteractWithDoor(LevelTransitionDoor door)

@@ -20,15 +20,6 @@ public class CollectableIndicatorSwitch : MonoBehaviour
         this.mySpriteRenderer = this.GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            IndicatorActivate();
-        }
-    }
-
     public void IndicatorActivate()
     {
         if (this.bActive) return;

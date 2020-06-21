@@ -10,7 +10,7 @@ public class OnAxeThrowCatch : UnityEvent<bool>
 {
 
 }
-public class BoomeraxeGrip : SingletonMonobehavior<BoomeraxeGrip>
+public class BoomeraxeGrip : MonoBehaviour
 {
     [BoxGroup("Settings")]
     [SerializeField]
@@ -58,8 +58,9 @@ public class BoomeraxeGrip : SingletonMonobehavior<BoomeraxeGrip>
     [BoxGroup("Optional")]
     [SerializeField]
     OnAxeThrowCatch throwCatchEvent = new OnAxeThrowCatch();
-
-
+    [BoxGroup("Optional")]
+    [SerializeField]
+    GameMasterSettings settings = null;
 
     [BoxGroup("Optional")]
     [SerializeField]
@@ -81,15 +82,15 @@ public class BoomeraxeGrip : SingletonMonobehavior<BoomeraxeGrip>
 
     bool axeAbilityActivated;
 
-
-
     /// <summary>
-    /// Start is called on the frame when a script is enabled just before
-    /// any of the Update methods is called the first time.
+    /// Awake is called when the script instance is being loaded.
     /// </summary>
-    void Start()
+    protected void Awake()
     {
-        HoldAxe();
+        if (settings.isNewGame == false)
+        {
+            HoldAxe();
+        }
     }
 
 
@@ -155,8 +156,8 @@ public class BoomeraxeGrip : SingletonMonobehavior<BoomeraxeGrip>
             throwCatchEvent.Invoke(false);
             isBeingHeld = true;
             axeCatchable = false;
+            this.boomeraxeFlying.Reset();
             StickToHolder();
-            boomeraxeFlying.Reset();
             adjustor.ResetTimeScale();
         }
     }

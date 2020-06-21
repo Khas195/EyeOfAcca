@@ -14,6 +14,8 @@ public class GameMasterSettings : ScriptableObject, ISaveRestable
     private bool gemUnlocked = false;
     [SerializeField]
     private bool railUnlocked = false;
+    [SerializeField]
+    public bool isNewGame = true;
 
     public UnityEvent OnGemUnlocked = new UnityEvent();
     public UnityEvent OnRailUnlocked = new UnityEvent();
@@ -36,6 +38,7 @@ public class GameMasterSettings : ScriptableObject, ISaveRestable
     {
         UnlockGem();
         UnlockRail();
+        isNewGame = true;
     }
     public void UnlockGem()
     {

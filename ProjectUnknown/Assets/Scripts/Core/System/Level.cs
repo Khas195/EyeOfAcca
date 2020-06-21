@@ -19,7 +19,8 @@ public class Level : MonoBehaviour
     [ReadOnly]
     [OnValueChanged("OnEdit")]
     List<GameObject> collectables = new List<GameObject>();
-
+    [SerializeField]
+    List<CollectablesIndicatorManager> indicatorManagers = new List<CollectablesIndicatorManager>();
     void Start()
     {
         var gameMaster = GameMaster.GetInstance();
@@ -37,6 +38,10 @@ public class Level : MonoBehaviour
                 collectables[i].SetActive(false);
             }
         }
+        for (int i = 0; i < indicatorManagers.Count; i++)
+        {
+            indicatorManagers[i].UpdateActivatedIndicators(this.collectableData);
+        }
 
     }
     public void OnCollectCollectable(Collectable collect)
@@ -49,6 +54,10 @@ public class Level : MonoBehaviour
                 collectableData.datas[i].Collect();
                 break;
             }
+        }
+        for (int i = 0; i < indicatorManagers.Count; i++)
+        {
+            indicatorManagers[i].IncreaseActivatedIndicator();
         }
     }
 #if UNITY_EDITOR

@@ -144,7 +144,7 @@ public class Boomeraxe : MonoBehaviour
 
     AudioSource spinningSource = null;
 
-    void Start()
+    void Awake()
     {
         body2d.gravityScale = 0;
         Reset();
