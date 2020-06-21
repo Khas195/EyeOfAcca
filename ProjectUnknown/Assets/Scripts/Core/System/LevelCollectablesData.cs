@@ -27,6 +27,20 @@ public class LevelCollectablesData : ScriptableObject, ISaveRestable
             this.isCollected = false;
         }
     }
+
+    public int GetTotalCollected()
+    {
+        int total = 0;
+        for (int i = 0; i < datas.Count; i++)
+        {
+            if (datas[i].IsCollected)
+            {
+                total += 1;
+            }
+        }
+        return total;
+    }
+
     public List<CollectableData> datas = new List<CollectableData>();
 
     public void ResetSave()
