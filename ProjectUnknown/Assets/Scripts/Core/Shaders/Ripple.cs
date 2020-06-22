@@ -38,10 +38,6 @@ public class Ripple : SingletonMonobehavior<Ripple>
         this.Friction = friction;
     }
 
-    void OnRenderImage(RenderTexture src, RenderTexture dest)
-    {
-        Graphics.Blit(src, dest, rippleMat);
-    }
 
     public void RippleAt(Vector2 location, float friction = 0.9f, float amount = 10f)
     {
