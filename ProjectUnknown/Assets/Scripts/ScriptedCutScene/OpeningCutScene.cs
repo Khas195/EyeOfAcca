@@ -31,6 +31,8 @@ public class OpeningCutScene : MonoBehaviour
     [SerializeField]
     Transform initialThrowAxePoint = null;
     [SerializeField]
+    Transform initialAxePos = null;
+    [SerializeField]
     BoomeraxeGrip grip = null;
     // Start is called before the first frame update
     void Start()
@@ -48,7 +50,7 @@ public class OpeningCutScene : MonoBehaviour
             characterBehaviour.SetActive(false);
             cameraBehaviour.SetActive(false);
             characterAnim.SetBool("StoneTransition", true);
-            grip.ThrowAxe(initialThrowAxePoint.position);
+            grip.ThrowAxe(initialThrowAxePoint.position, initialAxePos.transform.position);
         }
         else
         {
@@ -59,7 +61,7 @@ public class OpeningCutScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.D))
+        if (Input.anyKeyDown)
         {
             cutsceneAnim.SetTrigger("Begin");
         }

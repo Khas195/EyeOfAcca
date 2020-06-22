@@ -39,11 +39,6 @@ public class Boomeraxe : MonoBehaviour
     [SerializeField]
     [Required]
     BoomeraxeGrip grip = null;
-    [BoxGroup("Requirement")]
-    [SerializeField]
-    [Required]
-    Transform axeHolderPos = null;
-
 
 
     [BoxGroup("Requirement")]
@@ -191,15 +186,15 @@ public class Boomeraxe : MonoBehaviour
     {
         return isStuck;
     }
-    public void Fly(Vector2 target)
+    public void Fly(Vector2 target, Vector2 startPos)
     {
         LogHelper.GetInstance().Log("Player ".Bolden().Colorize(Color.green) + "has thrown the " + "Boomeraxe".Bolden().Colorize("#83ecd7"), true);
 
 
         body2d.gameObject.SetActive(true);
-        Vector2 pos = axeHolderPos.transform.position;
+        Vector2 pos = startPos;
         currentFlyDirection = (target - pos).normalized;
-        body2d.transform.position = axeHolderPos.transform.position;
+        body2d.transform.position = startPos;
         returning = false;
 
         axeSprite.sortingLayerName = "AxeBack";
