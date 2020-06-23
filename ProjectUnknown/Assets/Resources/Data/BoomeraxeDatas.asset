@@ -26,9 +26,9 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.29951963
-      value: 1.0037314
-      inSlope: 0
+      time: 0.1
+      value: 1
+      inSlope: 10
       outSlope: 0
       tangentMode: 0
       weightedMode: 0
@@ -66,5 +66,5 @@ MonoBehaviour:
   timeScaleAfterTeleport: 0.5
   timeScaleOnAxeRecall: 1
   timeTilAxeCatchable: 0.2
-  recallTime: 0
+  recallTime: 0.3
   teleportDistanceAwayFromDestination: 1

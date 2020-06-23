@@ -13,6 +13,9 @@ public class TransitionCurve : MonoBehaviour
     [BoxGroup("Settings")]
     [SerializeField]
     AnimationCurve transOutCurve = null;
+    [BoxGroup("Settings")]
+    [SerializeField]
+    float beginCurTime = 0;
 
     [BoxGroup("Status")]
     [SerializeField]
@@ -34,6 +37,7 @@ public class TransitionCurve : MonoBehaviour
 
     virtual protected void Start()
     {
+        curTime = beginCurTime;
         transInLastKeyTime = transInCurve.keys[transInCurve.length - 1].time;
         transOutLastKeyTime = transOutCurve.keys[transOutCurve.length - 1].time;
     }
@@ -57,16 +61,16 @@ public class TransitionCurve : MonoBehaviour
         return curTime;
     }
 
-    public void TransitionIn()
+    public virtual void TransitionIn()
     {
         this.TransitionIn(0);
     }
-    public void TransitionIn(float atTime)
+    public virtual void TransitionIn(float atTime)
     {
         curTime = atTime;
         curCurve = transInCurve;
     }
-    public void TransitionOut()
+    public virtual void TransitionOut()
     {
         curTime = 0;
         curCurve = transOutCurve;
