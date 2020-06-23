@@ -163,6 +163,11 @@ public class Boomeraxe : MonoBehaviour
         {
             if (returning)
             {
+                if (currentRecallTime > datas.recallTime)
+                {
+                    this.OnCollideWithHolder();
+                    return;
+                }
                 body2d.transform.position = Vector3.Lerp(stuckPos, holderBody2d.transform.position, datas.recallCurve.Evaluate(currentRecallTime));
                 currentRecallTime += Time.deltaTime;
             }

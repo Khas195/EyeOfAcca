@@ -23,7 +23,7 @@ public class BoomerAxeFollow : MonoBehaviour
     [Required]
     Camera playerCamera = null;
 
-    void Follow()
+    public void Follow()
     {
         var cameraSizeY = 2 * playerCamera.orthographicSize;
         var cameraSizeX = cameraSizeY * playerCamera.aspect;
@@ -42,7 +42,7 @@ public class BoomerAxeFollow : MonoBehaviour
         float horizontalDistance = axeBody.transform.position.x - characterBody.transform.position.x;
         float verticalDistance = axeBody.transform.position.y - characterBody.transform.position.y;
 
-        return Mathf.Abs(horizontalDistance) > cameraSizeX / 1.5f || Mathf.Abs(verticalDistance) > cameraSizeY / 2.0f;
+        return Mathf.Abs(horizontalDistance) > cameraSizeX || Mathf.Abs(verticalDistance) > cameraSizeY;
     }
 
     public void FollowAxe()

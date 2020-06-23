@@ -35,6 +35,18 @@ public class ScaleTransition : TransitionCurve
         }
 
     }
+    public void ScaleIn()
+    {
+        beginScale = 0;
+        targetScale = normalScale;
+        base.TransitionIn();
+    }
+    public void ScaleOut()
+    {
+        beginScale = 1;
+        targetScale = 0;
+        base.TransitionIn();
+    }
 
     private void SetScale(float newScaleValue)
     {
