@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class CameraEffects : MonoBehaviour
 {
     [SerializeField]

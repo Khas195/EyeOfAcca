@@ -13,29 +13,22 @@ public class LoadingControl : MonoBehaviour
 
     [BoxGroup("Requirements")]
     [SerializeField]
-    Texture2D transInTexture = null;
-
-    [BoxGroup("Requirements")]
-    [SerializeField]
-    Texture2D transOutTexture = null;
-
-    [BoxGroup("Requirements")]
-    [SerializeField]
     public TransitionCurve transCurve = null;
 
-
     [BoxGroup("Status")]
     [SerializeField]
     [ReadOnly]
-    float curtime = 0;
 
-    [BoxGroup("Status")]
-    [SerializeField]
-    [ReadOnly]
     Action callbackAfterFade = null;
+
+    [BoxGroup("Status")]
+    [SerializeField]
+    [ReadOnly]
+    float currentValue = 0;
     void Update()
+
     {
-        this.screenTransitionMat.SetFloat("_CutOff", transCurve.GetCurrentValue());
+        this.screenTransitionMat.SetFloat("Vector1_B610FB5D", transCurve.GetCurrentValue());
         transCurve.AdvanceTime(Time.unscaledDeltaTime);
 
         if (transCurve.IsCurrentTimeInGraph() == false)
@@ -55,7 +48,6 @@ public class LoadingControl : MonoBehaviour
 
     public void FadeIn(Action callback)
     {
-        this.screenTransitionMat.SetTexture("_TransitionTexture", transInTexture);
         this.gameObject.SetActive(true);
         callbackAfterFade = callback;
         transCurve.TransitionIn();
@@ -63,7 +55,6 @@ public class LoadingControl : MonoBehaviour
 
     public void FadeOut(Action callback)
     {
-        this.screenTransitionMat.SetTexture("_TransitionTexture", transOutTexture);
         callbackAfterFade = callback;
         transCurve.TransitionOut();
     }

@@ -41,6 +41,9 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     [SerializeField]
     UnityEvent levelLoadEvent = new UnityEvent();
 
+    public Material TransitionMaterial;
+
+    public Material RippleEffectMat;
     void Start()
     {
         UnloadAllScenesExcept(MASTER_SCENE);

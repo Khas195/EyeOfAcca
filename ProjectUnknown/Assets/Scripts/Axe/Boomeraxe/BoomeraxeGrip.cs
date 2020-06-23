@@ -108,15 +108,20 @@ public class BoomeraxeGrip : MonoBehaviour
     public bool ThrowAxe(Vector3 at)
     {
         if (isBeingHeld == false) return false;
-
         flip.CheckFacing(at.x - holderPivot.transform.position.x);
+
+        return ThrowAxe(at, holderPivot.transform.position);
+    }
+    public bool ThrowAxe(Vector3 at, Vector2 originThrowPoint)
+    {
+        if (isBeingHeld == false) return false;
+
         axeThrowTrigger.Invoke();
 
         isBeingHeld = false;
         axeCatchable = false;
 
-        boomeraxeFlying.Fly(at);
-        //adjustor.SetGravityScaleFor(datas.timeScaleAfterThrow, datas.lulPeriodAfterAirborneThrow);
+        boomeraxeFlying.Fly(at, originThrowPoint);
 
         StopCoroutine(TurnOnAxeCatchable(datas.timeTilAxeCatchable));
         StartCoroutine(TurnOnAxeCatchable(datas.timeTilAxeCatchable));

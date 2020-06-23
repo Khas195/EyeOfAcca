@@ -9,7 +9,7 @@ public partial class SFXSystem : SingletonMonobehavior<SFXSystem>
 {
 
     [SerializeField]
-    SFXResources sFXResources;
+    SFXResources sFXResources = null;
 
     [SerializeField]
     [Required]
