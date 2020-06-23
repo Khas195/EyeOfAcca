@@ -5,11 +5,11 @@ using UnityEngine;
 public class CameraControl : MonoBehaviour
 {
     [SerializeField]
-    CameraFollow follow;
+    CameraFollow follow = null;
     [SerializeField]
-    ConstraintCamera constraint;
+    ConstraintCamera constraint = null;
     [SerializeField]
-    BoomerAxeFollow axeFollow;
+    BoomerAxeFollow axeFollow = null;
 
 
     // Update is called once per frame
@@ -19,8 +19,8 @@ public class CameraControl : MonoBehaviour
     /// </summary>
     void LateUpdate()
     {
-        axeFollow.FollowAxe();
         follow.Follow();
+        axeFollow.Follow();
         constraint.LockCameraToLevel();
     }
 }

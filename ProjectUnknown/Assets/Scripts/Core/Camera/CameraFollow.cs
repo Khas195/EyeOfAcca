@@ -160,6 +160,10 @@ public class CameraFollow : MonoBehaviour
         }
         return bounds.center;
     }
+    public Vector3 GetCenterPosition()
+    {
+        return this.GetCenterPosition(encapsolatedTarget);
+    }
 
     public void SetPosition(Vector3 landingPosition)
     {
