@@ -7,17 +7,22 @@ using UnityEngine;
 public class BoomeraxeParams : ScriptableObject
 {
     public float flyVelocity = 2f;
+    [OnValueChanged("CalculateRecallTime")]
     public AnimationCurve recallCurve = null;
     public AnimationCurve recallTimeBaseOnDistance = null;
     public int maxTeleport = 2;
     public float lulTimeAfterTeleport = 0.2f;
     public float timeScaleAfterTeleport = 0.2f;
-
     public float timeScaleOnAxeRecall = 0.2f;
-
-    public float lulPeriodAfterAirborneThrow = 0.2f;
-    public float timeScaleAfterThrow = 0.2f;
     public float timeTilAxeCatchable = 0.2f;
+    [SerializeField]
+    [ReadOnly]
+    public float recallTime = 0;
+
+    public void CalculateRecallTime()
+    {
+        recallTime = recallCurve.keys[recallCurve.keys.Length - 1].time;
+    }
 
     public float teleportDistanceAwayFromDestination = 0.2f;
 
