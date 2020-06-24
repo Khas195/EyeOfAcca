@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Recall", menuName = "AxeBehavior/Recall", order = 1)]
 public class RecallAbility : AxeAbility
 {
+    [SerializeField]
+    private Color gemColor;
     public override void Activate(Boomeraxe axe)
     {
         LogHelper.GetInstance().Log(("CRACKED!!").Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
@@ -19,6 +21,6 @@ public class RecallAbility : AxeAbility
 
     public override Color GetGemColor()
     {
-        return Color.cyan;
+        return this.gemColor;
     }
 }
