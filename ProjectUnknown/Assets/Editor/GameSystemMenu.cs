@@ -35,7 +35,7 @@ public static class GameSystemMenu
     {
         SpawnInstanceInScene(AXE_INTERACTABLE_PATH + "DoorEntity");
     }
-    [MenuItem("GameObject/2D Object/Game System/DoorLevel")]
+    [MenuItem("GameObject/2D Object/Game System/Door Lever")]
     public static void CreateDoorLever()
     {
         SpawnInstanceInScene(AXE_INTERACTABLE_PATH + "DoorLever");

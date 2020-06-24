@@ -10,9 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4197686551490472627}
   - component: {fileID: 4197686551490472626}
-  - component: {fileID: 4413997338613668840}
   - component: {fileID: 6288231452301174178}
-  - component: {fileID: 1179409528591790419}
+  - component: {fileID: 8177782436920723392}
   m_Layer: 10
   m_Name: Statue_UnlockRail
   m_TagString: Untagged
@@ -73,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 1470101453
   m_SortingLayer: 1
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 4ad37e8e40081ae498a7005d8a67909f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 20677c6dba891564aa8e4bd2abd7ab5a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -84,82 +83,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4413997338613668840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4197686551490472624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc7dce46879f20648931be4ca4ee4341, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  transInCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.4
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.7
-      value: 1
-      inSlope: 0.47138536
-      outSlope: 0.47138536
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0.7
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  transOutCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  curCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  curTime: 0
 --- !u!114 &6288231452301174178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,10 +97,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   savedSettings: {fileID: 11400000, guid: 7c4a4bc2bf316824a916f3923ff8ee6f, type: 2}
   linkedDoor: {fileID: 0}
-  spriteRenderer: {fileID: 4197686551490472626}
-  colorCurve: {fileID: 4413997338613668840}
   settings: {fileID: 11400000, guid: ec07c30a6fa72d0489a07bc455aec572, type: 2}
---- !u!61 &1179409528591790419
+  render: {fileID: 0}
+  activatedColor: {r: 1, g: 1, b: 1, a: 1}
+  deactivatedColor: {r: 0, g: 0, b: 0, a: 1}
+--- !u!61 &8177782436920723392
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -194,12 +118,12 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 4}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 4}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0

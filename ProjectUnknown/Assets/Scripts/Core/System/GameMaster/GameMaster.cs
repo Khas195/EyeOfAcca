@@ -315,6 +315,7 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     public void ContinueSaved()
     {
         SaveLoadManager.LoadAllData();
+        currentSettings = savedSettings;
         LoadLevelAtSpawn(currentSettings.startLevelDoor);
     }
 }
