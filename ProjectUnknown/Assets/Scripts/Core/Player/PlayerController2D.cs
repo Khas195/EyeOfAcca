@@ -98,7 +98,7 @@ public class PlayerController2D : MonoBehaviour
         }
 
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && grip.gameObject.activeInHierarchy)
         {
             StartDropdownBufferTime();
         }

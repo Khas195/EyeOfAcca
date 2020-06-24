@@ -9,10 +9,10 @@ public class Level : MonoBehaviour
     [Required]
     Tilemap groundTileMap = null;
     [SerializeField]
-    [Required]
+    [ReadOnly]
     GameObject collectableRoot = null;
     [SerializeField]
-    [Required]
+    [ReadOnly]
     LevelCollectablesData collectableData = null;
     [SerializeField]
     [ReorderableList]
@@ -61,7 +61,6 @@ public class Level : MonoBehaviour
         }
     }
 #if UNITY_EDITOR
-    [Button("Create Data")]
     public void CreateData()
     {
         var newCollectableData = ScriptableObject.CreateInstance<LevelCollectablesData>();
@@ -71,6 +70,15 @@ public class Level : MonoBehaviour
         UnityEditor.EditorUtility.FocusProjectWindow();
         this.collectableData = newCollectableData;
         UnityEditor.EditorUtility.SetDirty(this.collectableData);
+    }
+
+    public void CreateCollectableRoot()
+    {
+        if (this.collectableRoot != null) return;
+
+        var newRoot = new GameObject("CollectableRoot");
+        newRoot.transform.SetParent(this.transform);
+        this.collectableRoot = newRoot;
     }
     private Vector3 GetScenePosition()
     {
@@ -82,16 +90,39 @@ public class Level : MonoBehaviour
     [Button("Add Collectable")]
     public void AddCollectable()
     {
+        if (this.collectableRoot == null)
+        {
+            CreateCollectableRoot();
+        }
+        if (this.collectableData == null)
+        {
+            CreateData();
+        }
         string path = "Prefabs/Collectables/StatuetteCollectable_prfb";
         GameObject obj = (GameObject)UnityEditor.PrefabUtility.InstantiatePrefab(Resources.Load<GameObject>(path));
         obj.transform.SetParent(collectableRoot.transform);
         obj.transform.position = GetScenePosition();
-        UnityEditor.Selection.activeGameObject = obj;
+
+        CleanCollectableList();
 
         collectables.Add(obj);
         collectableData.datas.Add(new LevelCollectablesData.CollectableData(false));
 
+
         UnityEditor.EditorUtility.SetDirty(this.collectableData);
+    }
+
+    [Button("Clean Collectables List")]
+    private void CleanCollectableList()
+    {
+        var collectableList = collectables.ToArray();
+        for (int i = 0; i < collectableList.Length; i++)
+        {
+            if (collectableList[i] == null)
+            {
+                collectables.Remove(collectableList[i]);
+            }
+        }
     }
 
     [Button("SAVE CHANGES")]

@@ -15,13 +15,17 @@ public class GameMasterSettings : ScriptableObject, ISaveRestable
     [SerializeField]
     private bool railUnlocked = false;
     [SerializeField]
+    private bool timedDoorUnlocked = false;
+    [SerializeField]
     public bool isNewGame = true;
 
     public UnityEvent OnGemUnlocked = new UnityEvent();
     public UnityEvent OnRailUnlocked = new UnityEvent();
+    public UnityEvent OnTimedDoorUnlock = new UnityEvent();
 
     public bool GemUnlocked { get => gemUnlocked; }
     public bool RailUnlocked { get => railUnlocked; }
+    public bool TimedDoorUnlock { get => timedDoorUnlocked; }
 
     [Button("Save")]
     public void SaveData()
@@ -36,8 +40,9 @@ public class GameMasterSettings : ScriptableObject, ISaveRestable
 
     public void Reset()
     {
-        UnlockGem();
-        UnlockRail();
+        LockGem();
+        LockRail();
+        LockTimedDoor();
         isNewGame = true;
     }
     public void UnlockGem()
@@ -57,6 +62,15 @@ public class GameMasterSettings : ScriptableObject, ISaveRestable
     public void LockRail()
     {
         railUnlocked = false;
+    }
+    public void UnlockTimedDoor()
+    {
+        timedDoorUnlocked = true;
+        OnTimedDoorUnlock.Invoke();
+    }
+    public void LockTimedDoor()
+    {
+        timedDoorUnlocked = false;
     }
 
     public void ResetSave()

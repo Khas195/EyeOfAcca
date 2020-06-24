@@ -27,7 +27,7 @@ public class BoomerAxeFollow : MonoBehaviour
     {
         var cameraSizeY = 2 * playerCamera.orthographicSize;
         var cameraSizeX = cameraSizeY * playerCamera.aspect;
-        if (IsAxeOutsideCameraBound(cameraSizeY, cameraSizeX))
+        if (IsAxeOutsideCameraBound(cameraSizeY, cameraSizeX) || axeBody.gameObject.activeInHierarchy == false)
         {
             StopFollowAxe();
         }

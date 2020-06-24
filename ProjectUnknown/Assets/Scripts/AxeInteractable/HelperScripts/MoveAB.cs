@@ -111,7 +111,7 @@ public class MoveAB : MonoBehaviour
     private Vector2 destination = Vector2.one;
 
 
-    public void OnStartPositionChanged(MoveABEnum oldValue, MoveABEnum newValue)
+    public void OnStartPositionChanged()
     {
         GoToStartPosition();
     }

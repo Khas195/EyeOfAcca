@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class InGameMenu : SingletonMonobehavior<InGameMenu>
 {
     [SerializeField]
+    GameMasterSettings settings = null;
+    [SerializeField]
     [Required]
     GameStateSnapShot snapShot;
     [SerializeField]
@@ -63,7 +65,7 @@ public class InGameMenu : SingletonMonobehavior<InGameMenu>
         Vector3 axePos = snapShot.AxePosition;
         var axeScreenPos = snapShot.PlayerCamera.WorldToScreenPoint(axePos);
 
-        if (IsPosOffCameraView(axeScreenPos))
+        if (IsPosOffCameraView(axeScreenPos) && settings.isNewGame == false)
         {
             if (showIndicator == false)
             {
@@ -84,11 +86,6 @@ public class InGameMenu : SingletonMonobehavior<InGameMenu>
             }
         }
         ProcessTransition(snapShot.GemColor);
-    }
-
-    private void ProcessTransition(object gemColor)
-    {
-        throw new NotImplementedException();
     }
 
     private static bool IsPosOffCameraView(Vector3 posToCheck)

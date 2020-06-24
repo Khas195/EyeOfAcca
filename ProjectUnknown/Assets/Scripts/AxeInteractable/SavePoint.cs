@@ -11,23 +11,17 @@ public class SavePoint : AxeInteractable
     [SerializeField]
     [Required]
     LevelTransitionDoor linkedDoor = null;
-    [SerializeField]
-    [Required]
-    SpriteRenderer spriteRenderer = null;
-    [SerializeField]
-    [Required]
-    TransitionCurve colorCurve = null;
     bool activate = false;
 
+    /// <summary>
+    /// Start is called on the frame when a script is enabled just before
+    /// any of the Update methods is called the first time.
+    /// </summary>
     void Start()
     {
-        if (savedSettings.IsSameStartSpawn(linkedDoor.GetProfile()))
+        if (savedSettings.IsSameStartSpawn(this.linkedDoor.GetProfile()))
         {
-            var lightValue = colorCurve.GetTransitionInKey(1).value;
-            var color = spriteRenderer.color;
-            color = new Color(lightValue, lightValue, lightValue, 1);
-            spriteRenderer.color = color;
-            activate = true;
+            this.ActivateSavePoint();
         }
     }
 
@@ -35,30 +29,27 @@ public class SavePoint : AxeInteractable
     {
         base.OnAxeHit(axe);
         this.savedSettings.SaveDoorAsStartSpawn(linkedDoor.GetProfile());
-        if (activate)
+        if (activate == false)
         {
-            colorCurve.TransitionIn(colorCurve.GetTransitionInKey(1).time);
+            this.ActivateSavePoint();
         }
-        else
-        {
-            colorCurve.TransitionIn();
-        }
-        activate = true;
-        SaveLoadManager.SaveAllData();
     }
-
-    void Update()
+    public void ActivateSavePoint()
     {
-        if (activate)
-        {
-            if (colorCurve.IsCurrentTimeInGraph() == false) return;
-
-            colorCurve.AdvanceTime(Time.deltaTime);
-            var lightValue = colorCurve.GetCurrentValue();
-            var color = spriteRenderer.color;
-            color = new Color(lightValue, lightValue, lightValue, 1);
-            spriteRenderer.color = color;
-        }
-
+        this.activate = true;
+        this.OnSavePointActivated();
+    }
+    public void DeactivateSavePoint()
+    {
+        this.activate = false;
+        this.OnSavePointDeactivated();
+    }
+    public virtual void OnSavePointActivated()
+    {
+        this.savedSettings.SaveData();
+    }
+    public virtual void OnSavePointDeactivated()
+    {
+        this.savedSettings.SaveData();
     }
 }

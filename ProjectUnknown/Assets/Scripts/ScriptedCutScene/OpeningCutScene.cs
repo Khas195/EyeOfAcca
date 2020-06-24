@@ -1,10 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class OpeningCutScene : MonoBehaviour
 {
+    [SerializeField]
+    [Scene]
+    string openingSceneName;
     [SerializeField]
     GameMasterSettings settings = null;
     [SerializeField]
@@ -28,13 +33,7 @@ public class OpeningCutScene : MonoBehaviour
     [SerializeField]
     List<Transform> stoneBreaksPos = new List<Transform>();
     int curBreakCount = 0;
-    [SerializeField]
-    Transform initialThrowAxePoint = null;
-    [SerializeField]
-    Transform initialAxePos = null;
-    [SerializeField]
-    BoomeraxeGrip grip = null;
-    // Start is called before the first frame update
+
     void Start()
     {
         var master = GameMaster.GetInstance(false);
@@ -42,28 +41,27 @@ public class OpeningCutScene : MonoBehaviour
         {
             cutsceneCameraRoot.transform.position = master.GetSpawnLocation();
         }
-
-        if (settings.isNewGame)
+        if (settings.isNewGame && SceneManager.GetSceneByName(openingSceneName).IsValid())
         {
             playerCamera.gameObject.SetActive(false);
             cutsceneCameraRoot.gameObject.SetActive(true);
             characterBehaviour.SetActive(false);
             cameraBehaviour.SetActive(false);
             characterAnim.SetBool("StoneTransition", true);
-            grip.ThrowAxe(initialThrowAxePoint.position, initialAxePos.transform.position);
         }
         else
         {
             this.gameObject.SetActive(false);
         }
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.anyKeyDown)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            cutsceneAnim.SetTrigger("Begin");
+            cutsceneAnim.SetTrigger("Next");
         }
     }
     public void TriggerNext()
@@ -78,15 +76,18 @@ public class OpeningCutScene : MonoBehaviour
 
         }
     }
+    public void TriggerLast()
+    {
+        TriggerNext();
+        characterAnim.SetBool("StoneTransition", false);
+        characterControl.StartJumpBufferTime(false);
+        characterBehaviour.SetActive(true);
+    }
     public void Finished()
     {
-        characterAnim.SetBool("StoneTransition", false);
         playerCamera.gameObject.SetActive(true);
         cutsceneCameraRoot.gameObject.SetActive(false);
-        characterBehaviour.SetActive(true);
         cameraBehaviour.SetActive(true);
-        characterControl.StartJumpBufferTime(false);
-        settings.isNewGame = false;
         SaveLoadManager.SaveAllData();
     }
 }

@@ -6,7 +6,10 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-
+    [BoxGroup("Requirements")]
+    [SerializeField]
+    [Required]
+    GameMasterSettings settings = null;
 
     [BoxGroup("Requirements")]
     [SerializeField]
@@ -107,6 +110,7 @@ public class Door : MonoBehaviour
     [Button("Open")]
     public void Open()
     {
+        if (settings.TimedDoorUnlock == false) return;
         moveAB.GoTo(OpenPos);
         isOpen = true;
     }
@@ -114,6 +118,7 @@ public class Door : MonoBehaviour
     [Button("Close")]
     public void Close()
     {
+        if (settings.TimedDoorUnlock == false) return;
         if (OpenPos == MoveAB.MoveABEnum.A)
         {
             moveAB.GoTo(MoveAB.MoveABEnum.B);

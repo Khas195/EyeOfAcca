@@ -40,6 +40,12 @@ public class LoadingControl : MonoBehaviour
                 if (transCurve.IsTransIn() == false)
                 {
                     this.gameObject.SetActive(false);
+                    this.screenTransitionMat.SetFloat("Vector1_B610FB5D", 1.0f);
+                }
+                else
+                {
+                    this.screenTransitionMat.SetFloat("Vector1_B610FB5D", 0.0f);
+
                 }
             }
         }

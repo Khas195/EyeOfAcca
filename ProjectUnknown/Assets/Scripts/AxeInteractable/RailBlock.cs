@@ -48,6 +48,10 @@ public class RailBlock : AxeInteractable
     [BoxGroup("Settings")]
     [SerializeField]
     public UnityEvent OnBlockMoveB = new UnityEvent();
+    [BoxGroup("Settings")]
+    [SerializeField]
+    bool isRailBlock = true;
+
 
 
 
@@ -65,7 +69,10 @@ public class RailBlock : AxeInteractable
 
     public override void OnAxeHit(Boomeraxe axe)
     {
-        if (settings.RailUnlocked == false) return;
+        if (isRailBlock)
+        {
+            if (settings.RailUnlocked == false) return;
+        }
 
         base.OnAxeHit(axe);
         holderTrans = axe.GetHolder();
