@@ -61,9 +61,9 @@ public class OpeningCutScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.anyKeyDown)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            cutsceneAnim.SetTrigger("Begin");
+            cutsceneAnim.SetTrigger("Next");
         }
     }
     public void TriggerNext()
@@ -78,14 +78,18 @@ public class OpeningCutScene : MonoBehaviour
 
         }
     }
+    public void TriggerLast()
+    {
+        TriggerNext();
+        characterAnim.SetBool("StoneTransition", false);
+        characterControl.StartJumpBufferTime(false);
+        characterBehaviour.SetActive(true);
+    }
     public void Finished()
     {
-        characterAnim.SetBool("StoneTransition", false);
         playerCamera.gameObject.SetActive(true);
         cutsceneCameraRoot.gameObject.SetActive(false);
-        characterBehaviour.SetActive(true);
         cameraBehaviour.SetActive(true);
-        characterControl.StartJumpBufferTime(false);
         settings.isNewGame = false;
         SaveLoadManager.SaveAllData();
     }
