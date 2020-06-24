@@ -165,7 +165,6 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
         this.currentSettings.startLevelDoor = profileToland;
         if (saveWhenEnter)
         {
-            masterSettings.isNewGame = false;
             savedSettings.SaveDoorAsStartSpawn(profileToland);
             SaveLoadManager.SaveAllData();
         }
@@ -315,7 +314,6 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     public void ContinueSaved()
     {
         SaveLoadManager.LoadAllData();
-        currentSettings = savedSettings;
-        LoadLevelAtSpawn(currentSettings.startLevelDoor);
+        LoadLevelAtSpawn(savedSettings.startLevelDoor);
     }
 }

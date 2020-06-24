@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -172,15 +172,15 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.00013580918
+    x: 0.00032874942
     y: 0
-    width: 0.9997284
+    width: 0.9993425
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.6234717
+  orthographic size: 5.6213017
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -1563,6 +1563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6399e57e0ca71b04d8309328bf4983d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settings: {fileID: 11400000, guid: ec07c30a6fa72d0489a07bc455aec572, type: 2}
   snapShot: {fileID: 11400000, guid: 4571d7bc994ae684f9b3b27bb4676389, type: 2}
   animator: {fileID: 1342635563}
   axeIndicatorPivot: {fileID: 1289295489}

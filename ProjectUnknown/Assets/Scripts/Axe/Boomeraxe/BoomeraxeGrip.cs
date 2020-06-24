@@ -23,7 +23,6 @@ public class BoomeraxeGrip : MonoBehaviour
     Flip flip = null;
 
 
-
     [BoxGroup("Requirement")]
     [SerializeField]
     [Required]
@@ -69,7 +68,7 @@ public class BoomeraxeGrip : MonoBehaviour
     [BoxGroup("Current Status")]
     [SerializeField]
     [ReadOnly]
-    bool isBeingHeld = true;
+    bool isBeingHeld = false;
 
 
 
@@ -81,17 +80,6 @@ public class BoomeraxeGrip : MonoBehaviour
 
 
     bool axeAbilityActivated;
-
-    /// <summary>
-    /// Awake is called when the script instance is being loaded.
-    /// </summary>
-    protected void Awake()
-    {
-        if (settings.isNewGame == false)
-        {
-            HoldAxe();
-        }
-    }
 
 
     void Update()
@@ -114,8 +102,6 @@ public class BoomeraxeGrip : MonoBehaviour
     }
     public bool ThrowAxe(Vector3 at, Vector2 originThrowPoint)
     {
-        if (isBeingHeld == false) return false;
-
         axeThrowTrigger.Invoke();
 
         isBeingHeld = false;
@@ -152,9 +138,10 @@ public class BoomeraxeGrip : MonoBehaviour
     {
         return boomeraxeObject.transform.position;
     }
-    public void HoldAxe()
+
+    public void HoldAxe(bool force = false)
     {
-        if (axeCatchable)
+        if (axeCatchable || force == true)
         {
             LogHelper.GetInstance().Log(("Arkkkk, So heavy!").Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);
             LogHelper.GetInstance().Log("Catch the Axe!", true);
@@ -184,7 +171,11 @@ public class BoomeraxeGrip : MonoBehaviour
     public bool ActivateAxeAbility()
     {
         if (boomeraxeFlying.IsStuck() == false || axeAbilityActivated == true) return false;
-
+        if (this.settings.isNewGame)
+        {
+            this.settings.isNewGame = false;
+            this.settings.SaveData();
+        }
         axeAbilityActivated = true;
         if (shake != null)
         {
