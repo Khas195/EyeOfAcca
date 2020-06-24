@@ -5,6 +5,9 @@ public class TeleportAbility : AxeAbility
 {
     [SerializeField]
     BoomeraxeParams datas = null;
+
+    [SerializeField]
+    private Color gemColor;
     public override void Activate(Boomeraxe axe)
     {
 
@@ -39,6 +42,6 @@ public class TeleportAbility : AxeAbility
 
     public override Color GetGemColor()
     {
-        return Color.red;
+        return this.gemColor;
     }
 }
