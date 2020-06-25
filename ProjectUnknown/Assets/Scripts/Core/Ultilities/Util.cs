@@ -130,5 +130,4 @@ public static class Util
     {
         SaveLoadManager.Load<object>(data, data.name);
     }
-
 }

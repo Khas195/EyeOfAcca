@@ -30,8 +30,11 @@ EditorBuildSettings:
     path: Assets/Scenes/LevelScene/New Levels/Level 1C.unity
     guid: 9d4a402a8a6815943a0d8c313df2bec5
   - enabled: 1
-    path: Assets/Scenes/LevelScene/TestConnectedLevels/IntroduceLevel-1A.unity
+    path: Assets/Scenes/LevelScene/FINAL-LEVELS/Introduce-Rail-1A.unity
     guid: 79fff184b7954dd499ab4d2aa0b3abf0
+  - enabled: 1
+    path: Assets/Scenes/LevelScene/FINAL-LEVELS/Introduce-Rail-1B.unity
+    guid: 6c3b768d4b056d446a2fc67993e52cc5
   - enabled: 1
     path: Assets/Scenes/LevelScene/TestConnectedLevels/TestLevel-AB-E.unity
     guid: b63f6e1e1954c7c44b2e90d35377e264
@@ -65,4 +68,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Special/UnlockTimedDoorRoom.unity
     guid: 978230b4ad2137d4a83904985a1f30f3
+  - enabled: 1
+    path: Assets/Scenes/Special/EndingScene.unity
+    guid: 2d6cbaf629605b943adc58dd8827f034
   m_configObjects: {}

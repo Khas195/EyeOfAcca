@@ -82,7 +82,10 @@ public class RailBlock : AxeInteractable
 
     public override void OnAxeAbilityTriggered(AxeAbility triggeredAbility)
     {
-        if (settings.RailUnlocked == false) return;
+        if (isRailBlock)
+        {
+            if (settings.RailUnlocked == false) return;
+        }
 
         base.OnAxeAbilityTriggered(triggeredAbility);
         bool moveA = true;

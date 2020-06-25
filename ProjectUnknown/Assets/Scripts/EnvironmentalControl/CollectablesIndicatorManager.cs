@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 
 public class CollectablesIndicatorManager : MonoBehaviour
 {
     [SerializeField]
+    [ReadOnly]
     List<CollectableIndicatorSwitch> indicators = new List<CollectableIndicatorSwitch>();
     int curCount = 0;
 
@@ -26,4 +28,27 @@ public class CollectablesIndicatorManager : MonoBehaviour
             indicators[i].IndicatorActivate();
         }
     }
+#if UNITY_EDITOR
+    [Button("Clean Indicators List")]
+    private void CleanCollectableIndicatorList()
+    {
+        var managerList = indicators.ToArray();
+        for (int i = 0; i < managerList.Length; i++)
+        {
+            if (managerList[i] == null)
+            {
+                indicators.Remove(managerList[i]);
+            }
+        }
+    }
+    [Button("Add Indicators")]
+    public void AddIndicators()
+    {
+        string path = "Prefabs/EnvironmentElements/Static/CollectableIndicator_prfb";
+        GameObject indicateManager = (GameObject)UnityEditor.PrefabUtility.InstantiatePrefab(Resources.Load<GameObject>(path));
+        indicateManager.transform.SetParent(this.transform);
+        indicateManager.transform.localPosition = Vector3.zero;
+        CleanCollectableIndicatorList();
+    }
+#endif
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 public class RecallAbility : AxeAbility
 {
     [SerializeField]
-    private Color gemColor;
+    private Color gemColor = Color.white;
     public override void Activate(Boomeraxe axe)
     {
         LogHelper.GetInstance().Log(("CRACKED!!").Bolden().Colorize(Color.yellow), true, LogHelper.LogLayer.PlayerFriendly);

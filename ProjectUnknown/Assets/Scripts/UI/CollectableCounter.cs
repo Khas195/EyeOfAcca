@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class CollectableCounter : MonoBehaviour
@@ -11,11 +12,9 @@ public class CollectableCounter : MonoBehaviour
     List<LevelCollectablesData> collectablesList = new List<LevelCollectablesData>();
     [SerializeField]
     Text counterText = null;
-    [SerializeField]
-    Image statueImage = null;
     int totalCollectables = 0;
     [SerializeField]
-    TransitionCurve fadeCurve = null;
+    UnityEvent OnCollectableUpdated = new UnityEvent();
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +25,7 @@ public class CollectableCounter : MonoBehaviour
             totalCollectables += collectable.datas.Count;
         }
         Collectable.OnCollect.AddListener(this.UpdateCurrentCollectableCount);
+        UpdateUI();
     }
 
 
@@ -33,6 +33,12 @@ public class CollectableCounter : MonoBehaviour
     /// Update is called every frame, if the MonoBehaviour is enabled.
     /// </summary>
     void UpdateCurrentCollectableCount(Collectable collectedItem)
+    {
+        UpdateUI();
+        OnCollectableUpdated.Invoke();
+    }
+
+    private void UpdateUI()
     {
         var count = 0;
         for (int i = 0; i < collectablesList.Count; i++)
@@ -46,23 +52,5 @@ public class CollectableCounter : MonoBehaviour
             }
         }
         counterText.text = (count + "/" + totalCollectables).Bolden();
-        fadeCurve.TransitionIn();
-    }
-    /// <summary>
-    /// Update is called every frame, if the MonoBehaviour is enabled.
-    /// </summary>
-    void Update()
-    {
-        if (fadeCurve.IsCurrentTimeInGraph())
-        {
-            fadeCurve.AdvanceTime(Time.deltaTime);
-            var alphaValue = fadeCurve.GetCurrentValue();
-            var counterColor = this.counterText.color;
-            counterColor.a = alphaValue;
-            this.counterText.color = counterColor;
-            var spriteColor = this.statueImage.color;
-            spriteColor.a = alphaValue;
-            this.statueImage.color = spriteColor;
-        }
     }
 }

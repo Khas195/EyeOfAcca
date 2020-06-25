@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ScaleTransition : TransitionCurve
+public class ScaleHighlightButton : TransitionCurve, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
 {
+    [SerializeField]
+    bool useUnScaledDeltaTime = true;
     [SerializeField]
     Transform scaleTarget = null;
     [SerializeField]
@@ -25,11 +27,13 @@ public class ScaleTransition : TransitionCurve
         targetScale = normalScale;
         SetScale(normalScale);
     }
+
     void Update()
     {
         if (this.IsCurrentTimeInGraph())
         {
-            this.AdvanceTime(Time.deltaTime);
+            float deltaTime = useUnScaledDeltaTime ? Time.unscaledDeltaTime : Time.deltaTime;
+            this.AdvanceTime(deltaTime);
             var value = this.GetCurrentValue();
             SetScale(beginScale + (targetScale - beginScale) * value);
         }
@@ -78,5 +82,25 @@ public class ScaleTransition : TransitionCurve
         beginScale = this.transform.localScale.x;
         targetScale = normalScale;
         this.TransitionIn();
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        this.Highlight();
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        this.UnHighlight();
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        this.OnPress();
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        this.OnRelease();
     }
 }

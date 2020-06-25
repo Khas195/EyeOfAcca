@@ -115,6 +115,7 @@ public static class GameSystemMenu
     {
         SpawnInstanceInScene(COLLECTABLES_PATH + "StatuetteCollectable_prfb");
     }
+
     [MenuItem("GameObject/2D Object/Game System/Invisible-CheckPoint")]
     public static void CheckPoint()
     {

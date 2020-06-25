@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 public class InGameMenu : SingletonMonobehavior<InGameMenu>
 {
@@ -10,16 +11,13 @@ public class InGameMenu : SingletonMonobehavior<InGameMenu>
     GameMasterSettings settings = null;
     [SerializeField]
     [Required]
-    GameStateSnapShot snapShot;
-    [SerializeField]
-    [Required]
-    Animator animator = null;
+    GameStateSnapShot snapShot = null;
     [SerializeField]
     GameObject axeIndicatorPivot = null;
     [SerializeField]
-    Image axeIndicator;
+    Image axeIndicator = null;
     [SerializeField]
-    float moveSpeed;
+    float moveSpeed = 0;
     [SerializeField]
     RotateToward rotateScript = null;
 
@@ -30,6 +28,10 @@ public class InGameMenu : SingletonMonobehavior<InGameMenu>
 
     bool showIndicator = false;
     Vector3 targetPos;
+    [SerializeField]
+    UnityEvent OnMenuShow = new UnityEvent();
+    [SerializeField]
+    UnityEvent OnMenuHide = new UnityEvent();
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
     /// any of the Update methods is called the first time.
@@ -40,11 +42,11 @@ public class InGameMenu : SingletonMonobehavior<InGameMenu>
     }
     public void HideInGameMenu()
     {
-        animator.SetTrigger("HideInGameMenu");
+        OnMenuHide.Invoke();
     }
     public void ShowInGameMenu()
     {
-        animator.SetTrigger("ShowInGameMenu");
+        OnMenuShow.Invoke();
     }
     public void ResumeGame()
     {

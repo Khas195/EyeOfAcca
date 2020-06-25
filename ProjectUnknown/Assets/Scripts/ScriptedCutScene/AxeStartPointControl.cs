@@ -7,12 +7,12 @@ public class AxeStartPointControl : MonoBehaviour
 {
     [SerializeField]
     [Scene]
-    string OpeningSceneNoAxe;
+    string OpeningSceneNoAxe = "";
     [SerializeField]
     [Scene]
-    string PickUpAxeScene;
+    string PickUpAxeScene = "";
     [SerializeField]
-    GameMasterSettings settings;
+    GameMasterSettings settings = null;
     [SerializeField]
     Transform initialThrowAxePoint = null;
     [SerializeField]

@@ -21,10 +21,6 @@ public class LoadingControl : MonoBehaviour
 
     Action callbackAfterFade = null;
 
-    [BoxGroup("Status")]
-    [SerializeField]
-    [ReadOnly]
-    float currentValue = 0;
     void Update()
 
     {

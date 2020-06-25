@@ -7,7 +7,7 @@ public class TeleportAbility : AxeAbility
     BoomeraxeParams datas = null;
 
     [SerializeField]
-    private Color gemColor;
+    private Color gemColor = Color.white;
     public override void Activate(Boomeraxe axe)
     {
 

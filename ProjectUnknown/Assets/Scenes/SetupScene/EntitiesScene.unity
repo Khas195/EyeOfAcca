@@ -336,7 +336,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OpeningSceneNoAxe: OpeningRoom
-  PickUpAxeScene: TestLevel-A
+  PickUpAxeScene: Introduce-Rail-1A
   settings: {fileID: 11400000, guid: ec07c30a6fa72d0489a07bc455aec572, type: 2}
   initialThrowAxePoint: {fileID: 1352987081}
   initialAxePos: {fileID: 1679121086}
@@ -740,7 +740,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1352987080}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.39, y: 2.4, z: -40.864315}
+  m_LocalPosition: {x: 10.8, y: 1.97, z: -40.864315}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 488810860}
@@ -1267,6 +1267,20 @@ PrefabInstance:
       propertyPath: axeBody
       value: 
       objectReference: {fileID: 1481426448}
+    - target: {fileID: 1590777604, guid: 19c4c104f02ffa34ead48f24ad97343b, type: 3}
+      propertyPath: pecentages
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7188433439482887247, guid: 19c4c104f02ffa34ead48f24ad97343b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 56.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7188433439482887247, guid: 19c4c104f02ffa34ead48f24ad97343b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.1
+      objectReference: {fileID: 0}
     - target: {fileID: 7188433439587899957, guid: 19c4c104f02ffa34ead48f24ad97343b,
         type: 3}
       propertyPath: character
@@ -1420,6 +1434,10 @@ PrefabInstance:
       propertyPath: grip
       value: 
       objectReference: {fileID: 285891218}
+    - target: {fileID: 830633389, guid: 2b03fc41f04525f469eccd660ed2db23, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 830633391, guid: 2b03fc41f04525f469eccd660ed2db23, type: 3}
       propertyPath: follow
       value: 
@@ -1428,6 +1446,10 @@ PrefabInstance:
       propertyPath: playerCam
       value: 
       objectReference: {fileID: 424431176}
+    - target: {fileID: 830633391, guid: 2b03fc41f04525f469eccd660ed2db23, type: 3}
+      propertyPath: controller2D
+      value: 
+      objectReference: {fileID: 789544800}
     - target: {fileID: 1692317670, guid: 2b03fc41f04525f469eccd660ed2db23, type: 3}
       propertyPath: playerCam
       value: 

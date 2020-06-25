@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -606,7 +606,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1335997348}
-  m_LocalRotation: {x: 0, y: 0, z: 0.24528532, w: -0.96945095}
+  m_LocalRotation: {x: 0, y: 0, z: 0.13906755, w: -0.99028295}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1079,7 +1079,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1740812506}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 393.2056, y: 111.119225, z: -266.125}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1016400296}
@@ -1243,7 +1243,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  beginCurTime: 0
+  beginIn: 1
   curCurve:
     serializedVersion: 2
     m_Curve: []
@@ -1267,7 +1267,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   screenTransitionMat: {fileID: 2100000, guid: 4ed34c286a892a74d895c612c1b636a6, type: 2}
   transCurve: {fileID: 1899728966}
-  currentValue: 0
 --- !u!222 &1899728968
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -21,7 +21,8 @@ public class BoomeraxeVFXHandler : MonoBehaviour
         var effect = VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.AxeHasPowerFlash, Vector2.one, Quaternion.identity);
         effect.transform.position = gemPosition.position;
         effect.transform.parent = axe.GetAxeTransform();
-        effect.GetComponent<Animator>().SetBool(ability.GetAbilityPower(), true);
+        var anim = effect.GetComponent<Animator>();
+        anim.SetValueInAnimator(ability.GetAbilityPower(), true);
         rippleEffect.RippleAt(axe.GetAxePosition(), 0.7f, 10);
     }
     public void OnAbilityActivate(AxeAbility ability)
