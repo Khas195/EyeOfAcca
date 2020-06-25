@@ -8,7 +8,7 @@ public class GroundChecker : MonoBehaviour
     private bool bGrounded;
 
     [SerializeField]
-    private LayerMask groundLayer;
+    private LayerMask groundLayer = 0;
 
     private Vector2[] groundOverlapCheck;
 

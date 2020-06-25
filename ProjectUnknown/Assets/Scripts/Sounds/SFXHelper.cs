@@ -6,7 +6,7 @@ using UnityEngine;
 public class SFXHelper : MonoBehaviour
 {
     [SerializeField]
-    SFXResources.SFXList soundToPlay;
+    SFXResources.SFXList soundToPlay = SFXResources.SFXList.axeHit;
     [SerializeField]
     bool manualAudioSource = false;
     [SerializeField]

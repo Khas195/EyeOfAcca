@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: SavedLevelSettings
   m_EditorClassIdentifier: 
   startLevelDoor: {fileID: 11400000, guid: 546586656a80abd4e8cce2834415550a, type: 2}
-  currentLevel: UnlockTimedDoorRoom
-  levelCenter: {x: 119, y: 23.3, z: 0}
-  levelBounds: {x: 44, y: 20, z: 1}
-  currentCollectableData: {fileID: 11400000, guid: a2e37a5ec9d2a48459068d29513d9c36,
-    type: 2}
+  currentLevel: 
+  levelCenter: {x: 0, y: 0, z: 0}
+  levelBounds: {x: 0, y: 0, z: 0}
+  currentCollectableData: {fileID: 0}

@@ -13,14 +13,14 @@ public class FadeTransition : TransitionCurve
 
     [SerializeField]
     [BoxGroup("Settings")]
-    [Required]
-    Image targetImage;
+    List<Graphic> targetImages = new List<Graphic>();
 
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-
+        var curValue = this.GetCurrentValue();
+        SetValue(curValue);
     }
 
     // Update is called once per frame
@@ -29,13 +29,21 @@ public class FadeTransition : TransitionCurve
         if (this.IsCurrentTimeInGraph())
         {
             var curValue = this.GetCurrentValue();
-
-            var curColor = targetImage.color;
-            curColor.a = this.GetCurrentValue();
-            targetImage.color = curColor;
-
+            SetValue(curValue);
             float deltaTime = useUnscaleTime ? Time.unscaledDeltaTime : Time.deltaTime;
             this.AdvanceTime(deltaTime);
+        }
+    }
+
+    private void SetValue(float value)
+    {
+        for (int i = 0; i < targetImages.Count; i++)
+        {
+            var curColor = targetImages[i].color;
+            curColor.a = value;
+            targetImages[i].color = curColor;
+
+
         }
     }
 }

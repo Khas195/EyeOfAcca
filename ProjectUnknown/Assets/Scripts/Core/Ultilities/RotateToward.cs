@@ -6,8 +6,6 @@ using UnityEngine;
 public class RotateToward : MonoBehaviour
 {
 
-    [SerializeField]
-    bool manualAssign = false;
 
     [SerializeField]
     [ShowIf("manualAssign")]

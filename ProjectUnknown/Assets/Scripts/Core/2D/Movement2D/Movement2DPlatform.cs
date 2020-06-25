@@ -23,7 +23,7 @@ public class Movement2DPlatform : IMovement
     Vector3 checkGroundBoxOffset = Vector3.one;
     [BoxGroup("Settings")]
     [SerializeField]
-    LayerMask jumpableLayer;
+    LayerMask jumpableLayer = 0;
 
     [BoxGroup("Settings")]
     [SerializeField]

@@ -63,6 +63,8 @@ public class Chip : MonoBehaviour
         var waitfor = new WaitForSeconds(time);
         yield return waitfor;
         Time.timeScale = 1.0f;
+
+        GameMaster.GetInstance().IncreaseDeadCount();
         GameMaster.GetInstance().RestartLevel();
 
     }

@@ -5,14 +5,14 @@ using UnityEngine;
 public class CollectableRotate : MonoBehaviour
 {
     [SerializeField]
-    private float rotationRate;
+    private float rotationRate = 0;
 
     [SerializeField]
-    float floatFreq;
+    float floatFreq = 0;
     [SerializeField]
-    float floatAmp;
+    float floatAmp = 0;
 
-    private float timeKeep;
+    private float timeKeep = 0;
 
     private Vector3 posInit;
     // Start is called before the first frame update

@@ -17,6 +17,9 @@ public class LevelSettings : ScriptableObject, ISaveRestable
     public Vector3 levelBounds = Vector3.zero;
     [SerializeField]
     public LevelCollectablesData currentCollectableData = null;
+    private int deadCount = 0;
+
+    public int DeadCount { get => deadCount; }
 
     public void Reset()
     {
@@ -24,6 +27,11 @@ public class LevelSettings : ScriptableObject, ISaveRestable
         currentLevel = "";
         levelCenter = Vector3.zero;
         levelBounds = Vector3.zero;
+        deadCount = 0;
+    }
+    public void IncreaseDeadCount()
+    {
+        deadCount += 1;
     }
     public void SaveDoorAsStartSpawn(TransitionDoorProfile doorToSave)
     {

@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class ScaleTransitions : TransitionCurve
 {
-    [SerializeField]
-    [BoxGroup("Settings")]
-    bool useCurrentObject = true;
 
     [SerializeField]
     [BoxGroup("Settings")]
@@ -16,21 +13,18 @@ public class ScaleTransitions : TransitionCurve
 
     [SerializeField]
     [BoxGroup("Settings")]
-    bool scaleX, scaleY, scaleZ;
+    bool scaleX, scaleY, scaleZ = true;
 
     [SerializeField]
     [BoxGroup("Settings")]
-    [HideIf("useCurrentObject")]
-    [Required]
-    Transform scaleTarget = null;
+    List<Transform> scaleTargets = new List<Transform>();
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-        if (useCurrentObject)
-        {
-            scaleTarget = this.transform;
-        }
+        var curValue = this.GetCurrentValue();
+        SetValue(curValue);
+
     }
 
     // Update is called once per frame
@@ -39,15 +33,23 @@ public class ScaleTransitions : TransitionCurve
         if (this.IsCurrentTimeInGraph())
         {
             var curValue = this.GetCurrentValue();
-
-            var currentScale = scaleTarget.localScale;
-            currentScale.x = scaleX ? curValue : currentScale.x;
-            currentScale.y = scaleY ? curValue : currentScale.y;
-            currentScale.z = scaleZ ? curValue : currentScale.z;
-            scaleTarget.localScale = currentScale;
+            SetValue(curValue);
 
             float deltaTime = useUnscaleTime ? Time.unscaledDeltaTime : Time.deltaTime;
             this.AdvanceTime(deltaTime);
+        }
+    }
+
+    private void SetValue(float curValue)
+    {
+        for (int i = 0; i < scaleTargets.Count; i++)
+        {
+            var currentScale = scaleTargets[i].localScale;
+            currentScale.x = scaleX ? curValue : currentScale.x;
+            currentScale.y = scaleY ? curValue : currentScale.y;
+            currentScale.z = scaleZ ? curValue : currentScale.z;
+            scaleTargets[i].localScale = currentScale;
+
         }
     }
 }

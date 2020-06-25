@@ -11,13 +11,13 @@ public class InGameMenu : SingletonMonobehavior<InGameMenu>
     GameMasterSettings settings = null;
     [SerializeField]
     [Required]
-    GameStateSnapShot snapShot;
+    GameStateSnapShot snapShot = null;
     [SerializeField]
     GameObject axeIndicatorPivot = null;
     [SerializeField]
-    Image axeIndicator;
+    Image axeIndicator = null;
     [SerializeField]
-    float moveSpeed;
+    float moveSpeed = 0;
     [SerializeField]
     RotateToward rotateScript = null;
 

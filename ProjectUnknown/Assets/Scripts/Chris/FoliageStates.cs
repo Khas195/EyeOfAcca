@@ -6,12 +6,12 @@ using UnityEngine;
 public class FoliageStates : AxeInteractable
 {
     [SerializeField]
-    private Animator myAnimator;
+    private Animator myAnimator = null;
 
     [SerializeField]
-    private ParticleSystem cutParticles;
+    private ParticleSystem cutParticles = null;
     [SerializeField]
-    private Transform particleSpawnpoint;
+    private Transform particleSpawnpoint = null;
 
     //Determine which vine sprite set to use (from three)
     private void Awake()

@@ -15,7 +15,8 @@ public class TransitionCurve : MonoBehaviour
     AnimationCurve transOutCurve = null;
     [BoxGroup("Settings")]
     [SerializeField]
-    float beginCurTime = 0;
+    protected bool beginIn = true;
+
 
     [BoxGroup("Status")]
     [SerializeField]
@@ -35,11 +36,25 @@ public class TransitionCurve : MonoBehaviour
     [ReadOnly]
     float transOutLastKeyTime = 0.0f;
 
-    virtual protected void Start()
+    /// <summary>
+    /// Awake is called when the script instance is being loaded.
+    /// </summary>
+    virtual protected void Awake()
     {
-        curTime = beginCurTime;
         transInLastKeyTime = transInCurve.keys[transInCurve.length - 1].time;
         transOutLastKeyTime = transOutCurve.keys[transOutCurve.length - 1].time;
+        if (beginIn)
+        {
+            curTime = transInLastKeyTime;
+        }
+        else
+        {
+            curTime = transOutLastKeyTime;
+        }
+    }
+    virtual protected void Start()
+    {
+
     }
 
     public float GetCurrentValue()

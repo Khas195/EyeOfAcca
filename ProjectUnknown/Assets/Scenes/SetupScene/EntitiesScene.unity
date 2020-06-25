@@ -336,7 +336,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OpeningSceneNoAxe: OpeningRoom
-  PickUpAxeScene: TestLevel-A
+  PickUpAxeScene: Introduce-Rail-1A
   settings: {fileID: 11400000, guid: ec07c30a6fa72d0489a07bc455aec572, type: 2}
   initialThrowAxePoint: {fileID: 1352987081}
   initialAxePos: {fileID: 1679121086}
@@ -740,7 +740,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1352987080}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.39, y: 2.4, z: -40.864315}
+  m_LocalPosition: {x: 10.8, y: 1.97, z: -40.864315}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 488810860}

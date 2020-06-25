@@ -5,12 +5,12 @@ using UnityEngine;
 public class CollectableIndicatorSwitch : MonoBehaviour
 {
     [SerializeField]
-    private Sprite activeSprite;
+    private Sprite activeSprite = null;
 
     [SerializeField]
-    private ParticleSystem myParticles;
+    private ParticleSystem myParticles = null;
 
-    private SpriteRenderer mySpriteRenderer;
+    private SpriteRenderer mySpriteRenderer = null;
 
     private bool bActive = false;
 

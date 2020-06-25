@@ -129,14 +129,9 @@ public class Boomeraxe : MonoBehaviour
     Vector2 offsetWithStuckSurface;
 
 
-    [BoxGroup("Current Status")]
-    [SerializeField]
-    [ReadOnly]
-    float currentRecallDuration = 0.0f;
 
     [BoxGroup("Current Status")]
     [SerializeField]
-
     AudioSource spinningSource = null;
 
     void Awake()

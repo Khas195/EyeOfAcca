@@ -20,7 +20,6 @@ public class Movement2D : IMovement
      * this value smoothen the acceleration of the host object while speeding up to his intended speed
      * A value of 1 means the host object will snap to his intended speed
      */
-    float smoothAcceleration = 0.2f;
     /** The current speed of the host object */
     float currentSpeed;
     /** represents whether the host object is moving or not */

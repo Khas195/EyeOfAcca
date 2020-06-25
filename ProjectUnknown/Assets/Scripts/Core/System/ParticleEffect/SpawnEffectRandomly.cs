@@ -17,7 +17,7 @@ public class SpawnEffectRandomly : MonoBehaviour
     [SerializeField]
     float randomInvtervalMax = 2f;
     [SerializeField]
-    VFXResources.VFXList effectTag;
+    VFXResources.VFXList effectTag = VFXResources.VFXList.ArrowBreaks;
 
     float curTime = 0;
     float curInterval = 1.5f;

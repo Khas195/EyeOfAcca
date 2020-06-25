@@ -9,7 +9,7 @@ public class OpeningCutScene : MonoBehaviour
 {
     [SerializeField]
     [Scene]
-    string openingSceneName;
+    string openingSceneName = "";
     [SerializeField]
     GameMasterSettings settings = null;
     [SerializeField]

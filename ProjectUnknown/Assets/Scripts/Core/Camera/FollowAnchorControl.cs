@@ -25,8 +25,8 @@ public class FollowAnchorControl : MonoBehaviour
     float distance = 5f;
     float curTime = 0;
     [SerializeField]
-    Camera playerCam;
-    Vector3 cachedPos;
+    Camera playerCam = null;
+    Vector3 cachedPos = Vector3.zero;
     void Start()
     {
         cachedPos = followPoint.localPosition;

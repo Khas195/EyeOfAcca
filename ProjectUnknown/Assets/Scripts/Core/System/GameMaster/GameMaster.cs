@@ -81,6 +81,10 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
         this.InitiateLoadLevelSequence(currentSettings.startLevelDoor);
     }
 
+    public void IncreaseDeadCount()
+    {
+        currentSettings.IncreaseDeadCount();
+    }
 
     public Vector3 GetSpawnLocation()
     {
