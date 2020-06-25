@@ -8,11 +8,9 @@ using UnityEngine.UI;
 public class InGameMap : MonoBehaviour
 {
     [SerializeField]
-    [Required]
     UnityEvent showMap = new UnityEvent();
 
     [SerializeField]
-    [Required]
     UnityEvent hideMap = new UnityEvent();
     [SerializeField]
     [ReadOnly]
