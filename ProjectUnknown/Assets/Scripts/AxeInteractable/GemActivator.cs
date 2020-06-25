@@ -18,6 +18,10 @@ public class GemActivator : SavePoint
     private Sprite activatedSprite;
     [SerializeField]
     private Sprite deactivatedSprite;
+    [SerializeField]
+    private Transform flashSpawnPoint;
+    [SerializeField]
+    private GameObject flashObject;
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
     /// any of the Update methods is called the first time.
@@ -41,6 +45,7 @@ public class GemActivator : SavePoint
         settings.UnlockGem();
         //render.color = activatedColor;
         this.render.sprite = this.activatedSprite;
+        Instantiate(this.flashObject, this.flashSpawnPoint);
         settings.SaveData();
     }
 

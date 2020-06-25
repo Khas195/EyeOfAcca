@@ -19,6 +19,10 @@ public class RailActivator : SavePoint
     private Sprite deactivatedSprite;
     [SerializeField]
     private Sprite activatedSprite;
+    [SerializeField]
+    private Transform flashSpawnPoint;
+    [SerializeField]
+    private GameObject flashObject;
     void Start()
     {
         if (settings.RailUnlocked)
@@ -38,6 +42,7 @@ public class RailActivator : SavePoint
         settings.UnlockRail();
         //render.color = activatedColor;
         this.render.sprite = this.activatedSprite;
+        Instantiate(this.flashObject, this.flashSpawnPoint);
         settings.SaveData();
     }
 }
