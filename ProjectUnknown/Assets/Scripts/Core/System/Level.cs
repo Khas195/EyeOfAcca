@@ -32,8 +32,9 @@ public class Level : MonoBehaviour
             gameMaster.UpdateLevelSettingsBounds(this.GetGroundMapPosition(), this.GetGroundMapBounds());
             gameMaster.UpdateLevelCurrentCollectables(this.collectableData);
         }
-
         Collectable.OnCollect.AddListener(this.OnCollectCollectable);
+        CleanCollectableIndicatorList();
+        CleanCollectableList();
         for (int i = 0; i < collectableData.datas.Count; i++)
         {
             if (collectableData.datas[i].IsCollected)
@@ -61,6 +62,30 @@ public class Level : MonoBehaviour
         for (int i = 0; i < indicatorManagers.Count; i++)
         {
             indicatorManagers[i].IncreaseActivatedIndicator();
+        }
+    }
+    [Button("Clean Collectables List")]
+    private void CleanCollectableList()
+    {
+        var collectableList = collectables.ToArray();
+        for (int i = 0; i < collectableList.Length; i++)
+        {
+            if (collectableList[i] == null)
+            {
+                collectables.Remove(collectableList[i]);
+            }
+        }
+    }
+    [Button("Clean Collectables Indicator List")]
+    private void CleanCollectableIndicatorList()
+    {
+        var managerList = indicatorManagers.ToArray();
+        for (int i = 0; i < managerList.Length; i++)
+        {
+            if (managerList[i] == null)
+            {
+                indicatorManagers.Remove(managerList[i]);
+            }
         }
     }
 #if UNITY_EDITOR
@@ -115,30 +140,7 @@ public class Level : MonoBehaviour
         UnityEditor.EditorUtility.SetDirty(this.collectableData);
     }
 
-    [Button("Clean Collectables List")]
-    private void CleanCollectableList()
-    {
-        var collectableList = collectables.ToArray();
-        for (int i = 0; i < collectableList.Length; i++)
-        {
-            if (collectableList[i] == null)
-            {
-                collectables.Remove(collectableList[i]);
-            }
-        }
-    }
-    [Button("Clean Collectables Indicator List")]
-    private void CleanCollectableIndicatorList()
-    {
-        var managerList = indicatorManagers.ToArray();
-        for (int i = 0; i < managerList.Length; i++)
-        {
-            if (managerList[i] == null)
-            {
-                indicatorManagers.Remove(managerList[i]);
-            }
-        }
-    }
+
 
     [Button("Add Collectable Indicator")]
     public void AddCollectableIndicator()
