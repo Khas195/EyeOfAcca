@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
+
 
 [Serializable]
 [CreateAssetMenu(fileName = "LevelSettings", menuName = "Data/LevelSettings", order = 1)]
