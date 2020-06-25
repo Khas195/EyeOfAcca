@@ -20,6 +20,11 @@ public class TimedDoorActivator : SavePoint
     [SerializeField]
     private Sprite activatedSprite;
 
+    [SerializeField]
+    private Transform flashSpawnPoint;
+    [SerializeField]
+    private GameObject flashObject;
+
     void Start()
     {
         if (settings.TimedDoorUnlock)
@@ -40,6 +45,7 @@ public class TimedDoorActivator : SavePoint
         settings.UnlockTimedDoor();
         //render.color = activatedColor;
         this.render.sprite = this.activatedSprite;
+        Instantiate(this.flashObject, this.flashSpawnPoint);
         settings.SaveData();
     }
 }
