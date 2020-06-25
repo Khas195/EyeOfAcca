@@ -9,26 +9,35 @@ public class RailActivator : SavePoint
     GameMasterSettings settings = null;
     [SerializeField]
     SpriteRenderer render = null;
+    /*
     [SerializeField]
     Color activatedColor = Color.white;
     [SerializeField]
     Color deactivatedColor = Color.black;
+    */
+    [SerializeField]
+    private Sprite deactivatedSprite;
+    [SerializeField]
+    private Sprite activatedSprite;
     void Start()
     {
         if (settings.RailUnlocked)
         {
-            render.color = activatedColor;
+            //render.color = activatedColor;
+            this.render.sprite = this.activatedSprite;
         }
         else
         {
-            render.color = deactivatedColor;
+            //render.color = deactivatedColor;
+            this.render.sprite = this.deactivatedSprite;
         }
     }
     public override void OnSavePointActivated()
     {
         base.OnSavePointActivated();
         settings.UnlockRail();
-        render.color = activatedColor;
+        //render.color = activatedColor;
+        this.render.sprite = this.activatedSprite;
         settings.SaveData();
     }
 }
