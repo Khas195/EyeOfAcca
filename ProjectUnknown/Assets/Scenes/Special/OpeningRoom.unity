@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2989,17 +2989,17 @@ PrefabInstance:
     - target: {fileID: 3392594065528540447, guid: 76f96277f8106b74c965378a17620bfa,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 23
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3392594065528540447, guid: 76f96277f8106b74c965378a17620bfa,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 19
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: 3392594065528540447, guid: 76f96277f8106b74c965378a17620bfa,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 3.12
       objectReference: {fileID: 0}
     - target: {fileID: 3392594065528540447, guid: 76f96277f8106b74c965378a17620bfa,
         type: 3}
@@ -4117,17 +4117,17 @@ PrefabInstance:
     - target: {fileID: 3392594065528540447, guid: 76f96277f8106b74c965378a17620bfa,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.25
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 3392594065528540447, guid: 76f96277f8106b74c965378a17620bfa,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5
+      value: 29.25
       objectReference: {fileID: 0}
     - target: {fileID: 3392594065528540447, guid: 76f96277f8106b74c965378a17620bfa,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 3.12
       objectReference: {fileID: 0}
     - target: {fileID: 3392594065528540447, guid: 76f96277f8106b74c965378a17620bfa,
         type: 3}
@@ -33122,65 +33122,21 @@ CompositeCollider2D:
         Y: 10000000
       - X: -160000000
         Y: 140000000
-      - X: 19999900
+      - X: 20000000
         Y: 140000000
-      - X: 19999900
-        Y: 109999959
-      - X: 19999959
-        Y: 109999900
-      - X: 40000041
-        Y: 109999900
-      - X: 40000100
-        Y: 109999959
-      - X: 40000100
-        Y: 150000041
-      - X: 40000041
-        Y: 150000100
+      - X: 20000000
+        Y: 110000000
       - X: 40000000
-        Y: 150000100
+        Y: 110000000
       - X: 40000000
         Y: 220000000
-      - X: 49999900
+      - X: 60000000
         Y: 220000000
-      - X: 49999900
-        Y: 219999959
-      - X: 49999959
-        Y: 219999900
-      - X: 60000041
-        Y: 219999900
-      - X: 60000100
-        Y: 219999959
-      - X: 60000100
-        Y: 239999900
-      - X: 70000041
-        Y: 239999900
-      - X: 70000100
-        Y: 239999959
-      - X: 70000100
-        Y: 240000100
-      - X: 80000041
-        Y: 240000100
-      - X: 80000100
-        Y: 240000041
-      - X: 80000100
+      - X: 60000000
         Y: 240000000
-      - X: 209999900
+      - X: 230000000
         Y: 240000000
-      - X: 209999900
-        Y: 239999959
-      - X: 209999959
-        Y: 239999900
-      - X: 229999900
-        Y: 239999900
-      - X: 229999900
-        Y: 219999959
-      - X: 229999959
-        Y: 219999900
-      - X: 240000041
-        Y: 219999900
-      - X: 240000100
-        Y: 219999959
-      - X: 240000100
+      - X: 230000000
         Y: 220000000
       - X: 250000000
         Y: 220000000
@@ -33251,14 +33207,14 @@ CompositeCollider2D:
       - {x: -12.00003, y: 1}
       - {x: -16, y: 1.0000294}
       - {x: -15.999971, y: 14}
-      - {x: 1.99999, y: 13.999971}
-      - {x: 2.0000253, y: 10.99999}
-      - {x: 4.00001, y: 11.000026}
+      - {x: 2, y: 13.999971}
+      - {x: 2.0000293, y: 11}
+      - {x: 4, y: 11.00003}
       - {x: 4.0000296, y: 22}
-      - {x: 6.00001, y: 22.000027}
-      - {x: 6.000039, y: 23.99999}
-      - {x: 22.99999, y: 23.99996}
-      - {x: 23.000027, y: 21.99999}
+      - {x: 6, y: 22.000029}
+      - {x: 6.0000296, y: 24}
+      - {x: 23, y: 23.999971}
+      - {x: 23.000029, y: 22}
       - {x: 25, y: 21.999971}
       - {x: 24.999971, y: 9}
       - {x: 22, y: 9.00003}
