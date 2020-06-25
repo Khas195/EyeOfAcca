@@ -134,6 +134,11 @@ public class PlayerController2D : MonoBehaviour
 
     }
 
+    public float GetCurrentThrowBufferTime()
+    {
+        return currentAxeUseBufferTime;
+    }
+
     private void StartDropdownBufferTime()
     {
         currentAxeUseBufferTime = useAxeInputBuferTime;

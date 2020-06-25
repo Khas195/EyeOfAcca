@@ -26,6 +26,8 @@ public class FollowAnchorControl : MonoBehaviour
     float curTime = 0;
     [SerializeField]
     Camera playerCam = null;
+    [SerializeField]
+    PlayerController2D controller2D = null;
     Vector3 cachedPos = Vector3.zero;
     void Start()
     {
@@ -54,10 +56,13 @@ public class FollowAnchorControl : MonoBehaviour
         }
         else
         {
-            curTime = 0;
-            followPoint.localPosition = cachedPos;
-            followAnchor.localRotation = Quaternion.Euler(new Vector3(0, 0, 90));
+            ResetIdleTime();
         }
+        if (controller2D.GetCurrentThrowBufferTime() > 0)
+        {
+            ResetIdleTime();
+        }
+        return;
         if (curTime > standTime)
         {
             var mousPos = playerCam.ScreenToWorldPoint(Input.mousePosition);
@@ -76,6 +81,10 @@ public class FollowAnchorControl : MonoBehaviour
 
     }
 
-
-
+    private void ResetIdleTime()
+    {
+        curTime = 0;
+        followPoint.localPosition = cachedPos;
+        followAnchor.localRotation = Quaternion.Euler(new Vector3(0, 0, 90));
+    }
 }
