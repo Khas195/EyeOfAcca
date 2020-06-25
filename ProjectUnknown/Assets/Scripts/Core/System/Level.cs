@@ -15,26 +15,74 @@ public class Level : MonoBehaviour
     [ReadOnly]
     GameObject indicatorManagerRoot = null;
     [SerializeField]
+    [Required]
+    GameObject skeletonRoot = null;
+    [SerializeField]
     [ReadOnly]
     LevelCollectablesData collectableData = null;
+
+    [SerializeField]
+    [ReadOnly]
+    LevelDeadData deadPlaceDatas = null;
+
+
     [SerializeField]
     [ReorderableList]
     [ReadOnly]
     [OnValueChanged("OnEdit")]
     List<GameObject> collectables = new List<GameObject>();
     [SerializeField]
+    [ReorderableList]
+    [ReadOnly]
     List<CollectablesIndicatorManager> indicatorManagers = new List<CollectablesIndicatorManager>();
+
+    [SerializeField]
+    GameObject skeletonPrefabs;
     void Start()
     {
-        var gameMaster = GameMaster.GetInstance();
-        if (gameMaster)
-        {
-            gameMaster.UpdateLevelSettingsBounds(this.GetGroundMapPosition(), this.GetGroundMapBounds());
-            gameMaster.UpdateLevelCurrentCollectables(this.collectableData);
-        }
+        CheckInWithGameMaster();
+
         Collectable.OnCollect.AddListener(this.OnCollectCollectable);
-        CleanCollectableIndicatorList();
-        CleanCollectableList();
+
+        CleanList();
+        Setup();
+
+    }
+
+    private void Setup()
+    {
+        TurnOffCollectedStatue();
+        UpdateIndicatorManagers();
+        Chip.OnChracterDeadGlobal.AddListener(OnCharacterDead);
+        SpawnSkeletonsAtDeadPlace();
+    }
+    public void OnCharacterDead(Vector2 place)
+    {
+        LogHelper.GetInstance().Log("Dead Place added");
+        deadPlaceDatas.deadPlaces.Add(place);
+        deadPlaceDatas.SaveData();
+    }
+
+    private void SpawnSkeletonsAtDeadPlace()
+    {
+        if (skeletonPrefabs == null) return;
+        for (int i = 0; i < deadPlaceDatas.deadPlaces.Count; i++)
+        {
+            var newSkeleton = GameObject.Instantiate(skeletonPrefabs, deadPlaceDatas.deadPlaces[i], Quaternion.identity, this.skeletonRoot.transform);
+        }
+    }
+
+    private void UpdateIndicatorManagers()
+    {
+        // setup indicator managers
+        for (int i = 0; i < indicatorManagers.Count; i++)
+        {
+            indicatorManagers[i].UpdateActivatedIndicators(this.collectableData);
+        }
+    }
+
+    private void TurnOffCollectedStatue()
+    {
         for (int i = 0; i < collectableData.datas.Count; i++)
         {
             if (collectableData.datas[i].IsCollected)
@@ -42,12 +90,24 @@ public class Level : MonoBehaviour
                 collectables[i].SetActive(false);
             }
         }
-        for (int i = 0; i < indicatorManagers.Count; i++)
-        {
-            indicatorManagers[i].UpdateActivatedIndicators(this.collectableData);
-        }
-
     }
+
+    private void CleanList()
+    {
+        CleanCollectableIndicatorList();
+        CleanCollectableList();
+    }
+
+    private void CheckInWithGameMaster()
+    {
+        var gameMaster = GameMaster.GetInstance();
+        if (gameMaster)
+        {
+            gameMaster.UpdateLevelSettingsBounds(this.GetGroundMapPosition(), this.GetGroundMapBounds());
+            gameMaster.UpdateLevelCurrentCollectables(this.collectableData);
+        }
+    }
+
     public void OnCollectCollectable(Collectable collect)
     {
         for (int i = 0; i < collectables.Count; i++)
@@ -89,6 +149,8 @@ public class Level : MonoBehaviour
         }
     }
 #if UNITY_EDITOR
+    [Button("Create Collectables Data")]
+
     public void CreateData()
     {
         var newCollectableData = ScriptableObject.CreateInstance<LevelCollectablesData>();
@@ -98,6 +160,18 @@ public class Level : MonoBehaviour
         UnityEditor.EditorUtility.FocusProjectWindow();
         this.collectableData = newCollectableData;
         UnityEditor.EditorUtility.SetDirty(this.collectableData);
+    }
+    [Button("Create Dead Data")]
+    public void CreateDeadData()
+    {
+        var newDeadData = ScriptableObject.CreateInstance<LevelDeadData>();
+        var sceneName = this.gameObject.scene.name;
+        UnityEditor.AssetDatabase.CreateAsset(newDeadData, "Assets/Resources/Data/LevelDeadData/" + sceneName + "-" + this.gameObject.name + "-DeadPlaces" + ".asset");
+        UnityEditor.AssetDatabase.SaveAssets();
+        UnityEditor.EditorUtility.FocusProjectWindow();
+        this.deadPlaceDatas = newDeadData;
+        UnityEditor.EditorUtility.SetDirty(newDeadData);
+
     }
 
     public void CreateCollectableRoot()
@@ -167,6 +241,7 @@ public class Level : MonoBehaviour
             collectableData.datas.Add(new LevelCollectablesData.CollectableData(false));
         }
         this.collectableData.SaveData();
+        this.deadPlaceDatas.SaveData();
     }
 
 #endif

@@ -4,6 +4,10 @@ using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.Events;
 
+public class CharacterDeadEvent : UnityEvent<Vector2>
+{
+
+}
 public class Chip : MonoBehaviour
 {
     [SerializeField]
@@ -31,6 +35,7 @@ public class Chip : MonoBehaviour
     float deadAxeSpeed = 0.0f;
     [SerializeField]
     float characterDeadSpeed = 0.0f;
+    public static CharacterDeadEvent OnChracterDeadGlobal = new CharacterDeadEvent();
 
     public void InitiateDeadSequence()
     {
@@ -50,6 +55,7 @@ public class Chip : MonoBehaviour
         }
         anim.SetBool("Dead", true);
         OnCharacterDeath.Invoke();
+        OnChracterDeadGlobal.Invoke(charBody.transform.position);
         StartCoroutine(TriggerSceneReloadCoroutine(timeUntilLevelReload));
     }
 
