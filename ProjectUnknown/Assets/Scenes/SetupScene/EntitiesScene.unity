@@ -1267,6 +1267,10 @@ PrefabInstance:
       propertyPath: axeBody
       value: 
       objectReference: {fileID: 1481426448}
+    - target: {fileID: 1590777604, guid: 19c4c104f02ffa34ead48f24ad97343b, type: 3}
+      propertyPath: pecentages
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 7188433439587899957, guid: 19c4c104f02ffa34ead48f24ad97343b,
         type: 3}
       propertyPath: character

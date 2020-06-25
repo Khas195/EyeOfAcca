@@ -13,6 +13,9 @@ public class Level : MonoBehaviour
     GameObject collectableRoot = null;
     [SerializeField]
     [ReadOnly]
+    GameObject indicatorManagerRoot = null;
+    [SerializeField]
+    [ReadOnly]
     LevelCollectablesData collectableData = null;
     [SerializeField]
     [ReorderableList]
@@ -124,6 +127,34 @@ public class Level : MonoBehaviour
             }
         }
     }
+    [Button("Clean Collectables Indicator List")]
+    private void CleanCollectableIndicatorList()
+    {
+        var managerList = indicatorManagers.ToArray();
+        for (int i = 0; i < managerList.Length; i++)
+        {
+            if (managerList[i] == null)
+            {
+                indicatorManagers.Remove(managerList[i]);
+            }
+        }
+    }
+
+    [Button("Add Collectable Indicator")]
+    public void AddCollectableIndicator()
+    {
+        if (this.indicatorManagerRoot == null)
+        {
+            GameObject obj = new GameObject("IndicatorManagerRoot");
+            obj.transform.SetParent(this.transform);
+            this.indicatorManagerRoot = obj;
+        }
+        string path = "Prefabs/EnvironmentElements/Static/IndicatorManager_prfb";
+        GameObject indicateManager = (GameObject)UnityEditor.PrefabUtility.InstantiatePrefab(Resources.Load<GameObject>(path));
+        indicateManager.transform.SetParent(this.indicatorManagerRoot.transform);
+        CleanCollectableIndicatorList();
+        indicatorManagers.Add(indicateManager.GetComponent<CollectablesIndicatorManager>());
+    }
 
     [Button("SAVE CHANGES")]
     public void SaveChanges()
@@ -135,6 +166,7 @@ public class Level : MonoBehaviour
         }
         this.collectableData.SaveData();
     }
+
 #endif
     void OnDrawGizmos()
     {

@@ -22,10 +22,13 @@ public class BoomerAxeFollow : MonoBehaviour
     [SerializeField]
     [Required]
     Camera playerCamera = null;
+    [SerializeField]
+    [Range(0.0f, 1.0f)]
+    float pecentages = 0;
 
     public void Follow()
     {
-        var cameraSizeY = 2 * playerCamera.orthographicSize;
+        var cameraSizeY = 2 * playerCamera.orthographicSize * pecentages;
         var cameraSizeX = cameraSizeY * playerCamera.aspect;
         if (IsAxeOutsideCameraBound(cameraSizeY, cameraSizeX) || axeBody.gameObject.activeInHierarchy == false)
         {
