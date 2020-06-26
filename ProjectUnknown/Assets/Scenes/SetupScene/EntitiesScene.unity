@@ -1113,6 +1113,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 602995394, guid: 54031a8a3e953e64b814111327a4b252, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4475797550433327940, guid: 54031a8a3e953e64b814111327a4b252,
         type: 3}
       propertyPath: holderBody2d
@@ -1233,6 +1237,31 @@ PrefabInstance:
       propertyPath: axeThrowTrigger.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1692317669}
+    - target: {fileID: 4475797551516158991, guid: 54031a8a3e953e64b814111327a4b252,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4475797551516158991, guid: 54031a8a3e953e64b814111327a4b252,
+        type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4475797551516158991, guid: 54031a8a3e953e64b814111327a4b252,
+        type: 3}
+      propertyPath: m_UseFullKinematicContacts
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4475797551516158991, guid: 54031a8a3e953e64b814111327a4b252,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4475797551516158991, guid: 54031a8a3e953e64b814111327a4b252,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4475797551582585644, guid: 54031a8a3e953e64b814111327a4b252,
         type: 3}
       propertyPath: rippleEffect
