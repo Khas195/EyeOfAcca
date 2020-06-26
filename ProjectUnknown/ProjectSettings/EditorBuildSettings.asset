@@ -36,6 +36,12 @@ EditorBuildSettings:
     path: Assets/Scenes/LevelScene/FINAL-LEVELS/Introduce-Rail-1B.unity
     guid: 6c3b768d4b056d446a2fc67993e52cc5
   - enabled: 1
+    path: Assets/Scenes/LevelScene/FINAL-LEVELS/Introduce-Rail-1C.unity
+    guid: af09d5e73fc97264998c3ed822e859cb
+  - enabled: 1
+    path: Assets/Scenes/LevelScene/FINAL-LEVELS/Introduce-Rail-1D.unity
+    guid: d5738d7d3f384944386f7cec7e173135
+  - enabled: 1
     path: Assets/Scenes/LevelScene/TestConnectedLevels/TestLevel-AB-E.unity
     guid: b63f6e1e1954c7c44b2e90d35377e264
   - enabled: 1
@@ -71,4 +77,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Special/EndingScene.unity
     guid: 2d6cbaf629605b943adc58dd8827f034
+  - enabled: 1
+    path: Assets/Scenes/LevelScene/FINAL-LEVELS/MechanicalRoom.unity
+    guid: 93e6a4abc462c87458d3046e3c150e0b
+  - enabled: 1
+    path: Assets/Scenes/LevelScene/FINAL-LEVELS/TwinBlocks.unity
+    guid: 8d061892f18bfd341859b0f86c6c059a
   m_configObjects: {}

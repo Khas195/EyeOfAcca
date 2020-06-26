@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -8237779781442292687}
   - component: {fileID: 2409644629175369352}
   - component: {fileID: -5273731420552089238}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Skeleton_Down_Physics_prfb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,4 +143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 129bd09e91fd38240b57dcf57721d824, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ignoreTag: Player
+  ignoreLayers:
+    serializedVersion: 2
+    m_Bits: 0

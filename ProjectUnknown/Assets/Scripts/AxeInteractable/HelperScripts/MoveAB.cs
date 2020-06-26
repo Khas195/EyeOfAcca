@@ -82,7 +82,7 @@ public class MoveAB : MonoBehaviour
     [BoxGroup("Current Status")]
     [SerializeField]
     [ReadOnly]
-    bool inMotion;
+    bool inMotion = false;
     [BoxGroup("Current Status")]
     [SerializeField]
     [ShowIf("automaticallyMoveBackToStart")]
@@ -208,6 +208,7 @@ public class MoveAB : MonoBehaviour
 
     public void GoTo(MoveABEnum moveDestination)
     {
+        LogHelper.GetInstance().Log("Here".Bolden());
         if (allowInteractionDuringMoveBack == false && isMovingBack) return;
 
         if (moveDestination == MoveABEnum.A)
