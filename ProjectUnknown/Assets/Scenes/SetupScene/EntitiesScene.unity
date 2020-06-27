@@ -499,6 +499,7 @@ MonoBehaviour:
   follow: {fileID: 1080578821}
   constraint: {fileID: 700072372}
   axeFollow: {fileID: 1590777604}
+  anchorControl: {fileID: 1226232833}
 --- !u!114 &700072372 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2065472232, guid: 19c4c104f02ffa34ead48f24ad97343b,
@@ -673,6 +674,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1153697281}
   m_CullTransparentMesh: 0
+--- !u!114 &1226232833 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 830633391, guid: 2b03fc41f04525f469eccd660ed2db23,
+    type: 3}
+  m_PrefabInstance: {fileID: 8558128282752617304}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1d2f9c317894b14294ff567cad88270, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1287017935 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1287017935, guid: 2b03fc41f04525f469eccd660ed2db23,
@@ -1276,6 +1289,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 264149228, guid: 19c4c104f02ffa34ead48f24ad97343b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 264149230, guid: 19c4c104f02ffa34ead48f24ad97343b, type: 3}
       propertyPath: encapsulatedTargets.Array.data[0]
       value: 
