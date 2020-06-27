@@ -15,7 +15,7 @@ public class Level : MonoBehaviour
     [ReadOnly]
     GameObject indicatorManagerRoot = null;
     [SerializeField]
-    [Required]
+    [ReadOnly]
     GameObject skeletonRoot = null;
     [SerializeField]
     [ReadOnly]
@@ -29,7 +29,6 @@ public class Level : MonoBehaviour
     [SerializeField]
     [ReorderableList]
     [ReadOnly]
-    [OnValueChanged("OnEdit")]
     List<GameObject> collectables = new List<GameObject>();
     [SerializeField]
     [ReorderableList]
@@ -37,6 +36,7 @@ public class Level : MonoBehaviour
     List<CollectablesIndicatorManager> indicatorManagers = new List<CollectablesIndicatorManager>();
 
     [SerializeField]
+    [ShowAssetPreview(64, 64)]
     GameObject skeletonPrefabs;
     void Start()
     {
@@ -52,12 +52,19 @@ public class Level : MonoBehaviour
     private void Setup()
     {
         TurnOffCollectedStatue();
+        CreateIndicatorManagerRoot();
         UpdateIndicatorManagers();
         Chip.OnChracterDeadGlobal.AddListener(OnCharacterDead);
+        if (skeletonPrefabs == null)
+        {
+            FindDeadBodyPrefab();
+        }
+        CreateSkeletonRoot();
         SpawnSkeletonsAtDeadPlace();
     }
     public void OnCharacterDead(Vector2 place)
     {
+        if (deadPlaceDatas == null) return;
         LogHelper.GetInstance().Log("Dead Place added");
         deadPlaceDatas.deadPlaces.Add(place);
         deadPlaceDatas.SaveData();
@@ -65,7 +72,7 @@ public class Level : MonoBehaviour
 
     private void SpawnSkeletonsAtDeadPlace()
     {
-        if (skeletonPrefabs == null) return;
+        if (deadPlaceDatas == null) return;
         for (int i = 0; i < deadPlaceDatas.deadPlaces.Count; i++)
         {
             var newSkeleton = GameObject.Instantiate(skeletonPrefabs, deadPlaceDatas.deadPlaces[i], Quaternion.identity, this.skeletonRoot.transform);
@@ -148,7 +155,29 @@ public class Level : MonoBehaviour
             }
         }
     }
+    [Button("Find skeleton Prefab")]
+    public void FindDeadBodyPrefab()
+    {
+        this.skeletonPrefabs = Resources.Load("Prefabs/EnvironmentElements/Static/Skeleton_Down_Physics_prfb") as GameObject;
+    }
+    [Button("Create Dead Place Root")]
+    public void CreateSkeletonRoot()
+    {
+        if (this.skeletonRoot != null) return;
+        var root = new GameObject("SkeletonRoot");
+        root.transform.SetParent(this.transform);
+        this.skeletonRoot = root;
+    }
+    [Button("Create Indicator Manager Root")]
+    public void CreateIndicatorManagerRoot()
+    {
+        if (this.indicatorManagerRoot != null) return;
+        var root = new GameObject("IndicatorManagerRoot");
+        root.transform.SetParent(this.transform);
+        this.indicatorManagerRoot = root;
+    }
 #if UNITY_EDITOR
+
     [Button("Create Collectables Data")]
 
     public void CreateData()
