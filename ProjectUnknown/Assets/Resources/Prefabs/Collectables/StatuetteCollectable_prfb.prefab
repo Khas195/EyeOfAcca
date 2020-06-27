@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6626061989047105639}
   - component: {fileID: 1296001588232385599}
+  - component: {fileID: 8682298633905644814}
   m_Layer: 15
   m_Name: Glow
   m_TagString: Untagged
@@ -81,6 +82,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &8682298633905644814
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1506836032043584709}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ba38187b862a88641b6c3957c0f21945, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1826157456577602332
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,6 +112,7 @@ GameObject:
   - component: {fileID: 3392594065528540447}
   - component: {fileID: 3215028971706000192}
   - component: {fileID: 1389628040763392413}
+  - component: {fileID: 7754775976078116118}
   m_Layer: 15
   m_Name: StatuetteCollectable_prfb
   m_TagString: Untagged
@@ -126,9 +147,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 456505fc9db6ccb4293a32ec91f443cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnCollect:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!61 &1389628040763392413
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -155,6 +173,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!95 &7754775976078116118
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1826157456577602332}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: aa869474df7b8f943a6fc8d9c996532a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3828222294783039548
 GameObject:
   m_ObjectHideFlags: 0
