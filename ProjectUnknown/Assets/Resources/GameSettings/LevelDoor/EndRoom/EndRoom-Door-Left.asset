@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 745ccf2c8309d18499877da1fa42dda8, type: 3}
-  m_Name: MechanicalRoom-LeftDoor
+  m_Name: EndRoom-Door-Left
   m_EditorClassIdentifier: 
-  doorHome: MechanicalRoom
-  doorLocation: {x: 18.75, y: 12.5, z: 0}
+  doorHome: EndRoom
+  doorLocation: {x: 103.25, y: 20.8, z: 0}
   landingPlace: {fileID: 0}

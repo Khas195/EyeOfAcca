@@ -6,7 +6,6 @@ using UnityEngine;
 [Serializable]
 public class ShakeData : ScriptableObject
 {
-    public bool usePerlin = false;
     [NonSerialized]
     public float shakeDuration = 0.5f;
     [Tooltip("Shake amount = trauma * trauma")]

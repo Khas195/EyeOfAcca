@@ -1,46 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BigDoorManager : MonoBehaviour
 {
     [SerializeField]
-    private SpriteRenderer myRenderer;
+    private SpriteRenderer myRenderer = null;
 
     [SerializeField]
-    private List<Sprite> stateSprites;
+    private List<Sprite> stateSprites = new List<Sprite>();
 
-    private int symbolStates;
+    private int symbolStates = 0;
 
-    private Animator myAnimator;
+    private Animator myAnimator = null;
 
     [SerializeField]
-    private List<ParticleSystem> myParticles;
-
+    private List<ParticleSystem> myParticles = new List<ParticleSystem>();
     private void Awake()
     {
         this.symbolStates = 0;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
         this.myAnimator = this.GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            this.OpenDoor();
-        }
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            this.UpdateSymbols();
-        }
-    }
 
     public void UpdateSymbols()
     {
@@ -50,7 +32,8 @@ public class BigDoorManager : MonoBehaviour
     public void OpenDoor()
     {
         this.myAnimator.SetTrigger("Open");
-        foreach (ParticleSystem ps in this.myParticles){
+        foreach (ParticleSystem ps in this.myParticles)
+        {
             ps.Play();
         }
     }
