@@ -26,8 +26,11 @@ public class FollowAnchorControl : MonoBehaviour
     float curTime = 0;
     [SerializeField]
     Camera playerCam = null;
+
     [SerializeField]
-    PlayerController2D controller2D = null;
+    CameraSettings camSettings = null;
+
+
     Vector3 cachedPos = Vector3.zero;
     void Start()
     {
@@ -47,7 +50,7 @@ public class FollowAnchorControl : MonoBehaviour
         Gizmos.DrawWireSphere(mousePosition, 1f);
         Gizmos.DrawWireSphere(followAnchor.position, distance);
     }
-    void LateUpdate()
+    public void UpdateAnchor()
     {
         followAnchor.position = snap.CharacterPosition;
         if (snap.CharacterVelocity.x == 0 || follow.IsHoning() == false)
@@ -58,11 +61,6 @@ public class FollowAnchorControl : MonoBehaviour
         {
             ResetIdleTime();
         }
-        if (controller2D.GetCurrentThrowBufferTime() > 0)
-        {
-            ResetIdleTime();
-        }
-        return;
         if (curTime > standTime)
         {
             var mousPos = playerCam.ScreenToWorldPoint(Input.mousePosition);

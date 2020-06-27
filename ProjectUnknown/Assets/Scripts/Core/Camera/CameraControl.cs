@@ -10,6 +10,8 @@ public class CameraControl : MonoBehaviour
     ConstraintCamera constraint = null;
     [SerializeField]
     BoomerAxeFollow axeFollow = null;
+    [SerializeField]
+    FollowAnchorControl anchorControl = null;
 
 
     // Update is called once per frame
@@ -20,6 +22,7 @@ public class CameraControl : MonoBehaviour
     void LateUpdate()
     {
         follow.Follow();
+        anchorControl.UpdateAnchor();
         axeFollow.Follow();
         constraint.LockCameraToLevel();
     }
