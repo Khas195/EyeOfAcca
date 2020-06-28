@@ -35,11 +35,6 @@ public class BigDoorManager : MonoBehaviour
         {
             this.OpenDoor();
         }
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            this.UpdateSymbols();
-        }
     }
 
     public void UpdateSymbols()
