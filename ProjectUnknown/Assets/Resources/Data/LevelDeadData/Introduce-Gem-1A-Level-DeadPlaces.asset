@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 745ccf2c8309d18499877da1fa42dda8, type: 3}
-  m_Name: Introduce-Gem-1A-BottomDoor
+  m_Script: {fileID: 11500000, guid: c9c1c2bfd9cf55b40877439caad3d142, type: 3}
+  m_Name: Introduce-Gem-1A-Level-DeadPlaces
   m_EditorClassIdentifier: 
-  doorHome: Introduce-Gem-1A
-  doorLocation: {x: 43.75, y: -0.75, z: 0}
-  landingPlace: {fileID: 11400000, guid: 0f7a8cfe5d5171640bda8a932b9d9275, type: 2}
+  deadPlaces: []
