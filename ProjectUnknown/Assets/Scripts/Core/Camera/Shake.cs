@@ -53,16 +53,7 @@ public class Shake : MonoBehaviour
             if (currentTrauma >= 0)
             {
                 data.shakeAmount = currentTrauma * currentTrauma;
-                if (data.usePerlin)
-                {
-                    var offX = originPos.x * Mathf.PerlinNoise(0, Time.time) * data.shakeAmount;
-                    var offy = originPos.y * Mathf.PerlinNoise(1, Time.time) * data.shakeAmount;
-                    targetObject.transform.localPosition = new Vector2(offX, offy);
-                }
-                else
-                {
-                    targetObject.transform.localPosition = originPos + Random.insideUnitCircle * data.shakeAmount;
-                }
+                targetObject.transform.localPosition = originPos + Random.insideUnitCircle * data.shakeAmount;
                 if (shakeRotate)
                 {
                     targetObject.transform.localRotation = Quaternion.Euler(Random.insideUnitSphere * data.shakeAmount);

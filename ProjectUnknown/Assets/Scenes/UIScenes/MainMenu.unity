@@ -189,7 +189,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Made by Chris, Sam and Tung and Ousama
+  m_Text: Made by Chris, Sam ,Tung  and Ousama
 --- !u!222 &24410670
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -465,7 +465,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  beginCurTime: 0
+  beginIn: 1
   curCurve:
     serializedVersion: 2
     m_Curve: []
@@ -475,6 +475,7 @@ MonoBehaviour:
   curTime: -1
   transInLastKeyTime: 0
   transOutLastKeyTime: 0
+  useUnScaledDeltaTime: 1
   scaleTarget: {fileID: 164213642}
   highlightScale: 1.3
   normalScale: 1
@@ -1342,7 +1343,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  beginCurTime: 0
+  beginIn: 1
   curCurve:
     serializedVersion: 2
     m_Curve: []
@@ -1352,6 +1353,7 @@ MonoBehaviour:
   curTime: -1
   transInLastKeyTime: 0
   transOutLastKeyTime: 0
+  useUnScaledDeltaTime: 1
   scaleTarget: {fileID: 1545260524}
   highlightScale: 1.3
   normalScale: 1
@@ -1674,7 +1676,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  beginCurTime: 0
+  beginIn: 1
   curCurve:
     serializedVersion: 2
     m_Curve: []
@@ -1684,6 +1686,7 @@ MonoBehaviour:
   curTime: -1
   transInLastKeyTime: 0
   transOutLastKeyTime: 0
+  useUnScaledDeltaTime: 1
   scaleTarget: {fileID: 1807938259}
   highlightScale: 1.3
   normalScale: 1
