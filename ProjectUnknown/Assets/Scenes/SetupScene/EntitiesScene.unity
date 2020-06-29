@@ -1477,6 +1477,16 @@ PrefabInstance:
       propertyPath: encapsolatedTarget.Array.data[0]
       value: 
       objectReference: {fileID: 497176112}
+    - target: {fileID: 7188433439587899957, guid: 19c4c104f02ffa34ead48f24ad97343b,
+        type: 3}
+      propertyPath: characterFollowPoint
+      value: 
+      objectReference: {fileID: 1310212367}
+    - target: {fileID: 7188433439587899957, guid: 19c4c104f02ffa34ead48f24ad97343b,
+        type: 3}
+      propertyPath: characterBody
+      value: 
+      objectReference: {fileID: 1522106473}
     - target: {fileID: 7188433439729201814, guid: 19c4c104f02ffa34ead48f24ad97343b,
         type: 3}
       propertyPath: m_Name

@@ -13,7 +13,11 @@ public class CameraFollow : MonoBehaviour
     [BoxGroup("Requirements")]
     [SerializeField]
     [Required]
-    Transform character = null;
+    Transform characterFollowPoint = null;
+    [BoxGroup("Requirements")]
+    [SerializeField]
+    [Required]
+    Transform characterBody = null;
 
     [BoxGroup("Settings")]
     [SerializeField]
@@ -40,9 +44,9 @@ public class CameraFollow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (character != null)
+        if (characterFollowPoint != null)
         {
-            encapsolatedTarget.Add(character);
+            encapsolatedTarget.Add(characterFollowPoint);
         }
         var master = GameMaster.GetInstance(false);
         if (master)
@@ -78,6 +82,9 @@ public class CameraFollow : MonoBehaviour
     public void Follow()
     {
         var targetPos = GetCenterPosition(encapsolatedTarget);
+        this.AddEncapsolateObject(characterBody.transform);
+        var targetPosY = GetCenterPosition(encapsolatedTarget);
+        this.RemoveEncapsolate(characterBody.transform);
         var hostPos = host.position;
 
         var rightSide = hostPos.x + settings.cameraFollowDeadZoneBoxSize.x / 2;
@@ -88,7 +95,7 @@ public class CameraFollow : MonoBehaviour
         {
             honeInX = true;
         }
-        if (targetPos.y < bottomSide || targetPos.y > topSide)
+        if (targetPosY.y < bottomSide || targetPosY.y > topSide)
         {
             honeInY = true;
         }
@@ -98,7 +105,7 @@ public class CameraFollow : MonoBehaviour
         }
         if (honeInY && followY)
         {
-            hostPos.y = Mathf.Lerp(hostPos.y, targetPos.y, settings.cameraSpeed * Time.deltaTime);
+            hostPos.y = Mathf.Lerp(hostPos.y, targetPosY.y, settings.cameraSpeed * Time.deltaTime);
         }
 
         if (Mathf.Abs(targetPos.x - hostPos.x) <= 0.1f)
@@ -130,7 +137,7 @@ public class CameraFollow : MonoBehaviour
         encapsolatedTarget.Clear();
         if (clearPlayer == false)
         {
-            encapsolatedTarget.Add(character);
+            encapsolatedTarget.Add(characterFollowPoint);
         }
     }
 
