@@ -132,7 +132,6 @@ public class Level : MonoBehaviour
         {
             if (collectables[i].Equals(collect.gameObject))
             {
-                collectables[i].SetActive(false);
                 collectableData.datas[i].Collect();
                 break;
             }
