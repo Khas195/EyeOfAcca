@@ -45,9 +45,18 @@ public class Level : MonoBehaviour
         Collectable.OnCollect.AddListener(this.OnCollectCollectable);
 
         CleanList();
+#if UNITY_EDITOR
+        if (collectableData == null)
+        {
+            this.CreateData();
+        }
+        if (deadPlaceDatas == null)
+        {
+            this.CreateDeadData();
+        }
+#endif
         Setup();
         SaveChanges();
-
     }
     [Button("SAVE CHANGES")]
     public void SaveChanges()

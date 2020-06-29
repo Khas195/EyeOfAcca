@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 
 public class CameraControl : MonoBehaviour
@@ -17,10 +18,13 @@ public class CameraControl : MonoBehaviour
     [SerializeField]
     Rigidbody2D axeBody = null;
     [SerializeField]
+    [ReadOnly]
     bool followingAxe = false;
     [SerializeField]
+    [ReadOnly]
     bool normalZoom = false;
     [SerializeField]
+    [ReadOnly]
     bool axeExited = false;
 
     void Start()
