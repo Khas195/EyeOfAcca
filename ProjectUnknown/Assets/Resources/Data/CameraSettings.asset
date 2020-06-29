@@ -15,9 +15,9 @@ MonoBehaviour:
   cameraSpeed: 4
   cameraZoomSpeed: 3
   cameraSizePercentage: 0.7
-  cameraFollowDeadZoneBoxSize: {x: 14, y: 8}
-  leadSpeed: 6
-  leadDistance: 4
+  cameraFollowDeadZoneBoxSize: {x: 10, y: 8}
+  leadSpeed: 4
+  leadDistance: 3
   lookDownDistance: 6
   lookDownHoldTIme: 1
   maxZoom: 14
