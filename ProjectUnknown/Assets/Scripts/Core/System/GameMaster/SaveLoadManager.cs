@@ -47,8 +47,16 @@ public static class SaveLoadManager
 #else
         dataPath = Application.dataPath + "/StreamingAssets/SavedData/" + fileName + ".json";
 #endif
-        string jsonLoad = File.ReadAllText(dataPath);
-        JsonUtility.FromJsonOverwrite(jsonLoad, objectToLoad);
+        try
+        {
+
+            string jsonLoad = File.ReadAllText(dataPath);
+            JsonUtility.FromJsonOverwrite(jsonLoad, objectToLoad);
+        }
+        catch (FileNotFoundException e)
+        {
+            Save(objectToLoad, fileName);
+        }
     }
 
     public static void ResetSaves()
