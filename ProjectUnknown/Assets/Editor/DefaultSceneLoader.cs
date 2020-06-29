@@ -22,6 +22,7 @@ public static class DefaultSceneLoader
 
         if (state == PlayModeStateChange.EnteredPlayMode)
         {
+            SaveLoadManager.SaveAllData();
             if (EditorSceneManager.GetSceneByName("MasterScene").IsValid() == false)
             {
                 GameSystemMenu.AddMasterScene();

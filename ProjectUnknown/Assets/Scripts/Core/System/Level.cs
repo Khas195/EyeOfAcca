@@ -45,10 +45,30 @@ public class Level : MonoBehaviour
         Collectable.OnCollect.AddListener(this.OnCollectCollectable);
 
         CleanList();
+#if UNITY_EDITOR
+        if (collectableData == null)
+        {
+            this.CreateData();
+        }
+        if (deadPlaceDatas == null)
+        {
+            this.CreateDeadData();
+        }
+#endif
         Setup();
-
+        SaveChanges();
     }
-
+    [Button("SAVE CHANGES")]
+    public void SaveChanges()
+    {
+        collectableData.datas.Clear();
+        for (int i = 0; i < collectables.Count; i++)
+        {
+            collectableData.datas.Add(new LevelCollectablesData.CollectableData(false));
+        }
+        this.collectableData.SaveData();
+        this.deadPlaceDatas.SaveData();
+    }
     private void Setup()
     {
         TurnOffCollectedStatue();
@@ -121,7 +141,6 @@ public class Level : MonoBehaviour
         {
             if (collectables[i].Equals(collect.gameObject))
             {
-                collectables[i].SetActive(false);
                 collectableData.datas[i].Collect();
                 break;
             }
@@ -261,17 +280,7 @@ public class Level : MonoBehaviour
         indicatorManagers.Add(indicateManager.GetComponent<CollectablesIndicatorManager>());
     }
 
-    [Button("SAVE CHANGES")]
-    public void SaveChanges()
-    {
-        collectableData.datas.Clear();
-        for (int i = 0; i < collectables.Count; i++)
-        {
-            collectableData.datas.Add(new LevelCollectablesData.CollectableData(false));
-        }
-        this.collectableData.SaveData();
-        this.deadPlaceDatas.SaveData();
-    }
+
 
 #endif
     void OnDrawGizmos()

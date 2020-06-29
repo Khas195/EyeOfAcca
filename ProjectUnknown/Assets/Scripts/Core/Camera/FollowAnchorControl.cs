@@ -9,80 +9,95 @@ public class FollowAnchorControl : MonoBehaviour
     [SerializeField]
     [Required]
     Transform followAnchor = null;
-
     [SerializeField]
     [Required]
-    Transform followPoint = null;
-    [SerializeField]
     CameraFollow follow = null;
     [SerializeField]
     [Required]
     GameStateSnapShot snap = null;
-    Vector3 mousePosition = Vector3.zero;
     [SerializeField]
-    float standTime = 2f;
+    [Required]
+    Transform followPoint = null;
     [SerializeField]
-    float distance = 5f;
-    float curTime = 0;
+    [Required]
+    CameraSettings cameraSettings = null;
     [SerializeField]
-    Camera playerCam = null;
-
+    [ReadOnly]
+    float curLookDownHoldTime = 0;
     [SerializeField]
-    CameraSettings camSettings = null;
-
-
+    [ReadOnly]
     Vector3 cachedPos = Vector3.zero;
+    [SerializeField]
+    [ReadOnly]
+    Vector3 targetLead = Vector3.one;
     void Start()
     {
         cachedPos = followPoint.localPosition;
     }
 
-    /// <summary>
-    /// Callback to draw gizmos that are pickable and always drawn.
-    /// </summary>
-    void OnDrawGizmos()
+    public void FollowCharacter()
     {
-        Gizmos.color = Color.green;
-        Gizmos.DrawLine(followAnchor.position, followPoint.position);
-        Gizmos.DrawWireSphere(followAnchor.position, 1f);
-        Gizmos.DrawWireSphere(followPoint.position, 1f);
-        Gizmos.DrawLine(followAnchor.position, mousePosition);
-        Gizmos.DrawWireSphere(mousePosition, 1f);
-        Gizmos.DrawWireSphere(followAnchor.position, distance);
+        this.followAnchor.transform.position = snap.CharacterPosition;
     }
     public void UpdateAnchor()
     {
-        followAnchor.position = snap.CharacterPosition;
-        if (snap.CharacterVelocity.x == 0 || follow.IsHoning() == false)
+        var pos = followPoint.localPosition;
+        pos.x = Mathf.Lerp(pos.x, targetLead.x, cameraSettings.leadSpeed * Time.deltaTime);
+        followPoint.localPosition = pos;
+    }
+    public void Reset()
+    {
+        targetLead = cachedPos;
+        SetY(cachedPos.y);
+    }
+
+    public void HandleLeading()
+    {
+        if (follow.IsHoningX())
         {
-            curTime += Time.deltaTime;
+            if (snap.CharacterVelocity.x > 0)
+            {
+                targetLead.x = cameraSettings.leadDistance;
+            }
+            else if (snap.CharacterVelocity.x < 0)
+            {
+                targetLead.x = cameraSettings.leadDistance * -1;
+            }
         }
         else
         {
-            ResetIdleTime();
+            targetLead.x = cachedPos.x;
         }
-        if (curTime > standTime)
-        {
-            var mousPos = playerCam.ScreenToWorldPoint(Input.mousePosition);
-            mousPos.z = 0;
-            var dir = mousPos - followAnchor.position;
-            if (Vector2.Distance(mousPos, followAnchor.position) >= distance)
-            {
-                followPoint.position = followAnchor.transform.position + dir.normalized * distance;
-            }
-            else
-            {
-                followPoint.position = mousPos;
-            }
-        }
-
-
     }
-
-    private void ResetIdleTime()
+    public void HandleLookDown()
     {
-        curTime = 0;
-        followPoint.localPosition = cachedPos;
-        followAnchor.localRotation = Quaternion.Euler(new Vector3(0, 0, 90));
+        if (Input.GetKey(KeyCode.S))
+        {
+            curLookDownHoldTime += Time.deltaTime;
+        }
+        else
+        {
+            curLookDownHoldTime = 0;
+        }
+
+        if (curLookDownHoldTime > cameraSettings.lookDownHoldTIme)
+        {
+            LookDown();
+        }
+        else
+        {
+            SetY(cachedPos.y);
+        }
+    }
+    private void LookDown()
+    {
+        SetY(cameraSettings.lookDownDistance * -1);
+    }
+    public void SetY(float value)
+    {
+        var pos = followPoint.localPosition;
+        pos.y = value;
+        followPoint.localPosition = pos;
+
     }
 }

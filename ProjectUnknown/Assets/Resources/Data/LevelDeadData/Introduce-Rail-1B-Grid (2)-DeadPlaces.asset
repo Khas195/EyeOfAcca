@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9c1c2bfd9cf55b40877439caad3d142, type: 3}
   m_Name: Introduce-Rail-1B-Grid (2)-DeadPlaces
   m_EditorClassIdentifier: 
-  deadPlaces: []
+  deadPlaces:
+  - {x: 162.3018, y: 85.63394}
+  - {x: 171.3594, y: 78.76818}
+  - {x: 162.34323, y: 85.2825}
