@@ -248,6 +248,18 @@ Transform:
   m_Father: {fileID: 1990042522}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &259011922 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 264149230, guid: 19c4c104f02ffa34ead48f24ad97343b,
+    type: 3}
+  m_PrefabInstance: {fileID: 7188433440261101922}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8dac125b590c034cbf09bf1ed6be47b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &270376798 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8558128283020694534, guid: 2b03fc41f04525f469eccd660ed2db23,
@@ -581,8 +593,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   follow: {fileID: 1080578821}
   constraint: {fileID: 700072372}
+  zoom: {fileID: 259011922}
   axeFollow: {fileID: 1590777604}
   anchorControl: {fileID: 1226232833}
+  axeBody: {fileID: 1481426448}
+  followingAxe: 0
+  normalZoom: 0
+  axeExited: 0
 --- !u!114 &700072372 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2065472232, guid: 19c4c104f02ffa34ead48f24ad97343b,
@@ -1300,6 +1317,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4475797551438043310, guid: 54031a8a3e953e64b814111327a4b252,
         type: 3}
+      propertyPath: axeThrowTrigger.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4475797551438043310, guid: 54031a8a3e953e64b814111327a4b252,
+        type: 3}
       propertyPath: flip
       value: 
       objectReference: {fileID: 684434926}
@@ -1333,6 +1355,31 @@ PrefabInstance:
       propertyPath: axeThrowTrigger.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1692317669}
+    - target: {fileID: 4475797551438043310, guid: 54031a8a3e953e64b814111327a4b252,
+        type: 3}
+      propertyPath: axeThrowTrigger.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4475797551438043310, guid: 54031a8a3e953e64b814111327a4b252,
+        type: 3}
+      propertyPath: axeThrowTrigger.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4475797551438043310, guid: 54031a8a3e953e64b814111327a4b252,
+        type: 3}
+      propertyPath: axeThrowTrigger.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 698355119}
+    - target: {fileID: 4475797551438043310, guid: 54031a8a3e953e64b814111327a4b252,
+        type: 3}
+      propertyPath: axeThrowTrigger.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: ResetAxeExited
+      objectReference: {fileID: 0}
+    - target: {fileID: 4475797551438043310, guid: 54031a8a3e953e64b814111327a4b252,
+        type: 3}
+      propertyPath: axeThrowTrigger.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4475797551516158991, guid: 54031a8a3e953e64b814111327a4b252,
         type: 3}
       propertyPath: m_BodyType
@@ -1388,6 +1435,11 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1522106473}
+    - target: {fileID: 264149230, guid: 19c4c104f02ffa34ead48f24ad97343b, type: 3}
+      propertyPath: settings
+      value: 
+      objectReference: {fileID: 11400000, guid: b2dd0d22e649e5542ab1e7ee755e2cce,
+        type: 2}
     - target: {fileID: 1590777604, guid: 19c4c104f02ffa34ead48f24ad97343b, type: 3}
       propertyPath: characterBody
       value: 
@@ -1398,8 +1450,13 @@ PrefabInstance:
       objectReference: {fileID: 1481426448}
     - target: {fileID: 1590777604, guid: 19c4c104f02ffa34ead48f24ad97343b, type: 3}
       propertyPath: pecentages
-      value: 0.7
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1590777604, guid: 19c4c104f02ffa34ead48f24ad97343b, type: 3}
+      propertyPath: settings
+      value: 
+      objectReference: {fileID: 11400000, guid: b2dd0d22e649e5542ab1e7ee755e2cce,
+        type: 2}
     - target: {fileID: 7188433439482887247, guid: 19c4c104f02ffa34ead48f24ad97343b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1579,6 +1636,28 @@ PrefabInstance:
       propertyPath: controller2D
       value: 
       objectReference: {fileID: 789544800}
+    - target: {fileID: 830633391, guid: 2b03fc41f04525f469eccd660ed2db23, type: 3}
+      propertyPath: holdLookTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 830633391, guid: 2b03fc41f04525f469eccd660ed2db23, type: 3}
+      propertyPath: cameraSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: b2dd0d22e649e5542ab1e7ee755e2cce,
+        type: 2}
+    - target: {fileID: 830633391, guid: 2b03fc41f04525f469eccd660ed2db23, type: 3}
+      propertyPath: snap
+      value: 
+      objectReference: {fileID: 11400000, guid: 4571d7bc994ae684f9b3b27bb4676389,
+        type: 2}
+    - target: {fileID: 1310212367, guid: 2b03fc41f04525f469eccd660ed2db23, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1310212367, guid: 2b03fc41f04525f469eccd660ed2db23, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1692317670, guid: 2b03fc41f04525f469eccd660ed2db23, type: 3}
       propertyPath: playerCam
       value: 

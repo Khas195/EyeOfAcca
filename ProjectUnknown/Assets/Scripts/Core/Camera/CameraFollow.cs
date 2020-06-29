@@ -32,7 +32,10 @@ public class CameraFollow : MonoBehaviour
     [SerializeField]
     List<Transform> encapsolatedTarget = new List<Transform>();
 
-    bool honeIn = false;
+    [BoxGroup("Current Status")]
+    [SerializeField]
+    bool honeInX = false;
+    bool honeInY = false;
 
     // Start is called before the first frame update
     void Start()
@@ -48,9 +51,9 @@ public class CameraFollow : MonoBehaviour
         }
     }
 
-    public bool IsHoning()
+    public bool IsHoningX()
     {
-        return honeIn;
+        return honeInX;
     }
 
     /// <summary>
@@ -83,33 +86,28 @@ public class CameraFollow : MonoBehaviour
         var bottomSide = hostPos.y - settings.cameraFollowDeadZoneBoxSize.y / 2;
         if (targetPos.x < leftSide || targetPos.x > rightSide)
         {
-            honeIn = true;
+            honeInX = true;
         }
         if (targetPos.y < bottomSide || targetPos.y > topSide)
         {
-            honeIn = true;
+            honeInY = true;
+        }
+        if (honeInX && followX)
+        {
+            hostPos.x = Mathf.Lerp(hostPos.x, targetPos.x, settings.cameraSpeed * Time.deltaTime);
+        }
+        if (honeInY && followY)
+        {
+            hostPos.y = Mathf.Lerp(hostPos.y, targetPos.y, settings.cameraSpeed * Time.deltaTime);
         }
 
-        if (honeIn)
+        if (Mathf.Abs(targetPos.x - hostPos.x) <= 0.1f)
         {
-            if (followX)
-            {
-                hostPos.x = Mathf.Lerp(hostPos.x, targetPos.x, settings.cameraSpeed * Time.deltaTime);
-            }
-            if (followY)
-            {
-                hostPos.y = Mathf.Lerp(hostPos.y, targetPos.y, settings.cameraSpeed * Time.deltaTime);
-            }
-
-            if (followZ)
-            {
-                hostPos.z = Mathf.Lerp(hostPos.z, targetPos.z, settings.cameraSpeed * Time.deltaTime);
-            }
+            honeInX = false;
         }
-
-        if (Vector2.Distance(targetPos, hostPos) <= 0.5f)
+        if (Mathf.Abs(targetPos.y - hostPos.y) <= 0.1f)
         {
-            honeIn = false;
+            honeInY = false;
         }
         host.transform.position = hostPos;
     }

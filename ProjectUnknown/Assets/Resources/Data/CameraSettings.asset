@@ -13,4 +13,12 @@ MonoBehaviour:
   m_Name: CameraSettings
   m_EditorClassIdentifier: 
   cameraSpeed: 4
-  cameraFollowDeadZoneBoxSize: {x: 8, y: 8}
+  cameraZoomSpeed: 3
+  cameraSizePercentage: 0.7
+  cameraFollowDeadZoneBoxSize: {x: 14, y: 8}
+  leadSpeed: 6
+  leadDistance: 4
+  lookDownDistance: 6
+  lookDownHoldTIme: 1
+  maxZoom: 14
+  minZoom: 10

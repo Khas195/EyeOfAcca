@@ -46,9 +46,20 @@ public class Level : MonoBehaviour
 
         CleanList();
         Setup();
+        SaveChanges();
 
     }
-
+    [Button("SAVE CHANGES")]
+    public void SaveChanges()
+    {
+        collectableData.datas.Clear();
+        for (int i = 0; i < collectables.Count; i++)
+        {
+            collectableData.datas.Add(new LevelCollectablesData.CollectableData(false));
+        }
+        this.collectableData.SaveData();
+        this.deadPlaceDatas.SaveData();
+    }
     private void Setup()
     {
         TurnOffCollectedStatue();
@@ -261,17 +272,7 @@ public class Level : MonoBehaviour
         indicatorManagers.Add(indicateManager.GetComponent<CollectablesIndicatorManager>());
     }
 
-    [Button("SAVE CHANGES")]
-    public void SaveChanges()
-    {
-        collectableData.datas.Clear();
-        for (int i = 0; i < collectables.Count; i++)
-        {
-            collectableData.datas.Add(new LevelCollectablesData.CollectableData(false));
-        }
-        this.collectableData.SaveData();
-        this.deadPlaceDatas.SaveData();
-    }
+
 
 #endif
     void OnDrawGizmos()
