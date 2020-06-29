@@ -13,7 +13,11 @@ public class CameraFollow : MonoBehaviour
     [BoxGroup("Requirements")]
     [SerializeField]
     [Required]
-    Transform character = null;
+    Transform characterFollowPoint = null;
+    [BoxGroup("Requirements")]
+    [SerializeField]
+    [Required]
+    Transform characterBody = null;
 
     [BoxGroup("Settings")]
     [SerializeField]
@@ -32,14 +36,17 @@ public class CameraFollow : MonoBehaviour
     [SerializeField]
     List<Transform> encapsolatedTarget = new List<Transform>();
 
-    bool honeIn = false;
+    [BoxGroup("Current Status")]
+    [SerializeField]
+    bool honeInX = false;
+    bool honeInY = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (character != null)
+        if (characterFollowPoint != null)
         {
-            encapsolatedTarget.Add(character);
+            encapsolatedTarget.Add(characterFollowPoint);
         }
         var master = GameMaster.GetInstance(false);
         if (master)
@@ -48,9 +55,9 @@ public class CameraFollow : MonoBehaviour
         }
     }
 
-    public bool IsHoning()
+    public bool IsHoningX()
     {
-        return honeIn;
+        return honeInX;
     }
 
     /// <summary>
@@ -75,6 +82,9 @@ public class CameraFollow : MonoBehaviour
     public void Follow()
     {
         var targetPos = GetCenterPosition(encapsolatedTarget);
+        this.AddEncapsolateObject(characterBody.transform);
+        var targetPosY = GetCenterPosition(encapsolatedTarget);
+        this.RemoveEncapsolate(characterBody.transform);
         var hostPos = host.position;
 
         var rightSide = hostPos.x + settings.cameraFollowDeadZoneBoxSize.x / 2;
@@ -83,33 +93,28 @@ public class CameraFollow : MonoBehaviour
         var bottomSide = hostPos.y - settings.cameraFollowDeadZoneBoxSize.y / 2;
         if (targetPos.x < leftSide || targetPos.x > rightSide)
         {
-            honeIn = true;
+            honeInX = true;
         }
-        if (targetPos.y < bottomSide || targetPos.y > topSide)
+        if (targetPosY.y < bottomSide || targetPosY.y > topSide)
         {
-            honeIn = true;
+            honeInY = true;
         }
-
-        if (honeIn)
+        if (honeInX && followX)
         {
-            if (followX)
-            {
-                hostPos.x = Mathf.Lerp(hostPos.x, targetPos.x, settings.cameraSpeed * Time.deltaTime);
-            }
-            if (followY)
-            {
-                hostPos.y = Mathf.Lerp(hostPos.y, targetPos.y, settings.cameraSpeed * Time.deltaTime);
-            }
-
-            if (followZ)
-            {
-                hostPos.z = Mathf.Lerp(hostPos.z, targetPos.z, settings.cameraSpeed * Time.deltaTime);
-            }
+            hostPos.x = Mathf.Lerp(hostPos.x, targetPos.x, settings.cameraSpeed * Time.deltaTime);
+        }
+        if (honeInY && followY)
+        {
+            hostPos.y = Mathf.Lerp(hostPos.y, targetPosY.y, settings.cameraSpeed * Time.deltaTime);
         }
 
-        if (Vector2.Distance(targetPos, hostPos) <= 0.5f)
+        if (Mathf.Abs(targetPos.x - hostPos.x) <= 0.1f)
         {
-            honeIn = false;
+            honeInX = false;
+        }
+        if (Mathf.Abs(targetPos.y - hostPos.y) <= 0.1f)
+        {
+            honeInY = false;
         }
         host.transform.position = hostPos;
     }
@@ -132,7 +137,7 @@ public class CameraFollow : MonoBehaviour
         encapsolatedTarget.Clear();
         if (clearPlayer == false)
         {
-            encapsolatedTarget.Add(character);
+            encapsolatedTarget.Add(characterFollowPoint);
         }
     }
 

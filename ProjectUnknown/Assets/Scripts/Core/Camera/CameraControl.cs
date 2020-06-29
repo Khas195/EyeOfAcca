@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 
 public class CameraControl : MonoBehaviour
@@ -9,21 +10,63 @@ public class CameraControl : MonoBehaviour
     [SerializeField]
     ConstraintCamera constraint = null;
     [SerializeField]
+    CameraZoom zoom = null;
+    [SerializeField]
     BoomerAxeFollow axeFollow = null;
     [SerializeField]
     FollowAnchorControl anchorControl = null;
+    [SerializeField]
+    Rigidbody2D axeBody = null;
+    [SerializeField]
+    [ReadOnly]
+    bool followingAxe = false;
+    [SerializeField]
+    [ReadOnly]
+    bool normalZoom = false;
+    [SerializeField]
+    [ReadOnly]
+    bool axeExited = false;
 
+    void Start()
+    {
+        RecallAbility.RecallEvent.AddListener(ResetAxeExited);
+    }
+    public void ResetAxeExited()
+    {
+        axeExited = false;
+    }
 
-    // Update is called once per frame
-    /// <summary>
-    /// LateUpdate is called every frame, if the Behaviour is enabled.
-    /// It is called after all Update functions have been called.
-    /// </summary>
     void LateUpdate()
     {
-        follow.Follow();
+        followingAxe = axeFollow.ShouldFollowAxe();
+        if (followingAxe && axeExited == false)
+        {
+            follow.AddEncapsolateObject(axeBody.transform);
+            zoom.AddEncapsolateObject(axeBody.transform);
+        }
+        else
+        {
+            follow.RemoveEncapsolate(axeBody.transform);
+            zoom.RemoveEncapsulateObject(axeBody.transform);
+            axeExited = true;
+
+        }
+        zoom.UpdateZoom();
+        anchorControl.FollowCharacter();
+
+        normalZoom = zoom.IsNormalZoom();
+        if (normalZoom)
+        {
+            anchorControl.HandleLeading();
+            anchorControl.HandleLookDown();
+        }
+        else
+        {
+            anchorControl.Reset();
+        }
+
         anchorControl.UpdateAnchor();
-        axeFollow.Follow();
+        follow.Follow();
         constraint.LockCameraToLevel();
     }
 }

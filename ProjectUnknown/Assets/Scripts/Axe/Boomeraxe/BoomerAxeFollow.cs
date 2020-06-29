@@ -19,24 +19,28 @@ public class BoomerAxeFollow : MonoBehaviour
     [Required]
     Rigidbody2D axeBody = null;
 
+    [BoxGroup("Requirements")]
     [SerializeField]
     [Required]
     Camera playerCamera = null;
+    [BoxGroup("Requirements")]
     [SerializeField]
-    [Range(0.0f, 1.0f)]
-    float pecentages = 0;
+    [Required]
+    CameraSettings settings = null;
 
-    public void Follow()
+
+
+    public bool ShouldFollowAxe()
     {
-        var cameraSizeY = 2 * playerCamera.orthographicSize * pecentages;
+        var cameraSizeY = 2 * settings.maxZoom * settings.cameraSizePercentage;
         var cameraSizeX = cameraSizeY * playerCamera.aspect;
         if (IsAxeOutsideCameraBound(cameraSizeY, cameraSizeX) || axeBody.gameObject.activeInHierarchy == false)
         {
-            StopFollowAxe();
+            return false;
         }
         else
         {
-            FollowAxe();
+            return true;
         }
     }
 
@@ -46,15 +50,5 @@ public class BoomerAxeFollow : MonoBehaviour
         float verticalDistance = axeBody.transform.position.y - characterBody.transform.position.y;
 
         return Mathf.Abs(horizontalDistance) > cameraSizeX || Mathf.Abs(verticalDistance) > cameraSizeY;
-    }
-
-    public void FollowAxe()
-    {
-        follow.AddEncapsolateObject(axeBody.transform);
-    }
-
-    public void StopFollowAxe()
-    {
-        follow.RemoveEncapsolate(axeBody.transform);
     }
 }

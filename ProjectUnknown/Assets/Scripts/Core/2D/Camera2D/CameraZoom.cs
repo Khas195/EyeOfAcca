@@ -8,30 +8,34 @@ public class CameraZoom : MonoBehaviour
     [SerializeField]
     Camera host = null;
     [SerializeField]
+    CameraSettings settings = null;
+    [SerializeField]
     List<Transform> encapsulatedTargets = new List<Transform>();
     [SerializeField]
     private Transform character = null;
 
     [SerializeField]
-    float minZoom = 0;
-    [SerializeField]
-    float maxZoom = 1;
-    [SerializeField]
     [Tooltip("Each frame the camera move x percentage closer to the target")]
     float followPercentage;
 
-    // Start is called before the first frame update
-    void Start()
+    public bool IsNormalZoom()
     {
-
+        return Mathf.Abs(host.orthographicSize - settings.minZoom) < 0.1f;
+    }
+    public void RemoveEncapsulateObject(Transform target)
+    {
+        if (encapsulatedTargets.Contains(target))
+        {
+            encapsulatedTargets.Remove(target);
+        }
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    public void UpdateZoom()
     {
         var greatestDistance = GetGreatestDistance(encapsulatedTargets);
-        var clampedZoomValue = Mathf.Clamp(greatestDistance, minZoom, maxZoom);
-        host.orthographicSize = Mathf.Lerp(host.orthographicSize, clampedZoomValue, followPercentage);
+        var clampedZoomValue = Mathf.Clamp(greatestDistance, settings.minZoom, settings.maxZoom);
+        host.orthographicSize = Mathf.Lerp(host.orthographicSize, clampedZoomValue, settings.cameraZoomSpeed * Time.deltaTime);
     }
 
     public void Clear(bool clearPlayer)
@@ -45,16 +49,20 @@ public class CameraZoom : MonoBehaviour
 
     public float GetMaxZoom()
     {
-        return maxZoom;
+        return settings.maxZoom;
     }
 
     public void SetMaxZoom(float newMaxZoom)
     {
-        this.maxZoom = newMaxZoom;
+        this.settings.maxZoom = newMaxZoom;
     }
 
     public void AddEncapsolateObject(Transform obj)
     {
+        if (encapsulatedTargets.Contains(obj))
+        {
+            return;
+        }
         encapsulatedTargets.Add(obj);
     }
 

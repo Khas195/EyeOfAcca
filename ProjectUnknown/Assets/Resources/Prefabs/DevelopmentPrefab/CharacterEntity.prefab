@@ -179,12 +179,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followAnchor: {fileID: 7612316386999229212}
-  followPoint: {fileID: 1310212367}
   follow: {fileID: 0}
   snap: {fileID: 11400000, guid: 4571d7bc994ae684f9b3b27bb4676389, type: 2}
-  standTime: 1.5
-  distance: 10
-  playerCam: {fileID: 0}
+  followPoint: {fileID: 1310212367}
+  cameraSettings: {fileID: 0}
+  curLookDownHoldTime: 0
+  cachedPos: {x: 0, y: 0, z: 0}
+  targetLead: {x: 1, y: 1, z: 1}
 --- !u!1 &1150969888
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,7 +270,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1310212366}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4, y: 0, z: 0}
+  m_LocalPosition: {x: -3, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7612316386999229212}
@@ -396,7 +397,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  beginCurTime: 0
+  beginIn: 1
   curCurve:
     serializedVersion: 2
     m_Curve: []
@@ -527,7 +528,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  beginCurTime: 0
+  beginIn: 1
   curCurve:
     serializedVersion: 2
     m_Curve: []
@@ -664,7 +665,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a3de102a01f8eb46a972b9015d88517, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manualAssign: 1
   playerCam: {fileID: 0}
   pivot: {fileID: 507177443}
 --- !u!1 &1722521242
@@ -852,8 +852,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5109490276634728551}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -36.06, z: -20}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -229.3, y: -36.06, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1310212367}

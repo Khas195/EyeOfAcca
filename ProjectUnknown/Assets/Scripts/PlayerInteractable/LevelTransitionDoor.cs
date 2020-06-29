@@ -9,7 +9,23 @@ public class LevelTransitionDoor : MonoBehaviour
     [SerializeField]
     [Required]
     TransitionDoorProfile profile = null;
+    Transform cachedTranformed = null;
 
+    void Start()
+    {
+        UpdateProfilePosition();
+        profile.SaveData();
+    }
+    [Button]
+    public void UpdateProfilePosition()
+    {
+        LogHelper.GetInstance().Log("Update Position of ".Bolden() + this.profile.ToString().Bolden().Colorize(Color.green), true);
+        if (cachedTranformed == null)
+        {
+            cachedTranformed = this.GetComponent<Transform>();
+        }
+        profile.doorLocation = cachedTranformed.position;
+    }
 #if UNITY_EDITOR
 
 
@@ -29,18 +45,7 @@ public class LevelTransitionDoor : MonoBehaviour
 
     }
 
-    Transform cachedTranformed = null;
-    [Button]
-    public void UpdateProfilePosition()
-    {
-        LogHelper.GetInstance().Log("Update Position of ".Bolden() + this.profile.ToString().Bolden().Colorize(Color.green), true);
-        if (cachedTranformed == null)
-        {
-            cachedTranformed = this.GetComponent<Transform>();
-        }
-        profile.doorLocation = cachedTranformed.position;
-        UnityEditor.EditorUtility.SetDirty(this.profile);
-    }
+
 #endif
 
     public TransitionDoorProfile GetProfile()

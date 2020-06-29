@@ -129,7 +129,7 @@ public static class GameSystemMenu
             EditorApplication.isPlaying = false;
             return;
         }
-
+        SaveLoadManager.SaveAllData();
         EditorSceneManager.OpenScene("Assets/Scenes/SetupScene/MasterScene.unity", OpenSceneMode.Additive);
         EditorApplication.isPlaying = true;
     }

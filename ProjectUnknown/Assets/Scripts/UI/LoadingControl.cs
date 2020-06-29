@@ -21,6 +21,13 @@ public class LoadingControl : MonoBehaviour
 
     Action callbackAfterFade = null;
 
+    /// <summary>
+    /// This function is called when the MonoBehaviour will be destroyed.
+    /// </summary>
+    void OnDestroy()
+    {
+        this.screenTransitionMat.SetFloat("Vector1_B610FB5D", 1.0f);
+    }
     void Update()
 
     {

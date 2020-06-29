@@ -52,8 +52,17 @@ public class ConstraintCamera : MonoBehaviour
     }
     private Vector3 Constraint(Vector3 hostPos, float cameraSizeY, float cameraSizeX)
     {
+
         var rightBound = boundPos.x + this.boundBoxSize.x / 2;
         var leftBound = boundPos.x - this.boundBoxSize.x / 2;
+        var upperBound = boundPos.y + this.boundBoxSize.y / 2;
+        var lowerBound = boundPos.y - this.boundBoxSize.y / 2;
+
+        if (cameraSizeY > Mathf.Abs(upperBound - lowerBound) || cameraSizeX > Mathf.Abs(rightBound - leftBound))
+        {
+            cam.orthographicSize = Mathf.Abs(upperBound - lowerBound) / 2;
+        }
+
         if (hostPos.x + cameraSizeX / 2 >= rightBound)
         {
             hostPos.x = rightBound - cameraSizeX / 2;
@@ -63,8 +72,6 @@ public class ConstraintCamera : MonoBehaviour
             hostPos.x = leftBound + cameraSizeX / 2;
         }
 
-        var upperBound = boundPos.y + this.boundBoxSize.y / 2;
-        var lowerBound = boundPos.y - this.boundBoxSize.y / 2;
         if (hostPos.y + cameraSizeY / 2 >= upperBound)
         {
             hostPos.y = upperBound - cameraSizeY / 2;
@@ -73,8 +80,6 @@ public class ConstraintCamera : MonoBehaviour
         {
             hostPos.y = lowerBound + cameraSizeY / 2;
         }
-
-
         return hostPos;
     }
 
