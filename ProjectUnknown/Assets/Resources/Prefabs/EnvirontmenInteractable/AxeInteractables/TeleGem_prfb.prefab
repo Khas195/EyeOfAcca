@@ -214,6 +214,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: GemActiveParticles_prfb
       objectReference: {fileID: 0}
+    - target: {fileID: 6827339997168886915, guid: 4efa4f0d6bcd3d443abd8e93add38726,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1163265147
+      objectReference: {fileID: 0}
+    - target: {fileID: 6827339997168886915, guid: 4efa4f0d6bcd3d443abd8e93add38726,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4efa4f0d6bcd3d443abd8e93add38726, type: 3}
 --- !u!1 &5134555799131602466 stripped
