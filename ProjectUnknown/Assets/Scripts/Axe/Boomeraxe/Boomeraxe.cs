@@ -83,6 +83,7 @@ public class Boomeraxe : MonoBehaviour
     AxeAbility activeAbility = null;
 
 
+
     [BoxGroup("Current Status")]
     [SerializeField]
     [ReadOnly]
@@ -176,8 +177,11 @@ public class Boomeraxe : MonoBehaviour
         {
             if (isStuck)
             {
-                Vector2 stuckObjCurPos = stuckObject.transform.position;
-                body2d.transform.position = stuckObjCurPos - offsetWithStuckSurface;
+                if (stuckObject)
+                {
+                    Vector2 stuckObjCurPos = stuckObject.transform.position;
+                    body2d.transform.position = stuckObjCurPos - offsetWithStuckSurface;
+                }
             }
         }
     }
@@ -307,11 +311,11 @@ public class Boomeraxe : MonoBehaviour
     }
     public void Recall()
     {
-
         animator.SetBool("Recall", false);
         returning = true;
         isStuck = false;
         stuckPos = body2d.transform.position;
+        body2d.gameObject.SetActive(true);
         SetFlyTrigger(true);
         body2d.GetComponent<Collider2D>().isTrigger = true;
         currentRecallTime = 0;
@@ -425,6 +429,10 @@ public class Boomeraxe : MonoBehaviour
         {
             return defaultAbility;
         }
+    }
+    public void SetStruck(bool stuck)
+    {
+        isStuck = stuck;
     }
 }
 
