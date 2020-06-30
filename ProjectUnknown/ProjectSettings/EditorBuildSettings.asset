@@ -17,6 +17,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/UIScenes/MainMenu.unity
     guid: d40facadd877545989a3650f78cbdde0
+  - enabled: 1
+    path: Assets/Scenes/LevelScene/100%-Final-Levels/Level1_Blocked_RailBlock.unity
+    guid: 14221d334d5b7f048b0af57f930ca82c
+  - enabled: 1
+    path: Assets/Scenes/LevelScene/100%-Final-Levels/Level2_Intro_Spike.unity
+    guid: edccddbe0109bb041b3aa09110cec055
+  - enabled: 1
+    path: Assets/Scenes/LevelScene/100%-Final-Levels/Level3_Intro_Traps.unity
+    guid: 71be664c00eb78b4ca6ce428246c329b
   - enabled: 0
     path: Assets/Scenes/LevelScene/Levels-2ndSprint/Level-WithTutorials.unity
     guid: 52c9825967f7fbd42860bf6ddcf71449
