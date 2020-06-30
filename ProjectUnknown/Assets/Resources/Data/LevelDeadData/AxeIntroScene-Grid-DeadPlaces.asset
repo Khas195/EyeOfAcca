@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 745ccf2c8309d18499877da1fa42dda8, type: 3}
-  m_Name: Introduce-Rail-1A-LeftDoor
+  m_Script: {fileID: 11500000, guid: c9c1c2bfd9cf55b40877439caad3d142, type: 3}
+  m_Name: AxeIntroScene-Grid-DeadPlaces
   m_EditorClassIdentifier: 
-  doorHome: Introduce-Rail-1A
-  doorLocation: {x: -5.75, y: 2.5, z: 0}
-  landingPlace: {fileID: 11400000, guid: bcb52e013766f3a449cfc01212108873, type: 2}
+  deadPlaces: []

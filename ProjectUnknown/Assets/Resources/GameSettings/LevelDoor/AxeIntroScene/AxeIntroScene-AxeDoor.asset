@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 745ccf2c8309d18499877da1fa42dda8, type: 3}
-  m_Name: Introduce-Rail-1A-LeftDoor
+  m_Name: AxeIntroScene-AxeDoor
   m_EditorClassIdentifier: 
-  doorHome: Introduce-Rail-1A
-  doorLocation: {x: -5.75, y: 2.5, z: 0}
-  landingPlace: {fileID: 11400000, guid: bcb52e013766f3a449cfc01212108873, type: 2}
+  doorHome: AxeIntroScene
+  doorLocation: {x: 51.5, y: -15.5, z: 0}
+  landingPlace: {fileID: 11400000, guid: 9a665320235eab647a798682119fb9ac, type: 2}
