@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -34692,6 +34692,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1404050344}
     m_Modifications:
+    - target: {fileID: 1898178565053449964, guid: dd7343e7bbca6f64a8343c9f5d7159ab,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 3468086031689299222, guid: d83796c5cffe68e4689797f003c366a0,
+        type: 3}
     - target: {fileID: 6809564946063532640, guid: dd7343e7bbca6f64a8343c9f5d7159ab,
         type: 3}
       propertyPath: profile
@@ -34711,7 +34717,7 @@ PrefabInstance:
     - target: {fileID: 6809564946063532701, guid: dd7343e7bbca6f64a8343c9f5d7159ab,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6809564946063532701, guid: dd7343e7bbca6f64a8343c9f5d7159ab,
         type: 3}
@@ -34757,6 +34763,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6809564946063532703, guid: dd7343e7bbca6f64a8343c9f5d7159ab,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6809564946063532703, guid: dd7343e7bbca6f64a8343c9f5d7159ab,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd7343e7bbca6f64a8343c9f5d7159ab, type: 3}
