@@ -5505,9 +5505,9 @@ GameObject:
   - component: {fileID: 363431402}
   - component: {fileID: 363431401}
   - component: {fileID: 363431400}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: OneWayPlatforms
-  m_TagString: Untagged
+  m_TagString: Oneway-Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
