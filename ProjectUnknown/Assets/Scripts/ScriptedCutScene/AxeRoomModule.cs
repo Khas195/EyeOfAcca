@@ -35,7 +35,6 @@ public class AxeRoomModule : MonoBehaviour
         }
         PlayerController2D.OnPlayerRequestUseAxe.AddListener(this.OnPlayerTryUseAxe);
         AxeRoomCharacterAnimationEvent.OnRaisingArmsDone.AddListener(TryPullAxe);
-        AxeRoomCharacterAnimationEvent.OnRaisingArmsDone.AddListener(GivePlayerControl);
     }
     public void GivePlayerControl()
     {
@@ -61,6 +60,7 @@ public class AxeRoomModule : MonoBehaviour
         playerAnim.SetBool("CollectAxeCutscene", false);
         this.control.ForceRecall();
         this.gameObject.SetActive(false);
+        GivePlayerControl();
     }
     void OnTriggerExit2D(Collider2D other)
     {
