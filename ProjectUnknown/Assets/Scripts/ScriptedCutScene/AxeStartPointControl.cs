@@ -24,11 +24,9 @@ public class AxeStartPointControl : MonoBehaviour
     [SerializeField]
     public GameObject axeBehavior = null;
     [SerializeField]
-    Vector3 startPos;
+    Transform startPos = null;
     [SerializeField]
-    Vector3 startRot;
-    [SerializeField]
-    Rigidbody2D axeBody;
+    Rigidbody2D axeBody = null;
     void Awake()
     {
         if (settings.isNewGame)
@@ -50,8 +48,8 @@ public class AxeStartPointControl : MonoBehaviour
     public void ForceRecall()
     {
         axeBehavior.SetActive(true);
-        axeBody.transform.position = startPos;
-        axeBehavior.transform.rotation = Quaternion.Euler(startRot);
+        axeBody.gameObject.SetActive(true);
+        axeBody.transform.position = startPos.transform.position;
         grip.SetAxeCatchable(true);
         axe.SetStruck(true);
         grip.ActivateAxeAbility();

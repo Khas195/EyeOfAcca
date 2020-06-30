@@ -10,15 +10,17 @@ public class FakeAxe : MonoBehaviour
     Animator anim = null;
 
 
-    /// <summary>
-    /// Update is called every frame, if the MonoBehaviour is enabled.
-    /// </summary>
-    void Update()
+    public void GatherPower()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.AxeHasPowerFlash, particleSpawnPoint.position, Quaternion.identity);
-            anim.SetTrigger("Charge");
-        }
+        var gatherPower = VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.OrbGatherPower, particleSpawnPoint.position, Quaternion.identity);
+        var powerAnim = gatherPower.GetComponent<Animator>();
+        powerAnim.SetBool("hasRecallPower", true);
+        powerAnim.GetComponent<DestroyWhenAnimationDone>().OnAnimationDone.AddListener(this.OnPowerGathered);
+    }
+
+    public void OnPowerGathered()
+    {
+        anim.SetTrigger("Charge");
+        VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.AxeHasPowerFlash, particleSpawnPoint.position, Quaternion.identity);
     }
 }

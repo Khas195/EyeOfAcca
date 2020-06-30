@@ -42,10 +42,10 @@ public class PlayerController2D : MonoBehaviour
     [SerializeField]
     [ReadOnly]
     bool cutJumpVel = false;
-    /// <summary>
-    /// Start is called on the frame when a script is enabled just before
-    /// any of the Update methods is called the first time.
-    /// </summary>
+
+    public static UnityEvent OnPlayerRequestUseAxe = new UnityEvent();
+
+
     void Start()
     {
         var gameMaster = GameMaster.GetInstance(false);
@@ -98,9 +98,13 @@ public class PlayerController2D : MonoBehaviour
         }
 
 
-        if (Input.GetMouseButtonDown(0) && grip.gameObject.activeInHierarchy)
+        if (Input.GetMouseButtonDown(0))
         {
-            StartDropdownBufferTime();
+            OnPlayerRequestUseAxe.Invoke();
+            if (grip.gameObject.activeInHierarchy)
+            {
+                StartAxeUseBufferTime();
+            }
         }
 
         if (currentJumpBufferTime > 0)
@@ -139,7 +143,7 @@ public class PlayerController2D : MonoBehaviour
         return currentAxeUseBufferTime;
     }
 
-    private void StartDropdownBufferTime()
+    private void StartAxeUseBufferTime()
     {
         currentAxeUseBufferTime = useAxeInputBuferTime;
     }
