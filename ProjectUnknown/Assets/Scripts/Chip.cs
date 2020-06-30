@@ -72,6 +72,6 @@ public class Chip : MonoBehaviour
 
         GameMaster.GetInstance().IncreaseDeadCount();
         GameMaster.GetInstance().RestartLevel();
-
     }
+
 }
