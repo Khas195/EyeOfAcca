@@ -28548,6 +28548,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door-MechanicRoom
       objectReference: {fileID: 0}
+    - target: {fileID: 2563524871542246721, guid: 5afc4e5a908eb2d4ab7ae1b7f6f59dff,
+        type: 3}
+      propertyPath: profile
+      value: 
+      objectReference: {fileID: 11400000, guid: f90c2e2fc80f9334cbf2e51be2929347,
+        type: 2}
     - target: {fileID: 2563524871542246844, guid: 5afc4e5a908eb2d4ab7ae1b7f6f59dff,
         type: 3}
       propertyPath: m_LocalPosition.x

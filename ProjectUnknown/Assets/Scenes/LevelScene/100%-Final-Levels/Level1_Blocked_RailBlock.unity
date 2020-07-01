@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -13334,7 +13334,7 @@ PrefabInstance:
         type: 3}
       propertyPath: profile
       value: 
-      objectReference: {fileID: 11400000, guid: f8897ce8ea9e71b47b3eb27d1c12c34a,
+      objectReference: {fileID: 11400000, guid: 90842a3c3954cdb4a9109c8024d26f7f,
         type: 2}
     - target: {fileID: 6809564946063532641, guid: dd7343e7bbca6f64a8343c9f5d7159ab,
         type: 3}
@@ -15525,18 +15525,6 @@ CompositeCollider2D:
       - X: 1590000000
         Y: 130000000
       - X: 1590000000
-        Y: 239999900
-      - X: 1590000041
-        Y: 239999900
-      - X: 1590000100
-        Y: 239999959
-      - X: 1590000100
-        Y: 249999900
-      - X: 1760000041
-        Y: 249999900
-      - X: 1760000100
-        Y: 249999959
-      - X: 1760000100
         Y: 250000000
       - X: 1970000000
         Y: 250000000
@@ -15566,7 +15554,7 @@ CompositeCollider2D:
       - {x: 169, y: 6.0000296}
       - {x: 168.99997, y: 13}
       - {x: 159, y: 13.00003}
-      - {x: 159.00005, y: 24.99999}
+      - {x: 159.00003, y: 25}
       - {x: 197, y: 24.999971}
       - {x: 196.99997, y: 18}
       - {x: 189, y: 17.999971}

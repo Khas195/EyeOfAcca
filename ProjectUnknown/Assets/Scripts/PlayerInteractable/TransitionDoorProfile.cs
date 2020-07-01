@@ -15,5 +15,9 @@ public class TransitionDoorProfile : ScriptableObject
     public Vector3 doorLocation = Vector3.one;
 
     public TransitionDoorProfile landingPlace = null;
+    public void SetLandPlace(TransitionDoorProfile newLandPlace)
+    {
+        this.landingPlace = newLandPlace;
+    }
 
 }
