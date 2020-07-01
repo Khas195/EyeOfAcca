@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 745ccf2c8309d18499877da1fa42dda8, type: 3}
-  m_Name: ConnectingRoomA-Door
+  m_Name: ConnectingRoomA-DoorTop
   m_EditorClassIdentifier: 
   doorHome: ConnectingRoomA
-  doorLocation: {x: 8.5, y: -2.5, z: 0}
+  doorLocation: {x: 5, y: 12.5, z: 0}
   landingPlace: {fileID: 0}
