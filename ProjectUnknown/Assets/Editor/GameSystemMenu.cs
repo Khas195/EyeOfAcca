@@ -45,10 +45,32 @@ public static class GameSystemMenu
     {
         SpawnInstanceInScene(AXE_INTERACTABLE_PATH + "RailBlockEntity-Horizontal");
     }
+
+    [MenuItem("GameObject/2D Object/Game System/RailBlock-Oneway-Horizontal-Right")]
+    public static void CreateRailBlockOneWayHorizontalRight()
+    {
+        SpawnInstanceInScene(AXE_INTERACTABLE_PATH + "RailBlock-OneWay-Horizontal-Right");
+    }
+    [MenuItem("GameObject/2D Object/Game System/RailBlock-Oneway-Horizontal-Left")]
+    public static void CreateRailBlockOneWayHorizontalLeft()
+    {
+        SpawnInstanceInScene(AXE_INTERACTABLE_PATH + "RailBlock-OneWay-Horizontal-Left");
+    }
+
     [MenuItem("GameObject/2D Object/Game System/RailBlock-Vertical")]
     public static void CreateRailBlockVertical()
     {
         SpawnInstanceInScene(AXE_INTERACTABLE_PATH + "RailBlockEntity-Vertical");
+    }
+    [MenuItem("GameObject/2D Object/Game System/RailBlock-Oneway-Vertical-Up")]
+    public static void CreateRailBlockOneWayVerticalUp()
+    {
+        SpawnInstanceInScene(AXE_INTERACTABLE_PATH + "RailBlock-Oneway-Vertical-Up");
+    }
+    [MenuItem("GameObject/2D Object/Game System/RailBlock-Oneway-Vertical-Down")]
+    public static void CreateRailBlockOneWayVerticalDown()
+    {
+        SpawnInstanceInScene(AXE_INTERACTABLE_PATH + "RailBlock-Oneway-Vertical-Down");
     }
     [MenuItem("GameObject/2D Object/Game System/TeleGem")]
     public static void CreateTeleGem()
