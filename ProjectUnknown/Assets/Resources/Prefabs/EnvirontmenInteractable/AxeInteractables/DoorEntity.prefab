@@ -731,7 +731,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7424826671877307281}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fff8a66a6dd38b046be91db1ff03def1, type: 3}
   m_Name: 
@@ -832,6 +832,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: ec07c30a6fa72d0489a07bc455aec572, type: 2}
+  render: {fileID: 7424826671856768053}
+  normal: {fileID: 21300000, guid: d1c24c4a072a1904f9cd4d645d624357, type: 3}
+  locked: {fileID: 21300000, guid: 5f0b53c7ae05d5944949d8c80fe9aad5, type: 3}
   moveAB: {fileID: 430368207}
   OpenPos: 0
   particleSpawnPoint: {fileID: 1485166943}

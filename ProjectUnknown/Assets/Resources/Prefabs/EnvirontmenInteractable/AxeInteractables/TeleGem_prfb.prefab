@@ -146,6 +146,8 @@ MonoBehaviour:
   ability: {fileID: 11400000, guid: 69fc433673b054a4abd3df86248f1ef6, type: 2}
   anim: {fileID: 3204923655302810495}
   settings: {fileID: 11400000, guid: ec07c30a6fa72d0489a07bc455aec572, type: 2}
+  render: {fileID: 3204923655302810492}
+  lockedSprite: {fileID: 21300000, guid: 57f47b0bf1920bd4b90df6db1d351ce0, type: 3}
   gemParticles: {fileID: 5134555799131602466}
 --- !u!1001 &1872950740263510088
 PrefabInstance:

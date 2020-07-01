@@ -11042,11 +11042,10 @@ MonoBehaviour:
   collectableRoot: {fileID: 2077564467}
   indicatorManagerRoot: {fileID: 1630883636}
   skeletonRoot: {fileID: 1034456419}
-  collectableData: {fileID: 11400000, guid: 31e22b465df27724484d5216d791073e, type: 2}
-  deadPlaceDatas: {fileID: 11400000, guid: feed34c58dc30f443abc1086798b0b2c, type: 2}
+  collectableData: {fileID: 11400000, guid: 9faaea432e713f24f9afdf3f75e4b2cc, type: 2}
+  deadPlaceDatas: {fileID: 11400000, guid: 15249bb792247554c88b70098a91840f, type: 2}
   collectables: []
-  indicatorManagers:
-  - {fileID: 0}
+  indicatorManagers: []
   skeletonPrefabs: {fileID: 8903725168108551628, guid: 0694dd5e89996d143bd2b1771f4c0f3d,
     type: 3}
 --- !u!156049354 &423510235
@@ -13793,7 +13792,7 @@ PrefabInstance:
         type: 3}
       propertyPath: profile
       value: 
-      objectReference: {fileID: 11400000, guid: 644968ce77acc664f806614bf422fc1b,
+      objectReference: {fileID: 11400000, guid: 6964ef37e308c47458e995ca23cb61ff,
         type: 2}
     - target: {fileID: 6809564946063532641, guid: dd7343e7bbca6f64a8343c9f5d7159ab,
         type: 3}
@@ -14591,7 +14590,7 @@ PrefabInstance:
         type: 3}
       propertyPath: profile
       value: 
-      objectReference: {fileID: 11400000, guid: 644968ce77acc664f806614bf422fc1b,
+      objectReference: {fileID: 11400000, guid: 44263ba9136911646b59c519f4e423f7,
         type: 2}
     - target: {fileID: 6809564946063532641, guid: dd7343e7bbca6f64a8343c9f5d7159ab,
         type: 3}
@@ -16443,7 +16442,7 @@ PrefabInstance:
         type: 3}
       propertyPath: profile
       value: 
-      objectReference: {fileID: 11400000, guid: 09c7998913fa658499de7783202d4816,
+      objectReference: {fileID: 11400000, guid: f0aeb8495e4f4b343a05b8880b57e3e5,
         type: 2}
     - target: {fileID: 6809564946063532641, guid: dd7343e7bbca6f64a8343c9f5d7159ab,
         type: 3}

@@ -53604,17 +53604,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundTileMap: {fileID: 1999956706}
   collectableRoot: {fileID: 1828129492}
-  indicatorManagerRoot: {fileID: 0}
-  skeletonRoot: {fileID: 0}
-  collectableData: {fileID: 0}
-  deadPlaceDatas: {fileID: 0}
+  indicatorManagerRoot: {fileID: 957320102}
+  skeletonRoot: {fileID: 1556198204}
+  collectableData: {fileID: 11400000, guid: ffe6b05954141ad47bb281193802ef35, type: 2}
+  deadPlaceDatas: {fileID: 11400000, guid: d9d22bed0b953354baf86118e4e7038a, type: 2}
   collectables:
-  - {fileID: 0}
   - {fileID: 173176823}
-  indicatorManagers:
-  - {fileID: 0}
-  - {fileID: 0}
-  skeletonPrefabs: {fileID: 0}
+  indicatorManagers: []
+  skeletonPrefabs: {fileID: 8903725168108551628, guid: 0694dd5e89996d143bd2b1771f4c0f3d,
+    type: 3}
 --- !u!156049354 &423510235
 Grid:
   m_ObjectHideFlags: 0
@@ -53652,6 +53650,8 @@ Transform:
   - {fileID: 1828129493}
   - {fileID: 16946928}
   - {fileID: 1722749488}
+  - {fileID: 1556198205}
+  - {fileID: 957320103}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -56163,6 +56163,36 @@ Transform:
   m_Father: {fileID: 220783566}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &957320102
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 957320103}
+  m_Layer: 0
+  m_Name: IndicatorManagerRoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &957320103
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 957320102}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -35, y: -55, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 423510236}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1129638660
 GameObject:
   m_ObjectHideFlags: 0
@@ -58506,6 +58536,36 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1556198204
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1556198205}
+  m_Layer: 0
+  m_Name: SkeletonRoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1556198205
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556198204}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -35, y: -55, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 423510236}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1570774718
 PrefabInstance:
   m_ObjectHideFlags: 0

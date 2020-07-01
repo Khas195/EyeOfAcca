@@ -10,6 +10,19 @@ public class Door : MonoBehaviour
     [SerializeField]
     [Required]
     GameMasterSettings settings = null;
+    [BoxGroup("Requirements")]
+    [SerializeField]
+    [Required]
+    SpriteRenderer render = null;
+    [BoxGroup("Requirements")]
+    [SerializeField]
+    [Required]
+    Sprite normal = null;
+    [BoxGroup("Requirements")]
+    [SerializeField]
+    [Required]
+    Sprite locked = null;
+
 
     [BoxGroup("Requirements")]
     [SerializeField]
@@ -38,6 +51,30 @@ public class Door : MonoBehaviour
     {
         CheckIsOpen();
     }
+    void Start()
+    {
+        UpdateDoorSprite();
+        settings.OnTimedDoorUnlock.AddListener(OnTimedDoorUnlock);
+    }
+
+    private void OnTimedDoorUnlock()
+    {
+        UpdateDoorSprite();
+        VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.CharacterStoneBreaks, this.render.gameObject.transform.position, Quaternion.identity);
+    }
+
+    private void UpdateDoorSprite()
+    {
+        if (settings.TimedDoorUnlock)
+        {
+            render.sprite = normal;
+        }
+        else
+        {
+            render.sprite = locked;
+        }
+    }
+
     public bool IsNotMiddle(MoveAB.MoveABEnum value)
     {
         return value != MoveAB.MoveABEnum.Middle;
@@ -76,19 +113,7 @@ public class Door : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Update is called every frame, if the MonoBehaviour is enabled.
-    /// </summary>
-    void Update()
-    {
-    }
-    /// <summary>
-    /// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
-    /// </summary>
-    void FixedUpdate()
-    {
 
-    }
     public void SpawnParticle()
     {
         var effect = VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.DoorCloseDust, particleSpawnPoint.transform.position, Quaternion.identity);
