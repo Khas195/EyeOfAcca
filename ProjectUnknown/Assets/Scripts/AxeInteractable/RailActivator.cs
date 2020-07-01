@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
@@ -21,28 +22,35 @@ public class RailActivator : SavePoint
     private Sprite activatedSprite;
     [SerializeField]
     private Transform flashSpawnPoint;
-    [SerializeField]
-    private GameObject flashObject;
     void Start()
     {
         if (settings.RailUnlocked)
         {
-            //render.color = activatedColor;
             this.render.sprite = this.activatedSprite;
         }
         else
         {
-            //render.color = deactivatedColor;
             this.render.sprite = this.deactivatedSprite;
         }
     }
     public override void OnSavePointActivated()
     {
+        if (settings.RailUnlocked == false)
+        {
+            var gatherPower = VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.OrbGatherPower, flashSpawnPoint.transform.position, Quaternion.identity);
+            var destroyCallback = gatherPower.GetComponent<DestroyWhenAnimationDone>();
+            var gatherPowerAnim = gatherPower.GetComponent<Animator>();
+            gatherPowerAnim.SetBool("hasRecallPower", true);
+            destroyCallback.OnAnimationDone.AddListener(OnGatherPowerAnimationDone);
+        }
         base.OnSavePointActivated();
-        settings.UnlockRail();
-        //render.color = activatedColor;
+    }
+
+    private void OnGatherPowerAnimationDone()
+    {
+        var flash = VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.AxeHasPowerFlash, flashSpawnPoint.transform.position, Quaternion.identity);
         this.render.sprite = this.activatedSprite;
-        Instantiate(this.flashObject, this.flashSpawnPoint);
+        settings.UnlockRail();
         settings.SaveData();
     }
 }
