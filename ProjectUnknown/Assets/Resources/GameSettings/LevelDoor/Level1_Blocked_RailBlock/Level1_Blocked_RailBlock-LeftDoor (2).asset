@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 745ccf2c8309d18499877da1fa42dda8, type: 3}
-  m_Name: Level4_Hard_RailBlocks-Door-GemRoom
+  m_Name: Level1_Blocked_RailBlock-LeftDoor (2)
   m_EditorClassIdentifier: 
-  doorHome: Level4_Hard_RailBlocks
-  doorLocation: {x: 98.16511, y: -0.03, z: 0}
-  landingPlace: {fileID: 0}
+  doorHome: Level1_Blocked_RailBlock
+  doorLocation: {x: 198.5, y: 70.5, z: 0}
+  landingPlace: {fileID: 11400000, guid: bcb52e013766f3a449cfc01212108873, type: 2}
