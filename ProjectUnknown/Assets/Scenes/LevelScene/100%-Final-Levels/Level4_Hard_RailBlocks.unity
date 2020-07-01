@@ -40299,12 +40299,10 @@ MonoBehaviour:
   collectableRoot: {fileID: 2077564467}
   indicatorManagerRoot: {fileID: 1630883636}
   skeletonRoot: {fileID: 1034456419}
-  collectableData: {fileID: 0}
-  deadPlaceDatas: {fileID: 11400000, guid: 67681895c59d8204b93ad49504b98ee6, type: 2}
+  collectableData: {fileID: 11400000, guid: d6de7698b7d1cee40b12445c8596283e, type: 2}
+  deadPlaceDatas: {fileID: 11400000, guid: 0e393e324dacde04297036711be2aafa, type: 2}
   collectables: []
-  indicatorManagers:
-  - {fileID: 0}
-  - {fileID: 0}
+  indicatorManagers: []
   skeletonPrefabs: {fileID: 8903725168108551628, guid: 0694dd5e89996d143bd2b1771f4c0f3d,
     type: 3}
 --- !u!156049354 &423510235
