@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
@@ -19,6 +20,17 @@ public class Gem : AxeInteractable
     [Required]
     GameMasterSettings settings = null;
 
+    [BoxGroup("Requirements")]
+    [SerializeField]
+    [Required]
+    SpriteRenderer render = null;
+
+    [BoxGroup("Requirements")]
+    [SerializeField]
+    [Required]
+    Sprite lockedSprite = null;
+
+
     [BoxGroup("Optional")]
     [SerializeField]
     GameObject gemParticles = null;
@@ -28,11 +40,20 @@ public class Gem : AxeInteractable
     {
         if (settings.GemUnlocked == false)
         {
-            DeactiveGem();
+            LockGem();
         }
         settings.OnGemUnlocked.AddListener(ActivateGem);
     }
 
+    private void LockGem()
+    {
+        this.anim.enabled = false;
+        render.sprite = lockedSprite;
+        if (gemParticles != null)
+        {
+            gemParticles.SetActive(false);
+        }
+    }
 
     public override void OnAxeHit(Boomeraxe axe)
     {
@@ -48,11 +69,7 @@ public class Gem : AxeInteractable
             {
                 gemParticles.SetActive(false);
             }
-            var ripple = Ripple.GetInstance(false);
-            if (ripple)
-            {
-                ripple.RippleAt(this.transform.position.x, this.transform.position.y, 0.9f, 15f);
-            }
+
             Time.timeScale = 0.2f;
             StartCoroutine(ResetTimeScaleAfter(0.009f));
 
@@ -79,10 +96,23 @@ public class Gem : AxeInteractable
     }
     public void ActivateGem()
     {
+        if (this.anim.enabled == false)
+        {
+            VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.CharacterStoneBreaks, this.transform.position, Quaternion.identity);
+            this.anim.enabled = true;
+        }
         anim.SetBool("HasPower", true);
+        if (gemParticles != null)
+        {
+            gemParticles.SetActive(true);
+        }
     }
     public void DeactiveGem()
     {
         anim.SetBool("HasPower", false);
+        if (gemParticles != null)
+        {
+            gemParticles.SetActive(false);
+        }
     }
 }

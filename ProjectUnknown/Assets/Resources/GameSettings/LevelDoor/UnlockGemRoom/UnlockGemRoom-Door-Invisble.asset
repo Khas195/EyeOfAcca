@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 745ccf2c8309d18499877da1fa42dda8, type: 3}
-  m_Name: Introduce-Rail-1A-TopDoor
+  m_Name: UnlockGemRoom-Door-Invisble
   m_EditorClassIdentifier: 
-  doorHome: Introduce-Rail-1A
-  doorLocation: {x: 49.75, y: 32.5, z: 0}
-  landingPlace: {fileID: 11400000, guid: dc8f4fb38a9eefc41b7638d4f7f95aee, type: 2}
+  doorHome: UnlockGemRoom
+  doorLocation: {x: 1.34, y: 21.41, z: 0}
+  landingPlace: {fileID: 0}

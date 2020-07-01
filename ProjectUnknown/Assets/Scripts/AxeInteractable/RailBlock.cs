@@ -31,6 +31,25 @@ public class RailBlock : AxeInteractable
     [SerializeField]
     [Required]
     GameMasterSettings settings = null;
+    [BoxGroup("Requirements")]
+    [SerializeField]
+    [Required]
+    [ShowIf("isRailBlock")]
+    SpriteRenderer render = null;
+    [BoxGroup("Requirements")]
+    [SerializeField]
+    [Required]
+    [ShowIf("isRailBlock")]
+    Sprite normalBlock = null;
+    [BoxGroup("Requirements")]
+    [SerializeField]
+    [Required]
+    [ShowIf("isRailBlock")]
+    Sprite lockedBlock = null;
+
+
+
+
 
     [BoxGroup("Settings")]
     [SerializeField]
@@ -66,6 +85,32 @@ public class RailBlock : AxeInteractable
     [ReadOnly]
     Boomeraxe axe = null;
 
+    void Start()
+    {
+        if (isRailBlock)
+        {
+            UpdateRailBlockSprite();
+            settings.OnRailUnlocked.AddListener(OnRailUnlocked);
+        }
+    }
+
+    private void UpdateRailBlockSprite()
+    {
+        if (settings.RailUnlocked)
+        {
+            render.sprite = normalBlock;
+        }
+        else
+        {
+            render.sprite = lockedBlock;
+        }
+    }
+
+    private void OnRailUnlocked()
+    {
+        UpdateRailBlockSprite();
+        VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.CharacterStoneBreaks, this.transform.position, Quaternion.identity);
+    }
 
     public override void OnAxeHit(Boomeraxe axe)
     {

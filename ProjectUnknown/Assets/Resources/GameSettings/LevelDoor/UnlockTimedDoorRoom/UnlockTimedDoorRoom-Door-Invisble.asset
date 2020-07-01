@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: UnlockTimedDoorRoom-Door-Invisble
   m_EditorClassIdentifier: 
   doorHome: UnlockTimedDoorRoom
-  doorLocation: {x: 117, y: 22.3, z: 0}
-  landingPlace: {fileID: 11400000, guid: 5e0133dcdd8ad014c9e5aed3ddcd5519, type: 2}
+  doorLocation: {x: 30, y: 10, z: 0}
+  landingPlace: {fileID: 0}
