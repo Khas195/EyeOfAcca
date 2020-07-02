@@ -98,7 +98,7 @@ public class Gem : AxeInteractable
     {
         if (this.anim.enabled == false)
         {
-            VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.CharacterStoneBreaks, this.transform.position, Quaternion.identity);
+            VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.GemUnlock, this.transform.position, Quaternion.identity);
             this.anim.enabled = true;
         }
         anim.SetBool("HasPower", true);
