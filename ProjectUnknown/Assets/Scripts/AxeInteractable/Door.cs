@@ -60,7 +60,7 @@ public class Door : MonoBehaviour
     private void OnTimedDoorUnlock()
     {
         UpdateDoorSprite();
-        VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.CharacterStoneBreaks, this.render.gameObject.transform.position, Quaternion.identity);
+        VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.TimedDoorUnlock, this.render.gameObject.transform.position, Quaternion.identity);
     }
 
     private void UpdateDoorSprite()

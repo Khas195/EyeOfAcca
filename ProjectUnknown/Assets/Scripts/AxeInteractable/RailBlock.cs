@@ -109,7 +109,7 @@ public class RailBlock : AxeInteractable
     private void OnRailUnlocked()
     {
         UpdateRailBlockSprite();
-        VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.CharacterStoneBreaks, this.transform.position, Quaternion.identity);
+        VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.RailUnlock, this.transform.position, Quaternion.identity);
     }
 
     public override void OnAxeHit(Boomeraxe axe)

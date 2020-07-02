@@ -23,6 +23,10 @@ public class DoorConnection
     public void OnLandingDoorChanged()
     {
         HomeDoor.SetLandPlace(LandingDoor);
+        if (LandingDoor != null)
+        {
+            LandingDoor.SetLandPlace(HomeDoor);
+        }
     }
     public DropdownList<TransitionDoorProfile> AvailableDoors()
     {
