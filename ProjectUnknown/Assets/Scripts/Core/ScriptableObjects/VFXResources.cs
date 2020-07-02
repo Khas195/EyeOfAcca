@@ -23,7 +23,10 @@ public class VFXResources : ScriptableObject
         PotBreak,
         TrapFireSmoke,
         ArrowBreaks,
-        CharacterStoneBreaks
+        CharacterStoneBreaks,
+        GemUnlock,
+        RailUnlock,
+        TimedDoorUnlock
     }
     [Serializable]
     public struct VFX

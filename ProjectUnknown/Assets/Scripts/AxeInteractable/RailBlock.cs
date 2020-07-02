@@ -109,7 +109,7 @@ public class RailBlock : AxeInteractable
     private void OnRailUnlocked()
     {
         UpdateRailBlockSprite();
-        VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.CharacterStoneBreaks, this.transform.position, Quaternion.identity);
+        VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.RailUnlock, this.transform.position, Quaternion.identity);
     }
 
     public override void OnAxeHit(Boomeraxe axe)
@@ -133,37 +133,33 @@ public class RailBlock : AxeInteractable
         }
 
         base.OnAxeAbilityTriggered(triggeredAbility);
-        bool moveA = true;
         if (abilityToInteract.Equals(triggeredAbility) && axe.GetStuckCollider() == box)
         {
             if (moveHorizontal)
             {
                 if (holderTrans.transform.position.x > box.transform.position.x)
                 {
-                    moveAb.GoTo(MoveAB.MoveABEnum.B);
-                    moveA = false;
+                    MoveRight();
                 }
                 else
                 {
-                    moveAb.GoTo(MoveAB.MoveABEnum.A);
+                    MoveLeft();
                 }
             }
             else
             {
                 if (holderTrans.transform.position.y >= box.transform.position.y)
                 {
-                    moveAb.GoTo(MoveAB.MoveABEnum.B);
-                    moveA = false;
+                    MoveUp();
                 }
                 else
                 {
-                    moveAb.GoTo(MoveAB.MoveABEnum.A);
+                    MoveDown();
                 }
-
             }
             if (moveAb.HasReachedDestination() == false)
             {
-                if (moveA)
+                if (moveAb.IsCurrentDestination(MoveAB.MoveABEnum.A))
                 {
                     OnBlockMoveA.Invoke();
                 }
@@ -176,5 +172,86 @@ public class RailBlock : AxeInteractable
             }
 
         }
+    }
+    public void Move()
+    {
+        if (moveAb.IsAt(MoveAB.MoveABEnum.A))
+        {
+            moveAb.GoTo(MoveAB.MoveABEnum.B);
+        }
+        else
+        {
+            moveAb.GoTo(MoveAB.MoveABEnum.A);
+        }
+    }
+    private void MoveDown()
+    {
+        var posA = moveAb.GetPosition(MoveAB.MoveABEnum.A);
+        var posB = moveAb.GetPosition(MoveAB.MoveABEnum.B);
+
+        if (IsPostionAAbovePositionB(posA, posB))
+        {
+            moveAb.GoTo(MoveAB.MoveABEnum.B);
+        }
+        else
+        {
+            moveAb.GoTo(MoveAB.MoveABEnum.A);
+        }
+    }
+
+    private static bool IsPostionAAbovePositionB(Vector2 posA, Vector2 posB)
+    {
+        return posA.y > posB.y;
+    }
+
+    private void MoveUp()
+    {
+        var posA = moveAb.GetPosition(MoveAB.MoveABEnum.A);
+        var posB = moveAb.GetPosition(MoveAB.MoveABEnum.B);
+
+        if (IsPostionAAbovePositionB(posA, posB))
+        {
+            moveAb.GoTo(MoveAB.MoveABEnum.A);
+        }
+        else
+        {
+            moveAb.GoTo(MoveAB.MoveABEnum.B);
+        }
+    }
+
+    private void MoveLeft()
+    {
+        var posA = moveAb.GetPosition(MoveAB.MoveABEnum.A);
+        var posB = moveAb.GetPosition(MoveAB.MoveABEnum.B);
+
+        if (IsPositionARightOfPositionB(posA, posB))
+        {
+            moveAb.GoTo(MoveAB.MoveABEnum.B);
+        }
+        else
+        {
+            moveAb.GoTo(MoveAB.MoveABEnum.A);
+        }
+    }
+
+    private static bool IsPositionARightOfPositionB(Vector2 posA, Vector2 posB)
+    {
+        return posA.x > posB.x;
+    }
+
+    private void MoveRight()
+    {
+        var posA = moveAb.GetPosition(MoveAB.MoveABEnum.A);
+        var posB = moveAb.GetPosition(MoveAB.MoveABEnum.B);
+
+        if (IsPositionARightOfPositionB(posA, posB))
+        {
+            moveAb.GoTo(MoveAB.MoveABEnum.A);
+        }
+        else
+        {
+            moveAb.GoTo(MoveAB.MoveABEnum.B);
+        }
+
     }
 }

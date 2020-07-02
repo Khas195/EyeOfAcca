@@ -37,6 +37,8 @@ public class MoveAB : MonoBehaviour
     [SerializeField]
     bool automaticallyMoveBackToStart = false;
 
+
+
     [BoxGroup("Settings")]
     [SerializeField]
     Tweener.TweenType moveType = Tweener.TweenType.EaseOutQuad;
@@ -162,6 +164,11 @@ public class MoveAB : MonoBehaviour
 
     }
 
+    public bool IsCurrentDestination(MoveABEnum destinationEnum)
+    {
+        return destination == GetPosition(destinationEnum);
+    }
+
     void FixedUpdate()
     {
         if (inMotion)
@@ -251,5 +258,14 @@ public class MoveAB : MonoBehaviour
     public bool IsInMotion()
     {
         return inMotion;
+    }
+    public void SetMoveTime(float moveTime)
+    {
+        this.timeTillDestinationReached = moveTime;
+    }
+
+    public void SetReturnTime(float returnTime)
+    {
+        this.moveBackTime = returnTime;
     }
 }
