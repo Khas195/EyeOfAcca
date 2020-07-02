@@ -162,6 +162,11 @@ public class MoveAB : MonoBehaviour
 
     }
 
+    public bool IsCurrentDestination(MoveABEnum destinationEnum)
+    {
+        return destination == GetPosition(destinationEnum);
+    }
+
     void FixedUpdate()
     {
         if (inMotion)
