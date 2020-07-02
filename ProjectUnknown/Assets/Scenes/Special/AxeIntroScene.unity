@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -10831,12 +10831,12 @@ Tilemap:
   - first: {x: 30, y: -16, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 2
+      m_TileIndex: 12
+      m_TileSpriteIndex: 28
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
-      m_AllTileFlags: 1073741826
+      m_AllTileFlags: 1073741825
   - first: {x: 31, y: -16, z: 0}
     second:
       serializedVersion: 2
@@ -23711,7 +23711,7 @@ Tilemap:
   m_TileAssetArray:
   - m_RefCount: 1029
     m_Data: {fileID: 11400000, guid: 1e61a5288d85f544399fbd5ebe8ec2aa, type: 2}
-  - m_RefCount: 64
+  - m_RefCount: 63
     m_Data: {fileID: 11400000, guid: 8abd47e2336b0de4dadb59d257351136, type: 2}
   - m_RefCount: 63
     m_Data: {fileID: 11400000, guid: af78a0ffc6e4cf946934f3f5375bc103, type: 2}
@@ -23733,7 +23733,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: abe856a9ca0b4eb44bf0d6fa7cb9b978, type: 2}
   - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: b791afd4dbce4914f8eed617a67c0698, type: 2}
-  - m_RefCount: 2
+  - m_RefCount: 3
     m_Data: {fileID: 11400000, guid: 562156464156a384f950006ae9bfd8cd, type: 2}
   - m_RefCount: 65
     m_Data: {fileID: 11400000, guid: a75c390599184a74785a4b94e7328855, type: 2}
@@ -23770,7 +23770,7 @@ Tilemap:
   - m_RefCount: 7
     m_Data: {fileID: -4487631716107846043, guid: f7015e9865aac8440b7482226cb3cc84,
       type: 3}
-  - m_RefCount: 28
+  - m_RefCount: 27
     m_Data: {fileID: -6710315890843927082, guid: f7015e9865aac8440b7482226cb3cc84,
       type: 3}
   - m_RefCount: 7
@@ -23847,7 +23847,7 @@ Tilemap:
   - m_RefCount: 2
     m_Data: {fileID: -1516211124372484245, guid: f7015e9865aac8440b7482226cb3cc84,
       type: 3}
-  - m_RefCount: 2
+  - m_RefCount: 3
     m_Data: {fileID: -7092957868482586105, guid: f7015e9865aac8440b7482226cb3cc84,
       type: 3}
   - m_RefCount: 37
@@ -23999,7 +23999,7 @@ CompositeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 1
+  m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:
@@ -24069,8 +24069,22 @@ CompositeCollider2D:
         Y: -170000000
       - X: 380000000
         Y: -150000000
-      - X: 300000000
+      - X: 310000100
         Y: -150000000
+      - X: 310000100
+        Y: -149999959
+      - X: 310000041
+        Y: -149999900
+      - X: 299999959
+        Y: -149999900
+      - X: 299999900
+        Y: -149999959
+      - X: 299999900
+        Y: -160000041
+      - X: 299999959
+        Y: -160000100
+      - X: 300000000
+        Y: -160000100
       - X: 300000000
         Y: -170000000
       - X: 280000000
@@ -24088,7 +24102,7 @@ CompositeCollider2D:
       - {x: 39.999973, y: -17}
       - {x: 38, y: -16.999971}
       - {x: 37.999973, y: -15}
-      - {x: 30, y: -15.000029}
+      - {x: 29.99999, y: -15.000026}
       - {x: 29.999971, y: -17}
       - {x: 28, y: -17.000029}
       - {x: 27.999971, y: -18}
