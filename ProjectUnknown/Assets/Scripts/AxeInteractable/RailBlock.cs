@@ -133,7 +133,6 @@ public class RailBlock : AxeInteractable
         }
 
         base.OnAxeAbilityTriggered(triggeredAbility);
-        bool moveA = true;
         if (abilityToInteract.Equals(triggeredAbility) && axe.GetStuckCollider() == box)
         {
             if (moveHorizontal)
@@ -174,7 +173,17 @@ public class RailBlock : AxeInteractable
 
         }
     }
-
+    public void Move()
+    {
+        if (moveAb.IsAt(MoveAB.MoveABEnum.A))
+        {
+            moveAb.GoTo(MoveAB.MoveABEnum.B);
+        }
+        else
+        {
+            moveAb.GoTo(MoveAB.MoveABEnum.A);
+        }
+    }
     private void MoveDown()
     {
         var posA = moveAb.GetPosition(MoveAB.MoveABEnum.A);
