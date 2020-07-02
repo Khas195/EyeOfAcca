@@ -81,6 +81,5 @@ public class LevelConnectionSettings : ScriptableObject
         {
             settings[i].OnDoorChanged();
         }
-        RefreshConnection();
     }
 }
