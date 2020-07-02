@@ -72,7 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76a656330c2f3ef4290e1af07e3c10b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  profile: {fileID: 11400000, guid: 05646047eed1b314cb3dbabaf37da423, type: 2}
+  profile: {fileID: 0}
 --- !u!212 &5821359047795764424
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   render: {fileID: 5821359047795764424}
-  normalDoor: {fileID: -7194657258819939146, guid: d83796c5cffe68e4689797f003c366a0,
+  normalDoor: {fileID: 3468086031689299222, guid: d83796c5cffe68e4689797f003c366a0,
     type: 3}
   unlockedDoor: {fileID: -6386040240767371555, guid: d83796c5cffe68e4689797f003c366a0,
     type: 3}
