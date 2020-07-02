@@ -17,7 +17,7 @@ MonoBehaviour:
   gemUnlocked: 0
   railUnlocked: 0
   timedDoorUnlocked: 0
-  isNewGame: 0
+  isNewGame: 1
   OnGemUnlocked:
     m_PersistentCalls:
       m_Calls: []
