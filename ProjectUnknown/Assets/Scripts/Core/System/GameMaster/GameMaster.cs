@@ -49,6 +49,7 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
         UnloadAllScenesExcept(MASTER_SCENE);
         SaveLoadManager.LoadAllData();
         Screen.fullScreenMode = masterSettings.mode;
+        InvisibleCheckPoint.CheckPointReachedEvent.AddListener(this.OnCheckPointReached);
         if (masterSettings.skipMainMenu)
         {
             this.StartNewGame();
@@ -57,6 +58,16 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
         {
             this.GoToMainMenu();
         }
+    }
+
+    public bool IsCurrentCheckPoint(TransitionDoorProfile door)
+    {
+        return currentSettings.startLevelDoor.Equals(door);
+    }
+
+    private void OnCheckPointReached(TransitionDoorProfile newCheckPoint)
+    {
+        currentSettings.startLevelDoor = newCheckPoint;
     }
 
     public void StartNewGame()
@@ -302,10 +313,6 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     {
         this.currentSettings.levelCenter = origin;
         this.currentSettings.levelBounds = bounds;
-    }
-    public void UpdateCurrentLevelSettings(TransitionDoorProfile transitionDoorProfile)
-    {
-        this.currentSettings.startLevelDoor = transitionDoorProfile;
     }
     public void UpdateLevelCurrentCollectables(LevelCollectablesData collectableData)
     {

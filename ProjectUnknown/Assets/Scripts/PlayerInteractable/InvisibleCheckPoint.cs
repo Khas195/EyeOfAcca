@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Events;
 
+public class OnCheckPointReached : UnityEvent<TransitionDoorProfile> { }
 public class InvisibleCheckPoint : MonoBehaviour
 {
     [SerializeField]
@@ -20,9 +22,12 @@ public class InvisibleCheckPoint : MonoBehaviour
     [SerializeField]
     [Required]
     Transform flashSpawnPoint = null;
+    [SerializeField]
+    bool isDoorInvisible = false;
+    public static OnCheckPointReached CheckPointReachedEvent = new OnCheckPointReached();
     void Start()
     {
-        if (GameMaster.GetInstance().GetCurrentLevelSettings().startLevelDoor.Equals(door))
+        if (GameMaster.GetInstance().IsCurrentCheckPoint(door.GetProfile()))
         {
             render.sprite = activated;
         }
@@ -35,11 +40,17 @@ public class InvisibleCheckPoint : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("Player"))
         {
-            LogHelper.GetInstance().Log("Check Point Reached".Bolden().Colorize(Color.cyan), true, LogHelper.LogLayer.PlayerFriendly);
-            GameMaster.GetInstance().UpdateCurrentLevelSettings(door.GetProfile());
-            SaveLoadManager.SaveAllData();
-            this.render.sprite = activated;
-            VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.AxeHasPowerFlash, flashSpawnPoint.position, Quaternion.identity);
+            if (GameMaster.GetInstance().IsCurrentCheckPoint(door.GetProfile()) == false)
+            {
+                LogHelper.GetInstance().Log("Check Point Reached".Bolden().Colorize(Color.cyan), true, LogHelper.LogLayer.PlayerFriendly);
+                CheckPointReachedEvent.Invoke(door.GetProfile());
+                SaveLoadManager.SaveAllData();
+                this.render.sprite = activated;
+                if (isDoorInvisible == false)
+                {
+                    VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.AxeHasPowerFlash, flashSpawnPoint.position, Quaternion.identity);
+                }
+            }
         }
     }
 }

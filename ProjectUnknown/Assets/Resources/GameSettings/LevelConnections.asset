@@ -31,14 +31,14 @@ MonoBehaviour:
       LandingDoor: {fileID: 11400000, guid: f90c2e2fc80f9334cbf2e51be2929347, type: 2}
     - HomeDoor: {fileID: 11400000, guid: 90842a3c3954cdb4a9109c8024d26f7f, type: 2}
       LandingDoor: {fileID: 11400000, guid: bcb52e013766f3a449cfc01212108873, type: 2}
+    - HomeDoor: {fileID: 11400000, guid: 97124a148a0f06648be6499b26af04ac, type: 2}
+      LandingDoor: {fileID: 11400000, guid: d79f203fa2e41524aad9c882d2496dd4, type: 2}
     - HomeDoor: {fileID: 11400000, guid: 5643223437033cb4085d7a1fb271e48b, type: 2}
       LandingDoor: {fileID: 11400000, guid: c7f1d2011509e224a9260a34c7812c59, type: 2}
   - sceneName: Level2_Intro_Spike
     doors:
-    - HomeDoor: {fileID: 11400000, guid: 9df1f20fb79910c43a524137901558a5, type: 2}
-      LandingDoor: {fileID: 0}
     - HomeDoor: {fileID: 11400000, guid: c7f1d2011509e224a9260a34c7812c59, type: 2}
-      LandingDoor: {fileID: 0}
+      LandingDoor: {fileID: 11400000, guid: 5643223437033cb4085d7a1fb271e48b, type: 2}
     - HomeDoor: {fileID: 11400000, guid: bdf0fdfbef3182948a67f7ebd0a2a368, type: 2}
       LandingDoor: {fileID: 11400000, guid: a93f8b75c714263408ae4dadd018cc49, type: 2}
   - sceneName: Level3_Intro_Traps
@@ -50,7 +50,7 @@ MonoBehaviour:
   - sceneName: Level4_Hard_RailBlocks
     doors:
     - HomeDoor: {fileID: 11400000, guid: a8dd5bd2bd94c2849b78298dbf7298ad, type: 2}
-      LandingDoor: {fileID: 0}
+      LandingDoor: {fileID: 11400000, guid: f1acd4e0871942a4f953061d8b55da66, type: 2}
     - HomeDoor: {fileID: 11400000, guid: b054c814305a71d42a55178906be2098, type: 2}
       LandingDoor: {fileID: 11400000, guid: f0aeb8495e4f4b343a05b8880b57e3e5, type: 2}
   - sceneName: UnlockRailRoom
@@ -58,7 +58,7 @@ MonoBehaviour:
     - HomeDoor: {fileID: 11400000, guid: 05759f4ff9f272046adfd8639348d45b, type: 2}
       LandingDoor: {fileID: 0}
     - HomeDoor: {fileID: 11400000, guid: f90c2e2fc80f9334cbf2e51be2929347, type: 2}
-      LandingDoor: {fileID: 11400000, guid: 90248c379750459448ad6ef4a25579f2, type: 2}
+      LandingDoor: {fileID: 11400000, guid: 86c5bb6ad25553c4eb5cc675f77e733f, type: 2}
   - sceneName: UnlockTimedDoorRoom
     doors:
     - HomeDoor: {fileID: 11400000, guid: a8c5dd154e9a84b40afd88b303ea16c2, type: 2}
