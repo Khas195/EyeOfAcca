@@ -159,7 +159,14 @@ public class PlayerController2D : MonoBehaviour
         if (door.IsUsuable())
         {
             TransitionDoorProfile location = door.GetLandingLocation();
-            GameMaster.GetInstance().LoadLevelWithLandingDoor(location);
+            if (location.doorHome == GameMaster.CREDITS_SCENE)
+            {
+                GameMaster.GetInstance().GoToCredit();
+            }
+            else
+            {
+                GameMaster.GetInstance().LoadLevelWithLandingDoor(location);
+            }
         }
     }
 

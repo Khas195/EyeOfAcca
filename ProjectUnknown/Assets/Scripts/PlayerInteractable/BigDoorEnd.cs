@@ -12,6 +12,9 @@ public class BigDoorEnd : MonoBehaviour
     [SerializeField]
     [Required]
     GameMasterSettings settings = null;
+    [SerializeField]
+    [Required]
+    LevelTransitionDoor doorFunction = null;
     public static UnityEvent OnBigDoorOpenStarted = new UnityEvent();
     public static UnityEvent OnBigDoorOpenFinished = new UnityEvent();
     public static UnityEvent OnSymbolTicked = new UnityEvent();
@@ -84,5 +87,6 @@ public class BigDoorEnd : MonoBehaviour
     public void OnBigDoorOpenFished()
     {
         BigDoorEnd.OnBigDoorOpenFinished.Invoke();
+        doorFunction.gameObject.SetActive(true);
     }
 }

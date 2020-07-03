@@ -10,14 +10,16 @@ public class CreditsScene : MonoBehaviour
     TransitionCurve thankyouFade = null;
     [SerializeField]
     TransitionCurve thankyouMove = null;
+    [SerializeField]
+    TransitionCurve creditsMove = null;
+    [SerializeField]
+    TransitionCurve buttonsFade = null;
 
-    void Update()
+    void Start()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            continueFade.TransitionIn(ThankyouFade);
-        }
+        continueFade.TransitionIn(ThankyouFade);
     }
+
 
     public void ThankyouFade()
     {
@@ -25,6 +27,19 @@ public class CreditsScene : MonoBehaviour
     }
     public void ThankyouMove()
     {
-        thankyouMove.TransitionIn();
+        thankyouMove.TransitionIn(CreditMove);
+    }
+    public void CreditMove()
+    {
+        creditsMove.TransitionIn();
+        buttonsFade.TransitionIn();
+    }
+    public void NewGame()
+    {
+        GameMaster.GetInstance().StartNewGame();
+    }
+    public void MainMenu()
+    {
+        GameMaster.GetInstance().GoToMainMenu();
     }
 }
