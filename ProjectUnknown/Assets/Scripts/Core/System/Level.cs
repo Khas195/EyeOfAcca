@@ -91,8 +91,8 @@ public class Level : MonoBehaviour
         }
         else if (collectables.Count < collectableData.datas.Count)
         {
-            var extraAmount = collectables.Count - collectableData.datas.Count;
-            collectableData.datas.RemoveRange(collectableData.datas.Count - extraAmount, collectableData.datas.Count);
+            var extraAmount = collectableData.datas.Count - collectables.Count;
+            collectableData.datas.RemoveRange(collectableData.datas.Count - extraAmount, extraAmount);
         }
     }
 
