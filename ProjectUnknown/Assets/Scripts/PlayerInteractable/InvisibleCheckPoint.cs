@@ -40,16 +40,13 @@ public class InvisibleCheckPoint : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("Player"))
         {
-            if (GameMaster.GetInstance().IsCurrentCheckPoint(door.GetProfile()) == false)
+            LogHelper.GetInstance().Log("Check Point Reached".Bolden().Colorize(Color.cyan), true, LogHelper.LogLayer.PlayerFriendly);
+            CheckPointReachedEvent.Invoke(door.GetProfile());
+            SaveLoadManager.SaveAllData();
+            this.render.sprite = activated;
+            if (isDoorInvisible == false)
             {
-                LogHelper.GetInstance().Log("Check Point Reached".Bolden().Colorize(Color.cyan), true, LogHelper.LogLayer.PlayerFriendly);
-                CheckPointReachedEvent.Invoke(door.GetProfile());
-                SaveLoadManager.SaveAllData();
-                this.render.sprite = activated;
-                if (isDoorInvisible == false)
-                {
-                    VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.AxeHasPowerFlash, flashSpawnPoint.position, Quaternion.identity);
-                }
+                VFXSystem.GetInstance().PlayEffect(VFXResources.VFXList.AxeHasPowerFlash, flashSpawnPoint.position, Quaternion.identity);
             }
         }
     }
