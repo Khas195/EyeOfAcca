@@ -85,6 +85,10 @@ public class TransitionCurve : MonoBehaviour
         this.TransitionIn(0, transitionDoneCallback);
     }
 
+    public virtual void TransitionIn()
+    {
+        this.TransitionIn(null);
+    }
     public virtual void TransitionIn(float atTime, Action transitionDoneCallback = null)
     {
         curTime = atTime;
