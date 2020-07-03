@@ -35,6 +35,8 @@ public class OpeningCutScene : MonoBehaviour
     int curBreakCount = 0;
     [SerializeField]
     GameObject junpPrompts = null;
+    [SerializeField]
+    GameObject movePrompts = null;
 
     void Start()
     {
@@ -91,6 +93,7 @@ public class OpeningCutScene : MonoBehaviour
         cutsceneCameraRoot.gameObject.SetActive(false);
         cameraBehaviour.SetActive(true);
         this.junpPrompts.SetActive(false);
+        this.movePrompts.SetActive(true);
         this.settings.openingCutSceneDone = true;
         SaveLoadManager.SaveAllData();
     }
