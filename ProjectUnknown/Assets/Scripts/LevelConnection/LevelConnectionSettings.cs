@@ -83,7 +83,7 @@ public class LevelConnectionSettings : ScriptableObject
     [Button]
     public void SAVE()
     {
-        for (int i = 0; i < settings.Count; i++)
+        for (int i = settings.Count - 1; i >= 0; i--)
         {
             settings[i].OnDoorChanged();
         }

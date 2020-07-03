@@ -50,6 +50,7 @@ public class CollectablesIndicatorManager : MonoBehaviour
         indicateManager.transform.SetParent(this.transform);
         indicateManager.transform.localPosition = Vector3.zero;
         CleanCollectableIndicatorList();
+        this.indicators.Add(indicateManager.GetComponent<CollectableIndicatorSwitch>());
     }
 #endif
 }
