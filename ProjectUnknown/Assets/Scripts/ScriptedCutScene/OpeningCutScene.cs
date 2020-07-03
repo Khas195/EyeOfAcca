@@ -33,6 +33,8 @@ public class OpeningCutScene : MonoBehaviour
     [SerializeField]
     List<Transform> stoneBreaksPos = new List<Transform>();
     int curBreakCount = 0;
+    [SerializeField]
+    GameObject junpPrompts = null;
 
     void Start()
     {
@@ -88,6 +90,7 @@ public class OpeningCutScene : MonoBehaviour
         playerCamera.gameObject.SetActive(true);
         cutsceneCameraRoot.gameObject.SetActive(false);
         cameraBehaviour.SetActive(true);
+        this.junpPrompts.SetActive(false);
         SaveLoadManager.SaveAllData();
     }
 }
