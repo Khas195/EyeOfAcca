@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 745ccf2c8309d18499877da1fa42dda8, type: 3}
-  m_Name: Level10_PathofPain-TopDoor
+  m_Name: ConnectingRoomB-DoorTop
   m_EditorClassIdentifier: 
-  doorHome: Level10_PathofPain
-  doorLocation: {x: 67.25, y: 81.5, z: 0}
-  landingPlace: {fileID: 11400000, guid: a83b60ac06988d242b7e8c6d1e8d74f9, type: 2}
+  doorHome: ConnectingRoomB
+  doorLocation: {x: -10.5, y: 12.5, z: 0}
+  landingPlace: {fileID: 11400000, guid: 89c9f7be095aeae40ab79fed89ac58ac, type: 2}
