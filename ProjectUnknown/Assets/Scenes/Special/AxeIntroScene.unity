@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -24069,22 +24069,8 @@ CompositeCollider2D:
         Y: -170000000
       - X: 380000000
         Y: -150000000
-      - X: 310000100
-        Y: -150000000
-      - X: 310000100
-        Y: -149999959
-      - X: 310000041
-        Y: -149999900
-      - X: 299999959
-        Y: -149999900
-      - X: 299999900
-        Y: -149999959
-      - X: 299999900
-        Y: -160000041
-      - X: 299999959
-        Y: -160000100
       - X: 300000000
-        Y: -160000100
+        Y: -150000000
       - X: 300000000
         Y: -170000000
       - X: 280000000
@@ -24102,7 +24088,7 @@ CompositeCollider2D:
       - {x: 39.999973, y: -17}
       - {x: 38, y: -16.999971}
       - {x: 37.999973, y: -15}
-      - {x: 29.99999, y: -15.000026}
+      - {x: 30, y: -15.000029}
       - {x: 29.999971, y: -17}
       - {x: 28, y: -17.000029}
       - {x: 27.999971, y: -18}
