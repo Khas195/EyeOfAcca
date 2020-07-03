@@ -12,7 +12,8 @@ public abstract class GameState : State
         InGame,
         GamePaused,
         InInventory,
-        Loading
+        Loading,
+        Credit
     }
     [SerializeField]
     [ReadOnly]

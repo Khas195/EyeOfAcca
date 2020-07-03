@@ -1,10 +1,11 @@
 using System;
 using UnityEngine;
-public class InGame : GameState
+
+public class Credit : GameState
 {
     public override Enum GetEnum()
     {
-        return GameStateEnum.InGame;
+        return GameStateEnum.Credit;
     }
 
     public override void OnStateEnter()

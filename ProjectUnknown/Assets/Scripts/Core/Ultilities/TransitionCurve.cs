@@ -36,6 +36,10 @@ public class TransitionCurve : MonoBehaviour
     [ReadOnly]
     float transOutLastKeyTime = 0.0f;
 
+    Action transitionInDoneCallback = null;
+    Action transitionOutDoneCallback = null;
+
+
     /// <summary>
     /// Awake is called when the script instance is being loaded.
     /// </summary>
@@ -76,14 +80,16 @@ public class TransitionCurve : MonoBehaviour
         return curTime;
     }
 
-    public virtual void TransitionIn()
+    public virtual void TransitionIn(Action transitionDoneCallback = null)
     {
-        this.TransitionIn(0);
+        this.TransitionIn(0, transitionDoneCallback);
     }
-    public virtual void TransitionIn(float atTime)
+
+    public virtual void TransitionIn(float atTime, Action transitionDoneCallback = null)
     {
         curTime = atTime;
         curCurve = transInCurve;
+        this.transitionInDoneCallback = transitionDoneCallback;
     }
     public virtual void TransitionOut()
     {
@@ -97,12 +103,28 @@ public class TransitionCurve : MonoBehaviour
 
         if (curCurve == transInCurve)
         {
+            if (curTime > transInLastKeyTime)
+            {
+                if (transitionInDoneCallback != null)
+                {
+                    this.transitionInDoneCallback();
+                    this.transitionInDoneCallback = null;
+                }
+            }
             return curTime <= transInLastKeyTime && curTime >= 0;
+
         }
         else if (curCurve == transOutCurve)
         {
-
-            return curTime <= transOutLastKeyTime && curTime >= 0;
+            if (curTime > transOutLastKeyTime)
+            {
+                if (transitionOutDoneCallback != null)
+                {
+                    this.transitionOutDoneCallback();
+                    this.transitionOutDoneCallback = null;
+                }
+            }
+            return (curTime <= transOutLastKeyTime && curTime >= 0);
         }
         else
         {

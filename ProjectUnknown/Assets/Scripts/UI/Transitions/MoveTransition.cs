@@ -1,20 +1,29 @@
-﻿using System.Collections;
+
+using System;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
-using UnityEngine.UI;
-public class FadeTransition : TransitionCurve
+
+public class MoveTransition : TransitionCurve
 {
     [SerializeField]
     [BoxGroup("Settings")]
     bool useUnscaleTime = false;
 
+    [SerializeField]
+    [BoxGroup("Settings")]
+    [Required]
+    Transform target = null;
 
     [SerializeField]
     [BoxGroup("Settings")]
-    List<Graphic> targetImages = new List<Graphic>();
+    [Required]
+    Transform begin = null;
 
-
+    [SerializeField]
+    [BoxGroup("Settings")]
+    [Required]
+    Transform end = null;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -23,8 +32,6 @@ public class FadeTransition : TransitionCurve
         var curValue = this.GetCurrentValue();
         SetValue(curValue);
     }
-
-    // Update is called once per frame
     void Update()
     {
         if (this.IsCurrentTimeInGraph())
@@ -35,16 +42,12 @@ public class FadeTransition : TransitionCurve
             this.AdvanceTime(deltaTime);
         }
     }
-
-    private void SetValue(float value)
+    private void SetValue(float curValue)
     {
-        for (int i = 0; i < targetImages.Count; i++)
-        {
-            var curColor = targetImages[i].color;
-            curColor.a = value;
-            targetImages[i].color = curColor;
-
-
-        }
+        var dir = end.position - begin.position;
+        dir.Normalize();
+        var distance = Vector2.Distance(end.position, begin.position);
+        var distanceFromBegin = curValue * distance;
+        target.position = begin.position + dir * distanceFromBegin;
     }
 }
