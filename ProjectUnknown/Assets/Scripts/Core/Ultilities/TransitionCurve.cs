@@ -91,10 +91,11 @@ public class TransitionCurve : MonoBehaviour
         curCurve = transInCurve;
         this.transitionInDoneCallback = transitionDoneCallback;
     }
-    public virtual void TransitionOut()
+    public virtual void TransitionOut(Action transitionDoneCallBack = null)
     {
         curTime = 0;
         curCurve = transOutCurve;
+        this.transitionInDoneCallback = transitionDoneCallBack;
     }
 
     public bool IsCurrentTimeInGraph()
