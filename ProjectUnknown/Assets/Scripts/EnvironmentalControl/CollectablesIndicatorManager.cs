@@ -19,7 +19,7 @@ public class CollectablesIndicatorManager : MonoBehaviour
     public void UpdateActivatedIndicators(LevelCollectablesData levelCollectData)
     {
         int indicatorsNeedActivate = levelCollectData.GetTotalCollected();
-        if (indicatorsNeedActivate >= indicators.Count)
+        if (indicatorsNeedActivate > indicators.Count)
         {
             indicatorsNeedActivate = indicators.Count;
         }
@@ -28,7 +28,6 @@ public class CollectablesIndicatorManager : MonoBehaviour
             indicators[i].IndicatorActivate();
         }
     }
-#if UNITY_EDITOR
     [Button("Clean Indicators List")]
     private void CleanCollectableIndicatorList()
     {
@@ -41,6 +40,8 @@ public class CollectablesIndicatorManager : MonoBehaviour
             }
         }
     }
+#if UNITY_EDITOR
+
     [Button("Add Indicators")]
     public void AddIndicators()
     {
