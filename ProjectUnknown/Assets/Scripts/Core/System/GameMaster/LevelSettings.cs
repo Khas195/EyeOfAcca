@@ -19,6 +19,8 @@ public class LevelSettings : ScriptableObject, ISaveRestable
     public Vector3 levelBounds = Vector3.zero;
     [SerializeField]
     public LevelCollectablesData currentCollectableData = null;
+    [SerializeField]
+    [ReadOnly]
     private int deadCount = 0;
 
     public int DeadCount { get => deadCount; }

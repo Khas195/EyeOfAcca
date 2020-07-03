@@ -82,8 +82,11 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     public void RefreshSave()
     {
         LogHelper.GetInstance().Log("Creating New Save".Bolden(), true);
+        if (currentSettings)
+        {
+            currentSettings.Reset();
+        }
         SaveLoadManager.ResetSaves();
-
     }
 
     public void LoadLevelAtSpawn(TransitionDoorProfile spawn)

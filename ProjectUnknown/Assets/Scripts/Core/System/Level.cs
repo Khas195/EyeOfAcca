@@ -79,6 +79,7 @@ public class Level : MonoBehaviour
         SpawnSkeletonsAtDeadPlace();
     }
 
+    [Button]
     private void SynchronizeCollectbles()
     {
         if (collectables.Count > collectableData.datas.Count)
