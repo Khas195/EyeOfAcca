@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mode: 0
   skipMainMenu: 0
-  gemUnlocked: 1
-  railUnlocked: 1
-  timedDoorUnlocked: 1
-  isNewGame: 0
-  openingCutSceneDone: 0
+  gemUnlocked: 0
+  railUnlocked: 0
+  timedDoorUnlocked: 0
+  isNewGame: 1
+  openingCutSceneDone: 1
   OnGemUnlocked:
     m_PersistentCalls:
       m_Calls: []
