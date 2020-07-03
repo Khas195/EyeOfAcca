@@ -82,7 +82,7 @@ MonoBehaviour:
   - sceneName: Level6_Gems_Easy
     doors:
     - HomeDoor: {fileID: 11400000, guid: 59462998f9b05ef43b6bc100652ef20d, type: 2}
-      LandingDoor: {fileID: 11400000, guid: 32e9b23b896fa52408731cfd58fcb6ad, type: 2}
+      LandingDoor: {fileID: 11400000, guid: 9418fbf83a5ede042ab01f6647ec0982, type: 2}
     - HomeDoor: {fileID: 11400000, guid: 1725ad43fb687ff469621488096e6b00, type: 2}
       LandingDoor: {fileID: 11400000, guid: 63f2e61f4157a374892daab21d7add69, type: 2}
   - sceneName: Level7_Gems_Hard
@@ -92,7 +92,7 @@ MonoBehaviour:
     - HomeDoor: {fileID: 11400000, guid: 3c5c6d52ad9fa494a86b1921251b5b20, type: 2}
       LandingDoor: {fileID: 11400000, guid: 8a76a9e621244ec47a05d45fdfe63594, type: 2}
     - HomeDoor: {fileID: 11400000, guid: 9418fbf83a5ede042ab01f6647ec0982, type: 2}
-      LandingDoor: {fileID: 11400000, guid: 32e9b23b896fa52408731cfd58fcb6ad, type: 2}
+      LandingDoor: {fileID: 11400000, guid: 59462998f9b05ef43b6bc100652ef20d, type: 2}
     - HomeDoor: {fileID: 11400000, guid: 0718c8d35a00bae4e8f684ea731fa651, type: 2}
       LandingDoor: {fileID: 11400000, guid: e410f29a259bd26439f52fd5021131ff, type: 2}
   - sceneName: Level8_LeverDoor_Easy
