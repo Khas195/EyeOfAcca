@@ -10,10 +10,8 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     private const string MASTER_SCENE = "MasterScene";
     private const string ENTITIES_SCENE = "EntitiesScene";
     private const string IN_GAME_MENU_SCENE = "InGameMenu";
-
-
-
     private const string MAIN_MENU_SCENE = "MainMenu";
+    public const string CREDITS_SCENE = "Credits";
     [SerializeField]
     [Required]
     StateManager gameStateManager = null;
@@ -43,7 +41,7 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
 
     public Material TransitionMaterial;
 
-    public Material RippleEffectMat;
+    public Material RippleEffectMat = null;
     void Start()
     {
         UnloadAllScenesExcept(MASTER_SCENE);
@@ -138,6 +136,17 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
             LoadSceneAdditively(MAIN_MENU_SCENE);
             StartCoroutine(GetLevelLoadProcess(GameState.GameStateEnum.MainMenu));
         });
+    }
+    public void GoToCredit()
+    {
+        if (gameStateManager.RequestState(GameState.GameStateEnum.Loading) == false) return;
+        loadingControl.FadeIn(() =>
+        {
+            UnloadAllScenesExcept(MASTER_SCENE);
+            LoadSceneAdditively(CREDITS_SCENE);
+            StartCoroutine(GetLevelLoadProcess(GameState.GameStateEnum.Credit));
+        });
+
     }
 
     private void UnloadAllScenesExcept(string sceneNotToUnloadName)
