@@ -205,14 +205,14 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.00027900934
+    y: 0
     width: 1
-    height: 0.999442
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.628141
+  orthographic size: 5.625
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -1396,7 +1396,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 99ae1c1a494fb144688bbb4057043d7e, type: 3}
+    m_Font: {fileID: 12800000, guid: f289fe2bb4761774da230ec1bccf2b7e, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
