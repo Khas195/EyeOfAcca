@@ -43,7 +43,7 @@ public class OpeningCutScene : MonoBehaviour
         {
             cutsceneCameraRoot.transform.position = master.GetSpawnLocation();
         }
-        if (settings.isNewGame && SceneManager.GetSceneByName(openingSceneName).IsValid())
+        if (settings.isNewGame && SceneManager.GetSceneByName(openingSceneName).IsValid() && settings.openingCutSceneDone == false)
         {
             playerCamera.gameObject.SetActive(false);
             cutsceneCameraRoot.gameObject.SetActive(true);
@@ -91,6 +91,7 @@ public class OpeningCutScene : MonoBehaviour
         cutsceneCameraRoot.gameObject.SetActive(false);
         cameraBehaviour.SetActive(true);
         this.junpPrompts.SetActive(false);
+        this.settings.openingCutSceneDone = true;
         SaveLoadManager.SaveAllData();
     }
 }

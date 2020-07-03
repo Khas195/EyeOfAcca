@@ -31,7 +31,13 @@ public class ButtonPrompts : MonoBehaviour
     {
         prompt.sprite = promptImage;
     }
+    public void SetSize(Vector2 size)
+    {
+        prompt.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, size.x);
+        prompt.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, size.y);
+        prompt.rectTransform.ForceUpdateRectTransforms();
 
+    }
     public void SetImageLocalPosition(Vector2 promptPos)
     {
         prompt.transform.localPosition = promptPos;
