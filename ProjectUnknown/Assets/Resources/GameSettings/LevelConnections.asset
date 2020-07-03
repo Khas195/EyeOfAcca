@@ -87,8 +87,6 @@ MonoBehaviour:
       LandingDoor: {fileID: 11400000, guid: 63f2e61f4157a374892daab21d7add69, type: 2}
   - sceneName: Level7_Gems_Hard
     doors:
-    - HomeDoor: {fileID: 11400000, guid: 322ba65482ba39b4bbe659cce706507e, type: 2}
-      LandingDoor: {fileID: 11400000, guid: e410f29a259bd26439f52fd5021131ff, type: 2}
     - HomeDoor: {fileID: 11400000, guid: 3c5c6d52ad9fa494a86b1921251b5b20, type: 2}
       LandingDoor: {fileID: 11400000, guid: 8a76a9e621244ec47a05d45fdfe63594, type: 2}
     - HomeDoor: {fileID: 11400000, guid: 9418fbf83a5ede042ab01f6647ec0982, type: 2}

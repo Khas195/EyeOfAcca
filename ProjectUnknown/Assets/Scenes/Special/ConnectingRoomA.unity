@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -4044,7 +4044,6 @@ MonoBehaviour:
   deadPlaceDatas: {fileID: 11400000, guid: 8a4d0e69e0625a24ba5e5a5d9ec75e99, type: 2}
   collectables:
   - {fileID: 1112156482}
-  - {fileID: 0}
   indicatorManagers:
   - {fileID: 6988912867565945147}
   - {fileID: 4844421322613639771}
@@ -44170,7 +44169,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   indicators:
   - {fileID: 4844421322250117864}
-  - {fileID: 0}
 --- !u!4 &4844421322613639772
 Transform:
   m_ObjectHideFlags: 0
@@ -44303,9 +44301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   indicators:
-  - {fileID: 0}
   - {fileID: 6988912867380537032}
-  - {fileID: 0}
 --- !u!4 &6988912867565945148
 Transform:
   m_ObjectHideFlags: 0
