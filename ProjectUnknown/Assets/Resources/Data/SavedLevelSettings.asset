@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dfdbea363adc2d4db0b14308a6ad8d6, type: 3}
   m_Name: SavedLevelSettings
   m_EditorClassIdentifier: 
-  startLevelDoor: {fileID: 11400000, guid: 90595624909ed754f90bf56598da2a23, type: 2}
+  startLevelDoor: {fileID: 11400000, guid: 40cc0c97c36d53744a28dd0e4aef2176, type: 2}
   currentLevel: 
   levelCenter: {x: 0, y: 0, z: 0}
   levelBounds: {x: 0, y: 0, z: 0}
   currentCollectableData: {fileID: 0}
+  deadCount: 0
