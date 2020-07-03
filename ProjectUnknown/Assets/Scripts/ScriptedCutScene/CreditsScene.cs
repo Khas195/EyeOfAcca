@@ -31,9 +31,14 @@ public class CreditsScene : MonoBehaviour
     }
     public void CreditMove()
     {
-        creditsMove.TransitionIn();
+        creditsMove.TransitionIn(ButtonFade);
+    }
+
+    public void ButtonFade()
+    {
         buttonsFade.TransitionIn();
     }
+
     public void NewGame()
     {
         GameMaster.GetInstance().StartNewGame();
