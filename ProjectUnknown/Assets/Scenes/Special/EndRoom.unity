@@ -15452,7 +15452,7 @@ PrefabInstance:
         type: 3}
       propertyPath: profile
       value: 
-      objectReference: {fileID: 11400000, guid: bc46fbe21966aa540af7d8c9ac43f7ea,
+      objectReference: {fileID: 11400000, guid: 630c4905c39fd0347929a18d3a68a0d0,
         type: 2}
     - target: {fileID: 6809564946063532641, guid: dd7343e7bbca6f64a8343c9f5d7159ab,
         type: 3}
@@ -20823,7 +20823,7 @@ CompositeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 1
+  m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:
@@ -28910,7 +28910,7 @@ PrefabInstance:
         type: 3}
       propertyPath: profile
       value: 
-      objectReference: {fileID: 11400000, guid: 551795d496e6a364d811e92a7313c9bb,
+      objectReference: {fileID: 11400000, guid: 18bc2d2171df7d441b0b50ba9449f37e,
         type: 2}
     - target: {fileID: 6809564946063532641, guid: dd7343e7bbca6f64a8343c9f5d7159ab,
         type: 3}
