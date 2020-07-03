@@ -18,6 +18,8 @@ public class GameMasterSettings : ScriptableObject, ISaveRestable
     private bool timedDoorUnlocked = false;
     [SerializeField]
     public bool isNewGame = true;
+    [SerializeField]
+    public bool openingCutSceneDone = false;
 
     public UnityEvent OnGemUnlocked = new UnityEvent();
     public UnityEvent OnRailUnlocked = new UnityEvent();
@@ -43,6 +45,7 @@ public class GameMasterSettings : ScriptableObject, ISaveRestable
         LockGem();
         LockRail();
         LockTimedDoor();
+        openingCutSceneDone = false;
         isNewGame = true;
     }
     public void UnlockGem()

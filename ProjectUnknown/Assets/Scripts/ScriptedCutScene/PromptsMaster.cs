@@ -67,6 +67,7 @@ public class PromptsMaster : SingletonMonobehavior<PromptsMaster>
             prompt.SetImageLocalPosition(belowPos);
         }
         prompt.SetImage(controlPrompt.promptImage);
+        prompt.SetSize(controlPrompt.size);
         prompt.TurnOn();
     }
     public void HidePrompt()
