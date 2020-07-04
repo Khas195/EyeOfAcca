@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class FadeTransition : TransitionCurve
 {
     [SerializeField]
@@ -14,6 +13,8 @@ public class FadeTransition : TransitionCurve
     [SerializeField]
     [BoxGroup("Settings")]
     List<Graphic> targetImages = new List<Graphic>();
+
+
 
     // Start is called before the first frame update
     protected override void Start()

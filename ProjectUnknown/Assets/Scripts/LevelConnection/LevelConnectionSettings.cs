@@ -35,6 +35,7 @@ public class DoorConnection
         foreach (var item in profileList)
         {
             var profile = (TransitionDoorProfile)item;
+            if (item.name.Contains("Invisible")) continue;
             list.Add(profile.name, profile);
         }
         return list;
@@ -54,6 +55,7 @@ public class LevelDoorsSettings
         foreach (var item in profileList)
         {
             var profile = (TransitionDoorProfile)item;
+            if (item.name.Contains("Invisible")) continue;
             doors.Add(new DoorConnection(ref profile, ref profile.landingPlace));
         }
     }
@@ -81,7 +83,7 @@ public class LevelConnectionSettings : ScriptableObject
     [Button]
     public void SAVE()
     {
-        for (int i = 0; i < settings.Count; i++)
+        for (int i = settings.Count - 1; i >= 0; i--)
         {
             settings[i].OnDoorChanged();
         }

@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-
 public class InGame : GameState
 {
     public override Enum GetEnum()

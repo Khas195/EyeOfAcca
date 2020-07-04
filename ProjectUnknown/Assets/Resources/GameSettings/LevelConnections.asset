@@ -31,14 +31,14 @@ MonoBehaviour:
       LandingDoor: {fileID: 11400000, guid: f90c2e2fc80f9334cbf2e51be2929347, type: 2}
     - HomeDoor: {fileID: 11400000, guid: 90842a3c3954cdb4a9109c8024d26f7f, type: 2}
       LandingDoor: {fileID: 11400000, guid: bcb52e013766f3a449cfc01212108873, type: 2}
+    - HomeDoor: {fileID: 11400000, guid: 97124a148a0f06648be6499b26af04ac, type: 2}
+      LandingDoor: {fileID: 11400000, guid: d79f203fa2e41524aad9c882d2496dd4, type: 2}
     - HomeDoor: {fileID: 11400000, guid: 5643223437033cb4085d7a1fb271e48b, type: 2}
       LandingDoor: {fileID: 11400000, guid: c7f1d2011509e224a9260a34c7812c59, type: 2}
   - sceneName: Level2_Intro_Spike
     doors:
-    - HomeDoor: {fileID: 11400000, guid: 9df1f20fb79910c43a524137901558a5, type: 2}
-      LandingDoor: {fileID: 0}
     - HomeDoor: {fileID: 11400000, guid: c7f1d2011509e224a9260a34c7812c59, type: 2}
-      LandingDoor: {fileID: 0}
+      LandingDoor: {fileID: 11400000, guid: 5643223437033cb4085d7a1fb271e48b, type: 2}
     - HomeDoor: {fileID: 11400000, guid: bdf0fdfbef3182948a67f7ebd0a2a368, type: 2}
       LandingDoor: {fileID: 11400000, guid: a93f8b75c714263408ae4dadd018cc49, type: 2}
   - sceneName: Level3_Intro_Traps
@@ -50,7 +50,7 @@ MonoBehaviour:
   - sceneName: Level4_Hard_RailBlocks
     doors:
     - HomeDoor: {fileID: 11400000, guid: a8dd5bd2bd94c2849b78298dbf7298ad, type: 2}
-      LandingDoor: {fileID: 0}
+      LandingDoor: {fileID: 11400000, guid: f1acd4e0871942a4f953061d8b55da66, type: 2}
     - HomeDoor: {fileID: 11400000, guid: b054c814305a71d42a55178906be2098, type: 2}
       LandingDoor: {fileID: 11400000, guid: f0aeb8495e4f4b343a05b8880b57e3e5, type: 2}
   - sceneName: UnlockRailRoom
@@ -64,10 +64,50 @@ MonoBehaviour:
     - HomeDoor: {fileID: 11400000, guid: a8c5dd154e9a84b40afd88b303ea16c2, type: 2}
       LandingDoor: {fileID: 0}
     - HomeDoor: {fileID: 11400000, guid: 8a76a9e621244ec47a05d45fdfe63594, type: 2}
-      LandingDoor: {fileID: 11400000, guid: 1725ad43fb687ff469621488096e6b00, type: 2}
+      LandingDoor: {fileID: 11400000, guid: 3c5c6d52ad9fa494a86b1921251b5b20, type: 2}
   - sceneName: UnlockGemRoom
     doors:
     - HomeDoor: {fileID: 11400000, guid: 81bab27d1346ac749abd372f207f8dfd, type: 2}
       LandingDoor: {fileID: 11400000, guid: 6964ef37e308c47458e995ca23cb61ff, type: 2}
     - HomeDoor: {fileID: 11400000, guid: b19d7fe00d71f8c4b94f03cdedcf1584, type: 2}
       LandingDoor: {fileID: 0}
+  - sceneName: Level5_Blocked_Gems
+    doors:
+    - HomeDoor: {fileID: 11400000, guid: 6964ef37e308c47458e995ca23cb61ff, type: 2}
+      LandingDoor: {fileID: 11400000, guid: 81bab27d1346ac749abd372f207f8dfd, type: 2}
+    - HomeDoor: {fileID: 11400000, guid: f0aeb8495e4f4b343a05b8880b57e3e5, type: 2}
+      LandingDoor: {fileID: 11400000, guid: b054c814305a71d42a55178906be2098, type: 2}
+    - HomeDoor: {fileID: 11400000, guid: 44263ba9136911646b59c519f4e423f7, type: 2}
+      LandingDoor: {fileID: 11400000, guid: cea7afaf4ba64704996ad0182a4661cb, type: 2}
+  - sceneName: Level6_Gems_Easy
+    doors:
+    - HomeDoor: {fileID: 11400000, guid: 59462998f9b05ef43b6bc100652ef20d, type: 2}
+      LandingDoor: {fileID: 11400000, guid: 9418fbf83a5ede042ab01f6647ec0982, type: 2}
+    - HomeDoor: {fileID: 11400000, guid: 1725ad43fb687ff469621488096e6b00, type: 2}
+      LandingDoor: {fileID: 11400000, guid: 63f2e61f4157a374892daab21d7add69, type: 2}
+  - sceneName: Level7_Gems_Hard
+    doors:
+    - HomeDoor: {fileID: 11400000, guid: 3c5c6d52ad9fa494a86b1921251b5b20, type: 2}
+      LandingDoor: {fileID: 11400000, guid: 8a76a9e621244ec47a05d45fdfe63594, type: 2}
+    - HomeDoor: {fileID: 11400000, guid: 9418fbf83a5ede042ab01f6647ec0982, type: 2}
+      LandingDoor: {fileID: 11400000, guid: 59462998f9b05ef43b6bc100652ef20d, type: 2}
+    - HomeDoor: {fileID: 11400000, guid: 0718c8d35a00bae4e8f684ea731fa651, type: 2}
+      LandingDoor: {fileID: 11400000, guid: e410f29a259bd26439f52fd5021131ff, type: 2}
+  - sceneName: Level8_LeverDoor_Easy
+    doors:
+    - HomeDoor: {fileID: 11400000, guid: e410f29a259bd26439f52fd5021131ff, type: 2}
+      LandingDoor: {fileID: 11400000, guid: 0718c8d35a00bae4e8f684ea731fa651, type: 2}
+    - HomeDoor: {fileID: 11400000, guid: ff5432472de7485469c3e046ffb9aeac, type: 2}
+      LandingDoor: {fileID: 11400000, guid: 8759dc2dc2e7dba4f853198bcd0beb5f, type: 2}
+  - sceneName: Level9_LeverDoor_Hard
+    doors:
+    - HomeDoor: {fileID: 11400000, guid: 8759dc2dc2e7dba4f853198bcd0beb5f, type: 2}
+      LandingDoor: {fileID: 11400000, guid: ff5432472de7485469c3e046ffb9aeac, type: 2}
+    - HomeDoor: {fileID: 11400000, guid: 95f9a19525f1be249bc9ef3649fb7a23, type: 2}
+      LandingDoor: {fileID: 11400000, guid: 1c3a8fd24b190d547bf33f0e94820b6c, type: 2}
+  - sceneName: Level10_PathofPain
+    doors:
+    - HomeDoor: {fileID: 11400000, guid: 1c3a8fd24b190d547bf33f0e94820b6c, type: 2}
+      LandingDoor: {fileID: 11400000, guid: 95f9a19525f1be249bc9ef3649fb7a23, type: 2}
+    - HomeDoor: {fileID: 11400000, guid: 89c9f7be095aeae40ab79fed89ac58ac, type: 2}
+      LandingDoor: {fileID: 11400000, guid: a83b60ac06988d242b7e8c6d1e8d74f9, type: 2}

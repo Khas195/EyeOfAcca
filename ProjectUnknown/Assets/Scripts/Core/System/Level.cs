@@ -61,17 +61,13 @@ public class Level : MonoBehaviour
     [Button("SAVE CHANGES")]
     public void SaveChanges()
     {
-        collectableData.datas.Clear();
-        for (int i = 0; i < collectables.Count; i++)
-        {
-            collectableData.datas.Add(new LevelCollectablesData.CollectableData(false));
-        }
         this.collectableData.SaveData();
         this.deadPlaceDatas.SaveData();
     }
     private void Setup()
     {
         TurnOffCollectedStatue();
+        SynchronizeCollectbles();
         CreateIndicatorManagerRoot();
         UpdateIndicatorManagers();
         Chip.OnChracterDeadGlobal.AddListener(OnCharacterDead);
@@ -82,6 +78,25 @@ public class Level : MonoBehaviour
         CreateSkeletonRoot();
         SpawnSkeletonsAtDeadPlace();
     }
+
+    [Button]
+    private void SynchronizeCollectbles()
+    {
+        if (collectables.Count > collectableData.datas.Count)
+        {
+            var neededAmount = collectables.Count - collectableData.datas.Count;
+            for (int i = 0; i < neededAmount; i++)
+            {
+                collectableData.datas.Add(new LevelCollectablesData.CollectableData(false));
+            }
+        }
+        else if (collectables.Count < collectableData.datas.Count)
+        {
+            var extraAmount = collectableData.datas.Count - collectables.Count;
+            collectableData.datas.RemoveRange(collectableData.datas.Count - extraAmount, extraAmount);
+        }
+    }
+
     public void OnCharacterDead(Vector2 place)
     {
         if (deadPlaceDatas == null) return;

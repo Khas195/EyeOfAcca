@@ -10,10 +10,8 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     private const string MASTER_SCENE = "MasterScene";
     private const string ENTITIES_SCENE = "EntitiesScene";
     private const string IN_GAME_MENU_SCENE = "InGameMenu";
-
-
-
     private const string MAIN_MENU_SCENE = "MainMenu";
+    public const string CREDITS_SCENE = "Credits";
     [SerializeField]
     [Required]
     StateManager gameStateManager = null;
@@ -43,12 +41,13 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
 
     public Material TransitionMaterial;
 
-    public Material RippleEffectMat;
+    public Material RippleEffectMat = null;
     void Start()
     {
         UnloadAllScenesExcept(MASTER_SCENE);
         SaveLoadManager.LoadAllData();
         Screen.fullScreenMode = masterSettings.mode;
+        InvisibleCheckPoint.CheckPointReachedEvent.AddListener(this.OnCheckPointReached);
         if (masterSettings.skipMainMenu)
         {
             this.StartNewGame();
@@ -57,6 +56,16 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
         {
             this.GoToMainMenu();
         }
+    }
+
+    public bool IsCurrentCheckPoint(TransitionDoorProfile door)
+    {
+        return currentSettings.startLevelDoor.Equals(door);
+    }
+
+    private void OnCheckPointReached(TransitionDoorProfile newCheckPoint)
+    {
+        currentSettings.startLevelDoor = newCheckPoint;
     }
 
     public void StartNewGame()
@@ -71,8 +80,11 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     public void RefreshSave()
     {
         LogHelper.GetInstance().Log("Creating New Save".Bolden(), true);
+        if (currentSettings)
+        {
+            currentSettings.Reset();
+        }
         SaveLoadManager.ResetSaves();
-
     }
 
     public void LoadLevelAtSpawn(TransitionDoorProfile spawn)
@@ -124,6 +136,17 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
             LoadSceneAdditively(MAIN_MENU_SCENE);
             StartCoroutine(GetLevelLoadProcess(GameState.GameStateEnum.MainMenu));
         });
+    }
+    public void GoToCredit()
+    {
+        if (gameStateManager.RequestState(GameState.GameStateEnum.Loading) == false) return;
+        loadingControl.FadeIn(() =>
+        {
+            UnloadAllScenesExcept(MASTER_SCENE);
+            LoadSceneAdditively(CREDITS_SCENE);
+            StartCoroutine(GetLevelLoadProcess(GameState.GameStateEnum.Credit));
+        });
+
     }
 
     private void UnloadAllScenesExcept(string sceneNotToUnloadName)
@@ -302,10 +325,6 @@ public class GameMaster : SingletonMonobehavior<GameMaster>
     {
         this.currentSettings.levelCenter = origin;
         this.currentSettings.levelBounds = bounds;
-    }
-    public void UpdateCurrentLevelSettings(TransitionDoorProfile transitionDoorProfile)
-    {
-        this.currentSettings.startLevelDoor = transitionDoorProfile;
     }
     public void UpdateLevelCurrentCollectables(LevelCollectablesData collectableData)
     {
