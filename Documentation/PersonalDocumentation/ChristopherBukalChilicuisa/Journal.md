@@ -21,9 +21,20 @@ results.
 
 ---
 
-## Sprints 1 & 2, 10th May
+## Sprints 1 & 2
 
 We've made a lot of progress in the past two weeks, and I believe we'll have something really impressive by the end of the second sprint on Tuesday. The game has many interesting synergistic mechanics, 
 but be once discussed an interaction which included solely the character and the axe such that the axe itself would feel justified, because if a level contained only the room, the player would have
 nothing to do, other that throw the axe and recall it. One of the interactions we came up with was that the player could
 hang on to the axe once it was stuck to a wall, and use that to travere levels. I liked the idea, however it would take much too long to implement so we decided to drop it.
+
+## Sprint 3
+
+This sprint we dedicated to coming up with various level concepts. We were to have three areas, all with their distinct aesthetics and color schemes, through which the player would progress
+in the game. One level concept was a save room, after all, we needed a save feature as the game would be too long to expect everyone to be able
+or willing to finish it in one sitting. So for the save room we thought it would be nice to have an atmosphere of great tranquility, with many relaxing ambient sounds, such as the bubbling of a fountain
+spilling water into a basin. A streak of light shining through a hole in the ceiling, giving a warm mood to the scene. The idea for saving was that we would have a stone struture at which you would throw
+the axe, and upon hitting it, the game would save. Our rationale was that since we use the axe as a primary way of interacting with the environment, it woud only make sense that saving would be achieved,
+through the same action.
+Here I came up an idea I thought was interesting, and that was having picese and cracks in the background wall which would reveal inner, darker layers of the wall. It was also here where we considerend
+using 2d lights for our project, but felt strongly hesitant as that would significantly increase the time needed to decorate a level.
