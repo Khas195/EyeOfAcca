@@ -90,3 +90,20 @@ namely 2D lights, which was done to great effect by Jawad. If we continue wokrin
 
 ## Sprint 6
 
+In sprint 6 we added a bunch of background elements, divided into two categories: static, and animated. For the static elements I made a stone bech and stone table, to illustrate a kind of dining
+or living quarters. I made two variants of skeletal remeains (one lying on the floor, one leaning on the wall) to add to the notion of danger or great misfortune. I added three variants of statues
+in differing poses and shapes, for religious or profane purposes. I added weapon racks, trying to illustrate the obsidian based weaponry used by the Aztecs. I also made a stand on which a kind of
+ceremonial garb was put, with feathered head-dress. Finally I made a tapestry with aztec motifs.
+
+For the animated elements I made a stream of water falling from a crack in the wall. The animation was supplemented with particle efefcts for splashing. Another animated element was a fire-pit
+which would provide light to the stone halls. This was heavly supplemented with particle effects for smoke and sparks. My favourite animated element were the gears in the wall which woud spin when
+the railblock was moved.
+
+## Sprint 7
+
+In sprint seven I worked on the collectable. I really wanted it to be a 3D object in a 2D world because I thought the visual juxtaposition would be very amusing. So I made a very rudimentary blocky
+model in Maya and applied a pixelated texture to it (very Minecraft). I'm really happy with how they turned out. For the opening of the game the idea was thus (according to Tung): 
+the game opens on the character in a petrified state, after which they reanimate and begin the game. To this I thought it would be interesting to add other petrified figures as well,
+thinking this could add much of the narrative ambiguity lost now that we scrapped the murals for time. I also did a lot of work on the ending sequence, which involved the caracter throwing
+the ae into a stone mouth, after which the axe would shake, and finally break, unleashing an immense stream on energy rushing towards the character, who would then perform a triumphant powerstance
+and the end credits would roll.
