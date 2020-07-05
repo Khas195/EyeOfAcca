@@ -28,6 +28,8 @@ but be once discussed an interaction which included solely the character and the
 nothing to do, other that throw the axe and recall it. One of the interactions we came up with was that the player could
 hang on to the axe once it was stuck to a wall, and use that to travere levels. I liked the idea, however it would take much too long to implement so we decided to drop it.
 
+---
+
 ## Sprint 3
 
 This sprint we dedicated to coming up with various level concepts. We were to have three areas, all with their distinct aesthetics and color schemes, through which the player would progress
@@ -38,3 +40,18 @@ the axe, and upon hitting it, the game would save. Our rationale was that since 
 through the same action.
 Here I came up an idea I thought was interesting, and that was having picese and cracks in the background wall which would reveal inner, darker layers of the wall. It was also here where we considerend
 using 2d lights for our project, but felt strongly hesitant as that would significantly increase the time needed to decorate a level.
+For one of the concepts we had and an area which would be wide and open, with lots of lights coming through big windows in the background.
+
+---
+
+## Sprint 4
+
+I did a new iteration on the tilemap. I wanted to add an effect of layering of the stonework of the level, so the tilemap had to be drawn with three layers, the surface layer with which the player would
+collide, and two aesthetic layers. Needles to say, the rest were not happy with spike in level drawing complexity. I also added foliage and rubble to the tilemap, which would add much needed
+variety to the look. The foliage had to be animated, of course, since static foliage woul just look off-putting. And in addition to a static, 'idle' animation, we needed an animation for when the
+player passes through the foliage (grass and vines), one option for this was to do a direction-neutral 'rustle' animation. But we are RangGang, and RangGang don't cut corners. So I made animations
+for both left and rightward motion. The animation process was much more complex than I had anticipated, but after some frustration-induced migranes I think I came to a satisfactory result.
+
+---
+
+## Sprint 5
