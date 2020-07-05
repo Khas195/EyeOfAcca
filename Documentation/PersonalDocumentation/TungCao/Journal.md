@@ -163,7 +163,7 @@ Most of our meetings are about narrative aspect of the game as that is the goal 
 
 Working on life of cholas this week. Got a lot of ideas on how to make it better but don't really have that much time. I had to remake a lot of Hari's code. I hope he will find a use for them.
 
-I thought the controlling of the 3 characters to solve puzzles and opening up paths for each other are very cool. It is like the 3 vikings game back in the day. 
+I thought the controlling of the 3 characters to solve puzzles and opening up paths for each other are very cool. It is like the 3 vikings game back in the day.
 
 I tried multiplayer with the 3 characters but it didn't work out. Too much synchronizing problem with the networking.
 
@@ -177,3 +177,29 @@ Still not heard from Sam. I think we should just do the meetings without him and
 
 Decided to add invisible checkpoints and increase the size of the level to a meium big size.
 
+
+### __**Moving Forward (June 17th, 2020 - June 23rd, 2020)**__
+
+Due to Sam not being here. I don't see how the original narrative story would work in the amount of time left.
+
+I talked to Chris to make some alteration on what to do with the narrative.
+
+We came up with 2 differents cutscenes and pushed down the murals piorities as the semester comming to a close.
+
+Asked Ousama to have atleast an outline of all the levels. He kept wanting to just go into unity and make levels. 
+
+### __**Sam's return, kind of(June 24th, 2020 - June 30th, 2020)**__
+
+Added the opening cutscene to introduce the player to the character. Chris made the assets for the ending cutscene but there are several reasons why I don't having an ending cutscene is important.
+
+First, I don't think most people would make it to the end to watch the ending cutscene. So most of the work done is gone to waste. It takes time and we gonna change it anyway after the semester since we'd been rushing out content for this semester which was quite stressful.
+
+With Sam, kind of returning, I leave the project management back to him and focus on design and programming.
+
+### __**Finishing the Game (July 1st, 2020 - July 3rd, 2020)**__
+
+Added the axe cutscene with the ending cutscene's asset. Don't want  any of them going to waste.
+
+Just polishing and fixing a lot of bugs right now.
+
+Had a lot of problems with Ousama's levels such as pacing and empty spaces on huge levels.
