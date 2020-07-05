@@ -78,7 +78,7 @@ level positioned or placed in the right place.
 
 ---
 
-## Re Designing the full game Level Outline with Sam on Miro Board(29/6/2020).
+## Re Designing the full game Level Outline with Sam on Miro Board(29/6/2020)(Sprint 8).
 I had to redesign the outline again with sam after his connection was good again. So we both made a new outline that we all agreed on and I started making the levels the next day directly.
 unfortunaltley I had to remove the 5 old levels from my outline that I already spend over 4 days to finish them.
 making the new outline was the worst pain in the ass, It had only 4 days to finish it by myself and I had to work daily from 8pm until 5am just making the game levels and testing them.
