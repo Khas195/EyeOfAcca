@@ -107,3 +107,11 @@ the game opens on the character in a petrified state, after which they reanimate
 thinking this could add much of the narrative ambiguity lost now that we scrapped the murals for time. I also did a lot of work on the ending sequence, which involved the caracter throwing
 the ae into a stone mouth, after which the axe would shake, and finally break, unleashing an immense stream on energy rushing towards the character, who would then perform a triumphant powerstance
 and the end credits would roll.
+
+---
+
+## Sprint 8
+
+For the final sprint I had to make the unlock stones which would unlock various mechanism throughout the game. In addition the final door was made, a great, towering gate upon which stood three symbols
+which would light up with their coresponding unlocking stones. The final ending sequence (somewhat anticlimactically) is a simple 'to be continued' scene with our credits, since we did not have the time
+to implement the original idea. I also implemented a different font, and redid some UI indicators.
