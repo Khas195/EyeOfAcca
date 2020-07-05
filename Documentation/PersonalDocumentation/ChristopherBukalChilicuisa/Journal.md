@@ -55,3 +55,18 @@ for both left and rightward motion. The animation process was much more complex 
 ---
 
 ## Sprint 5
+
+Now it was time to finalize the desing the our character. My first redesign involved orange and light beige. After an ambarrassing amount of iterations I realised it looked like the x-wing pilot outfit
+form Star Wars, and with that I couldn't escape the sci-fi/space association. So I changed it to a brightly couloured top and dark couloured shorts (ironically, the same color scheme as the character
+from my previous project). Tung suggested I make the arm the character holds the axe with a robot arm, because the otherwise the character posses the inexplicable strength needed to wield such a heavy
+object. I objected initially, but honestly why not inject some weirdness into the whole thing (more weirdness)?
+We also really went into the narrative and how it would be conveyed to the player. We wanted to tell the story through great murals which would be placed in the background in rooms inteded as a break
+in the pacing between two sections of platforming. We narrowed the number of murals we needed to 6. After making sketch of the murals we sent them out to several people, friends and acquaintances, 
+to see how they would interpret the murals. We sent them to about 5 different people and received as many different interpretations, some directly contradicting eachother. I found this to mean rethink
+the design of the murals from scratch, but Sam stated that this was actually a boon, as having ambiguous narrative elements which yield diverse interpretations would be much more interesting. I agreed,
+but chiefly on the grounds that it entailed less work for me.
+
+---
+
+## The Milestone
+
