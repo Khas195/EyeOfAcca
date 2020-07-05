@@ -70,3 +70,23 @@ but chiefly on the grounds that it entailed less work for me.
 
 ## The Milestone
 
+The milestone presentations were done differently due to the online nature of this semster, usually what would be all of us gathering in one physical space and holding public speaking sessions on
+our progress, we devised Miro board sequences over which we spoke. It was a bit awkward but nothing too bad.
+
+---
+
+## The Special Assignment
+
+The special assignment was a week where each team took on the project of another team to try to add or modify something. Our team took on 'Life of Cholas' from Hari and Junjie. While their game was
+focused on a fixed, top-down perspective camera, our version had a freeform, third-person camera following the characters. The character redesigns themselves were my task, which I did following a sort
+of tribal mask aesthetic. One of the characters (named Curly) was small, but could move and jump unhindered, another (named Moe) was large and wide, moving slowly and unable to jump. The third (Larry)
+was tall and lanky, paralyzingly unable to either jump or move, and whom the other Cholas (presumably a name for the species, rather than proper names) had to push along through the level to progress.
+
+As for our game, it was taken by the Gravball team, who did three interesting modifications. One was the inclusion of wall-jumping, which we found amusing but thought it introduced too many clashes
+with the currect movement mehcanics. Another was a gem wich flips gravity when struck. This I think could be used to create some cool scenarios in the game. The final additions was one I already mentioned,
+namely 2D lights, which was done to great effect by Jawad. If we continue wokring on the game post-semester, 2D lights is something I hope we invest in seriously.
+
+---
+
+## Sprint 6
+
