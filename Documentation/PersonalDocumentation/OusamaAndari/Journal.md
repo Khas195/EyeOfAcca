@@ -85,3 +85,7 @@ making the new outline was the worst pain in the ass, It had only 4 days to fini
 That was a lot of work but we had not time. I am happy anyways that I managed to finish everything in time although I got sick again cause of the lack of sleep.
 
 ---
+
+## Special thanks to Prof.Csongor and Prof.Stamm for the feedback and advices they gave to us during the semster.
+This semster will become a nice memory cause it is unique and probably will not happen again, the idea to study and do all work online is something different to people in general and we are not used to it
+so I think this was a very nice expierience for me and others.
